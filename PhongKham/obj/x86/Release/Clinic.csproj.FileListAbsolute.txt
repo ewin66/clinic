@@ -1,0 +1,10 @@
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\bin\Release\Clinic.exe
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\bin\Release\Clinic.pdb
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.CreateUserForm.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\PhongKham.Form1.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.LoginForm.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.PassSQL.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.Properties.Resources.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.csproj.GenerateResource.Cache
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.exe
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\x86\Release\Clinic.pdb
