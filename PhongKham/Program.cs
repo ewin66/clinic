@@ -8,6 +8,7 @@ using Clinic;
 using System.Xml;
 using MySql.Data.MySqlClient;
 using System.IO;
+using Clinic.Database;
 
 namespace PhongKham
 {
@@ -30,7 +31,7 @@ namespace PhongKham
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
 
             if (!File.Exists("WriteLines.txt"))
             {
@@ -87,7 +88,7 @@ namespace PhongKham
             strBuilder.UserID="root";
             strBuilder.Password = passSql;
             strBuilder.Database="clinic";
-
+         
             conn = new MySqlConnection(strBuilder.ConnectionString);
         }
     }

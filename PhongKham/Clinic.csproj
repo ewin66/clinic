@@ -107,6 +107,10 @@
     <Compile Include="CreateUserForm.Designer.cs">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\Database.cs" />
+    <Compile Include="Database\DatabaseFactory.cs" />
+    <Compile Include="Database\IDatabase.cs" />
+    <Compile Include="Database\MySqlDatabase.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

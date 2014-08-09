@@ -10,6 +10,7 @@ using System.IO;
 using PhongKham;
 using Clinic.Helpers;
 using MySql.Data.MySqlClient;
+using Clinic.Database;
 
 namespace Clinic
 {
@@ -42,13 +43,18 @@ namespace Clinic
  
                 if (checkBox1.Checked == false)
                 {
-                    MySqlConnectionStringBuilder strBuilder = new MySqlConnectionStringBuilder();
-                    strBuilder.Server = "localhost";
-                    strBuilder.UserID = "root";
-                    strBuilder.Password = textBox1.Text;
-                    Program.conn = new MySqlConnection(strBuilder.ConnectionString);
-                    Program.conn.Open();
-                    InitDatabase(Program.conn, textBox1.Text);
+                    ///Old structure
+                    //MySqlConnectionStringBuilder strBuilder = new MySqlConnectionStringBuilder();
+                    //strBuilder.Server = "localhost";
+                    //strBuilder.UserID = "root";
+                    //strBuilder.Password = textBox1.Text;
+                    //Program.conn = new MySqlConnection(strBuilder.ConnectionString);
+                    //Program.conn.Open();
+                    //InitDatabase(Program.conn, textBox1.Text);
+                    
+                    ///New Structure
+                    ///
+                    
                 }
                 else
                 {
