@@ -44,16 +44,18 @@ namespace Clinic
                 if (checkBox1.Checked == false)
                 {
                     ///Old structure
-                    //MySqlConnectionStringBuilder strBuilder = new MySqlConnectionStringBuilder();
-                    //strBuilder.Server = "localhost";
-                    //strBuilder.UserID = "root";
-                    //strBuilder.Password = textBox1.Text;
+                    DbConStringBuilder strBuilder = new DbConStringBuilder();
+                    strBuilder.Server = "localhost";
+                    strBuilder.UserID = "root";
+                    strBuilder.Password = textBox1.Text;
                     //Program.conn = new MySqlConnection(strBuilder.ConnectionString);
                     //Program.conn.Open();
                     //InitDatabase(Program.conn, textBox1.Text);
                     
                     ///New Structure
                     ///
+                    DatabaseFactory.CreateNewDatabase("", strBuilder);
+                    IDatabase database = DatabaseFactory.Instance;
                     
                 }
                 else

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MySql.Data.MySqlClient;
 
 namespace Clinic.Database
 {
@@ -20,11 +21,19 @@ namespace Clinic.Database
             }
         }
         
-        public IDatabase CreateNewDatabase(string kindOfDatabase,string strCon)
+        public static void CreateNewDatabase(string kindOfDatabase,DbConStringBuilder strBuilder)
         {
             //if else here
-            instance = new MySqlDatabase(strCon);
-            return instance;
+            MySqlConnectionStringBuilder stringBuilder = new MySqlConnectionStringBuilder();
+            StringBuilderCopy(strBuilder, stringBuilder);
+            instance = new MySqlDatabase(stringBuilder.ConnectionString);
+        }
+
+        private static void StringBuilderCopy(DbConStringBuilder strBuilder, MySqlConnectionStringBuilder stringBuilder)
+        {
+            stringBuilder.Server = strBuilder.Server;
+            stringBuilder.UserID = strBuilder.UserID;
+            stringBuilder.Password = strBuilder.Password;
         }
 
         private DatabaseFactory()
