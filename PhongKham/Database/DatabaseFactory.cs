@@ -34,6 +34,7 @@ namespace Clinic.Database
             stringBuilder.Server = strBuilder.Server;
             stringBuilder.UserID = strBuilder.UserID;
             stringBuilder.Password = strBuilder.Password;
+            stringBuilder.Database = strBuilder.Database;
         }
 
         private DatabaseFactory()

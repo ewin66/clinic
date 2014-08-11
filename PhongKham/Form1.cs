@@ -71,7 +71,7 @@ namespace PhongKham
         {
 
 
-            if (!Helper.checkAdminExists(Program.conn, "ClinicUser"))
+            if (!Helper.checkAdminExists("ClinicUser"))
             {
                 CreateUserForm createUserForm = new CreateUserForm();
                 createUserForm.ShowDialog();

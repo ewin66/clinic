@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using PhongKham;
 using Clinic.Helpers;
+using Clinic.Database;
 
 
 namespace Clinic
@@ -38,8 +39,8 @@ namespace Clinic
             }
             List<string> columns = new List<string>() {"Username","Password1","Authority","Password2"};
             List<string> values = new List<string>() { textBox1.Text, Helper.Encrypt(textBox2.Text), "1", Helper.Encrypt(textBox4.Text) };
-            
-            Helpers.Helper.InsertRowToTable(Program.conn, "ClinicUser", columns, values);
+            IDatabase dabase = DatabaseFactory.Instance;
+            dabase.InsertRowToTable("ClinicUser", columns, values);
             this.DialogResult = DialogResult.OK;
 
             this.Close();

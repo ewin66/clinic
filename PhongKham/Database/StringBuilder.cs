@@ -29,5 +29,13 @@ namespace Clinic.Database
             set { password = value; }
         }
 
+        private string database;
+
+        public string Database
+        {
+            get { return database; }
+            set { database = value; }
+        }
+
     }
 }

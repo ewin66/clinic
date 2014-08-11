@@ -46,15 +46,15 @@ namespace PhongKham
             try
             {
                 string[] lines = System.IO.File.ReadAllLines("WriteLines.txt");
-                InitSqlConnection(lines[0], lines[1]);
-                Program.conn.Open();
+               // GetConnectionString(lines[0], lines[1]);
+                DatabaseFactory.CreateNewDatabase("",GetConnectionString(lines[0], lines[1]));
             }
             catch(Exception e)
             {
                 File.Delete("WriteLines.txt");
                 MessageBox.Show("Lỗi database! Xin chạy lại chương trình!");
             }
-            if (!Helper.checkAdminExists(Program.conn, "clinicuser"))
+            if (!Helper.checkAdminExists("clinicuser"))
             {
                 CreateUserForm createUserForm = new CreateUserForm();
                 if (createUserForm.ShowDialog() == DialogResult.OK)
@@ -81,15 +81,25 @@ namespace PhongKham
             }
         }
 
-        public static void InitSqlConnection(string passSql,string IPAddress)
-        {
-            MySqlConnectionStringBuilder strBuilder = new MySqlConnectionStringBuilder();
-            strBuilder.Server = IPAddress=="   .   .   ."?"localhost":IPAddress;
-            strBuilder.UserID="root";
-            strBuilder.Password = passSql;
-            strBuilder.Database="clinic";
+        //public static void InitSqlConnection(string passSql,string IPAddress)
+        //{
+        //    MySqlConnectionStringBuilder strBuilder = new MySqlConnectionStringBuilder();
+        //    strBuilder.Server = IPAddress=="   .   .   ."?"localhost":IPAddress;
+        //    strBuilder.UserID="root";
+        //    strBuilder.Password = passSql;
+        //    strBuilder.Database="clinic";
          
-            conn = new MySqlConnection(strBuilder.ConnectionString);
+        //    conn = new MySqlConnection(strBuilder.ConnectionString);
+        //}
+
+        private static DbConStringBuilder GetConnectionString(string passSql, string IPAddress)
+        {
+            DbConStringBuilder strBuilder = new DbConStringBuilder();
+                strBuilder.Server = IPAddress=="   .   .   ."?"localhost":IPAddress;
+                strBuilder.UserID="root";
+                strBuilder.Password = passSql;
+                strBuilder.Database="clinic";
+                return strBuilder;
         }
     }
 }

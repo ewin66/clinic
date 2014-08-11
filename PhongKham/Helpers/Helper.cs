@@ -16,6 +16,9 @@ using System.Data.SqlClient;
     using System.Security.Permissions;
     using PhongKham;
     using MySql.Data.MySqlClient;
+    using Clinic.Database;
+    using System.Data;
+    using System.Data.Common;
 
     /// <summary>
     /// Comment for the class
@@ -238,17 +241,19 @@ using System.Data.SqlClient;
         }
 
 
-        public static bool checkAdminExists(MySqlConnection conn, string nameOfTable)
+        public static bool checkAdminExists( string nameOfTable)
         {
 
-            string strCommand = "SELECT * FROM " + nameOfTable + " WHERE Authority = '1'";
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            MySqlDataReader reader = comm.ExecuteReader();
-            reader.Read();
+            string strCommand = "SELECT * FROM " + nameOfTable + " WHERE Authority = 1";
+           // MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            //MySqlDataReader reader = comm.ExecuteReader();
+            IDatabase db = DatabaseFactory.Instance;
+            bool hasrow =false;
+            DbDataReader reader = (DbDataReader)db.ExecuteReader(strCommand, null,ref hasrow);
 
             try
             {
-                return reader.HasRows;
+                return hasrow;
             }
             finally
             {

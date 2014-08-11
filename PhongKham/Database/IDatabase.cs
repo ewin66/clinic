@@ -9,6 +9,8 @@ namespace Clinic.Database
 {
     public interface IDatabase
     {
-        IDataReader ExecuteReader(string StoreProcName, List<IDataParameter> Params);
+        IDataReader ExecuteReader(string StoreProcName, List<IDataParameter> Params,ref bool hasrow);
+        void CreateDatabase(string password);
+        void InsertRowToTable(string nameOfTable, List<string> nameOfColumns, List<string> values);
     }
 }

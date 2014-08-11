@@ -56,11 +56,11 @@ namespace Clinic
                     ///
                     DatabaseFactory.CreateNewDatabase("", strBuilder);
                     IDatabase database = DatabaseFactory.Instance;
-                    
+                    database.CreateDatabase(textBox1.Text);
                 }
                 else
                 {
-                    Program.InitSqlConnection(textBox1.Text, maskedTextBox1.Text);
+                    //Program.InitSqlConnection(textBox1.Text, maskedTextBox1.Text);
                     Program.conn.Open();
                 }
 
@@ -76,38 +76,7 @@ namespace Clinic
 
         }
 
-        private void InitDatabase(MySqlConnection conn , string pass)
-        {
-            string strCommand = "grant all privileges on *.* to 'root'@'%' identified by " + Helper.ConvertToSqlString(textBox1.Text);
-            MySql.Data.MySqlClient.MySqlCommand comm = new MySql.Data.MySqlClient.MySqlCommand(strCommand, Program.conn);
-            comm.ExecuteNonQuery();
-
-            MySqlCommand command = new MySqlCommand("CREATE DATABASE IF NOT EXISTS clinic;", conn);
-
-            command.ExecuteNonQuery();
-
-
-
-            //create table
-            MySqlConnectionStringBuilder strBuilder = new MySqlConnectionStringBuilder();
-            strBuilder.Server = "localhost";
-            strBuilder.UserID = "root";
-            strBuilder.Password = pass;
-            strBuilder.Database = "clinic";
-
-            conn = new MySqlConnection(strBuilder.ConnectionString);
-            conn.Open();
-            command = new MySqlCommand("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));", conn);
-            //command = new MySqlCommand("DROP Table IF EXISTS clinicuser", conn);
-            command.ExecuteNonQuery();
-            command = new MySqlCommand("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime);", conn);
-            command.ExecuteNonQuery();
-            command = new MySqlCommand("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10));", conn);
-            command.ExecuteNonQuery();
-            command = new MySqlCommand("CREATE Table IF NOT EXISTS patient(Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),Id varchar(10));", conn);
-            command.ExecuteNonQuery();
-            conn.Close();
-        }
+        
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {

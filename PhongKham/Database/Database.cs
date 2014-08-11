@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Common;
 using System.Data;
+using Clinic.Helpers;
 
 namespace Clinic.Database
 {
@@ -35,14 +36,14 @@ namespace Clinic.Database
             {
 
                 cmd = new TCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = StoreProcName;
                 if (tTransaction != default(TTransaction))
                     cmd.Transaction = tTransaction;
                 else
                     cmd.Connection = tConnection;
 
-                if (Params != null || Params.Count > 0)
+                if (Params != null && Params.Count > 0)
                 {
                     foreach (DbParameter param in Params)
                         cmd.Parameters.Add(param);
@@ -74,7 +75,7 @@ namespace Clinic.Database
             }
         }
 
-        protected  TDataReader ExecuteReader(string StoreProcName, List<TParameter> Params)
+        protected  TDataReader ExecuteReader2(string StoreProcName, List<TParameter> Params,ref bool hasRows)
         {
             bool internalOpen = false;
             TCommand cmd;
@@ -84,14 +85,14 @@ namespace Clinic.Database
             {
 
                 cmd = new TCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
+               // cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = StoreProcName;
                 if (tTransaction != default(TTransaction))
                     cmd.Transaction = tTransaction;
                 else
                     cmd.Connection = tConnection;
 
-                if (Params != null || Params.Count > 0)
+                if (Params != null && Params.Count > 0)
                 {
                     foreach (DbParameter param in Params)
                         cmd.Parameters.Add(param);
@@ -103,8 +104,11 @@ namespace Clinic.Database
                     internalOpen = true;
                 }
 
-
-                return (TDataReader)cmd.ExecuteReader();
+                TDataReader temp = (TDataReader)cmd.ExecuteReader();
+               
+                temp.Read();
+                hasRows = temp.HasRows;
+                return temp;
 
             }
             catch (DbException DbEx)
@@ -122,24 +126,69 @@ namespace Clinic.Database
             }
         }
 
-        protected TDataReader ExecuteReader(string StoreProcName)
+
+        protected void CreateDatabase(string password)
         {
-            return ExecuteReader(StoreProcName);
+
+            ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic;", null);
+            tConnection.ConnectionString += ";database=clinic;";
+            tConnection.ConnectionString += ";password="+password;     
+            ExecuteNonQuery("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));",null);
+
+            ExecuteNonQuery("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime);", null);
+
+            ExecuteNonQuery("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10));", null);
+
+            ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),Id varchar(10));", null);
+
         }
-
-
 
 
         public void Dispose()
         {
+           
             throw new NotImplementedException();
         }
 
 
 
-        public IDataReader ExecuteReader(string StoreProcName, List<IDataParameter> Params)
+        public IDataReader ExecuteReader(string StoreProcName, List<IDataParameter> Params, ref bool hasrow)
         {
-            return ExecuteReader(StoreProcName, Params);
+
+            return ExecuteReader2(StoreProcName, null,ref hasrow);
+        }
+
+
+        void IDatabase.CreateDatabase(string password)
+        {
+             CreateDatabase(password);
+        }
+
+
+        public void InsertRowToTable(string nameOfTable, List<string> nameOfColumns, List<string> values)
+        {
+            for (int i = 0; i < values.Count; i++)
+            {
+                values[i] =Helper.ConvertToSqlString(values[i]);
+            }
+
+            string columns = "Insert Into " + nameOfTable + " (";
+            foreach (string name in nameOfColumns)
+            {
+                columns += name + ",";
+            }
+            columns = columns.Remove(columns.Length - 1);
+            columns += ")";
+            string vals = " VALUES (";
+            foreach (string value in values)
+            {
+                vals += value + ",";
+            }
+            vals = vals.Remove(vals.Length - 1);
+            vals += ")";
+
+            string strCommand = columns + vals;
+            ExecuteNonQuery(strCommand,null);
         }
     }
 }
