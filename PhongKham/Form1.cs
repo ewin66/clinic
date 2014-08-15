@@ -7,6 +7,8 @@ using Clinic;
 using Clinic.Helpers;
 using Clinic.Models;
 using MySql.Data.MySqlClient;
+using Clinic.Database;
+using System.Data.Common;
 
 namespace PhongKham
 {
@@ -16,7 +18,6 @@ namespace PhongKham
         {
 
             InitializeComponent();
-            //InitTableWaiting();
             InitInputMedicineMySql();
             InitUser(Authority);
             InitComboboxMedicinesMySql();
@@ -31,7 +32,7 @@ namespace PhongKham
         private void InitClinicRoom()
         {
             //init id
-            int intId = Helper.SearchMaxValueOfTable(Program.conn, "Patient", "Id", "DESC");
+            int intId = Helper.SearchMaxValueOfTable( "Patient", "Id", "DESC");
             string ID = String.Format("{0:000000}", intId);
             lblClinicRoomId.Text = ID;
 
@@ -54,16 +55,17 @@ namespace PhongKham
         private void InitComboboxMedicinesMySql()
         {
 
-            string strCommand = "Select Name From Medicine";
-            MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
+            //string strCommand = "Select Name From Medicine";
+            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
 
-            using (MySqlDataReader reader = comm.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                     this.Column18.Items.Add(reader.GetString(0));
-                }
-            }
+            //using (MySqlDataReader reader = comm.ExecuteReader())
+            //{
+            //    while (reader.Read())
+            //    {
+            //         this.Column18.Items.Add(reader.GetString(0));
+            //    }
+            //}
+            this.Column18.Items.AddRange(Helper.GetAllRowsOfSpecialColumn("Medicine", "Name").ToArray());
 
         }
 
@@ -179,32 +181,11 @@ namespace PhongKham
         {
 
             RefreshIdOfNewMedicine();
-
-
-            //FillComboboxID
-            //string strCommand = " SELECT Id FROM Medicine";
-            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-            //MySqlDataReader reader = comm.ExecuteReader();
-            ////comboBoxInputMedicineId.Items.Clear();
-            //while (reader.Read())
-            //{
-            //    int intId = int.Parse(reader.GetString(0).Trim());
-            //    string ID = String.Format("{0:000000}", intId);
-            //    comboBoxInputMedicineId.Items.Add(ID);
-            //}
-            //reader.Close();
-
-            //FillComboboxName
-            string strCommand = " SELECT Name FROM Medicine";
-            MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-            MySqlDataReader reader = comm.ExecuteReader();
             comboBoxInputMedicineName.Items.Clear();
-            while (reader.Read())
-            {
-                string name = reader.GetString(0).Trim();
-                comboBoxInputMedicineName.Items.Add(name);
-            }
-            reader.Close();
+
+            comboBoxInputMedicineName.Items.AddRange(Helper.GetAllRowsOfSpecialColumn("Medicine", "Name").ToArray());
+
+
 
         }
 
@@ -600,8 +581,10 @@ namespace PhongKham
 
 
             string strCommand = " SELECT ID FROM Medicine ORDER BY ID DESC LIMIT 1";
-            MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-            MySqlDataReader reader = comm.ExecuteReader();
+            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
+            //MySqlDataReader reader = comm.ExecuteReader();
+            IDatabase database = DatabaseFactory.Instance;
+            DbDataReader reader = database.ExecuteReader(strCommand, null) as DbDataReader;
             reader.Read();
             int intTemp = 0;
             if (reader.HasRows)
@@ -1343,7 +1326,7 @@ namespace PhongKham
         private void button4_Click(object sender, EventArgs e)
         {
             //init id
-            int intId = Helper.SearchMaxValueOfTable(Program.conn, "Patient", "Id", "DESC");
+            int intId = Helper.SearchMaxValueOfTable( "Patient", "Id", "DESC");
             string ID = String.Format("{0:000000}", intId);
             lblClinicRoomId.Text = ID;
         }

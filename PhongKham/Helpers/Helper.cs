@@ -240,6 +240,42 @@ using System.Data.SqlClient;
             
         }
 
+        public static List<string> GetAllRowsOfSpecialColumn(string table , string nameOfColumn)
+        {
+            List<string> result = new List<string>();
+            string strCommand = "SELECT "+nameOfColumn+" FROM "+table;
+            IDatabase database = DatabaseFactory.Instance;
+            DbDataReader reader = database.ExecuteReader(strCommand, null) as DbDataReader;
+            while (reader.Read())
+            {
+                string name = reader.GetString(0).Trim();
+                result.Add(name);
+            }
+            reader.Close();
+            return result;
+        }
+
+        public static bool checkUserExists(string user, string pass)
+        {
+            string strCommand = "Select Authority From ClinicUser Where Username = " + Helper.ConvertToSqlString(user) + " And Password1 = " + Helper.ConvertToSqlString(Helper.Encrypt(pass));
+
+            IDatabase database = DatabaseFactory.Instance;
+
+            IDataReader reader = database.ExecuteReader(strCommand, null);
+            reader.Read();
+            if (((DbDataReader)reader).HasRows)
+            {
+
+                reader.Close();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                return false;
+            }
+           
+        }
 
         public static bool checkAdminExists( string nameOfTable)
         {
@@ -249,16 +285,17 @@ using System.Data.SqlClient;
             //MySqlDataReader reader = comm.ExecuteReader();
             IDatabase db = DatabaseFactory.Instance;
             bool hasrow =false;
-            DbDataReader reader = (DbDataReader)db.ExecuteReader(strCommand, null,ref hasrow);
-
+            DbDataReader reader = (DbDataReader)db.ExecuteReader(strCommand, null);
+            
             try
             {
-                return hasrow;
+                reader.Read();
+                return reader.HasRows;
             }
             finally
             {
                 reader.Close();
-
+                db.CloseCurrentConnection();
             }
 
 
@@ -375,11 +412,12 @@ using System.Data.SqlClient;
         //        return newId;
         //    }
         //}
-        internal static int SearchMaxValueOfTable(MySqlConnection sqlConnection, string p, string p_2, string order)
+        internal static int SearchMaxValueOfTable( string p, string p_2, string order)
         {
             string strCommand = " SELECT  " + p_2 + " FROM " + p + " ORDER BY " + p_2 + " " + order + " LIMIT 1";
-            MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-            using (MySqlDataReader reader = comm.ExecuteReader())
+            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
+            IDatabase db = DatabaseFactory.Instance;
+            using (DbDataReader reader = db.ExecuteReader(strCommand,null) as DbDataReader)
             {
 
                 reader.Read();

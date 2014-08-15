@@ -75,7 +75,7 @@ namespace Clinic.Database
             }
         }
 
-        protected  TDataReader ExecuteReader2(string StoreProcName, List<TParameter> Params,ref bool hasRows)
+        protected  TDataReader ExecuteReader(string StoreProcName, List<TParameter> Params)
         {
             bool internalOpen = false;
             TCommand cmd;
@@ -104,11 +104,10 @@ namespace Clinic.Database
                     internalOpen = true;
                 }
 
-                TDataReader temp = (TDataReader)cmd.ExecuteReader();
+
                
-                temp.Read();
-                hasRows = temp.HasRows;
-                return temp;
+
+                return (TDataReader)cmd.ExecuteReader();
 
             }
             catch (DbException DbEx)
@@ -121,8 +120,10 @@ namespace Clinic.Database
             }
             finally
             {
-                if (internalOpen)
-                    tConnection.Close();
+               // reader need connection still open for read() , and note : close connection
+
+                //if (internalOpen)
+                //    tConnection.Close();
             }
         }
 
@@ -132,8 +133,8 @@ namespace Clinic.Database
 
             ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic;", null);
             tConnection.ConnectionString += ";database=clinic;";
-            tConnection.ConnectionString += ";password="+password;     
-            ExecuteNonQuery("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));",null);
+            tConnection.ConnectionString += ";password="+password;
+            ExecuteNonQuery("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));", null);
 
             ExecuteNonQuery("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime);", null);
 
@@ -144,24 +145,23 @@ namespace Clinic.Database
         }
 
 
-        public void Dispose()
+
+
+
+
+
+        #region implement Interface IDatabase
+
+        IDataReader IDatabase.ExecuteReader(string StoreProcName, List<IDataParameter> Params)
         {
-           
-            throw new NotImplementedException();
+
+            return ExecuteReader(StoreProcName, Params as List<TParameter>);
         }
 
 
-
-        public IDataReader ExecuteReader(string StoreProcName, List<IDataParameter> Params, ref bool hasrow)
+         void IDatabase.CreateDatabase(string password)
         {
-
-            return ExecuteReader2(StoreProcName, null,ref hasrow);
-        }
-
-
-        void IDatabase.CreateDatabase(string password)
-        {
-             CreateDatabase(password);
+            CreateDatabase(password);
         }
 
 
@@ -188,7 +188,20 @@ namespace Clinic.Database
             vals += ")";
 
             string strCommand = columns + vals;
-            ExecuteNonQuery(strCommand,null);
+            ExecuteNonQuery(strCommand, null);
         }
+
+
+         int IDatabase.ExecuteNonQuery(string StoreProcName, List<IDataParameter> Params)
+        {
+            return ExecuteNonQuery(StoreProcName, Params as List<TParameter>);
+        }
+        #endregion
+
+
+         public void CloseCurrentConnection()
+         {
+             tConnection.Close();
+         }
     }
 }
