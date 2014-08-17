@@ -20,6 +20,7 @@ namespace Clinic
         public CreateUserForm()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -21,6 +21,7 @@ namespace PhongKham
         {
 
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitInputMedicineMySql();
             InitUser(Authority);
             InitComboboxMedicinesMySql();
@@ -49,6 +50,7 @@ namespace PhongKham
 
         private void InitComboboxMedicinesMySql()
         {
+            this.Column18.Items.Clear();
             this.Column18.Items.AddRange(Helper.GetAllRowsOfSpecialColumn("Medicine", "Name").ToArray());
         }
 
@@ -382,7 +384,8 @@ namespace PhongKham
             List<string> values = new List<string>() { medicine.Name, medicine.Count.ToString(), medicine.CostIn.ToString(), medicine.CostOut.ToString(), medicine.InputDay.ToString("yyyy-MM-dd"), medicine.Id };
             db.InsertRowToTable("Medicine", columns, values);
             MessageBox.Show("Thêm mới thuốc thành công");
-
+            InitInputMedicineMySql();
+            InitComboboxMedicinesMySql();
             RefreshIdOfNewMedicine();
             ClearInputNewMedicine();
 
@@ -423,12 +426,6 @@ namespace PhongKham
 
 
         }
-        private void button9_Click(object sender, EventArgs e)
-        {
-            ClearInputNewMedicine();
-        }
-
-
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControl1.SelectedIndex == 1)
@@ -526,7 +523,7 @@ namespace PhongKham
             {
                 string Id = dataGridViewSearchValue[0, e.RowIndex].Value.ToString();
                 string strCommand = "SELECT * FROM patient p RIGHT JOIN history h ON p.Id = h.Id WHERE h.Id = "
-                    + Id + " AND h.Day = " + Helper.ConvertToSqlString(this.dataGridViewSearchValue.Rows[e.RowIndex].Cells[3].Value.ToString());
+                    + Id + " AND h.Day = " + Helper.ConvertToSqlString(Helper.ChangePositionOfDayAndYear(this.dataGridViewSearchValue.Rows[e.RowIndex].Cells[3].Value.ToString()));
 
                 // MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
 
@@ -540,7 +537,7 @@ namespace PhongKham
                     FillInfoToClinicForm(reader);
                     reader.Close();
 
-                    //comboBoxClinicRoomName.Text = name; // this will fill all infos via comboBox name changed event
+                    comboBoxClinicRoomName.Text = name; // this will fill all infos via comboBox name changed event
 
                     string[] medicineAndCount = new string[] { };
                     if (!string.IsNullOrEmpty(medicines))
@@ -633,8 +630,8 @@ namespace PhongKham
                     DataGridViewRow row = dataGridViewSearchValue.Rows[index];
                     row.Cells[0].Value = reader2.GetString(5); // id
                     row.Cells[1].Value = reader2.GetString(0);
-                    row.Cells[2].Value = reader2.GetDateTime(2).ToString("yyyy-MM-dd");//birthday
-                    row.Cells[3].Value = reader2.GetDateTime(10).ToString("yyyy-MM-dd"); // ngay kham
+                    row.Cells[2].Value = reader2.GetDateTime(2).ToString("dd-MM-yyyy");//birthday
+                    row.Cells[3].Value = reader2.GetDateTime(10).ToString("dd-MM-yyyy"); // ngay kham
                     row.Cells[4].Value = reader2.GetString(1);//address
                     row.Cells[5].Value = reader2.GetString(7);//symptom
                     row.Cells[6].Value = reader2.GetString(8);
@@ -675,6 +672,13 @@ namespace PhongKham
             label33.Text = daySum.ToString();
             //newReader = null;
             //newCommand = null;
+        }
+        private void comboBoxClinicRoomName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                buttonSearch_Click(sender, e);
+            }
         }
         private void buttonPutIn_Click(object sender, EventArgs e)
         {
@@ -771,5 +775,7 @@ namespace PhongKham
         }
 
         #endregion
+
+
     }
 }

@@ -608,7 +608,7 @@ namespace PhongKham
             // 
             // comboBoxClinicRoomName
             // 
-            this.comboBoxClinicRoomName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxClinicRoomName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.comboBoxClinicRoomName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxClinicRoomName.FormattingEnabled = true;
             this.comboBoxClinicRoomName.Location = new System.Drawing.Point(128, 37);
@@ -616,6 +616,7 @@ namespace PhongKham
             this.comboBoxClinicRoomName.Size = new System.Drawing.Size(278, 26);
             this.comboBoxClinicRoomName.TabIndex = 17;
             this.comboBoxClinicRoomName.SelectedValueChanged += new System.EventHandler(this.comboBoxClinicRoomName_SelectedValueChanged);
+            this.comboBoxClinicRoomName.KeyPress+=new KeyPressEventHandler(comboBoxClinicRoomName_KeyPress);
             // 
             // dateTimePickerNgayKham
             // 
@@ -951,7 +952,6 @@ namespace PhongKham
             this.button9.TabIndex = 11;
             this.button9.Text = "Cancel";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // btnInputMedicineNewOk
             // 

@@ -8,3 +8,15 @@ D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.Propert
 D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache
 D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.exe
 D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.exe
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\DevComponents.DotNetBar2.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.LoginForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache

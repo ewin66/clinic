@@ -21,6 +21,7 @@ namespace Clinic
             InitializeComponent();
             label3.Visible = false;
             maskedTextBox1.Visible = false;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void button1_Click(object sender, EventArgs e)
