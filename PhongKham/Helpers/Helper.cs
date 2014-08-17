@@ -1,8 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Helper.cs" company="emotive GmbH">
-//     Copyright (c) emotive GmbH. All rights reserved.
-// </copyright>
-//-----------------------------------------------------------------------
+﻿
 
 namespace Clinic.Helpers
 {
@@ -19,6 +15,7 @@ using System.Data.SqlClient;
     using Clinic.Database;
     using System.Data;
     using System.Data.Common;
+    using Clinic.Models;
 
     /// <summary>
     /// Comment for the class
@@ -153,35 +150,35 @@ using System.Data.SqlClient;
 
         }
 
-        public static void InsertRowToTable(MySqlConnection conn, string nameOfTable, List<string> nameOfColumns, List<string> values)
-        {
+        //public static void InsertRowToTable(MySqlConnection conn, string nameOfTable, List<string> nameOfColumns, List<string> values)
+        //{
 
-            for (int i = 0; i < values.Count; i++)
-            {
-                values[i] = ConvertToSqlString(values[i]);
-            }
+        //    for (int i = 0; i < values.Count; i++)
+        //    {
+        //        values[i] = ConvertToSqlString(values[i]);
+        //    }
 
-            string columns = "Insert Into " + nameOfTable + " (";
-            foreach (string name in nameOfColumns)
-            {
-                columns += name + ",";
-            }
-            columns = columns.Remove(columns.Length - 1);
-            columns += ")";
-            string vals = " VALUES (";
-            foreach (string value in values)
-            {
-                vals += value + ",";
-            }
-            vals = vals.Remove(vals.Length - 1);
-            vals += ")";
+        //    string columns = "Insert Into " + nameOfTable + " (";
+        //    foreach (string name in nameOfColumns)
+        //    {
+        //        columns += name + ",";
+        //    }
+        //    columns = columns.Remove(columns.Length - 1);
+        //    columns += ")";
+        //    string vals = " VALUES (";
+        //    foreach (string value in values)
+        //    {
+        //        vals += value + ",";
+        //    }
+        //    vals = vals.Remove(vals.Length - 1);
+        //    vals += ")";
 
-            string strCommand = columns + vals;
+        //    string strCommand = columns + vals;
 
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            comm.ExecuteNonQuery();
+        //    MySqlCommand comm = new MySqlCommand(strCommand, conn);
+        //    comm.ExecuteNonQuery();
 
-        }
+        //}
 
         private static string BuildFirstPartUpdateQuery(string nameOfTable, List<string> nameOfColumns, List<string> values)
         {
@@ -197,26 +194,26 @@ using System.Data.SqlClient;
             return strCommand;
         }
 
-        public static void UpdateRowToTable(MySqlConnection conn, string nameOfTable, List<string> nameOfColumns,
+        public static void UpdateRowToTable(IDatabase db, string nameOfTable, List<string> nameOfColumns,
             List<string> values, string id)
         {
             string strCommand = BuildFirstPartUpdateQuery(nameOfTable, nameOfColumns, values);
 
             strCommand += " Where Id='" + id +"';";
 
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            comm.ExecuteNonQuery();            
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            db.ExecuteNonQuery(strCommand,null);            
         }
 
-        public static void UpdateRowToTable(MySqlConnection conn, string nameOfTable, List<string> nameOfColumns,
+        public static void UpdateRowToTable(IDatabase db, string nameOfTable, List<string> nameOfColumns,
             List<string> values, string id, string visitDate)
         {
             string strCommand = BuildFirstPartUpdateQuery(nameOfTable, nameOfColumns, values);
 
             strCommand += " Where Id='" + id + "' AND Day='" + visitDate + "';";
 
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            comm.ExecuteNonQuery();
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            db.ExecuteNonQuery(strCommand,null);
         }
 
         public static bool checkAdminExists(SqlConnection conn, string nameOfTable)
@@ -255,7 +252,7 @@ using System.Data.SqlClient;
             return result;
         }
 
-        public static bool checkUserExists(string user, string pass)
+        public static bool checkUserExists(string user, string pass,bool setAuthority)
         {
             string strCommand = "Select Authority From ClinicUser Where Username = " + Helper.ConvertToSqlString(user) + " And Password1 = " + Helper.ConvertToSqlString(Helper.Encrypt(pass));
 
@@ -265,7 +262,8 @@ using System.Data.SqlClient;
             reader.Read();
             if (((DbDataReader)reader).HasRows)
             {
-
+                if (setAuthority) LoginForm.Authority = int.Parse(reader["Authority"].ToString());
+                
                 reader.Close();
                 return true;
             }
@@ -301,12 +299,12 @@ using System.Data.SqlClient;
 
         }
 
-        public static string hasOtherNameForThisId(MySqlConnection conn, string Id, string name)
+        public static string hasOtherNameForThisId(IDatabase db, string Id, string name)
         {
 
             string strCommand = "SELECT name FROM Patient WHERE Id = " + ConvertToSqlString(Id);
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            MySqlDataReader reader = comm.ExecuteReader();
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            DbDataReader reader = db.ExecuteReader(strCommand,null) as DbDataReader;
             reader.Read();
 
             try
@@ -336,12 +334,12 @@ using System.Data.SqlClient;
 
         }
 
-        public static bool checkPatientExists(MySqlConnection conn, string Id)
+        public static bool checkPatientExists(IDatabase db, string Id)
         {
 
             string strCommand = "SELECT Id FROM Patient WHERE Id = " + ConvertToSqlString(Id);
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            MySqlDataReader reader = comm.ExecuteReader();
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            DbDataReader reader = db.ExecuteReader(strCommand,null) as DbDataReader;
             reader.Read();
 
             try
@@ -357,12 +355,12 @@ using System.Data.SqlClient;
 
         }
 
-        public static bool checkVisitExists(MySqlConnection conn, string Id, string visitDate)
+        public static bool checkVisitExists(IDatabase db, string Id, string visitDate)
         {
 
             string strCommand = "SELECT Id FROM history WHERE Id = " + ConvertToSqlString(Id) + " AND Day=" + ConvertToSqlString(visitDate) + ";";
-            MySqlCommand comm = new MySqlCommand(strCommand, conn);
-            MySqlDataReader reader = comm.ExecuteReader();
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            DbDataReader reader = db.ExecuteReader(strCommand,null) as DbDataReader;
             reader.Read();
             try
             {
@@ -441,6 +439,48 @@ using System.Data.SqlClient;
                 return newId;
             }
         }
+
+       // public Patient AddNewPatient(SqlConnection conn, string id, bool Old)
+        //{
+            //Patient patient = new Patient();
+            //patient.Name = txtBoxWaitRoomName.Text.Trim();
+
+            //patient.Birthday = dateTimePicker2.Value;
+            //patient.Old = DateTime.Now.Year - patient.Birthday.Year;
+            //patient.Address = txtBoxWaitRoomAddress.Text;
+            //patient.Symptom = txtBoxWaitingRoomSymptom.Text;
+            //patient.Id = id;
+            //try
+            //{
+            //    patient.Weight = int.Parse(txtBoxWaitingRoomWeight.Text);
+            //}
+            //catch (Exception ex)
+            //{
+            //    patient.Weight = 0;
+            //}
+            //try
+            //{
+            //    patient.Height = int.Parse(txtBoxWaitRoomHeight.Text);
+            //}
+            //catch (Exception ex)
+            //{
+            //    patient.Height = 0;
+            //}
+
+            //if (Old)
+            //{
+            //    return patient;
+            //}
+
+            //List<string> columns = new List<string>() { "Name", "Old", "Address", "Height", "Weight", "Birthday", "Id" };
+            //List<string> values = new List<string>() { patient.Name, patient.Old.ToString(), patient.Address, patient.Height.ToString(), patient.Weight.ToString(), patient.Birthday.ToString("yyyy-MM-dd"), patient.Id };
+
+            //Helper.InsertRowToTable(conn, "Patient", columns, values);
+            //MessageBox.Show("Thêm mới bệnh nhân thành công");
+
+            //return patient;
+
+       // }
 
 
     }

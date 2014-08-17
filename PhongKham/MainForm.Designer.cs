@@ -35,14 +35,14 @@ namespace PhongKham
             this.label35 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.buttonPutIn = new System.Windows.Forms.Button();
+            this.dataGridViewMedicine = new System.Windows.Forms.DataGridView();
             this.Column18 = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
             this.Column19 = new DevComponents.DotNetBar.Controls.DataGridViewTextBoxDropDownColumn();
             this.Column20 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.Column21 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.buttonSearch = new System.Windows.Forms.Button();
+            this.dataGridViewSearchValue = new System.Windows.Forms.DataGridView();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +59,7 @@ namespace PhongKham
             this.txtBoxClinicRoomSymptom = new System.Windows.Forms.TextBox();
             this.txtBoxClinicRoomWeight = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerBirthDay = new System.Windows.Forms.DateTimePicker();
             this.txtBoxClinicRoomAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -69,7 +69,7 @@ namespace PhongKham
             this.label6 = new System.Windows.Forms.Label();
             this.txtBoxClinicRoomDiagnose = new System.Windows.Forms.TextBox();
             this.comboBoxClinicRoomName = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerNgayKham = new System.Windows.Forms.DateTimePicker();
             this.label31 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -104,6 +104,7 @@ namespace PhongKham
             this.button7 = new System.Windows.Forms.Button();
             this.btnInputMedicineOk = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.Column22 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
@@ -150,12 +151,11 @@ namespace PhongKham
             this.btnWaitRoomContinue = new System.Windows.Forms.Button();
             this.btnWaitRoomCancel = new System.Windows.Forms.Button();
             this.btnWaitRoomOK = new System.Windows.Forms.Button();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             label26 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -196,10 +196,10 @@ namespace PhongKham
             this.tabPage1.Controls.Add(this.label35);
             this.tabPage1.Controls.Add(this.label33);
             this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.dataGridView2);
-            this.tabPage1.Controls.Add(this.button1);
-            this.tabPage1.Controls.Add(this.dataGridView3);
+            this.tabPage1.Controls.Add(this.buttonPutIn);
+            this.tabPage1.Controls.Add(this.dataGridViewMedicine);
+            this.tabPage1.Controls.Add(this.buttonSearch);
+            this.tabPage1.Controls.Add(this.dataGridViewSearchValue);
             this.tabPage1.Controls.Add(this.label30);
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -248,38 +248,38 @@ namespace PhongKham
             this.label9.Text = "Total:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button2
+            // buttonPutIn
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.AutoSize = true;
-            this.button2.BackColor = System.Drawing.Color.Wheat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(855, 521);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 123);
-            this.button2.TabIndex = 36;
-            this.button2.Text = " Nhập";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.buttonPutIn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.buttonPutIn.AutoSize = true;
+            this.buttonPutIn.BackColor = System.Drawing.Color.Wheat;
+            this.buttonPutIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPutIn.Location = new System.Drawing.Point(855, 521);
+            this.buttonPutIn.Name = "buttonPutIn";
+            this.buttonPutIn.Size = new System.Drawing.Size(127, 123);
+            this.buttonPutIn.TabIndex = 36;
+            this.buttonPutIn.Text = " Nhập";
+            this.buttonPutIn.UseVisualStyleBackColor = false;
+            this.buttonPutIn.Click += new System.EventHandler(this.buttonPutIn_Click);
             // 
-            // dataGridView2
+            // dataGridViewMedicine
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView2.ColumnHeadersHeight = 40;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewMedicine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewMedicine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewMedicine.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridViewMedicine.ColumnHeadersHeight = 40;
+            this.dataGridViewMedicine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column18,
             this.Column19,
             this.Column20,
             this.Column21});
-            this.dataGridView2.Location = new System.Drawing.Point(8, 490);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(799, 154);
-            this.dataGridView2.TabIndex = 35;
-            this.dataGridView2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellValueChanged_1);
+            this.dataGridViewMedicine.Location = new System.Drawing.Point(8, 490);
+            this.dataGridViewMedicine.Name = "dataGridViewMedicine";
+            this.dataGridViewMedicine.Size = new System.Drawing.Size(799, 154);
+            this.dataGridViewMedicine.TabIndex = 35;
+            this.dataGridViewMedicine.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMedicine_CellValueChanged_1);
             // 
             // Column18
             // 
@@ -329,29 +329,29 @@ namespace PhongKham
             this.Column21.ReadOnly = true;
             this.Column21.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
-            // button1
+            // buttonSearch
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.YellowGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(855, 45);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 134);
-            this.button1.TabIndex = 34;
-            this.button1.Text = "Tìm";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.buttonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSearch.BackColor = System.Drawing.Color.YellowGreen;
+            this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSearch.Location = new System.Drawing.Point(855, 45);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(127, 134);
+            this.buttonSearch.TabIndex = 34;
+            this.buttonSearch.Text = "Tìm";
+            this.buttonSearch.UseVisualStyleBackColor = false;
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
             // 
-            // dataGridView3
+            // dataGridViewSearchValue
             // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView3.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView3.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView3.ColumnHeadersHeight = 40;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewSearchValue.AllowUserToAddRows = false;
+            this.dataGridViewSearchValue.AllowUserToDeleteRows = false;
+            this.dataGridViewSearchValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewSearchValue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewSearchValue.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridViewSearchValue.ColumnHeadersHeight = 40;
+            this.dataGridViewSearchValue.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column11,
             this.Column12,
             this.Column13,
@@ -360,12 +360,12 @@ namespace PhongKham
             this.Column15,
             this.Column16,
             this.Column17});
-            this.dataGridView3.Location = new System.Drawing.Point(9, 218);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.Size = new System.Drawing.Size(973, 254);
-            this.dataGridView3.TabIndex = 33;
-            this.dataGridView3.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellDoubleClick);
+            this.dataGridViewSearchValue.Location = new System.Drawing.Point(9, 218);
+            this.dataGridViewSearchValue.Name = "dataGridViewSearchValue";
+            this.dataGridViewSearchValue.ReadOnly = true;
+            this.dataGridViewSearchValue.Size = new System.Drawing.Size(973, 254);
+            this.dataGridViewSearchValue.TabIndex = 33;
+            this.dataGridViewSearchValue.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSearchValue_CellDoubleClick);
             // 
             // Column11
             // 
@@ -437,8 +437,8 @@ namespace PhongKham
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.BackColor = System.Drawing.Color.Gainsboro;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Outset;
@@ -453,7 +453,7 @@ namespace PhongKham
             this.tableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomSymptom, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomWeight, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePickerBirthDay, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomAddress, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 0);
@@ -463,7 +463,7 @@ namespace PhongKham
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomDiagnose, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxClinicRoomName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker5, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePickerNgayKham, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.label31, 0, 4);
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 36);
@@ -529,14 +529,14 @@ namespace PhongKham
             this.label2.TabIndex = 1;
             this.label2.Text = "Ngày Sinh";
             // 
-            // dateTimePicker1
+            // dateTimePickerBirthDay
             // 
-            this.dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(128, 71);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(99, 24);
-            this.dateTimePicker1.TabIndex = 18;
+            this.dateTimePickerBirthDay.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerBirthDay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(128, 71);
+            this.dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
+            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(99, 24);
+            this.dateTimePickerBirthDay.TabIndex = 18;
             // 
             // txtBoxClinicRoomAddress
             // 
@@ -617,20 +617,20 @@ namespace PhongKham
             this.comboBoxClinicRoomName.TabIndex = 17;
             this.comboBoxClinicRoomName.SelectedValueChanged += new System.EventHandler(this.comboBoxClinicRoomName_SelectedValueChanged);
             // 
-            // dateTimePicker5
+            // dateTimePickerNgayKham
             // 
-            this.dateTimePicker5.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker5.Location = new System.Drawing.Point(128, 137);
-            this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(99, 24);
-            this.dateTimePicker5.TabIndex = 26;
+            this.dateTimePickerNgayKham.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerNgayKham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(128, 137);
+            this.dateTimePickerNgayKham.Name = "dateTimePickerNgayKham";
+            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(99, 24);
+            this.dateTimePickerNgayKham.TabIndex = 26;
             // 
             // label31
             // 
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.label31.AutoSize = true;
             this.label31.Location = new System.Drawing.Point(5, 134);
             this.label31.Name = "label31";
@@ -793,7 +793,6 @@ namespace PhongKham
             this.comboBoxInputMedicineName.Sorted = true;
             this.comboBoxInputMedicineName.TabIndex = 1;
             this.comboBoxInputMedicineName.SelectedValueChanged += new System.EventHandler(this.comboBoxInputMedicineName_SelectedValueChanged);
-            this.comboBoxInputMedicineName.TextChanged += new System.EventHandler(this.comboBoxInputMedicineName_TextChanged);
             // 
             // tableLayoutPanel3
             // 
@@ -1005,6 +1004,16 @@ namespace PhongKham
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Tools";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(292, 109);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(165, 22);
+            this.checkBox4.TabIndex = 29;
+            this.checkBox4.Text = "Quyền Tạo User Mới";
+            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // checkBox3
             // 
@@ -1393,7 +1402,6 @@ namespace PhongKham
             this.btnWaitRoomCancel.TabIndex = 10;
             this.btnWaitRoomCancel.Text = "Cancel";
             this.btnWaitRoomCancel.UseVisualStyleBackColor = true;
-            this.btnWaitRoomCancel.Click += new System.EventHandler(this.btnWaitRoomCancel_Click);
             // 
             // btnWaitRoomOK
             // 
@@ -1403,16 +1411,6 @@ namespace PhongKham
             this.btnWaitRoomOK.TabIndex = 8;
             this.btnWaitRoomOK.Text = "OK";
             this.btnWaitRoomOK.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(292, 109);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(165, 22);
-            this.checkBox4.TabIndex = 29;
-            this.checkBox4.Text = "Quyền Tạo User Mới";
-            this.checkBox4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -1426,8 +1424,8 @@ namespace PhongKham
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
@@ -1524,11 +1522,11 @@ namespace PhongKham
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.DataGridView dataGridViewSearchValue;
         private System.Windows.Forms.ComboBox comboBoxClinicRoomName;
-        private DataGridView dataGridView2;
-        private Button button2;
+        private DataGridView dataGridViewMedicine;
+        private Button buttonPutIn;
         private Label label8;
         private TextBox txtBoxInputMedicineNewCostIn;
         private Label label9;
@@ -1546,8 +1544,8 @@ namespace PhongKham
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column24;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column25;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column26;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker5;
+        private DateTimePicker dateTimePickerBirthDay;
+        private DateTimePicker dateTimePickerNgayKham;
         private Label label31;
         private Label label32;
         private TextBox textBox3;

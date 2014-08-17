@@ -18,7 +18,7 @@ namespace Clinic
 {
     public partial class LoginForm : Form
     {
-        public  int Authority;
+        public static int Authority;
         public LoginForm()
         {
             InitializeComponent();
@@ -61,7 +61,7 @@ namespace Clinic
         {
             string user = txtBoxInputMedicineNewCostIn.Text;
             string pass = textBox2.Text;
-            if (Helper.checkUserExists(user,pass))
+            if (Helper.checkUserExists(user,pass,true))
             {
                     this.DialogResult = DialogResult.OK;
                     this.Close();

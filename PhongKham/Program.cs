@@ -65,7 +65,7 @@ namespace PhongKham
                     if (login.ShowDialog() == DialogResult.OK)
                     {
 
-                        Application.Run(new Form1(login.Authority));
+                        Application.Run(new Form1(LoginForm.Authority));
                     }
                 }
             }
@@ -75,7 +75,7 @@ namespace PhongKham
 
                 if (login.ShowDialog() == DialogResult.OK)
                 {
-                    Application.Run(new Form1(login.Authority));
+                    Application.Run(new Form1(LoginForm.Authority));
                 }
 
             }
