@@ -37,6 +37,14 @@ using System.Data.SqlClient;
 
         #region Methods
 
+
+        public static string ChangePositionOfDayAndYear(string datetime)
+        {
+            string[] temp = datetime.Split('-');
+            return temp[2] + '-' + temp[1] + '-' + temp[0];
+        }
+
+
         public static string Decrypt(string Value)
         {
             SymmetricAlgorithm mCSP;

@@ -9,6 +9,12 @@ using Clinic.Models;
 using MySql.Data.MySqlClient;
 using Clinic.Database;
 using System.Data.Common;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using System.Drawing;
+using PdfSharp.Drawing.Layout;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Shapes;
 
 namespace PhongKham
 {
@@ -78,7 +84,7 @@ namespace PhongKham
 
             if (authority < 100) // khong co quyen tao user moi
             {
-                tabControl1.TabPages.Remove(tabPage4);
+                Print.TabPages.Remove(tabPage4);
             }
             else
             {
@@ -104,10 +110,10 @@ namespace PhongKham
                 case 2:
                     break;
                 case 3:
-                    tabControl1.TabPages.Remove(tabPage1);
+                    Print.TabPages.Remove(tabPage1);
                     break;
                 case 4:
-                    tabControl1.TabPages.Remove(tabPage3);
+                    Print.TabPages.Remove(tabPage3);
                     break;
             }
         }
@@ -428,7 +434,7 @@ namespace PhongKham
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 1)
+            if (Print.SelectedIndex == 1)
             {
                 RefreshMedicineLess100();
             }
@@ -727,7 +733,29 @@ namespace PhongKham
             ClearClinicRoomForm();
             InitClinicRoom();
 
+            ///
+            //
+            //
+            //Create a PDF file
+            PdfDocument pdf = new PdfDocument();
+            PdfPage pdfPage = pdf.AddPage();
+            XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+           // FontFamily theFont = FontFamily.Families.Single<FontFamily>(font => font.Name == "VNI-Times");
+            XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+            XFont font = new XFont("Times New Roman", 12, XFontStyle.Bold, options);
+            XFont fontNotBold = new XFont("Times New Roman", 12,XFontStyle.Regular, options);
+            XTextFormatter tf = new XTextFormatter(graph);
+            XRect rect = new XRect(0, 0, 150, 120);
+            graph.DrawRectangle(XBrushes.SeaShell, rect);
+           
+            tf.Alignment = XParagraphAlignment.Center;
+            tf.DrawString("Bệnh viện xxxxx \n" +" Địa chỉ xxxxx", font, XBrushes.Black, rect, XStringFormats.TopLeft);
+            tf.DrawString("Toa Thuốc", font, XBrushes.Black, new XRect(0, 150, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
+            pdf.Save("firstpage.pdf");
 
+            //
+            //Load Pdf and put in form
+            axAcroPDF1.LoadFile("firstpage.pdf");
         }
 
         #endregion

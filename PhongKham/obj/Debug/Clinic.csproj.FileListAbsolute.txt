@@ -20,3 +20,14 @@ C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Log
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.ResolveComReference.cache

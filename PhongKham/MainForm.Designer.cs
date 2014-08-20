@@ -30,7 +30,8 @@ namespace PhongKham
         private void InitializeComponent()
         {
             System.Windows.Forms.Label label26;
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.Print = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label35 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -151,8 +152,10 @@ namespace PhongKham
             this.btnWaitRoomContinue = new System.Windows.Forms.Button();
             this.btnWaitRoomCancel = new System.Windows.Forms.Button();
             this.btnWaitRoomOK = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             label26 = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.Print.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).BeginInit();
@@ -165,6 +168,8 @@ namespace PhongKham
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
             // 
             // label26
@@ -177,19 +182,20 @@ namespace PhongKham
             label26.TabIndex = 26;
             label26.Text = "Đây là khung nhập mới thuốc , số Id là mặc định";
             // 
-            // tabControl1
+            // Print
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1008, 730);
-            this.tabControl1.TabIndex = 0;
-            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.Print.Controls.Add(this.tabPage1);
+            this.Print.Controls.Add(this.tabPage3);
+            this.Print.Controls.Add(this.tabPage4);
+            this.Print.Controls.Add(this.tabPage5);
+            this.Print.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Print.Location = new System.Drawing.Point(0, 0);
+            this.Print.Name = "Print";
+            this.Print.SelectedIndex = 0;
+            this.Print.Size = new System.Drawing.Size(1008, 730);
+            this.Print.TabIndex = 0;
+            this.Print.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -608,7 +614,6 @@ namespace PhongKham
             // 
             // comboBoxClinicRoomName
             // 
-            this.comboBoxClinicRoomName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.comboBoxClinicRoomName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxClinicRoomName.FormattingEnabled = true;
             this.comboBoxClinicRoomName.Location = new System.Drawing.Point(128, 37);
@@ -616,7 +621,7 @@ namespace PhongKham
             this.comboBoxClinicRoomName.Size = new System.Drawing.Size(278, 26);
             this.comboBoxClinicRoomName.TabIndex = 17;
             this.comboBoxClinicRoomName.SelectedValueChanged += new System.EventHandler(this.comboBoxClinicRoomName_SelectedValueChanged);
-            this.comboBoxClinicRoomName.KeyPress+=new KeyPressEventHandler(comboBoxClinicRoomName_KeyPress);
+            this.comboBoxClinicRoomName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxClinicRoomName_KeyPress);
             // 
             // dateTimePickerNgayKham
             // 
@@ -1412,16 +1417,37 @@ namespace PhongKham
             this.btnWaitRoomOK.Text = "OK";
             this.btnWaitRoomOK.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.axAcroPDF1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 27);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1000, 699);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Print";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // axAcroPDF1
+            // 
+            this.axAcroPDF1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axAcroPDF1.Enabled = true;
+            this.axAcroPDF1.Location = new System.Drawing.Point(3, 3);
+            this.axAcroPDF1.Name = "axAcroPDF1";
+            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
+            this.axAcroPDF1.Size = new System.Drawing.Size(994, 693);
+            this.axAcroPDF1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.Print);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
-            this.tabControl1.ResumeLayout(false);
+            this.Print.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).EndInit();
@@ -1440,13 +1466,15 @@ namespace PhongKham
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl Print;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox txtBoxClinicRoomDiagnose;
         private System.Windows.Forms.TextBox txtBoxClinicRoomSymptom;
@@ -1567,6 +1595,8 @@ namespace PhongKham
         private Label label33;
         private CheckBox checkBox3;
         private CheckBox checkBox4;
+        private TabPage tabPage5;
+        private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
     }
 }
 
