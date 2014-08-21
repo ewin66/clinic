@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Windows.Forms.Calendar;
 namespace PhongKham
 {
     partial class Form1
@@ -29,8 +30,14 @@ namespace PhongKham
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label26;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.Print = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label35 = new System.Windows.Forms.Label();
@@ -120,6 +127,28 @@ namespace PhongKham
             this.label10 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
+            this.Calendar = new System.Windows.Forms.TabPage();
+            this.panelCalendarDate = new System.Windows.Forms.Panel();
+            this.expandableSplitter1 = new DevComponents.DotNetBar.ExpandableSplitter();
+            this.panelCalendar = new System.Windows.Forms.Panel();
+            this.monthView1 = new System.Windows.Forms.Calendar.MonthView();
+            this.calendar1 = new System.Windows.Forms.Calendar.Calendar();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.redTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yellowTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.greenTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.blueTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.otherColorTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.patternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timescaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.selectImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageAlignmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column7 = new System.Windows.Forms.DataGridViewColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -152,8 +181,18 @@ namespace PhongKham
             this.btnWaitRoomContinue = new System.Windows.Forms.Button();
             this.btnWaitRoomCancel = new System.Windows.Forms.Button();
             this.btnWaitRoomOK = new System.Windows.Forms.Button();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
+            this.diagonalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             label26 = new System.Windows.Forms.Label();
             this.Print.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -165,11 +204,15 @@ namespace PhongKham
             this.tableLayoutPanel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
+            this.Calendar.SuspendLayout();
+            this.panelCalendarDate.SuspendLayout();
+            this.panelCalendar.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.SuspendLayout();
             // 
             // label26
@@ -188,6 +231,7 @@ namespace PhongKham
             this.Print.Controls.Add(this.tabPage3);
             this.Print.Controls.Add(this.tabPage4);
             this.Print.Controls.Add(this.tabPage5);
+            this.Print.Controls.Add(this.Calendar);
             this.Print.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Print.Location = new System.Drawing.Point(0, 0);
@@ -1134,6 +1178,237 @@ namespace PhongKham
             this.textBox1.Size = new System.Drawing.Size(100, 24);
             this.textBox1.TabIndex = 0;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.axAcroPDF1);
+            this.tabPage5.Location = new System.Drawing.Point(4, 27);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1000, 699);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Print";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // axAcroPDF1
+            // 
+            this.axAcroPDF1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axAcroPDF1.Enabled = true;
+            this.axAcroPDF1.Location = new System.Drawing.Point(3, 3);
+            this.axAcroPDF1.Name = "axAcroPDF1";
+            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
+            this.axAcroPDF1.Size = new System.Drawing.Size(994, 693);
+            this.axAcroPDF1.TabIndex = 0;
+            // 
+            // Calendar
+            // 
+            this.Calendar.Controls.Add(this.panelCalendarDate);
+            this.Calendar.Controls.Add(this.panelCalendar);
+            this.Calendar.Location = new System.Drawing.Point(4, 27);
+            this.Calendar.Name = "Calendar";
+            this.Calendar.Padding = new System.Windows.Forms.Padding(3);
+            this.Calendar.Size = new System.Drawing.Size(1000, 699);
+            this.Calendar.TabIndex = 5;
+            this.Calendar.Text = "Lịch";
+            this.Calendar.UseVisualStyleBackColor = true;
+            // 
+            // panelCalendarDate
+            // 
+            this.panelCalendarDate.BackColor = System.Drawing.Color.LightBlue;
+            this.panelCalendarDate.Controls.Add(this.expandableSplitter1);
+            this.panelCalendarDate.Controls.Add(this.calendar1);
+            this.panelCalendarDate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCalendarDate.Location = new System.Drawing.Point(213, 3);
+            this.panelCalendarDate.Name = "panelCalendarDate";
+            this.panelCalendarDate.Size = new System.Drawing.Size(784, 693);
+            this.panelCalendarDate.TabIndex = 1;
+            // 
+            // expandableSplitter1
+            // 
+            this.expandableSplitter1.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
+            this.expandableSplitter1.BackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.BackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.expandableSplitter1.ExpandableControl = this.panelCalendar;
+            this.expandableSplitter1.ExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
+            this.expandableSplitter1.ExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.ExpandLineColor = System.Drawing.SystemColors.ControlText;
+            this.expandableSplitter1.ExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.GripDarkColor = System.Drawing.SystemColors.ControlText;
+            this.expandableSplitter1.GripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.GripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.expandableSplitter1.GripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.expandableSplitter1.HotBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(142)))), ((int)(((byte)(75)))));
+            this.expandableSplitter1.HotBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(139)))));
+            this.expandableSplitter1.HotBackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground2;
+            this.expandableSplitter1.HotBackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground;
+            this.expandableSplitter1.HotExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
+            this.expandableSplitter1.HotExpandFillColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.HotExpandLineColor = System.Drawing.SystemColors.ControlText;
+            this.expandableSplitter1.HotExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.expandableSplitter1.HotGripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
+            this.expandableSplitter1.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
+            this.expandableSplitter1.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.expandableSplitter1.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.expandableSplitter1.Location = new System.Drawing.Point(0, 0);
+            this.expandableSplitter1.Name = "expandableSplitter1";
+            this.expandableSplitter1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.expandableSplitter1.Size = new System.Drawing.Size(3, 693);
+            this.expandableSplitter1.TabIndex = 0;
+            this.expandableSplitter1.TabStop = false;
+            // 
+            // panelCalendar
+            // 
+            this.panelCalendar.BackColor = System.Drawing.Color.Gainsboro;
+            this.panelCalendar.Controls.Add(this.monthView1);
+            this.panelCalendar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelCalendar.Location = new System.Drawing.Point(3, 3);
+            this.panelCalendar.Name = "panelCalendar";
+            this.panelCalendar.Size = new System.Drawing.Size(210, 693);
+            this.panelCalendar.TabIndex = 0;
+            // 
+            // monthView1
+            // 
+            this.monthView1.ArrowsColor = System.Drawing.SystemColors.Window;
+            this.monthView1.ArrowsSelectedColor = System.Drawing.Color.Gold;
+            this.monthView1.DayBackgroundColor = System.Drawing.Color.Empty;
+            this.monthView1.DayGrayedText = System.Drawing.SystemColors.GrayText;
+            this.monthView1.DaySelectedBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.monthView1.DaySelectedColor = System.Drawing.SystemColors.WindowText;
+            this.monthView1.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
+            this.monthView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.monthView1.ItemPadding = new System.Windows.Forms.Padding(2);
+            this.monthView1.Location = new System.Drawing.Point(0, 0);
+            this.monthView1.MaxSelectionCount = 35;
+            this.monthView1.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
+            this.monthView1.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
+            this.monthView1.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.monthView1.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
+            this.monthView1.Name = "monthView1";
+            this.monthView1.Size = new System.Drawing.Size(208, 693);
+            this.monthView1.TabIndex = 3;
+            this.monthView1.Text = "monthView1";
+            this.monthView1.TodayBorderColor = System.Drawing.Color.Maroon;
+            this.monthView1.SelectionChanged += new System.EventHandler(this.monthView1_SelectionChanged);
+            // 
+            // calendar1
+            // 
+            this.calendar1.ContextMenuStrip = this.contextMenuStrip1;
+            this.calendar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
+            this.calendar1.Location = new System.Drawing.Point(0, 0);
+            this.calendar1.Name = "calendar1";
+            this.calendar1.Size = new System.Drawing.Size(784, 693);
+            this.calendar1.TabIndex = 2;
+            this.calendar1.Text = "calendar1";
+            this.calendar1.DayHeaderClick += new System.Windows.Forms.Calendar.Calendar.CalendarDayEventHandler(this.calendar1_DayHeaderClick);
+            this.calendar1.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDeleted);
+            this.calendar1.ItemDoubleClick += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.redTagToolStripMenuItem,
+            this.yellowTagToolStripMenuItem,
+            this.greenTagToolStripMenuItem,
+            this.blueTagToolStripMenuItem,
+            this.otherColorTagToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.patternToolStripMenuItem,
+            this.timescaleToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.selectImageToolStripMenuItem,
+            this.imageAlignmentToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.editItemToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(68, 242);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // redTagToolStripMenuItem
+            // 
+            this.redTagToolStripMenuItem.Name = "redTagToolStripMenuItem";
+            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // yellowTagToolStripMenuItem
+            // 
+            this.yellowTagToolStripMenuItem.Name = "yellowTagToolStripMenuItem";
+            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // greenTagToolStripMenuItem
+            // 
+            this.greenTagToolStripMenuItem.Name = "greenTagToolStripMenuItem";
+            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // blueTagToolStripMenuItem
+            // 
+            this.blueTagToolStripMenuItem.Name = "blueTagToolStripMenuItem";
+            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // otherColorTagToolStripMenuItem
+            // 
+            this.otherColorTagToolStripMenuItem.Name = "otherColorTagToolStripMenuItem";
+            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(64, 6);
+            // 
+            // patternToolStripMenuItem
+            // 
+            this.patternToolStripMenuItem.Name = "patternToolStripMenuItem";
+            this.patternToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // timescaleToolStripMenuItem
+            // 
+            this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
+            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(64, 6);
+            // 
+            // selectImageToolStripMenuItem
+            // 
+            this.selectImageToolStripMenuItem.Name = "selectImageToolStripMenuItem";
+            this.selectImageToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // imageAlignmentToolStripMenuItem
+            // 
+            this.imageAlignmentToolStripMenuItem.Name = "imageAlignmentToolStripMenuItem";
+            this.imageAlignmentToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(64, 6);
+            // 
+            // editItemToolStripMenuItem
+            // 
+            this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
             // Column7
             // 
             this.Column7.HeaderText = "Tên Thuốc";
@@ -1417,26 +1692,65 @@ namespace PhongKham
             this.btnWaitRoomOK.Text = "OK";
             this.btnWaitRoomOK.UseVisualStyleBackColor = true;
             // 
-            // tabPage5
+            // diagonalToolStripMenuItem
             // 
-            this.tabPage5.Controls.Add(this.axAcroPDF1);
-            this.tabPage5.Location = new System.Drawing.Point(4, 27);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1000, 699);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Print";
-            this.tabPage5.UseVisualStyleBackColor = true;
+            this.diagonalToolStripMenuItem.Name = "diagonalToolStripMenuItem";
+            this.diagonalToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
             // 
-            // axAcroPDF1
+            // verticalToolStripMenuItem
             // 
-            this.axAcroPDF1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(3, 3);
-            this.axAcroPDF1.Name = "axAcroPDF1";
-            this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(994, 693);
-            this.axAcroPDF1.TabIndex = 0;
+            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // horizontalToolStripMenuItem
+            // 
+            this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
+            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // hatchToolStripMenuItem
+            // 
+            this.hatchToolStripMenuItem.Name = "hatchToolStripMenuItem";
+            this.hatchToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(6, 6);
+            // 
+            // noneToolStripMenuItem
+            // 
+            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // hourToolStripMenuItem
+            // 
+            this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
+            this.hourToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // minutesToolStripMenuItem
+            // 
+            this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
+            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(32, 19);
+            // 
+            // minutesToolStripMenuItem1
+            // 
+            this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
+            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
+            // 
+            // minutesToolStripMenuItem2
+            // 
+            this.minutesToolStripMenuItem2.Name = "minutesToolStripMenuItem2";
+            this.minutesToolStripMenuItem2.Size = new System.Drawing.Size(32, 19);
+            // 
+            // minutesToolStripMenuItem3
+            // 
+            this.minutesToolStripMenuItem3.Name = "minutesToolStripMenuItem3";
+            this.minutesToolStripMenuItem3.Size = new System.Drawing.Size(32, 19);
             // 
             // Form1
             // 
@@ -1447,6 +1761,7 @@ namespace PhongKham
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Print.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1462,12 +1777,16 @@ namespace PhongKham
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
+            this.Calendar.ResumeLayout(false);
+            this.panelCalendarDate.ResumeLayout(false);
+            this.panelCalendar.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1597,6 +1916,39 @@ namespace PhongKham
         private CheckBox checkBox4;
         private TabPage tabPage5;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
+        private TabPage Calendar;
+        private Panel panelCalendar;
+        private DevComponents.DotNetBar.ExpandableSplitter expandableSplitter1;
+        private Panel panelCalendarDate;
+
+        private MonthView monthView1;
+        private System.Windows.Forms.Calendar.Calendar calendar1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem redTagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yellowTagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem greenTagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem blueTagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem timescaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hourToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem editItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem otherColorTagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem patternToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem diagonalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hatchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem selectImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem imageAlignmentToolStripMenuItem;
     }
 }
 

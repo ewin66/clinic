@@ -31,3 +31,4 @@ C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.ResolveComReference.cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\System.Windows.Forms.Calendar.dll

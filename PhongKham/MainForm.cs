@@ -15,6 +15,11 @@ using System.Drawing;
 using PdfSharp.Drawing.Layout;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Shapes;
+using System.ComponentModel;
+using System.Windows.Forms.Calendar;
+using System.IO;
+using Clinic.Calendar;
+using System.Xml.Serialization;
 
 namespace PhongKham
 {
@@ -22,7 +27,7 @@ namespace PhongKham
     {
 
         private IDatabase db = DatabaseFactory.Instance;
-
+        List<CalendarItem> _items = new List<CalendarItem>();
         public Form1(int Authority)
         {
 
@@ -804,6 +809,80 @@ namespace PhongKham
 
         #endregion
 
+           CalendarItem contextItem = null;
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            contextItem = calendar1.ItemAt(contextMenuStrip1.Bounds.Location);
+        }
 
+        private void calendar1_ItemDoubleClick(object sender, CalendarItemEventArgs e)
+        {
+            MessageBox.Show("Double click: " + e.Item.Text);
+        }
+
+        private void calendar1_ItemDeleted(object sender, CalendarItemEventArgs e)
+        {
+            _items.Remove(e.Item);
+        }
+
+        private void calendar1_DayHeaderClick(object sender, CalendarDayEventArgs e)
+        {
+            calendar1.SetViewRange(e.CalendarDay.Date, e.CalendarDay.Date);
+        }
+        private void calendar1_ItemCreated(object sender, CalendarItemCancelEventArgs e)
+        {
+            _items.Add(e.Item);
+        }
+
+        public FileInfo ItemsFile
+        {
+            get
+            {
+                return new FileInfo(Path.Combine(Application.StartupPath, "items.xml"));
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            if (ItemsFile.Exists)
+            {
+                List<ItemInfo> lst = new List<ItemInfo>();
+
+                XmlSerializer xml = new XmlSerializer(lst.GetType());
+
+                using (Stream s = ItemsFile.OpenRead())
+                {
+                    lst = xml.Deserialize(s) as List<ItemInfo>;
+                }
+
+                foreach (ItemInfo item in lst)
+                {
+                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
+
+                    if (!(item.R == 0 && item.G == 0 && item.B == 0))
+                    {
+                        cal.ApplyColor(System.Drawing.Color.FromArgb(item.A, item.R, item.G, item.B));
+                    }
+
+                    _items.Add(cal);
+                }
+
+                PlaceItems();
+            }
+        }
+        private void monthView1_SelectionChanged(object sender, EventArgs e)
+        {
+            calendar1.SetViewRange(monthView1.SelectionStart, monthView1.SelectionEnd);
+        }
+        private void PlaceItems()
+        {
+            foreach (CalendarItem item in _items)
+            {
+                if (calendar1.ViewIntersects(item))
+                {
+                    calendar1.Items.Add(item);
+                }
+            }
+        }
     }
 }
