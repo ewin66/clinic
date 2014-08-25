@@ -13,25 +13,27 @@ using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using System.Drawing;
 using PdfSharp.Drawing.Layout;
-using MigraDoc.DocumentObjectModel;
+
 using MigraDoc.DocumentObjectModel.Shapes;
 using System.ComponentModel;
 using System.Windows.Forms.Calendar;
 using System.IO;
-using Clinic.Calendar;
 using System.Xml.Serialization;
 
 namespace PhongKham
 {
     public partial class Form1 : DevComponents.DotNetBar.Office2007Form
     {
-
+        private static int maxIdOfCalendarItem;
+        private static string UserName;
         private IDatabase db = DatabaseFactory.Instance;
         List<CalendarItem> _items = new List<CalendarItem>();
-        public Form1(int Authority)
+        public Form1(int Authority,string name)
         {
 
             InitializeComponent();
+            this.Text ="Phòng Khám -"+"User: " +name;
+            UserName = name;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitInputMedicineMySql();
             InitUser(Authority);
@@ -40,7 +42,25 @@ namespace PhongKham
             dataGridView4.Visible = false;
             checkBox1.Checked = true;
             checkBox2.Checked = true;
-           
+
+            maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
+            //
+            //Load calendar
+            //
+            List<ADate> listDate = Helper.GetAllDateOfUser(name, db);
+            foreach (ADate item in listDate)
+            {
+                CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
+                cal.Tag = item.Id;
+                //if (!(item.R == 0 && item.G == 0 && item.B == 0))
+                //{
+                //    cal.ApplyColor(Color.FromArgb(item.A, item.R, item.G, item.B));
+                //}
+
+                _items.Add(cal);
+            }
+
+            PlaceItems();
         }
 
         #region Init
@@ -817,12 +837,21 @@ namespace PhongKham
 
         private void calendar1_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
-            MessageBox.Show("Double click: " + e.Item.Text);
+            calendar1.ActivateEditMode();
         }
 
         private void calendar1_ItemDeleted(object sender, CalendarItemEventArgs e)
         {
             _items.Remove(e.Item);
+        }
+
+        private void calendar1_ItemTextEdited(object sender, CalendarItemCancelEventArgs e)
+        {
+            if (e.Item.Text.Length > 0)
+            {
+              // e.Item.Tag = // set id
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Text", "StartTime", "EndTime" }, new List<string> { e.Item.Text, Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate) }, e.Item.Tag.ToString(), UserName);
+            }
         }
 
         private void calendar1_DayHeaderClick(object sender, CalendarDayEventArgs e)
@@ -832,6 +861,13 @@ namespace PhongKham
         private void calendar1_ItemCreated(object sender, CalendarItemCancelEventArgs e)
         {
             _items.Add(e.Item);
+            if (e.Item.Text.Length > 0)
+            {
+                e.Item.Tag = maxIdOfCalendarItem;
+                List<string> values = new List<string> { maxIdOfCalendarItem.ToString(), UserName, Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate), e.Item.Text, "0" };
+              db.InsertRowToTable("calendar", DatabaseContants.columnsCalendar, values);
+                //MessageBox.Show("s");
+            }
         }
 
         public FileInfo ItemsFile
@@ -846,23 +882,23 @@ namespace PhongKham
         {
             if (ItemsFile.Exists)
             {
-                List<ItemInfo> lst = new List<ItemInfo>();
+                List<ADate> lst = new List<ADate>();
 
                 XmlSerializer xml = new XmlSerializer(lst.GetType());
 
                 using (Stream s = ItemsFile.OpenRead())
                 {
-                    lst = xml.Deserialize(s) as List<ItemInfo>;
+                    lst = xml.Deserialize(s) as List<ADate>;
                 }
 
-                foreach (ItemInfo item in lst)
+                foreach (ADate item in lst)
                 {
                     CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
 
-                    if (!(item.R == 0 && item.G == 0 && item.B == 0))
-                    {
-                        cal.ApplyColor(System.Drawing.Color.FromArgb(item.A, item.R, item.G, item.B));
-                    }
+                    //if (!(item.R == 0 && item.G == 0 && item.B == 0))
+                    //{
+                    //    cal.ApplyColor(System.Drawing.Color.FromArgb(item.A, item.R, item.G, item.B));
+                    //}
 
                     _items.Add(cal);
                 }
@@ -883,6 +919,72 @@ namespace PhongKham
                     calendar1.Items.Add(item);
                 }
             }
+        }
+
+        private void calendar1_ItemClick(object sender, CalendarItemEventArgs e)
+        {
+            //MessageBox.Show(e.Item.Text);
+        }
+        private void calendar1_LoadItems(object sender, CalendarLoadEventArgs e)
+        {
+            PlaceItems();
+        }
+        private void calendar1_ItemMouseHover(object sender, CalendarItemEventArgs e)
+        {
+            Text = e.Item.Text;
+        }
+        private void otherColorTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (ColorDialog dlg = new ColorDialog())
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (CalendarItem item in calendar1.GetSelectedItems())
+                    {
+                        item.ApplyColor(dlg.Color);
+                        calendar1.Invalidate(item);
+                    }
+                }
+            }
+        }
+        private void redTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (CalendarItem item in calendar1.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Red);
+                calendar1.Invalidate(item);
+            }
+        }
+
+        private void yellowTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (CalendarItem item in calendar1.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Gold);
+                calendar1.Invalidate(item);
+            }
+        }
+
+        private void greenTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (CalendarItem item in calendar1.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Green);
+                calendar1.Invalidate(item);
+            }
+        }
+
+        private void blueTagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (CalendarItem item in calendar1.GetSelectedItems())
+            {
+                item.ApplyColor(Color.DarkBlue);
+                calendar1.Invalidate(item);
+            }
+        }
+        private void editItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            calendar1.ActivateEditMode();
         }
     }
 }

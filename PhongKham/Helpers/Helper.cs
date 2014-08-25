@@ -128,35 +128,35 @@ using System.Data.SqlClient;
         {
             return "'" + str + "'";
         }
-        public static void InsertRowToTable(SqlConnection conn, string nameOfTable, List<string>nameOfColumns,List<string> values)
-        {
+        //public static void InsertRowToTable( string nameOfTable, List<string>nameOfColumns,List<string> values)
+        //{
 
-            for (int i = 0; i < values.Count; i++)
-            {
-                values[i] = ConvertToSqlString(values[i]);
-            }
+        //    for (int i = 0; i < values.Count; i++)
+        //    {
+        //        values[i] = ConvertToSqlString(values[i]);
+        //    }
 
-            string columns = "Insert Into " +nameOfTable+" (";
-            foreach (string name in nameOfColumns)
-            {
-                columns += name + ",";
-            }
-            columns = columns.Remove(columns.Length - 1);
-            columns += ")"; 
-            string vals = " VALUES (";
-            foreach (string value in values)
-            {
-                vals += value + ",";
-            }
-            vals= vals.Remove(vals.Length -1 );
-            vals += ")";
+        //    string columns = "Insert Into " +nameOfTable+" (";
+        //    foreach (string name in nameOfColumns)
+        //    {
+        //        columns += name + ",";
+        //    }
+        //    columns = columns.Remove(columns.Length - 1);
+        //    columns += ")"; 
+        //    string vals = " VALUES (";
+        //    foreach (string value in values)
+        //    {
+        //        vals += value + ",";
+        //    }
+        //    vals= vals.Remove(vals.Length -1 );
+        //    vals += ")";
 
-            string strCommand = columns + vals;
+        //    string strCommand = columns + vals;
 
-            SqlCommand comm = new SqlCommand(strCommand, conn);
-            comm.ExecuteNonQuery();
+        //    SqlCommand comm = new SqlCommand(strCommand, conn);
+        //    comm.ExecuteNonQuery();
 
-        }
+        //}
 
         //public static void InsertRowToTable(MySqlConnection conn, string nameOfTable, List<string> nameOfColumns, List<string> values)
         //{
@@ -224,6 +224,17 @@ using System.Data.SqlClient;
             db.ExecuteNonQuery(strCommand,null);
         }
 
+        public static void UpdateRowToTableCalendar(IDatabase db, string nameOfTable, List<string> nameOfColumns,
+    List<string> values, string id, string Username)
+        {
+            string strCommand = BuildFirstPartUpdateQuery(nameOfTable, nameOfColumns, values);
+
+            strCommand += " Where IdCalendar='" + id + "' AND Username='" + Username + "';";
+
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            db.ExecuteNonQuery(strCommand, null);
+        }
+
         public static bool checkAdminExists(SqlConnection conn, string nameOfTable)
         {
 
@@ -258,6 +269,30 @@ using System.Data.SqlClient;
             }
             reader.Close();
             return result;
+        }
+
+        public static List<ADate> GetAllDateOfUser(string Username, IDatabase db)
+        {
+            List<ADate> ListDate = new List<ADate>();
+            string strCommand = "Select * from calendar where Username = " + Helper.ConvertToSqlString(Username);
+            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
+            while (reader.Read())
+            {
+                ListDate.Add(BoxingDate(reader));
+            }
+            reader.Close();
+            return ListDate;
+        }
+
+        private static ADate BoxingDate(DbDataReader reader)
+        {
+            ADate date = new ADate();
+            date.Text = reader["Text"].ToString();
+            date.color = (int)reader["Color"];
+            date.StartTime = (DateTime)reader["StartTime"];
+            date.EndTime = (DateTime)reader["EndTime"];
+            date.Id = (int)reader["IdCalendar"];
+            return date;
         }
 
         public static bool checkUserExists(string user, string pass,bool setAuthority)
@@ -418,9 +453,9 @@ using System.Data.SqlClient;
         //        return newId;
         //    }
         //}
-        internal static int SearchMaxValueOfTable( string p, string p_2, string order)
+        internal static int SearchMaxValueOfTable( string table, string nameOfColumn, string order)
         {
-            string strCommand = " SELECT  " + p_2 + " FROM " + p + " ORDER BY " + p_2 + " " + order + " LIMIT 1";
+            string strCommand = " SELECT  " + nameOfColumn + " FROM " + table + " ORDER BY " + nameOfColumn + " " + order + " LIMIT 1";
             //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
             IDatabase db = DatabaseFactory.Instance;
             using (DbDataReader reader = db.ExecuteReader(strCommand,null) as DbDataReader)
@@ -438,6 +473,10 @@ using System.Data.SqlClient;
                     catch (Exception)
                     {
                     }
+                    finally
+                    {
+                        reader.Close();
+                    }
                 }
                 else
                 {
@@ -447,6 +486,7 @@ using System.Data.SqlClient;
                 return newId;
             }
         }
+
 
        // public Patient AddNewPatient(SqlConnection conn, string id, bool Old)
         //{
@@ -491,5 +531,10 @@ using System.Data.SqlClient;
        // }
 
 
+
+        internal static string ConvertToDatetimeSql(DateTime dateTime)
+        {
+            return dateTime.Year+"-"+dateTime.Month+"-"+dateTime.Day + " " + dateTime.Hour + ":" + dateTime.Minute + ":" + dateTime.Second;
+        }
     }
 }

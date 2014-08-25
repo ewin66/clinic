@@ -112,6 +112,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Windows.Forms.Calendar, Version=1.0.5346.41310, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\System.Windows.Forms.Calendar.dll</HintPath>
@@ -125,7 +126,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calendar\ItemInfo.cs" />
+    <Compile Include="Models\ADate.cs" />
     <Compile Include="CreateUserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +184,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Models\Date.dbml">
+      <SubType>Designer</SubType>
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Date.designer.cs</LastGenOutput>
+    </None>
+    <None Include="Models\Date.dbml.layout">
+      <DependentUpon>Date.dbml</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -244,6 +253,12 @@
     <Content Include="Libs\PdfSharp.Charting.dll" />
     <Content Include="Libs\PdfSharp.dll" />
     <Content Include="Libs\System.Windows.Forms.Calendar.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Calendar\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

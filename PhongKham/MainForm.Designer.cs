@@ -1295,20 +1295,20 @@ namespace PhongKham
             this.calendar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9F);
             calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
             calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
         calendarHighlightRange1,
         calendarHighlightRange2,
@@ -1320,9 +1320,14 @@ namespace PhongKham
             this.calendar1.Size = new System.Drawing.Size(784, 693);
             this.calendar1.TabIndex = 2;
             this.calendar1.Text = "calendar1";
-            this.calendar1.DayHeaderClick += new System.Windows.Forms.Calendar.Calendar.CalendarDayEventHandler(this.calendar1_DayHeaderClick);
             this.calendar1.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDeleted);
+            this.calendar1.ItemClick += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemClick);
+            this.calendar1.DayHeaderClick += new System.Windows.Forms.Calendar.Calendar.CalendarDayEventHandler(this.calendar1_DayHeaderClick);
+            this.calendar1.ItemCreated += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.calendar1_ItemCreated);
             this.calendar1.ItemDoubleClick += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDoubleClick);
+            this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
+            this.calendar1.ItemMouseHover += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemMouseHover);
+            this.calendar1.ItemTextEdited+=new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(calendar1_ItemTextEdited);
             // 
             // contextMenuStrip1
             // 
@@ -1332,14 +1337,15 @@ namespace PhongKham
             this.greenTagToolStripMenuItem,
             this.blueTagToolStripMenuItem,
             this.otherColorTagToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.patternToolStripMenuItem,
-            this.timescaleToolStripMenuItem,
-            this.toolStripMenuItem2,
-            this.selectImageToolStripMenuItem,
-            this.imageAlignmentToolStripMenuItem,
-            this.toolStripMenuItem5,
-            this.editItemToolStripMenuItem});
+            //this.toolStripMenuItem1,
+            //this.patternToolStripMenuItem,
+            //this.timescaleToolStripMenuItem,
+            //this.toolStripMenuItem2,
+            //this.selectImageToolStripMenuItem,
+            //this.imageAlignmentToolStripMenuItem,
+            //this.toolStripMenuItem5,
+            this.editItemToolStripMenuItem
+            });
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(68, 242);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
@@ -1347,27 +1353,37 @@ namespace PhongKham
             // redTagToolStripMenuItem
             // 
             this.redTagToolStripMenuItem.Name = "redTagToolStripMenuItem";
-            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.redTagToolStripMenuItem.Text = "Red tag";
+            this.redTagToolStripMenuItem.Click += new System.EventHandler(this.redTagToolStripMenuItem_Click);
             // 
             // yellowTagToolStripMenuItem
             // 
             this.yellowTagToolStripMenuItem.Name = "yellowTagToolStripMenuItem";
-            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.yellowTagToolStripMenuItem.Text = "Yellow tag";
+            this.yellowTagToolStripMenuItem.Click += new System.EventHandler(this.yellowTagToolStripMenuItem_Click);
             // 
             // greenTagToolStripMenuItem
             // 
             this.greenTagToolStripMenuItem.Name = "greenTagToolStripMenuItem";
-            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.greenTagToolStripMenuItem.Text = "Green tag";
+            this.greenTagToolStripMenuItem.Click += new System.EventHandler(this.greenTagToolStripMenuItem_Click);
             // 
             // blueTagToolStripMenuItem
             // 
             this.blueTagToolStripMenuItem.Name = "blueTagToolStripMenuItem";
-            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.blueTagToolStripMenuItem.Text = "Blue tag";
+            this.blueTagToolStripMenuItem.Click += new System.EventHandler(this.blueTagToolStripMenuItem_Click);
             // 
             // otherColorTagToolStripMenuItem
             // 
             this.otherColorTagToolStripMenuItem.Name = "otherColorTagToolStripMenuItem";
-            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.otherColorTagToolStripMenuItem.Text = "Other color tag...";
+            this.otherColorTagToolStripMenuItem.Click += new System.EventHandler(this.otherColorTagToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -1376,13 +1392,29 @@ namespace PhongKham
             // 
             // patternToolStripMenuItem
             // 
+            this.patternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.diagonalToolStripMenuItem,
+            this.verticalToolStripMenuItem,
+            this.horizontalToolStripMenuItem,
+            this.hatchToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.noneToolStripMenuItem});
             this.patternToolStripMenuItem.Name = "patternToolStripMenuItem";
-            this.patternToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.patternToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.patternToolStripMenuItem.Text = "Pattern";
             // 
             // timescaleToolStripMenuItem
             // 
+            this.timescaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hourToolStripMenuItem,
+            this.minutesToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.minutesToolStripMenuItem1,
+            this.minutesToolStripMenuItem2,
+            this.minutesToolStripMenuItem3});
             this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
-            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.timescaleToolStripMenuItem.Text = "Timescale";
             // 
             // toolStripMenuItem2
             // 
@@ -1407,7 +1439,9 @@ namespace PhongKham
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
-            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.editItemToolStripMenuItem.Text = "Edit item\'s text";
+            this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // Column7
             // 

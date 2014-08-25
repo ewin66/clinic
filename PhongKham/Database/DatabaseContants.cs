@@ -7,6 +7,10 @@ namespace Clinic.Database
 {
     public class DatabaseContants
     {
+
+
+        public static   List<string> columnsCalendar = new List<string>() { "IdCalendar", "Username", "StartTime", "EndTime", "Text", "Color" };
+
         public struct clinicuser
         {
           public static string  Username = "Username";

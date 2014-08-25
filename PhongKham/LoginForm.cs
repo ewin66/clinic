@@ -19,6 +19,13 @@ namespace Clinic
     public partial class LoginForm : Form
     {
         public static int Authority;
+        private static string name;
+
+        public static string Name1
+        {
+            get { return LoginForm.name; }
+            set { LoginForm.name = value; }
+        }
         public LoginForm()
         {
             InitializeComponent();
@@ -65,6 +72,7 @@ namespace Clinic
             if (Helper.checkUserExists(user,pass,true))
             {
                     this.DialogResult = DialogResult.OK;
+                    Name1 = user;
                     this.Close();
             }
             else
