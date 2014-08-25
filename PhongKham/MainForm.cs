@@ -52,6 +52,10 @@ namespace PhongKham
             {
                 CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
                 cal.Tag = item.Id;
+                if (item.color != 0)
+                {
+                    cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
+                }
                 //if (!(item.R == 0 && item.G == 0 && item.B == 0))
                 //{
                 //    cal.ApplyColor(Color.FromArgb(item.A, item.R, item.G, item.B));
@@ -843,15 +847,24 @@ namespace PhongKham
         private void calendar1_ItemDeleted(object sender, CalendarItemEventArgs e)
         {
             _items.Remove(e.Item);
+            Helper.DeleteRowToTableCalendar(db, "calendar", e.Item.Tag.ToString(), Form1.UserName);
+
         }
 
         private void calendar1_ItemTextEdited(object sender, CalendarItemCancelEventArgs e)
         {
-            if (e.Item.Text.Length > 0)
-            {
+
               // e.Item.Tag = // set id
-                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Text", "StartTime", "EndTime" }, new List<string> { e.Item.Text, Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate) }, e.Item.Tag.ToString(), UserName);
-            }
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Text" }, new List<string> { e.Item.Text  }, e.Item.Tag.ToString(), UserName);
+            
+        }
+
+        private void calendar1_ItemDatesChanged(object sender, CalendarItemEventArgs e)
+        {
+
+            // e.Item.Tag = // set id
+            Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "StartTime", "EndTime" }, new List<string> {  Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate) }, e.Item.Tag.ToString(), UserName);
+
         }
 
         private void calendar1_DayHeaderClick(object sender, CalendarDayEventArgs e)
@@ -953,6 +966,9 @@ namespace PhongKham
             {
                 item.ApplyColor(Color.Red);
                 calendar1.Invalidate(item);
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Color" }, new List<string> { "1" }, item.Tag.ToString(), UserName);
+
+
             }
         }
 
@@ -962,6 +978,7 @@ namespace PhongKham
             {
                 item.ApplyColor(Color.Gold);
                 calendar1.Invalidate(item);
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Color" }, new List<string> { "2" }, item.Tag.ToString(), UserName);
             }
         }
 
@@ -971,6 +988,7 @@ namespace PhongKham
             {
                 item.ApplyColor(Color.Green);
                 calendar1.Invalidate(item);
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Color" }, new List<string> { "3" }, item.Tag.ToString(), UserName);
             }
         }
 
@@ -980,6 +998,7 @@ namespace PhongKham
             {
                 item.ApplyColor(Color.DarkBlue);
                 calendar1.Invalidate(item);
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "Color" }, new List<string> { "4" }, item.Tag.ToString(), UserName);
             }
         }
         private void editItemToolStripMenuItem_Click(object sender, EventArgs e)

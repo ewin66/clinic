@@ -16,6 +16,7 @@ using System.Data.SqlClient;
     using System.Data;
     using System.Data.Common;
     using Clinic.Models;
+    using System.Drawing;
 
     /// <summary>
     /// Comment for the class
@@ -228,6 +229,17 @@ using System.Data.SqlClient;
     List<string> values, string id, string Username)
         {
             string strCommand = BuildFirstPartUpdateQuery(nameOfTable, nameOfColumns, values);
+
+            strCommand += " Where IdCalendar='" + id + "' AND Username='" + Username + "';";
+
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            db.ExecuteNonQuery(strCommand, null);
+        }
+
+
+        public static void DeleteRowToTableCalendar(IDatabase db, string nameOfTable, string id, string Username)
+        {
+            string strCommand = "Delete From " + nameOfTable;
 
             strCommand += " Where IdCalendar='" + id + "' AND Username='" + Username + "';";
 
@@ -535,6 +547,23 @@ using System.Data.SqlClient;
         internal static string ConvertToDatetimeSql(DateTime dateTime)
         {
             return dateTime.Year+"-"+dateTime.Month+"-"+dateTime.Day + " " + dateTime.Hour + ":" + dateTime.Minute + ":" + dateTime.Second;
+        }
+
+        internal static System.Drawing.Color ConvertCodeToColor(int p)
+        {
+            switch (p)
+            {
+                case 1:
+                    return Color.Red;
+                case 2:
+                    return Color.Yellow;
+                case 3:
+                    return Color.Green;
+                case 4:
+                    return Color.Blue;
+                default:
+                    return Color.White;
+            }
         }
     }
 }

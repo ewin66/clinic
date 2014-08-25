@@ -1328,6 +1328,7 @@ namespace PhongKham
             this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
             this.calendar1.ItemMouseHover += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemMouseHover);
             this.calendar1.ItemTextEdited+=new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(calendar1_ItemTextEdited);
+            this.calendar1.ItemDatesChanged+=new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(calendar1_ItemDatesChanged);
             // 
             // contextMenuStrip1
             // 
