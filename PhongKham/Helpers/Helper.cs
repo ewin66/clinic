@@ -17,6 +17,9 @@ using System.Data.SqlClient;
     using System.Data.Common;
     using Clinic.Models;
     using System.Drawing;
+using PdfSharp.Pdf;
+using PdfSharp.Drawing;
+using PdfSharp.Drawing.Layout;
 
     /// <summary>
     /// Comment for the class
@@ -542,7 +545,56 @@ using System.Data.SqlClient;
 
        // }
 
+        public static void CreateAPdf(List<string> InformationOfClinic , string MaBn,Patient patient ,List<string> Medicines)
+        {
+             PdfDocument pdf = new PdfDocument();
+            PdfPage pdfPage = pdf.AddPage();
+            XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+           // FontFamily theFont = FontFamily.Families.Single<FontFamily>(font => font.Name == "VNI-Times");
+            XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+            XFont font = new XFont("Times New Roman", 12, XFontStyle.Bold, options);
+            XFont fontNotBold = new XFont("Times New Roman", 12,XFontStyle.Regular, options);
+            XFont fontBoldTitle = new XFont("Times New Roman", 26, XFontStyle.Bold, options);
+            XTextFormatter tf = new XTextFormatter(graph);
+            XRect rectTopLeft = new XRect(0, 0, 150, 120);
+            XRect rectTopRight = new XRect(pdfPage.Width-200, 0, 150, 120);
 
+            XRect rectPatient = new XRect(20, 120, pdfPage.Width, 100);
+
+            graph.DrawRectangle(XBrushes.White, rectTopLeft);
+            graph.DrawRectangle(XBrushes.White, rectTopRight);
+            graph.DrawRectangle(XBrushes.White, rectPatient);
+
+ 
+
+            //
+            // top left
+            tf.DrawString("Bệnh viện xxxxx \n" + " Địa chỉ xxxxx", font, XBrushes.Black, rectTopLeft, XStringFormats.TopLeft);
+            //
+            //top right
+            tf.DrawString("Mã BN: " + MaBn, font, XBrushes.Black, rectTopRight, XStringFormats.TopLeft);
+
+
+
+            //
+            //patient
+            int tuoi = DateTime.Now.Year - patient.Birthday.Year;
+
+            tf.DrawString("Bệnh nhân:   " + patient.Name + "         - Tuổi: " + tuoi + " \n" + "Địa chỉ:         " + patient.Address, fontNotBold, XBrushes.Black, rectPatient, XStringFormats.TopLeft);
+
+
+
+            //
+            //medicine, notes, sign, 
+
+
+            //title
+            tf.Alignment = XParagraphAlignment.Center;
+            tf.DrawString("TOA THUỐC", fontBoldTitle, XBrushes.Black, new XRect(0, 70, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
+
+
+            pdf.Save("firstpage.pdf");
+        }
 
         internal static string ConvertToDatetimeSql(DateTime dateTime)
         {

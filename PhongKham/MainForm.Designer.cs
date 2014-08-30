@@ -8,7 +8,7 @@ namespace PhongKham
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
+        
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -38,10 +38,9 @@ namespace PhongKham
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            this.Print = new System.Windows.Forms.TabControl();
+            this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.buttonPutIn = new System.Windows.Forms.Button();
             this.dataGridViewMedicine = new System.Windows.Forms.DataGridView();
@@ -141,14 +140,26 @@ namespace PhongKham
             this.greenTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blueTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.otherColorTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.patternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.diagonalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timescaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutesToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.selectImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageAlignmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column7 = new System.Windows.Forms.DataGridViewColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -181,21 +192,10 @@ namespace PhongKham
             this.btnWaitRoomContinue = new System.Windows.Forms.Button();
             this.btnWaitRoomCancel = new System.Windows.Forms.Button();
             this.btnWaitRoomOK = new System.Windows.Forms.Button();
-            this.diagonalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             label26 = new System.Windows.Forms.Label();
-            this.Print.SuspendLayout();
+            this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -225,26 +225,25 @@ namespace PhongKham
             label26.TabIndex = 26;
             label26.Text = "Đây là khung nhập mới thuốc , số Id là mặc định";
             // 
-            // Print
+            // MainTab
             // 
-            this.Print.Controls.Add(this.tabPage1);
-            this.Print.Controls.Add(this.tabPage3);
-            this.Print.Controls.Add(this.tabPage4);
-            this.Print.Controls.Add(this.tabPage5);
-            this.Print.Controls.Add(this.Calendar);
-            this.Print.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Print.Location = new System.Drawing.Point(0, 0);
-            this.Print.Name = "Print";
-            this.Print.SelectedIndex = 0;
-            this.Print.Size = new System.Drawing.Size(1008, 730);
-            this.Print.TabIndex = 0;
-            this.Print.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.MainTab.Controls.Add(this.tabPage1);
+            this.MainTab.Controls.Add(this.tabPage3);
+            this.MainTab.Controls.Add(this.tabPage4);
+            this.MainTab.Controls.Add(this.tabPage5);
+            this.MainTab.Controls.Add(this.Calendar);
+            this.MainTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainTab.Location = new System.Drawing.Point(0, 0);
+            this.MainTab.Name = "MainTab";
+            this.MainTab.SelectedIndex = 0;
+            this.MainTab.Size = new System.Drawing.Size(1008, 730);
+            this.MainTab.TabIndex = 0;
+            this.MainTab.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label35);
-            this.tabPage1.Controls.Add(this.label33);
+            this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.label9);
             this.tabPage1.Controls.Add(this.buttonPutIn);
             this.tabPage1.Controls.Add(this.dataGridViewMedicine);
@@ -262,36 +261,24 @@ namespace PhongKham
             this.tabPage1.Text = "Phòng Khám";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label35
+            // pictureBox1
             // 
-            this.label35.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(815, 475);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(56, 24);
-            this.label35.TabIndex = 39;
-            this.label35.Text = "Total:";
-            this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label33
-            // 
-            this.label33.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(877, 475);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(20, 24);
-            this.label33.TabIndex = 38;
-            this.label33.Text = "0";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.pictureBox1.Image = global::Clinic.Properties.Resources.print_printer;
+            this.pictureBox1.Location = new System.Drawing.Point(855, 646);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 39;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(542, 647);
+            this.label9.Location = new System.Drawing.Point(3, 648);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 24);
             this.label9.TabIndex = 37;
@@ -475,15 +462,16 @@ namespace PhongKham
             // 
             // label30
             // 
-            this.label30.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label30.AutoSize = true;
+            this.label30.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(640, 647);
+            this.label30.Location = new System.Drawing.Point(3, 672);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(20, 24);
             this.label30.TabIndex = 30;
             this.label30.Text = "0";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -1320,15 +1308,15 @@ namespace PhongKham
             this.calendar1.Size = new System.Drawing.Size(784, 693);
             this.calendar1.TabIndex = 2;
             this.calendar1.Text = "calendar1";
-            this.calendar1.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDeleted);
-            this.calendar1.ItemClick += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemClick);
+            this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
             this.calendar1.DayHeaderClick += new System.Windows.Forms.Calendar.Calendar.CalendarDayEventHandler(this.calendar1_DayHeaderClick);
             this.calendar1.ItemCreated += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.calendar1_ItemCreated);
+            this.calendar1.ItemDeleted += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDeleted);
+            this.calendar1.ItemTextEdited += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.calendar1_ItemTextEdited);
+            this.calendar1.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDatesChanged);
+            this.calendar1.ItemClick += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemClick);
             this.calendar1.ItemDoubleClick += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemDoubleClick);
-            this.calendar1.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.calendar1_LoadItems);
             this.calendar1.ItemMouseHover += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.calendar1_ItemMouseHover);
-            this.calendar1.ItemTextEdited+=new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(calendar1_ItemTextEdited);
-            this.calendar1.ItemDatesChanged+=new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(calendar1_ItemDatesChanged);
             // 
             // contextMenuStrip1
             // 
@@ -1338,53 +1326,52 @@ namespace PhongKham
             this.greenTagToolStripMenuItem,
             this.blueTagToolStripMenuItem,
             this.otherColorTagToolStripMenuItem,
-            //this.toolStripMenuItem1,
-            //this.patternToolStripMenuItem,
-            //this.timescaleToolStripMenuItem,
-            //this.toolStripMenuItem2,
-            //this.selectImageToolStripMenuItem,
-            //this.imageAlignmentToolStripMenuItem,
-            //this.toolStripMenuItem5,
-            this.editItemToolStripMenuItem
-            });
+            this.editItemToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(68, 242);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(164, 136);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // redTagToolStripMenuItem
             // 
             this.redTagToolStripMenuItem.Name = "redTagToolStripMenuItem";
-            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.redTagToolStripMenuItem.Text = "Red tag";
             this.redTagToolStripMenuItem.Click += new System.EventHandler(this.redTagToolStripMenuItem_Click);
             // 
             // yellowTagToolStripMenuItem
             // 
             this.yellowTagToolStripMenuItem.Name = "yellowTagToolStripMenuItem";
-            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.yellowTagToolStripMenuItem.Text = "Yellow tag";
             this.yellowTagToolStripMenuItem.Click += new System.EventHandler(this.yellowTagToolStripMenuItem_Click);
             // 
             // greenTagToolStripMenuItem
             // 
             this.greenTagToolStripMenuItem.Name = "greenTagToolStripMenuItem";
-            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.greenTagToolStripMenuItem.Text = "Green tag";
             this.greenTagToolStripMenuItem.Click += new System.EventHandler(this.greenTagToolStripMenuItem_Click);
             // 
             // blueTagToolStripMenuItem
             // 
             this.blueTagToolStripMenuItem.Name = "blueTagToolStripMenuItem";
-            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.blueTagToolStripMenuItem.Text = "Blue tag";
             this.blueTagToolStripMenuItem.Click += new System.EventHandler(this.blueTagToolStripMenuItem_Click);
             // 
             // otherColorTagToolStripMenuItem
             // 
             this.otherColorTagToolStripMenuItem.Name = "otherColorTagToolStripMenuItem";
-            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.otherColorTagToolStripMenuItem.Text = "Other color tag...";
             this.otherColorTagToolStripMenuItem.Click += new System.EventHandler(this.otherColorTagToolStripMenuItem_Click);
+            // 
+            // editItemToolStripMenuItem
+            // 
+            this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.editItemToolStripMenuItem.Text = "Edit item\'s text";
+            this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -1404,6 +1391,36 @@ namespace PhongKham
             this.patternToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.patternToolStripMenuItem.Text = "Pattern";
             // 
+            // diagonalToolStripMenuItem
+            // 
+            this.diagonalToolStripMenuItem.Name = "diagonalToolStripMenuItem";
+            this.diagonalToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // verticalToolStripMenuItem
+            // 
+            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
+            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // horizontalToolStripMenuItem
+            // 
+            this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
+            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // hatchToolStripMenuItem
+            // 
+            this.hatchToolStripMenuItem.Name = "hatchToolStripMenuItem";
+            this.hatchToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(64, 6);
+            // 
+            // noneToolStripMenuItem
+            // 
+            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
             // timescaleToolStripMenuItem
             // 
             this.timescaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1416,6 +1433,36 @@ namespace PhongKham
             this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
             this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.timescaleToolStripMenuItem.Text = "Timescale";
+            // 
+            // hourToolStripMenuItem
+            // 
+            this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
+            this.hourToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // minutesToolStripMenuItem
+            // 
+            this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
+            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(67, 22);
+            // 
+            // minutesToolStripMenuItem1
+            // 
+            this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
+            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(67, 22);
+            // 
+            // minutesToolStripMenuItem2
+            // 
+            this.minutesToolStripMenuItem2.Name = "minutesToolStripMenuItem2";
+            this.minutesToolStripMenuItem2.Size = new System.Drawing.Size(67, 22);
+            // 
+            // minutesToolStripMenuItem3
+            // 
+            this.minutesToolStripMenuItem3.Name = "minutesToolStripMenuItem3";
+            this.minutesToolStripMenuItem3.Size = new System.Drawing.Size(67, 22);
             // 
             // toolStripMenuItem2
             // 
@@ -1436,13 +1483,6 @@ namespace PhongKham
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(64, 6);
-            // 
-            // editItemToolStripMenuItem
-            // 
-            this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
-            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.editItemToolStripMenuItem.Text = "Edit item\'s text";
-            this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // Column7
             // 
@@ -1727,79 +1767,20 @@ namespace PhongKham
             this.btnWaitRoomOK.Text = "OK";
             this.btnWaitRoomOK.UseVisualStyleBackColor = true;
             // 
-            // diagonalToolStripMenuItem
-            // 
-            this.diagonalToolStripMenuItem.Name = "diagonalToolStripMenuItem";
-            this.diagonalToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // verticalToolStripMenuItem
-            // 
-            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
-            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // horizontalToolStripMenuItem
-            // 
-            this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
-            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // hatchToolStripMenuItem
-            // 
-            this.hatchToolStripMenuItem.Name = "hatchToolStripMenuItem";
-            this.hatchToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(6, 6);
-            // 
-            // noneToolStripMenuItem
-            // 
-            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
-            this.noneToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // hourToolStripMenuItem
-            // 
-            this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
-            this.hourToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // minutesToolStripMenuItem
-            // 
-            this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
-            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(32, 19);
-            // 
-            // minutesToolStripMenuItem1
-            // 
-            this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
-            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(32, 19);
-            // 
-            // minutesToolStripMenuItem2
-            // 
-            this.minutesToolStripMenuItem2.Name = "minutesToolStripMenuItem2";
-            this.minutesToolStripMenuItem2.Size = new System.Drawing.Size(32, 19);
-            // 
-            // minutesToolStripMenuItem3
-            // 
-            this.minutesToolStripMenuItem3.Name = "minutesToolStripMenuItem3";
-            this.minutesToolStripMenuItem3.Size = new System.Drawing.Size(32, 19);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 730);
-            this.Controls.Add(this.Print);
+            this.Controls.Add(this.MainTab);
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Print.ResumeLayout(false);
+            this.MainTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -1828,7 +1809,7 @@ namespace PhongKham
 
         #endregion
 
-        private System.Windows.Forms.TabControl Print;
+        private System.Windows.Forms.TabControl MainTab;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TextBox txtBoxClinicRoomDiagnose;
         private System.Windows.Forms.TextBox txtBoxClinicRoomSymptom;
@@ -1945,12 +1926,11 @@ namespace PhongKham
         private DataGridViewTextBoxColumn Column15;
         private DataGridViewTextBoxColumn Column16;
         private DataGridViewTextBoxColumn Column17;
-        private Label label35;
-        private Label label33;
         private CheckBox checkBox3;
         private CheckBox checkBox4;
         private TabPage tabPage5;
         private AxAcroPDFLib.AxAcroPDF axAcroPDF1;
+       
         private TabPage Calendar;
         private Panel panelCalendar;
         private DevComponents.DotNetBar.ExpandableSplitter expandableSplitter1;
@@ -1984,6 +1964,7 @@ namespace PhongKham
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem selectImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imageAlignmentToolStripMenuItem;
+        private PictureBox pictureBox1;
     }
 }
 

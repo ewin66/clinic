@@ -77,7 +77,15 @@ namespace Clinic.Models
         #endregion
 
         #region ctors
-
+        public Patient(string id, string name, int weight, int height, string address, DateTime birthday)
+        {
+            this.id = id;
+            this.name = name;
+            this.weight = weight;
+            this.height = height;
+            this.address = address;
+            this.birthday = birthday;
+        }
         #endregion
 
         #region Properties

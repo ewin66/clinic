@@ -113,7 +113,7 @@ namespace PhongKham
 
             if (authority < 100) // khong co quyen tao user moi
             {
-                Print.TabPages.Remove(tabPage4);
+                MainTab.TabPages.Remove(tabPage4);
             }
             else
             {
@@ -139,10 +139,10 @@ namespace PhongKham
                 case 2:
                     break;
                 case 3:
-                    Print.TabPages.Remove(tabPage1);
+                    MainTab.TabPages.Remove(tabPage1);
                     break;
                 case 4:
-                    Print.TabPages.Remove(tabPage3);
+                    MainTab.TabPages.Remove(tabPage3);
                     break;
             }
         }
@@ -463,7 +463,7 @@ namespace PhongKham
         }
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Print.SelectedIndex == 1)
+            if (MainTab.SelectedIndex == 1)
             {
                 RefreshMedicineLess100();
             }
@@ -704,7 +704,7 @@ namespace PhongKham
                 daySum += total;
             }
 
-            label33.Text = daySum.ToString();
+            //label33.Text = daySum.ToString();
             //newReader = null;
             //newCommand = null;
         }
@@ -717,6 +717,9 @@ namespace PhongKham
         }
         private void buttonPutIn_Click(object sender, EventArgs e)
         {
+
+            Patient patient = new Patient(this.lblClinicRoomId.Text,comboBoxClinicRoomName.Text,int.Parse(txtBoxClinicRoomWeight.Text),int.Parse(txtBoxClinicRoomHeight.Text),txtBoxClinicRoomAddress.Text,dateTimePickerBirthDay.Value);
+
             if (this.comboBoxClinicRoomName.Text == null || this.comboBoxClinicRoomName.Text == string.Empty)
             {
                 MessageBox.Show("Ten Benh Nhan");
@@ -766,26 +769,15 @@ namespace PhongKham
             //
             //
             //Create a PDF file
-            PdfDocument pdf = new PdfDocument();
-            PdfPage pdfPage = pdf.AddPage();
-            XGraphics graph = XGraphics.FromPdfPage(pdfPage);
-           // FontFamily theFont = FontFamily.Families.Single<FontFamily>(font => font.Name == "VNI-Times");
-            XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-            XFont font = new XFont("Times New Roman", 12, XFontStyle.Bold, options);
-            XFont fontNotBold = new XFont("Times New Roman", 12,XFontStyle.Regular, options);
-            XTextFormatter tf = new XTextFormatter(graph);
-            XRect rect = new XRect(0, 0, 150, 120);
-            graph.DrawRectangle(XBrushes.SeaShell, rect);
-           
-            tf.Alignment = XParagraphAlignment.Center;
-            tf.DrawString("Bệnh viện xxxxx \n" +" Địa chỉ xxxxx", font, XBrushes.Black, rect, XStringFormats.TopLeft);
-            tf.DrawString("Toa Thuốc", font, XBrushes.Black, new XRect(0, 150, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
-            pdf.Save("firstpage.pdf");
+            Helper.CreateAPdf(null, lblClinicRoomId.Text, patient,null);
 
             //
             //Load Pdf and put in form
             axAcroPDF1.LoadFile("firstpage.pdf");
+            
         }
+
+        
 
         #endregion
 
@@ -1004,6 +996,18 @@ namespace PhongKham
         private void editItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             calendar1.ActivateEditMode();
+        }
+
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            axAcroPDF1.printWithDialog();
         }
     }
 }

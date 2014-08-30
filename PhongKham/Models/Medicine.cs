@@ -18,6 +18,27 @@ namespace Clinic.Models
     {
         #region Fields
         private string name;
+        private string hDSD;
+        private string activity;
+
+        public string Activity
+        {
+            get { return activity; }
+            set { activity = value; }
+        }
+        private int number;
+
+        public int Number
+        {
+            get { return number; }
+            set { number = value; }
+        }
+
+        public string HDSD
+        {
+            get { return hDSD; }
+            set { hDSD = value; }
+        }
 
         public string Name
         {
