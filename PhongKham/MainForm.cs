@@ -403,6 +403,7 @@ namespace PhongKham
                 medicine.CostIn = int.Parse(txtBoxInputMedicineNewCostIn.Text);
                 medicine.Count = int.Parse(txtBoxInputMedicineNewCount.Text);
                 medicine.Id = lblInputMedicineNewId.Text;
+                medicine.HDSD = textBoxMedicineHdsd.Text;
             }
             catch (Exception)
             {
@@ -415,8 +416,8 @@ namespace PhongKham
                 return;
             }
 
-            List<string> columns = new List<string>() { "Name", "Count", "CostIn", "CostOut", "InputDay", "ID" };
-            List<string> values = new List<string>() { medicine.Name, medicine.Count.ToString(), medicine.CostIn.ToString(), medicine.CostOut.ToString(), medicine.InputDay.ToString("yyyy-MM-dd"), medicine.Id };
+            List<string> columns = new List<string>() { "Name", "Count", "CostIn", "CostOut", "InputDay", "ID" ,"Hdsd"};
+            List<string> values = new List<string>() { medicine.Name, medicine.Count.ToString(), medicine.CostIn.ToString(), medicine.CostOut.ToString(), medicine.InputDay.ToString("yyyy-MM-dd"), medicine.Id, medicine.HDSD };
             db.InsertRowToTable("Medicine", columns, values);
             MessageBox.Show("Thêm mới thuốc thành công");
             InitInputMedicineMySql();
@@ -501,14 +502,16 @@ namespace PhongKham
                 if (dataGridViewMedicine[e.ColumnIndex, e.RowIndex].Value != null)
                 {
                     string nameOfMedicine = dataGridViewMedicine[e.ColumnIndex, e.RowIndex].Value.ToString();
-                    string strCommand = "Select CostOut From Medicine Where Name =" + Helper.ConvertToSqlString(nameOfMedicine);
+                    string strCommand = "Select * From Medicine Where Name =" + Helper.ConvertToSqlString(nameOfMedicine);
                     //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
                     using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
                     {
                         reader.Read();
-                        string temp = reader.GetValue(0).ToString();
+                        string temp = reader[DatabaseContants.medicine.CostOut].ToString();
+                        string id = reader["Id"].ToString();
                         reader.Close();
                         dataGridViewMedicine[2, e.RowIndex].Value = temp;
+                        dataGridViewMedicine[DatabaseContants.IdColumnInDataGridViewMedicines, e.RowIndex].Value = id;
                     }
                 }
             }
@@ -752,6 +755,8 @@ namespace PhongKham
                 db.InsertRowToTable("patient", columns, values);
             }
 
+            List<Medicine> listMedicines = Helper.GetAllMedicinesFromDataGrid(db,this.dataGridViewMedicine);
+
             if (!Helper.checkVisitExists(db, this.lblClinicRoomId.Text, this.dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd")))
             {
                 AddVisitData();
@@ -769,7 +774,7 @@ namespace PhongKham
             //
             //
             //Create a PDF file
-            Helper.CreateAPdf(null, lblClinicRoomId.Text, patient,null);
+            Helper.CreateAPdf(null, lblClinicRoomId.Text, patient, listMedicines);
 
             //
             //Load Pdf and put in form

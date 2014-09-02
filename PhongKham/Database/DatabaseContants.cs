@@ -7,7 +7,8 @@ namespace Clinic.Database
 {
     public class DatabaseContants
     {
-
+        public static int IdColumnInDataGridViewMedicines = 4;
+        public static int CountColumnInDataGridViewMedicines = 1;
 
         public static   List<string> columnsCalendar = new List<string>() { "IdCalendar", "Username", "StartTime", "EndTime", "Text", "Color" };
 
@@ -34,6 +35,7 @@ namespace Clinic.Database
            public static string CostOut = "CostOut";
            public static string InputDay = "InputDay";
            public static string Id = "Id";
+           public static string Hdsd = "Hdsd";
         }
         public struct patient
         {

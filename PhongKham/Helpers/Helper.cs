@@ -20,6 +20,9 @@ using System.Data.SqlClient;
 using PdfSharp.Pdf;
 using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
+    using MigraDoc.DocumentObjectModel;
+    using MigraDoc.Rendering;
+    using MigraDoc.DocumentObjectModel.Tables;
 
     /// <summary>
     /// Comment for the class
@@ -545,55 +548,136 @@ using PdfSharp.Drawing.Layout;
 
        // }
 
-        public static void CreateAPdf(List<string> InformationOfClinic , string MaBn,Patient patient ,List<string> Medicines)
+        public static void CreateAPdf(List<string> InformationOfClinic , string MaBn,Patient patient ,List<Medicine> Medicines)
         {
-             PdfDocument pdf = new PdfDocument();
-            PdfPage pdfPage = pdf.AddPage();
-            XGraphics graph = XGraphics.FromPdfPage(pdfPage);
-           // FontFamily theFont = FontFamily.Families.Single<FontFamily>(font => font.Name == "VNI-Times");
-            XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-            XFont font = new XFont("Times New Roman", 12, XFontStyle.Bold, options);
-            XFont fontNotBold = new XFont("Times New Roman", 12,XFontStyle.Regular, options);
-            XFont fontBoldTitle = new XFont("Times New Roman", 26, XFontStyle.Bold, options);
-            XTextFormatter tf = new XTextFormatter(graph);
-            XRect rectTopLeft = new XRect(0, 0, 150, 120);
-            XRect rectTopRight = new XRect(pdfPage.Width-200, 0, 150, 120);
+           //  PdfDocument pdf = new PdfDocument();
+           // PdfPage pdfPage = pdf.AddPage();
+           // XGraphics graph = XGraphics.FromPdfPage(pdfPage);
+           //// FontFamily theFont = FontFamily.Families.Single<FontFamily>(font => font.Name == "VNI-Times");
+           // XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
+           // XFont font = new XFont("Times New Roman", 12, XFontStyle.Bold, options);
+           // XFont fontNotBold = new XFont("Times New Roman", 12,XFontStyle.Regular, options);
+           // XFont fontBoldTitle = new XFont("Times New Roman", 26, XFontStyle.Bold, options);
+           // XTextFormatter tf = new XTextFormatter(graph);
+           // XRect rectTopLeft = new XRect(0, 0, 150, 120);
+           // XRect rectTopRight = new XRect(pdfPage.Width-200, 0, 150, 120);
 
-            XRect rectPatient = new XRect(20, 120, pdfPage.Width, 100);
+           // XRect rectPatient = new XRect(20, 120, pdfPage.Width, 100);
+           // XRect rectMedicines = new XRect(20, 200, pdfPage.Width, pdfPage.Height);
 
-            graph.DrawRectangle(XBrushes.White, rectTopLeft);
-            graph.DrawRectangle(XBrushes.White, rectTopRight);
-            graph.DrawRectangle(XBrushes.White, rectPatient);
-
+           // graph.DrawRectangle(XBrushes.White, rectTopLeft);
+           // graph.DrawRectangle(XBrushes.White, rectTopRight);
+           // graph.DrawRectangle(XBrushes.White, rectPatient);
+           // graph.DrawRectangle(XBrushes.White, rectMedicines);
  
 
-            //
-            // top left
-            tf.DrawString("Bệnh viện xxxxx \n" + " Địa chỉ xxxxx", font, XBrushes.Black, rectTopLeft, XStringFormats.TopLeft);
-            //
-            //top right
-            tf.DrawString("Mã BN: " + MaBn, font, XBrushes.Black, rectTopRight, XStringFormats.TopLeft);
+           // //
+           // // top left
+           // tf.DrawString("Bệnh viện xxxxx \n" + " Địa chỉ xxxxx", font, XBrushes.Black, rectTopLeft, XStringFormats.TopLeft);
+           // //
+           // //top right
+           // tf.DrawString("Mã BN: " + MaBn, font, XBrushes.Black, rectTopRight, XStringFormats.TopLeft);
 
 
 
-            //
-            //patient
+           // //
+           // //patient
+           // int tuoi = DateTime.Now.Year - patient.Birthday.Year;
+
+           // tf.DrawString("Bệnh nhân:   " + patient.Name + "         - Tuổi: " + tuoi + " \n" + "Địa chỉ:         " + patient.Address, fontNotBold, XBrushes.Black, rectPatient, XStringFormats.TopLeft);
+
+
+
+           // //
+           // //medicine, notes, sign, 
+
+
+           // //title
+           // tf.Alignment = XParagraphAlignment.Center;
+           // tf.DrawString("TOA THUỐC", fontBoldTitle, XBrushes.Black, new XRect(0, 70, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
+            
+
+           // pdf.Save("firstpage.pdf");
+
+            Document document = new Document();
+
+            
+            document.Info.Author = "Luong Y";
+
+            // Get the A4 page size
+            Unit width, height;
+            PageSetup.GetPageSize(PageFormat.A5, out width, out height);
+            Section section = document.AddSection();
+
+            Paragraph paragraph = section.AddParagraph();
+            paragraph.Format.Alignment = ParagraphAlignment.Left;
+
+            paragraph.AddText("Bệnh viện xxxxx  "); //+"Mã BN: " + patient.Id + " \n" +" Địa chỉ xxxxx");
+            paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab();
+            paragraph.AddText("Mã BN: " + patient.Id +" \n");
+            paragraph.AddText("Địa chỉ xxxxx ");
+
+
+
+
+            Paragraph paragraphTitle = section.AddParagraph();
+            paragraphTitle.Format.Alignment = ParagraphAlignment.Center;
+            paragraphTitle.AddFormattedText("TOA THUỐC \n \n", new MigraDoc.DocumentObjectModel.Font("Times New Roman", 28));
+
+
+
+
+
+
+            Table table = new Table();
+            table.Borders.Width = 0;
+            Column column = table.AddColumn();
+            column.Width = 80;
+            table.AddColumn(280);
+            table.AddColumn();
+            Row row = table.AddRow();
+            row.Cells[0].AddParagraph("Bệnh nhân: ");
+            row.Cells[1].AddParagraph(patient.Name);
             int tuoi = DateTime.Now.Year - patient.Birthday.Year;
-
-            tf.DrawString("Bệnh nhân:   " + patient.Name + "         - Tuổi: " + tuoi + " \n" + "Địa chỉ:         " + patient.Address, fontNotBold, XBrushes.Black, rectPatient, XStringFormats.TopLeft);
-
-
-
-            //
-            //medicine, notes, sign, 
+            row.Cells[2].AddParagraph("Tuổi:" + tuoi);
+            Row row2 = table.AddRow();
+            row2.Cells[0].AddParagraph("Địa chỉ: ");
+            row2.Cells[1].AddParagraph(patient.Address);
+            
 
 
-            //title
-            tf.Alignment = XParagraphAlignment.Center;
-            tf.DrawString("TOA THUỐC", fontBoldTitle, XBrushes.Black, new XRect(0, 70, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
+
+            Table tableMedicines = new Table();
+            tableMedicines.Borders.Width = 0;
+            tableMedicines.BottomPadding = 10;
+            Column columnMedicines1 = tableMedicines.AddColumn(30);
+            Column columnMedicines2 = tableMedicines.AddColumn(300);
+            Column columnMedicines3 = tableMedicines.AddColumn(70);
+            Row rowMedicinesHeader = tableMedicines.AddRow();
+            rowMedicinesHeader.Cells[0].AddParagraph("STT");
+            rowMedicinesHeader.Cells[1].AddParagraph("Tên thuốc/Cách dùng");
+            rowMedicinesHeader.Cells[2].AddParagraph("Số lượng");
+            for (int i = 0; i < Medicines.Count; i++)
+            {
+                Row rowDetail = tableMedicines.AddRow();
+                rowDetail.Cells[0].AddParagraph((i+1).ToString());
+                rowDetail.Cells[1].AddParagraph(Medicines[i].Name +"\n"+ Medicines[i].HDSD);        
+                rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
+            }
 
 
-            pdf.Save("firstpage.pdf");
+            document.LastSection.Add(table);
+            document.LastSection.AddParagraph("\n");
+            document.LastSection.Add(tableMedicines);
+
+
+
+            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+            pdfRenderer.Document = document;
+            pdfRenderer.RenderDocument();
+            pdfRenderer.PdfDocument.Save("firstpage.pdf");
+
+
         }
 
         internal static string ConvertToDatetimeSql(DateTime dateTime)
@@ -606,16 +690,71 @@ using PdfSharp.Drawing.Layout;
             switch (p)
             {
                 case 1:
-                    return Color.Red;
+                    return System.Drawing.Color.Red;
                 case 2:
-                    return Color.Yellow;
+                    return System.Drawing.Color.Yellow;
                 case 3:
-                    return Color.Green;
+                    return System.Drawing.Color.Green;
                 case 4:
-                    return Color.Blue;
+                    return System.Drawing.Color.Blue;
                 default:
-                    return Color.White;
+                    return System.Drawing.Color.White;
             }
+        }
+
+
+
+        internal static List<Medicine> GetAllMedicinesFromDataGrid(IDatabase db,System.Windows.Forms.DataGridView dataGridView)
+        {
+            List<string> listIdMedicines = new List<string>();
+            List<int> listCountMedicines = new List<int>();
+
+
+            for (int i = 0; i < dataGridView.Rows.Count-1; i++)
+            {
+                listIdMedicines.Add(dataGridView[DatabaseContants.IdColumnInDataGridViewMedicines, i].Value.ToString());
+                listCountMedicines.Add(int.Parse(dataGridView[DatabaseContants.CountColumnInDataGridViewMedicines, i].Value.ToString()));
+            }
+
+            string listStr = ConvertListToListSQL(listIdMedicines);
+
+            string command = "select * from medicine WHERE Id IN " + listStr;
+            DbDataReader reader = db.ExecuteReader(command, null) as DbDataReader;
+            
+            List<Medicine> result = new List<Medicine>();
+
+            int k = 0;
+            while (reader.Read())
+            {
+                Medicine medic = new Medicine();
+                medic.Id =  reader[DatabaseContants.medicine.Id].ToString();
+                medic.Number = listCountMedicines[k];
+                k++;
+
+                medic.Name = reader[DatabaseContants.medicine.Name].ToString();
+                medic.HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+                result.Add(medic);
+            }
+            reader.Close();
+            return result;
+
+            //for (int i = 0; i < listMedicines.Count; i++)
+            //{
+
+            //}
+        }
+
+        private static string ConvertListToListSQL( List<string>  listIdMedicines)
+        {
+            string result = "(";
+            for (int i = 0; i < listIdMedicines.Count; i++)
+            {
+                result += ConvertToSqlString(listIdMedicines[i])+',';
+
+            }
+            result= result.Substring(0,result.Length-1);
+            result = result += ")";
+            return result;
         }
     }
 }
