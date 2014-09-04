@@ -143,6 +143,9 @@ namespace Clinic.Database
             ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),Id varchar(10));", null);
 
             ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
+
+            //ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
+           // ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf8mb4 ;", null);
             UpdateDatabase();
         }
 
@@ -150,8 +153,8 @@ namespace Clinic.Database
         private void UpdateDatabase()
         {
             //ExecuteNonQuery("ALTER TABLE clinicuser ADD PRIMARY KEY(Username);", null);
-            ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
-
+            ExecuteNonQuery("ALTER TABLE patient CHARACTER SET = utf8", null);
+            
         }
 
         //protected void CreateDatabase(string password)

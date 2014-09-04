@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InfoClinic xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>van khanh 2</Name>
+  <Address>65/1 ap thong nhat 2 xa tan thoi nhi</Address>
+  <Advice>nho uong thuoc day du</Advice>
+</InfoClinic>

@@ -665,10 +665,26 @@ using PdfSharp.Drawing.Layout;
                 rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
             }
 
+            //Table loi dan , chu ky
+            Table signatureAndMore = new Table();
+            signatureAndMore.Borders.Width = 0;
+            Column columnsignatureAndMore1 = signatureAndMore.AddColumn(250);
+            Column columnsignatureAndMore2 = signatureAndMore.AddColumn(30);
+            Column columnsignatureAndMore3 = signatureAndMore.AddColumn(200);
+            Row rowsignatureAndMore1 = signatureAndMore.AddRow();
+            
+            rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: ");
+            rowsignatureAndMore1.Cells[2].AddParagraph("Tp. HCM, "+"Ngày "+DateTime.Now.Day+" tháng "+DateTime.Now.Month+" năm "+DateTime.Now.Year);
+            Row rowsignatureAndMore2 = signatureAndMore.AddRow();
+            rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
+            Paragraph para= rowsignatureAndMore2.Cells[2].AddParagraph("Bác sĩ khám");
+            para.Format.Alignment = ParagraphAlignment.Center;
 
             document.LastSection.Add(table);
             document.LastSection.AddParagraph("\n");
             document.LastSection.Add(tableMedicines);
+            document.LastSection.AddParagraph("\n");
+            document.LastSection.Add(signatureAndMore);
 
 
 

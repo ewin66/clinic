@@ -19,15 +19,18 @@ using System.ComponentModel;
 using System.Windows.Forms.Calendar;
 using System.IO;
 using System.Xml.Serialization;
+using System.Threading;
 
 namespace PhongKham
 {
     public partial class Form1 : DevComponents.DotNetBar.Office2007Form
     {
         private static int maxIdOfCalendarItem;
+        private  InfoClinic infoClinic;
         private static string UserName;
         private IDatabase db = DatabaseFactory.Instance;
         List<CalendarItem> _items = new List<CalendarItem>();
+        private int Authority;
         public Form1(int Authority,string name)
         {
 
@@ -35,39 +38,63 @@ namespace PhongKham
             this.Text ="Phòng Khám -"+"User: " +name;
             UserName = name;
             this.StartPosition = FormStartPosition.CenterScreen;
-            InitInputMedicineMySql();
-            InitUser(Authority);
-            InitComboboxMedicinesMySql();
-            InitClinicRoom();
-            dataGridView4.Visible = false;
-            checkBox1.Checked = true;
-            checkBox2.Checked = true;
+            this.Authority = Authority;
 
-            maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
-            //
-            //Load calendar
-            //
-            List<ADate> listDate = Helper.GetAllDateOfUser(name, db);
-            foreach (ADate item in listDate)
-            {
-                CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
-                cal.Tag = item.Id;
-                if (item.color != 0)
-                {
-                    cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
-                }
-                //if (!(item.R == 0 && item.G == 0 && item.B == 0))
-                //{
-                //    cal.ApplyColor(Color.FromArgb(item.A, item.R, item.G, item.B));
-                //}
 
-                _items.Add(cal);
-            }
 
-            PlaceItems();
+            Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
+            thread.Start();
+
         }
 
+
+
+
         #region Init
+
+
+        public void WorkThreadFunction()
+        {
+            try
+            {
+                // do any background work
+
+                InitInputMedicineMySql();
+                InitUser(Authority);
+                InitComboboxMedicinesMySql();
+                InitClinicRoom();
+                dataGridView4.Visible = false;
+                checkBox1.Checked = true;
+                checkBox2.Checked = true;
+
+                maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
+                //
+                //Load calendar
+                //
+                List<ADate> listDate = Helper.GetAllDateOfUser(UserName, db);
+                foreach (ADate item in listDate)
+                {
+                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
+                    cal.Tag = item.Id;
+                    if (item.color != 0)
+                    {
+                        cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
+                    }
+                    //if (!(item.R == 0 && item.G == 0 && item.B == 0))
+                    //{
+                    //    cal.ApplyColor(Color.FromArgb(item.A, item.R, item.G, item.B));
+                    //}
+
+                    _items.Add(cal);
+                }
+
+                PlaceItems();
+            }
+            catch (Exception ex)
+            {
+                // log errors
+            }
+        }
 
         private void InitClinicRoom()
         {
@@ -615,6 +642,8 @@ namespace PhongKham
             dataGridViewSearchValue.Rows.Clear();
             dataGridViewMedicine.Rows.Clear();
 
+   
+
             string findingName = comboBoxClinicRoomName.Text;
             string Id = lblClinicRoomId.Text;
             string strCommandMain = "";
@@ -657,7 +686,11 @@ namespace PhongKham
 
 
             //string strCommand = "Select ";
-
+            var style = new DataGridViewCellStyle();
+            style.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F,
+                                                 System.Drawing.FontStyle.Regular,
+                                                 System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewSearchValue.DefaultCellStyle = style;
 
             // MySqlCommand comm2 = new MySqlCommand(strCommandMain, Program.conn);
             using (DbDataReader reader2 = db.ExecuteReader(strCommandMain, null) as DbDataReader)
@@ -666,8 +699,9 @@ namespace PhongKham
                 {
                     int index = dataGridViewSearchValue.Rows.Add();
                     DataGridViewRow row = dataGridViewSearchValue.Rows[index];
+                    
                     row.Cells[0].Value = reader2.GetString(5); // id
-                    row.Cells[1].Value = reader2.GetString(0);
+                    row.Cells[1].Value = Converter.TCVN3ToUnicode(reader2[DatabaseContants.patient.Name].ToString());
                     row.Cells[2].Value = reader2.GetDateTime(2).ToString("dd-MM-yyyy");//birthday
                     row.Cells[3].Value = reader2.GetDateTime(10).ToString("dd-MM-yyyy"); // ngay kham
                     row.Cells[4].Value = reader2.GetString(1);//address
@@ -723,6 +757,7 @@ namespace PhongKham
 
             Patient patient = new Patient(this.lblClinicRoomId.Text,comboBoxClinicRoomName.Text,int.Parse(txtBoxClinicRoomWeight.Text),int.Parse(txtBoxClinicRoomHeight.Text),txtBoxClinicRoomAddress.Text,dateTimePickerBirthDay.Value);
 
+
             if (this.comboBoxClinicRoomName.Text == null || this.comboBoxClinicRoomName.Text == string.Empty)
             {
                 MessageBox.Show("Ten Benh Nhan");
@@ -755,7 +790,13 @@ namespace PhongKham
                 db.InsertRowToTable("patient", columns, values);
             }
 
-            List<Medicine> listMedicines = Helper.GetAllMedicinesFromDataGrid(db,this.dataGridViewMedicine);
+
+            List<Medicine> listMedicines = new List<Medicine>();
+            if (this.dataGridViewMedicine.Rows.Count>1)
+            {
+
+            listMedicines = Helper.GetAllMedicinesFromDataGrid(db,this.dataGridViewMedicine);
+            }
 
             if (!Helper.checkVisitExists(db, this.lblClinicRoomId.Text, this.dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd")))
             {
@@ -770,16 +811,24 @@ namespace PhongKham
             ClearClinicRoomForm();
             InitClinicRoom();
 
-            ///
-            //
-            //
-            //Create a PDF file
-            Helper.CreateAPdf(null, lblClinicRoomId.Text, patient, listMedicines);
 
-            //
-            //Load Pdf and put in form
-            axAcroPDF1.LoadFile("firstpage.pdf");
+            //Thread thread = new Thread(()=>
+            //    {
+                    ///
+                    //
+                    //
+                    //Create a PDF file
+                    Helper.CreateAPdf(null, lblClinicRoomId.Text, patient, listMedicines);
+
+                    //
+                    //Load Pdf and put in form
+                    axAcroPDF1.LoadFile("firstpage.pdf");
+            //    }
+            //    );
+
+            //thread.Start();
             
+         
         }
 
         
@@ -860,7 +909,12 @@ namespace PhongKham
         {
 
             // e.Item.Tag = // set id
-            Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "StartTime", "EndTime" }, new List<string> {  Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate) }, e.Item.Tag.ToString(), UserName);
+            try
+            {
+                Helper.UpdateRowToTableCalendar(db, "calendar", new List<string> { "StartTime", "EndTime" }, new List<string> { Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate) }, e.Item.Tag.ToString(), UserName);
+            }
+            catch(Exception ex)
+            {}
 
         }
 
@@ -871,13 +925,13 @@ namespace PhongKham
         private void calendar1_ItemCreated(object sender, CalendarItemCancelEventArgs e)
         {
             _items.Add(e.Item);
-            if (e.Item.Text.Length > 0)
-            {
+            //if (e.Item.Text.Length > 0)
+            //{
                 e.Item.Tag = maxIdOfCalendarItem;
                 List<string> values = new List<string> { maxIdOfCalendarItem.ToString(), UserName, Helper.ConvertToDatetimeSql(e.Item.StartDate), Helper.ConvertToDatetimeSql(e.Item.EndDate), e.Item.Text, "0" };
               db.InsertRowToTable("calendar", DatabaseContants.columnsCalendar, values);
                 //MessageBox.Show("s");
-            }
+            //}
         }
 
         public FileInfo ItemsFile
@@ -888,34 +942,34 @@ namespace PhongKham
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            if (ItemsFile.Exists)
-            {
-                List<ADate> lst = new List<ADate>();
+        //private void Form1_Load(object sender, EventArgs e)
+        //{
+        //    //if (ItemsFile.Exists)
+        //    //{
+        //    //    List<ADate> lst = new List<ADate>();
 
-                XmlSerializer xml = new XmlSerializer(lst.GetType());
+        //    //    XmlSerializer xml = new XmlSerializer(lst.GetType());
 
-                using (Stream s = ItemsFile.OpenRead())
-                {
-                    lst = xml.Deserialize(s) as List<ADate>;
-                }
+        //    //    using (Stream s = ItemsFile.OpenRead())
+        //    //    {
+        //    //        lst = xml.Deserialize(s) as List<ADate>;
+        //    //    }
 
-                foreach (ADate item in lst)
-                {
-                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
+        //    //    foreach (ADate item in lst)
+        //    //    {
+        //    //        CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
 
-                    //if (!(item.R == 0 && item.G == 0 && item.B == 0))
-                    //{
-                    //    cal.ApplyColor(System.Drawing.Color.FromArgb(item.A, item.R, item.G, item.B));
-                    //}
+        //    //        //if (!(item.R == 0 && item.G == 0 && item.B == 0))
+        //    //        //{
+        //    //        //    cal.ApplyColor(System.Drawing.Color.FromArgb(item.A, item.R, item.G, item.B));
+        //    //        //}
 
-                    _items.Add(cal);
-                }
+        //    //        _items.Add(cal);
+        //    //    }
 
-                PlaceItems();
-            }
-        }
+        //    //    PlaceItems();
+        //    //}
+        //}
         private void monthView1_SelectionChanged(object sender, EventArgs e)
         {
             calendar1.SetViewRange(monthView1.SelectionStart, monthView1.SelectionEnd);
@@ -1013,6 +1067,18 @@ namespace PhongKham
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             axAcroPDF1.printWithDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InfoClinic infoClinic = new InfoClinic();
+            infoClinic.Name = textBoxNameClinic.Text;
+            infoClinic.Address = textBoxAddressClinic.Text;
+            infoClinic.Advice = textBoxAdviceClinic.Text;
+            XmlSerializer serializer = new XmlSerializer(infoClinic.GetType());
+            StreamWriter sw = new StreamWriter("Information.xml");
+            serializer.Serialize(sw, infoClinic);
+            sw.Close();
         }
     }
 }

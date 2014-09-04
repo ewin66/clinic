@@ -126,6 +126,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\Converter.cs" />
     <Compile Include="Models\ADate.cs" />
     <Compile Include="CreateUserForm.cs">
       <SubType>Form</SubType>
@@ -152,6 +153,8 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contants.cs" />
+    <Compile Include="Models\InfoClinic.cs" />
     <Compile Include="Models\Medicine.cs" />
     <Compile Include="Models\Patient.cs" />
     <Compile Include="PassSQL.cs">
