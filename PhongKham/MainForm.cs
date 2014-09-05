@@ -40,7 +40,15 @@ namespace PhongKham
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Authority = Authority;
 
+            try
+            {
 
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(InfoClinic));
+                StreamReader sr = new StreamReader("Information.xml");
+                infoClinic = xmlSerializer.Deserialize(sr) as InfoClinic;
+            }
+            catch(Exception e)
+            {}
 
             Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
             thread.Start();
@@ -699,9 +707,8 @@ namespace PhongKham
                 {
                     int index = dataGridViewSearchValue.Rows.Add();
                     DataGridViewRow row = dataGridViewSearchValue.Rows[index];
-                    
                     row.Cells[0].Value = reader2.GetString(5); // id
-                    row.Cells[1].Value = Converter.TCVN3ToUnicode(reader2[DatabaseContants.patient.Name].ToString());
+                    row.Cells[1].Value = reader2[DatabaseContants.patient.Name].ToString();
                     row.Cells[2].Value = reader2.GetDateTime(2).ToString("dd-MM-yyyy");//birthday
                     row.Cells[3].Value = reader2.GetDateTime(10).ToString("dd-MM-yyyy"); // ngay kham
                     row.Cells[4].Value = reader2.GetString(1);//address
@@ -818,7 +825,7 @@ namespace PhongKham
                     //
                     //
                     //Create a PDF file
-                    Helper.CreateAPdf(null, lblClinicRoomId.Text, patient, listMedicines);
+                    Helper.CreateAPdf(infoClinic, lblClinicRoomId.Text, patient, listMedicines);
 
                     //
                     //Load Pdf and put in form

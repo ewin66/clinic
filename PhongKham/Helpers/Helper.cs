@@ -548,7 +548,7 @@ using PdfSharp.Drawing.Layout;
 
        // }
 
-        public static void CreateAPdf(List<string> InformationOfClinic , string MaBn,Patient patient ,List<Medicine> Medicines)
+        public static void CreateAPdf(InfoClinic InformationOfClinic , string MaBn,Patient patient ,List<Medicine> Medicines)
         {
            //  PdfDocument pdf = new PdfDocument();
            // PdfPage pdfPage = pdf.AddPage();
@@ -612,10 +612,10 @@ using PdfSharp.Drawing.Layout;
             Paragraph paragraph = section.AddParagraph();
             paragraph.Format.Alignment = ParagraphAlignment.Left;
 
-            paragraph.AddText("Bệnh viện xxxxx  "); //+"Mã BN: " + patient.Id + " \n" +" Địa chỉ xxxxx");
+            paragraph.AddText("Bệnh viện: " + InformationOfClinic.Name); //+"Mã BN: " + patient.Id + " \n" +" Địa chỉ xxxxx");
             paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab();
             paragraph.AddText("Mã BN: " + patient.Id +" \n");
-            paragraph.AddText("Địa chỉ xxxxx ");
+            paragraph.AddText("Địa chỉ: " + InformationOfClinic.Address);
 
 
 
@@ -673,7 +673,7 @@ using PdfSharp.Drawing.Layout;
             Column columnsignatureAndMore3 = signatureAndMore.AddColumn(200);
             Row rowsignatureAndMore1 = signatureAndMore.AddRow();
             
-            rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: ");
+            rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: "+InformationOfClinic.Advice);
             rowsignatureAndMore1.Cells[2].AddParagraph("Tp. HCM, "+"Ngày "+DateTime.Now.Day+" tháng "+DateTime.Now.Month+" năm "+DateTime.Now.Year);
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
