@@ -43,7 +43,21 @@ using PdfSharp.Drawing.Layout;
         #endregion
 
         #region Methods
-
+        public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+        {
+            DirectoryInfo[] directories = source.GetDirectories();
+            for (int i = 0; i < directories.Length; i++)
+            {
+                DirectoryInfo directoryInfo = directories[i];
+                CopyFilesRecursively(directoryInfo, target.CreateSubdirectory(directoryInfo.Name));
+            }
+            FileInfo[] files = source.GetFiles();
+            for (int i = 0; i < files.Length; i++)
+            {
+                FileInfo fileInfo = files[i];
+                fileInfo.CopyTo(Path.Combine(target.FullName, fileInfo.Name), true);
+            }
+        }
 
         public static string ChangePositionOfDayAndYear(string datetime)
         {
@@ -613,10 +627,10 @@ using PdfSharp.Drawing.Layout;
             paragraph.Format.Alignment = ParagraphAlignment.Left;
 
             paragraph.AddText("Bệnh viện: " + InformationOfClinic.Name); //+"Mã BN: " + patient.Id + " \n" +" Địa chỉ xxxxx");
-            paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab(); paragraph.AddTab();
-            paragraph.AddText("Mã BN: " + patient.Id +" \n");
+            paragraph.AddText(" \n");
             paragraph.AddText("Địa chỉ: " + InformationOfClinic.Address);
-
+            paragraph.AddText(" \n");
+            paragraph.AddText(" \n");
 
 
 

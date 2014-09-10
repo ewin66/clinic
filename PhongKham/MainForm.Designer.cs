@@ -32,11 +32,11 @@ namespace PhongKham
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label26;
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -127,6 +127,24 @@ namespace PhongKham
             this.button7 = new System.Windows.Forms.Button();
             this.btnInputMedicineOk = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBoxBackupSource = new System.Windows.Forms.TextBox();
+            this.textBoxBackupTarget = new System.Windows.Forms.TextBox();
+            this.textBoxBackupTimeAuto = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.checkBoxAutoCopy = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.label35 = new System.Windows.Forms.Label();
+            this.textBoxNameClinic = new System.Windows.Forms.TextBox();
+            this.textBoxAddressClinic = new System.Windows.Forms.TextBox();
+            this.textBoxAdviceClinic = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
@@ -195,14 +213,6 @@ namespace PhongKham
             this.btnWaitRoomContinue = new System.Windows.Forms.Button();
             this.btnWaitRoomCancel = new System.Windows.Forms.Button();
             this.btnWaitRoomOK = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.textBoxNameClinic = new System.Windows.Forms.TextBox();
-            this.textBoxAddressClinic = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.textBoxAdviceClinic = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             label26 = new System.Windows.Forms.Label();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -218,13 +228,14 @@ namespace PhongKham
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label26
@@ -790,27 +801,27 @@ namespace PhongKham
             this.calendar1.ContextMenuStrip = this.contextMenuStrip1;
             this.calendar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange6,
+        calendarHighlightRange7,
+        calendarHighlightRange8,
+        calendarHighlightRange9,
+        calendarHighlightRange10};
             this.calendar1.Location = new System.Drawing.Point(0, 0);
             this.calendar1.Name = "calendar1";
             this.calendar1.Size = new System.Drawing.Size(784, 693);
@@ -1248,6 +1259,7 @@ namespace PhongKham
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.tableLayoutPanel6);
             this.tabPage4.Controls.Add(this.button1);
             this.tabPage4.Controls.Add(this.tableLayoutPanel5);
             this.tabPage4.Controls.Add(this.checkBox4);
@@ -1267,6 +1279,189 @@ namespace PhongKham
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Tools";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.BackColor = System.Drawing.Color.DarkGray;
+            this.tableLayoutPanel6.ColumnCount = 3;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20567F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79433F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.tableLayoutPanel6.Controls.Add(this.label38, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.label39, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.label40, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.textBoxBackupSource, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.textBoxBackupTarget, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.textBoxBackupTimeAuto, 1, 2);
+            this.tableLayoutPanel6.Controls.Add(this.button2, 2, 0);
+            this.tableLayoutPanel6.Controls.Add(this.button4, 2, 1);
+            this.tableLayoutPanel6.Controls.Add(this.checkBoxAutoCopy, 2, 2);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(38, 377);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(552, 124);
+            this.tableLayoutPanel6.TabIndex = 32;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(3, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(102, 18);
+            this.label38.TabIndex = 0;
+            this.label38.Text = "Thư mục data:";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(3, 44);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(122, 18);
+            this.label39.TabIndex = 1;
+            this.label39.Text = "Thư mục backup:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(3, 88);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(110, 18);
+            this.label40.TabIndex = 2;
+            this.label40.Text = "Thời gian(phút):";
+            // 
+            // textBoxBackupSource
+            // 
+            this.textBoxBackupSource.Location = new System.Drawing.Point(141, 3);
+            this.textBoxBackupSource.Name = "textBoxBackupSource";
+            this.textBoxBackupSource.Size = new System.Drawing.Size(298, 24);
+            this.textBoxBackupSource.TabIndex = 3;
+            // 
+            // textBoxBackupTarget
+            // 
+            this.textBoxBackupTarget.Location = new System.Drawing.Point(141, 47);
+            this.textBoxBackupTarget.Name = "textBoxBackupTarget";
+            this.textBoxBackupTarget.Size = new System.Drawing.Size(298, 24);
+            this.textBoxBackupTarget.TabIndex = 4;
+            // 
+            // textBoxBackupTimeAuto
+            // 
+            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(141, 91);
+            this.textBoxBackupTimeAuto.Name = "textBoxBackupTimeAuto";
+            this.textBoxBackupTimeAuto.Size = new System.Drawing.Size(100, 24);
+            this.textBoxBackupTimeAuto.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(445, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 38);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Duyệt";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(445, 47);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 38);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Duyệt";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // checkBoxAutoCopy
+            // 
+            this.checkBoxAutoCopy.AutoSize = true;
+            this.checkBoxAutoCopy.Location = new System.Drawing.Point(445, 91);
+            this.checkBoxAutoCopy.Name = "checkBoxAutoCopy";
+            this.checkBoxAutoCopy.Size = new System.Drawing.Size(93, 22);
+            this.checkBoxAutoCopy.TabIndex = 8;
+            this.checkBoxAutoCopy.Text = "Auto copy";
+            this.checkBoxAutoCopy.UseVisualStyleBackColor = true;
+            this.checkBoxAutoCopy.CheckedChanged += new System.EventHandler(this.checkBoxAutoCopy_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(697, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Thay đổi";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.BackColor = System.Drawing.Color.DarkGray;
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.95951F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.04049F));
+            this.tableLayoutPanel5.Controls.Add(this.label35, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxNameClinic, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxAddressClinic, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.textBoxAdviceClinic, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.label37, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.label36, 0, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(485, 13);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(494, 118);
+            this.tableLayoutPanel5.TabIndex = 30;
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(3, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(119, 18);
+            this.label35.TabIndex = 0;
+            this.label35.Text = "Tên phòng khám";
+            // 
+            // textBoxNameClinic
+            // 
+            this.textBoxNameClinic.Location = new System.Drawing.Point(150, 3);
+            this.textBoxNameClinic.Name = "textBoxNameClinic";
+            this.textBoxNameClinic.Size = new System.Drawing.Size(287, 24);
+            this.textBoxNameClinic.TabIndex = 2;
+            // 
+            // textBoxAddressClinic
+            // 
+            this.textBoxAddressClinic.Location = new System.Drawing.Point(150, 43);
+            this.textBoxAddressClinic.Name = "textBoxAddressClinic";
+            this.textBoxAddressClinic.Size = new System.Drawing.Size(290, 24);
+            this.textBoxAddressClinic.TabIndex = 3;
+            // 
+            // textBoxAdviceClinic
+            // 
+            this.textBoxAdviceClinic.Location = new System.Drawing.Point(150, 83);
+            this.textBoxAdviceClinic.Name = "textBoxAdviceClinic";
+            this.textBoxAdviceClinic.Size = new System.Drawing.Size(290, 24);
+            this.textBoxAdviceClinic.TabIndex = 5;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(3, 80);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(56, 18);
+            this.label37.TabIndex = 4;
+            this.label37.Text = "Lời dặn";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(3, 40);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(53, 18);
+            this.label36.TabIndex = 1;
+            this.label36.Text = "Địa chỉ";
             // 
             // checkBox4
             // 
@@ -1807,85 +2002,6 @@ namespace PhongKham
             this.btnWaitRoomOK.Text = "OK";
             this.btnWaitRoomOK.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.BackColor = System.Drawing.Color.DarkGray;
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.95951F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.04049F));
-            this.tableLayoutPanel5.Controls.Add(this.label35, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBoxNameClinic, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.textBoxAddressClinic, 1, 1);
-            this.tableLayoutPanel5.Controls.Add(this.textBoxAdviceClinic, 1, 2);
-            this.tableLayoutPanel5.Controls.Add(this.label37, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.label36, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(485, 13);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 3;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(494, 118);
-            this.tableLayoutPanel5.TabIndex = 30;
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(3, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(119, 18);
-            this.label35.TabIndex = 0;
-            this.label35.Text = "Tên phòng khám";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(3, 40);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(53, 18);
-            this.label36.TabIndex = 1;
-            this.label36.Text = "Địa chỉ";
-            // 
-            // textBoxNameClinic
-            // 
-            this.textBoxNameClinic.Location = new System.Drawing.Point(151, 3);
-            this.textBoxNameClinic.Name = "textBoxNameClinic";
-            this.textBoxNameClinic.Size = new System.Drawing.Size(287, 24);
-            this.textBoxNameClinic.TabIndex = 2;
-            // 
-            // textBoxAddressClinic
-            // 
-            this.textBoxAddressClinic.Location = new System.Drawing.Point(151, 43);
-            this.textBoxAddressClinic.Name = "textBoxAddressClinic";
-            this.textBoxAddressClinic.Size = new System.Drawing.Size(290, 24);
-            this.textBoxAddressClinic.TabIndex = 3;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(3, 80);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(56, 18);
-            this.label37.TabIndex = 4;
-            this.label37.Text = "Lời dặn";
-            // 
-            // textBoxAdviceClinic
-            // 
-            this.textBoxAdviceClinic.Location = new System.Drawing.Point(151, 83);
-            this.textBoxAdviceClinic.Name = "textBoxAdviceClinic";
-            this.textBoxAdviceClinic.Size = new System.Drawing.Size(290, 24);
-            this.textBoxAdviceClinic.TabIndex = 5;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(697, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Thay đổi";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1914,6 +2030,10 @@ namespace PhongKham
             this.tableLayoutPanel3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
@@ -1921,8 +2041,6 @@ namespace PhongKham
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel5.ResumeLayout(false);
-            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2096,6 +2214,16 @@ namespace PhongKham
         private TextBox textBoxAdviceClinic;
         private Label label37;
         private Label label36;
+        private TableLayoutPanel tableLayoutPanel6;
+        private Label label38;
+        private Label label39;
+        private Label label40;
+        private TextBox textBoxBackupSource;
+        private TextBox textBoxBackupTarget;
+        private TextBox textBoxBackupTimeAuto;
+        private Button button2;
+        private Button button4;
+        private CheckBox checkBoxAutoCopy;
     }
 }
 

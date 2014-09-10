@@ -130,23 +130,29 @@ namespace Clinic.Database
 
         protected void CreateDatabase(string password)
         {
+            try
+            {
 
-            ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic;", null);
-            tConnection.ConnectionString += ";database=clinic;";
-            tConnection.ConnectionString += ";password=" + password;
-            ExecuteNonQuery("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));", null);
+                ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic;", null);
+                tConnection.ConnectionString += ";database=clinic;";
+                tConnection.ConnectionString += ";password=" + password;
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));", null);
 
-            ExecuteNonQuery("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime);", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime);", null);
 
-            ExecuteNonQuery("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10));", null);
 
-            ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),Id varchar(10));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),Id varchar(10));", null);
 
-            ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
 
-            ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
-            ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf8mb4 ;", null);
-            UpdateDatabase();
+                ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
+                ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf8mb4 ;", null);
+                UpdateDatabase();
+            }
+            catch (Exception e)
+            { }
+            
         }
 
 

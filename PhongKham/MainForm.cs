@@ -31,6 +31,10 @@ namespace PhongKham
         private IDatabase db = DatabaseFactory.Instance;
         List<CalendarItem> _items = new List<CalendarItem>();
         private int Authority;
+
+        System.Threading.Timer TimerItem;
+
+
         public Form1(int Authority,string name)
         {
 
@@ -618,6 +622,8 @@ namespace PhongKham
                         medicineAndCount = medicines.Split(',');
                     }
 
+                    this.dataGridViewMedicine.Rows.Clear();
+
                     for (int i = 0; i < medicineAndCount.Length; i = i + 2)
                     {
                         if (this.dataGridViewMedicine.RowCount <= i / 2 + 1)
@@ -1086,6 +1092,58 @@ namespace PhongKham
             StreamWriter sw = new StreamWriter("Information.xml");
             serializer.Serialize(sw, infoClinic);
             sw.Close();
+        }
+
+        private void checkBoxAutoCopy_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAutoCopy.Checked == true)
+            {
+                System.Threading.TimerCallback TimerDelegate =
+        new System.Threading.TimerCallback(TimerTask);
+
+                // Create a timer that calls a procedure every int.Parse(textBoxBackupTimeAuto.Text) seconds. 
+                // Note: There is no Start method; the timer starts running as soon as  
+                // the instance is created.
+                int minute = int.Parse(textBoxBackupTimeAuto.Text) *1000*60;
+                TimerItem =
+                    new System.Threading.Timer(TimerDelegate, null, minute,minute);
+
+            }
+
+            else
+            {
+                TimerItem.Dispose();
+            }
+
+        }
+
+        private void TimerTask(object StateObj)
+        {
+            Helper.CopyFilesRecursively(new DirectoryInfo(textBoxBackupSource.Text),new DirectoryInfo(textBoxBackupTarget.Text));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+               textBoxBackupSource.Text= folderBrowserDialog.SelectedPath;
+
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowNewFolderButton = true;
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                textBoxBackupTarget.Text = folderBrowserDialog.SelectedPath;
+
+            }
         }
     }
 }
