@@ -132,7 +132,8 @@ namespace Clinic.Database
         {
             try
             {
-
+                string strCommand = "grant all privileges on *.* to 'root'@'%' identified by " + Helper.ConvertToSqlString(password);
+                ExecuteNonQuery(strCommand, null);
                 ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic;", null);
                 tConnection.ConnectionString += ";database=clinic;";
                 tConnection.ConnectionString += ";password=" + password;
@@ -147,8 +148,8 @@ namespace Clinic.Database
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
 
                 ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
-                ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf8mb4 ;", null);
-                UpdateDatabase();
+                ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+                UpdateDatabase(password);
             }
             catch (Exception e)
             { }
@@ -156,11 +157,11 @@ namespace Clinic.Database
         }
 
 
-        private void UpdateDatabase()
+        private void UpdateDatabase(string password)
         {
-            //ExecuteNonQuery("ALTER TABLE clinicuser ADD PRIMARY KEY(Username);", null);
+            ExecuteNonQuery("ALTER TABLE clinicuser ADD PRIMARY KEY(Username);", null);
             ExecuteNonQuery("ALTER TABLE patient CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
-            
+        
         }
 
         //protected void CreateDatabase(string password)

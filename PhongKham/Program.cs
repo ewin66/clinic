@@ -95,7 +95,7 @@ namespace PhongKham
         private static DbConStringBuilder GetConnectionString(string passSql, string IPAddress)
         {
             DbConStringBuilder strBuilder = new DbConStringBuilder();
-                strBuilder.Server = IPAddress=="   .   .   ."?"localhost":IPAddress;
+                strBuilder.Server = IPAddress=="..."?"localhost":IPAddress;
                 strBuilder.UserID="root";
                 strBuilder.Password = passSql;
                 strBuilder.Database="clinic";

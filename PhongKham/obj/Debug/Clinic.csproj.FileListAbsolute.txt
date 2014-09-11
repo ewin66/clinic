@@ -25,7 +25,6 @@ C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.R
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.RtfRendering.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.Charting.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.dll
-C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll

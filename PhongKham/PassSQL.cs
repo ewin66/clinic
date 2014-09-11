@@ -11,6 +11,7 @@ using PhongKham;
 using Clinic.Helpers;
 using MySql.Data.MySqlClient;
 using Clinic.Database;
+using System.Text.RegularExpressions;
 
 namespace Clinic
 {
@@ -26,8 +27,9 @@ namespace Clinic
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            string[] lines = {textBox1.Text,maskedTextBox1.Text};
+            string IP = maskedTextBox1.Text.Trim();
+            IP = Regex.Replace(IP, @"\s", "");
+            string[] lines = { textBox1.Text, IP };
             // WriteAllLines creates a file, writes a collection of strings to the file, 
             // and then closes the file.
             System.IO.File.WriteAllLines("WriteLines.txt", lines);
@@ -61,8 +63,14 @@ namespace Clinic
                 }
                 else
                 {
-                    //Program.InitSqlConnection(textBox1.Text, maskedTextBox1.Text);
-                    Program.conn.Open();
+                   
+                    DbConStringBuilder strBuilder = new DbConStringBuilder();
+                    strBuilder.Server = IP == "   .   .   ." ? "localhost" : IP;
+                    strBuilder.UserID = "root";
+                    strBuilder.Password = textBox1.Text;
+                    DatabaseFactory.CreateNewDatabase("", strBuilder);
+                    IDatabase database = DatabaseFactory.Instance;
+
                 }
 
             }
