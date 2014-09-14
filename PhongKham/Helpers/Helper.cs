@@ -413,7 +413,6 @@ using PdfSharp.Drawing.Layout;
         {
 
             string strCommand = "SELECT Id FROM Patient WHERE Id = " + ConvertToSqlString(Id);
-            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
             DbDataReader reader = db.ExecuteReader(strCommand,null) as DbDataReader;
             reader.Read();
 
@@ -784,6 +783,52 @@ using PdfSharp.Drawing.Layout;
             }
             result= result.Substring(0,result.Length-1);
             result = result += ")";
+            return result;
+        }
+
+        internal static List<string> FilterServicesFromAllMedicines(List<string> currentMedicines)
+        {
+            List<string> services = new List<string>();
+            foreach (string medi in currentMedicines)
+            {
+                if (medi[0] == '@')
+                {
+                    services.Add(medi);
+                }
+            }
+            return services;
+        }
+
+        internal static bool CheckMedicineExists(IDatabase db, string Id)
+        {
+            string strCommand = "SELECT Id FROM medicine WHERE Id = " + ConvertToSqlString(Id);
+            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
+            reader.Read();
+
+            try
+            {
+                return reader.HasRows;
+            }
+            finally
+            {
+                reader.Close();
+
+            }
+        }
+        public static string ChangeListMedicines(string medicines)
+        {
+            if(!medicines.Contains(','))
+            {
+                return "";
+            }
+            string result = "";
+            string[] medicinesAndCount = medicines.Split(',');
+            for (int i = 0; i < medicinesAndCount.Length; i=i+2)
+            {
+                string temp = medicinesAndCount[i] +"       " + medicinesAndCount[i + 1];
+                result += temp;
+                result+="\n";
+            }
             return result;
         }
     }

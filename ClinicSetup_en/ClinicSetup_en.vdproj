@@ -117,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CF45D40116084A85ACF1F07D5A456D26"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E6B68819ED024BEA9FED5DE55D76C26E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -130,6 +136,12 @@
         "Entry"
         {
         "MsmKey" = "8:_E9370E7C532FE3257CD5FD09E4ADCD71"
+        "OwnerKey" = "8:_E6B68819ED024BEA9FED5DE55D76C26E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E6B68819ED024BEA9FED5DE55D76C26E"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -193,12 +205,6 @@
         "OwnerKey" = "8:_6778BF2A06F88FFAA0E864ED2D88DF5A"
         "MsmSig" = "8:_UNDEFINED"
         }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E6B68819ED024BEA9FED5DE55D76C26E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -224,6 +230,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -248,6 +267,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -532,6 +564,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CF45D40116084A85ACF1F07D5A456D26"
+            {
+            "SourcePath" = "8:..\\PhongKham\\bin\\Debug\\Information.xml"
+            "TargetName" = "8:Information.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_76C382619C5A42E5B79F73E42D82439A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E9370E7C532FE3257CD5FD09E4ADCD71"
             {
             "AssemblyRegister" = "3:1"
@@ -615,7 +667,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ClinicSetup_en"
         "ProductCode" = "8:{64341E84-8226-4229-AC4B-A6B158ED81BE}"
-        "PackageCode" = "8:{E8115196-E5B9-4EE2-B4F6-E3A726A3CE90}"
+        "PackageCode" = "8:{9C53C48E-E149-47C1-8205-9CB91B15BF7A}"
         "UpgradeCode" = "8:{95A748E5-E284-463D-99FE-028C47979762}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -735,6 +787,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CD62195EB3B24D85B1F657B26E61EB03"
+            {
+            "Name" = "8:PhongKham"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_E6B68819ED024BEA9FED5DE55D76C26E"
+            "Folder" = "8:_76C3334F6DD34275A49255275EC43114"
+            "WorkingFolder" = "8:_76C382619C5A42E5B79F73E42D82439A"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {

@@ -8,6 +8,7 @@ namespace Clinic.Database
     public class DatabaseContants
     {
         public static int IdColumnInDataGridViewMedicines = 4;
+        public static int HDSDColumnInDataGridViewMedicines = 5;
         public static int CountColumnInDataGridViewMedicines = 1;
 
         public static   List<string> columnsCalendar = new List<string>() { "IdCalendar", "Username", "StartTime", "EndTime", "Text", "Color" };

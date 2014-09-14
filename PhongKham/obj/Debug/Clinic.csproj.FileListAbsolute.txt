@@ -53,3 +53,4 @@ C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.
 C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe.config

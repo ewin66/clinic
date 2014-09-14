@@ -147,8 +147,8 @@ namespace Clinic.Database
 
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
 
-                ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
-                ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+               
+
                 UpdateDatabase(password);
             }
             catch (Exception e)
@@ -156,12 +156,31 @@ namespace Clinic.Database
             
         }
 
+        private void Guard(Func<int> action)
+        {
+            try
+            {
+                action.Invoke();
+            }
+            catch (Exception e)
+            { }
+        }
+
 
         private void UpdateDatabase(string password)
         {
-            ExecuteNonQuery("ALTER TABLE clinicuser ADD PRIMARY KEY(Username);", null);
-            ExecuteNonQuery("ALTER TABLE patient CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
-        
+           
+            
+            Func<int> fun = () => ExecuteNonQuery("ALTER TABLE medicine CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+            Guard(fun);
+            fun=()=> ExecuteNonQuery("ALTER TABLE clinicuser ADD PRIMARY KEY(Username);", null);
+            Guard(fun);
+            fun = () => ExecuteNonQuery("ALTER TABLE patient CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+            Guard(fun);
+            fun = () => ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
+            Guard(fun);
+            fun = () => ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+            Guard(fun);
         }
 
         //protected void CreateDatabase(string password)

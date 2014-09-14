@@ -20,6 +20,9 @@ using System.Windows.Forms.Calendar;
 using System.IO;
 using System.Xml.Serialization;
 using System.Threading;
+using Clinic;
+
+
 
 namespace PhongKham
 {
@@ -30,6 +33,8 @@ namespace PhongKham
         private static string UserName;
         private IDatabase db = DatabaseFactory.Instance;
         List<CalendarItem> _items = new List<CalendarItem>();
+        List<string> currentMedicines = new List<string>();
+        List<string> currentServices = new List<string>();
         private int Authority;
 
         System.Threading.Timer TimerItem;
@@ -39,10 +44,14 @@ namespace PhongKham
         {
 
             InitializeComponent();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Text ="Phòng Khám -"+"User: " +name;
             UserName = name;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Authority = Authority;
+            this.WindowState = Clinic.Properties.Settings.Default.State;
+            if (this.WindowState == FormWindowState.Normal) this.Size = Clinic.Properties.Settings.Default.Size;
+            this.Resize += new System.EventHandler(this.Form1_Resize);
 
             try
             {
@@ -59,7 +68,16 @@ namespace PhongKham
 
         }
 
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            Clinic.Properties.Settings.Default.State = this.WindowState;
+            if (this.WindowState == FormWindowState.Normal) Clinic.Properties.Settings.Default.Size = this.Size;
+        }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           Clinic.Properties.Settings.Default.Save();
+        }
 
 
         #region Init
@@ -75,6 +93,7 @@ namespace PhongKham
                 InitUser(Authority);
                 InitComboboxMedicinesMySql();
                 InitClinicRoom();
+                InitTableServices();
                 dataGridView4.Visible = false;
                 checkBox1.Checked = true;
                 checkBox2.Checked = true;
@@ -125,7 +144,11 @@ namespace PhongKham
         private void InitComboboxMedicinesMySql()
         {
             this.Column18.Items.Clear();
-            this.Column18.Items.AddRange(Helper.GetAllRowsOfSpecialColumn("Medicine", "Name").ToArray());
+
+            currentMedicines = Helper.GetAllRowsOfSpecialColumn("Medicine", "Name");
+            currentServices = Helper.FilterServicesFromAllMedicines(currentMedicines);
+
+            this.Column18.Items.AddRange(currentMedicines.ToArray());
         }
 
         public void Init()
@@ -191,13 +214,17 @@ namespace PhongKham
 
             RefreshIdOfNewMedicine();
             comboBoxInputMedicineName.Items.Clear();
-
-            comboBoxInputMedicineName.Items.AddRange(Helper.GetAllRowsOfSpecialColumn("Medicine", "Name").ToArray());
-
-
-
+            comboBoxInputMedicineName.Items.AddRange(currentMedicines.ToArray());
         }
 
+        private void InitTableServices()
+        {
+            RefreshIdOfNewMedicine();
+            textBoxServices.Text = "@";
+            textBoxServicesCost.Text = "0";
+            textBoxServices.AutoCompleteCustomSource.Clear();
+            textBoxServices.AutoCompleteCustomSource.AddRange(currentServices.ToArray());
+        }
 
         private void InitWaitRoomMySql()
         {
@@ -335,6 +362,7 @@ namespace PhongKham
             string strNewID = String.Format("{0:000000}", newId);
 
             lblInputMedicineNewId.Text = strNewID;
+            labelServicesID.Text = strNewID; // Services
             reader.Close();
 
 
@@ -346,7 +374,7 @@ namespace PhongKham
             txtBoxClinicRoomWeight.Text = reader["Weight"].ToString();
             txtBoxClinicRoomHeight.Text = reader["Height"].ToString();
             dateTimePickerBirthDay.Text = reader["Birthday"].ToString();
-            dateTimePickerNgayKham.Text = reader["Day"].ToString(); //ngay kham
+           // dateTimePickerNgayKham.Text = reader["Day"].ToString(); //we update new Date 
             txtBoxClinicRoomSymptom.Text = reader["Symptom"].ToString();
             txtBoxClinicRoomDiagnose.Text = reader["Diagnose"].ToString();
         }
@@ -493,7 +521,6 @@ namespace PhongKham
             }
 
             string strCommand = "Update Medicine Set Count =" + count.ToString() + ", CostOut =" + newOutPreise.ToString() + " Where Id =" + Id;
-            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
             db.ExecuteNonQuery(strCommand, null);
 
             MessageBox.Show("Thêm thuốc thành công : " + txtBoxInputMedicineAdd.Text + " " + comboBoxInputMedicineName.Text);
@@ -547,10 +574,16 @@ namespace PhongKham
                     {
                         reader.Read();
                         string temp = reader[DatabaseContants.medicine.CostOut].ToString();
+                        string HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
                         string id = reader["Id"].ToString();
                         reader.Close();
                         dataGridViewMedicine[2, e.RowIndex].Value = temp;
+                        dataGridViewMedicine[DatabaseContants.HDSDColumnInDataGridViewMedicines, e.RowIndex].Value = HDSD;
                         dataGridViewMedicine[DatabaseContants.IdColumnInDataGridViewMedicines, e.RowIndex].Value = id;
+                    }
+                    if (nameOfMedicine[0] == '@')
+                    {
+                        dataGridViewMedicine[DatabaseContants.CountColumnInDataGridViewMedicines, e.RowIndex].Value = "1";
                     }
                 }
             }
@@ -613,8 +646,6 @@ namespace PhongKham
                     string name = reader["Name"].ToString();
                     FillInfoToClinicForm(reader);
                     reader.Close();
-
-                    comboBoxClinicRoomName.Text = name; // this will fill all infos via comboBox name changed event
 
                     string[] medicineAndCount = new string[] { };
                     if (!string.IsNullOrEmpty(medicines))
@@ -706,6 +737,8 @@ namespace PhongKham
                                                  System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewSearchValue.DefaultCellStyle = style;
 
+
+            string medicines = "";
             // MySqlCommand comm2 = new MySqlCommand(strCommandMain, Program.conn);
             using (DbDataReader reader2 = db.ExecuteReader(strCommandMain, null) as DbDataReader)
             {
@@ -720,7 +753,9 @@ namespace PhongKham
                     row.Cells[4].Value = reader2.GetString(1);//address
                     row.Cells[5].Value = reader2.GetString(7);//symptom
                     row.Cells[6].Value = reader2.GetString(8);
-                    row.Cells[7].Value = reader2.GetString(9) != null ? reader2.GetString(9) : ""; // Thuoc
+                    row.Cells[7].Value = reader2.GetString(9) != null ? reader2.GetString(9) : ""; // Total
+                    medicines = reader2[DatabaseContants.history.Medicines].ToString();
+                    row.Cells[8].Value = Helper.ChangeListMedicines(medicines);
                 }
             }
 
@@ -731,6 +766,7 @@ namespace PhongKham
             foreach (DataGridViewRow row in this.dataGridViewSearchValue.Rows)
             {
                 int total = 0;
+
                 string[] medicineAndCount = row.Cells[7].Value.ToString().Split(',');
 
                 for (int i = 0; i < medicineAndCount.Length; i = i + 2)
@@ -945,6 +981,7 @@ namespace PhongKham
               db.InsertRowToTable("calendar", DatabaseContants.columnsCalendar, values);
                 //MessageBox.Show("s");
             //}
+              maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
         }
 
         public FileInfo ItemsFile
@@ -1144,6 +1181,72 @@ namespace PhongKham
                 textBoxBackupTarget.Text = folderBrowserDialog.SelectedPath;
 
             }
+        }
+
+        private void buttonServicesOK_Click(object sender, EventArgs e)
+        {
+            int giaOut;
+            if (textBoxServices.Text[0] != '@' || textBoxServices.Text=="")
+            {
+                MessageBox.Show("Tên dịch vụ phải bắt đầu với ký tự '@'", "Chú ý"); // phân biệt với thuốc
+                return;
+            }
+            try
+            {
+                giaOut = int.Parse(textBoxServicesCost.Text);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Xin nhập lại giá. Giá không phù hợp!", "Chú ý");
+                return;
+            }
+            string Id= labelServicesID.Text;
+            if (!Helper.CheckMedicineExists(db, Id))
+            {
+                List<string> columns = new List<string>() { "Name", "CostOut", "ID" };
+                List<string> values = new List<string>() { textBoxServices.Text.Trim(), giaOut.ToString(), Id };
+
+                db.InsertRowToTable("Medicine", columns, values);
+                MessageBox.Show("Thêm mới dịch vụ thành công");
+            }
+            else
+            {
+
+                string strCommand = "Update Medicine Set CostOut =" + giaOut.ToString() + " Where Id =" + Id;
+                db.ExecuteNonQuery(strCommand, null);
+                MessageBox.Show("Sửa giá tiền dịch vụ thành công");
+            }
+
+
+
+            InitTableServices();
+        }
+
+        private void dataGridViewMedicine_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBoxServices_TextChanged(object sender, EventArgs e)
+        {
+            string nameOfService = textBoxServices.Text;
+            string strCommand = "Select * From Medicine Where Name =" + Helper.ConvertToSqlString(nameOfService);
+            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                if (reader.Read())
+                {
+                    string temp = reader[DatabaseContants.medicine.CostOut].ToString();
+                    string HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+                    string id = reader["Id"].ToString();
+                    reader.Close();
+                    textBoxServicesCost.Text = temp;
+                    labelServicesID.Text = id;
+                    return;
+                }
+            }
+            RefreshIdOfNewMedicine();
+            textBoxServicesCost.Text = "0";
         }
     }
 }
