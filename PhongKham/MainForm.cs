@@ -283,14 +283,14 @@ namespace PhongKham
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-        private void txtBoxClinicRoomHeight_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
-        private void txtBoxClinicRoomWeight_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
-        }
+        //private void txtBoxClinicRoomHeight_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        //}
+        //private void txtBoxClinicRoomWeight_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        //}
         #endregion
 
         #region ClearForm
@@ -322,6 +322,7 @@ namespace PhongKham
             // comboBoxClinicRoomMedicines.Text = "";
             dataGridViewMedicine.Rows.Clear();
             label30.Text = "0";
+            textBoxClinicPhone.Text = "";
 
         }
         #endregion
@@ -377,6 +378,7 @@ namespace PhongKham
            // dateTimePickerNgayKham.Text = reader["Day"].ToString(); //we update new Date 
             txtBoxClinicRoomSymptom.Text = reader["Symptom"].ToString();
             txtBoxClinicRoomDiagnose.Text = reader["Diagnose"].ToString();
+            textBoxClinicPhone.Text = reader["phone"].ToString();
         }
         private void AddVisitData()
         {
@@ -644,6 +646,8 @@ namespace PhongKham
 
                     string medicines = reader["Medicines"].ToString();
                     string name = reader["Name"].ToString();
+                    textBoxNameClinic.Text = name;
+                    comboBoxClinicRoomName.Text = name;
                     FillInfoToClinicForm(reader);
                     reader.Close();
 
@@ -655,15 +659,15 @@ namespace PhongKham
 
                     this.dataGridViewMedicine.Rows.Clear();
 
-                    for (int i = 0; i < medicineAndCount.Length; i = i + 2)
-                    {
-                        if (this.dataGridViewMedicine.RowCount <= i / 2 + 1)
-                        {
-                            this.dataGridViewMedicine.Rows.Add();
-                        }
-                        this.dataGridViewMedicine.Rows[i / 2].Cells[0].Value = medicineAndCount[i];
-                        this.dataGridViewMedicine.Rows[i / 2].Cells[1].Value = medicineAndCount[i + 1];
-                    }
+                    //for (int i = 0; i < medicineAndCount.Length; i = i + 2)
+                    //{
+                    //    if (this.dataGridViewMedicine.RowCount <= i / 2 + 1)
+                    //    {
+                    //        this.dataGridViewMedicine.Rows.Add();
+                    //    }
+                    //    this.dataGridViewMedicine.Rows[i / 2].Cells[0].Value = medicineAndCount[i];
+                    //    this.dataGridViewMedicine.Rows[i / 2].Cells[1].Value = medicineAndCount[i + 1];
+                    //}
 
                 }
             }
@@ -746,13 +750,13 @@ namespace PhongKham
                 {
                     int index = dataGridViewSearchValue.Rows.Add();
                     DataGridViewRow row = dataGridViewSearchValue.Rows[index];
-                    row.Cells[0].Value = reader2.GetString(5); // id
+                    row.Cells[0].Value = reader2[DatabaseContants.patient.Id].ToString() ; // id
                     row.Cells[1].Value = reader2[DatabaseContants.patient.Name].ToString();
-                    row.Cells[2].Value = reader2.GetDateTime(2).ToString("dd-MM-yyyy");//birthday
-                    row.Cells[3].Value = reader2.GetDateTime(10).ToString("dd-MM-yyyy"); // ngay kham
-                    row.Cells[4].Value = reader2.GetString(1);//address
-                    row.Cells[5].Value = reader2.GetString(7);//symptom
-                    row.Cells[6].Value = reader2.GetString(8);
+                    row.Cells[2].Value = reader2.GetDateTime(reader2.GetOrdinal(DatabaseContants.patient.birthday)).ToString("dd-MM-yyyy");//birthday
+                    row.Cells[3].Value = reader2.GetDateTime(reader2.GetOrdinal(DatabaseContants.history.Day)).ToString("dd-MM-yyyy");  // ngay kham
+                    row.Cells[4].Value = reader2[DatabaseContants.patient.Address].ToString();//address
+                    row.Cells[5].Value = reader2[DatabaseContants.history.Symptom].ToString();//symptom
+                    row.Cells[6].Value = reader2[DatabaseContants.history.Diagnose].ToString(); // chan doan
                     row.Cells[7].Value = reader2.GetString(9) != null ? reader2.GetString(9) : ""; // Total
                     medicines = reader2[DatabaseContants.history.Medicines].ToString();
                     row.Cells[8].Value = Helper.ChangeListMedicines(medicines);
@@ -826,7 +830,7 @@ namespace PhongKham
 
             if (!isPatientExist)
             {
-                List<string> columns = new List<string>() { "Name", "Address", "Birthday", "Height", "Weight", "Id" };
+                List<string> columns = new List<string>() { "Name", "Address", "Birthday", "Height", "Weight", "Id","phone" };
                 List<string> values = new List<string>()
                 {
                     comboBoxClinicRoomName.Text,
@@ -834,7 +838,8 @@ namespace PhongKham
                     dateTimePickerBirthDay.Value.ToString("yyyy-MM-dd"),
                     txtBoxClinicRoomHeight.Text,
                     txtBoxClinicRoomWeight.Text,
-                    lblClinicRoomId.Text
+                    lblClinicRoomId.Text,
+                    textBoxClinicPhone.Text
                 };
                 db.InsertRowToTable("patient", columns, values);
             }

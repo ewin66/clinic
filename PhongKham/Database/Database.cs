@@ -172,14 +172,16 @@ namespace Clinic.Database
            
             
             Func<int> fun = () => ExecuteNonQuery("ALTER TABLE medicine CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
-            Guard(fun);
+            //Guard(fun);
             fun=()=> ExecuteNonQuery("ALTER TABLE clinicuser ADD PRIMARY KEY(Username);", null);
             Guard(fun);
-            fun = () => ExecuteNonQuery("ALTER TABLE patient CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
-            Guard(fun);
+            //fun = () => ExecuteNonQuery("ALTER TABLE patient CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+            //Guard(fun);
             fun = () => ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN Hdsd TEXT NULL AFTER Id", null);
             Guard(fun);
-            fun = () => ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+            //fun = () => ExecuteNonQuery("ALTER TABLE history CHARACTER SET = utf16 , COLLATE = utf16_unicode_ci", null);
+            //Guard(fun);
+            fun = () => ExecuteNonQuery("ALTER TABLE patient ADD COLUMN phone VARCHAR(45) NULL AFTER Id;", null);
             Guard(fun);
         }
 

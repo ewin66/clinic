@@ -827,7 +827,10 @@ using PdfSharp.Drawing.Layout;
             {
                 string temp = medicinesAndCount[i] +"       " + medicinesAndCount[i + 1];
                 result += temp;
-                result+="\n";
+                if (i != medicinesAndCount.Length - 2)
+                {
+                    result += "\n";
+                }
             }
             return result;
         }
