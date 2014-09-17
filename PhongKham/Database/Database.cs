@@ -183,6 +183,9 @@ namespace Clinic.Database
             //Guard(fun);
             fun = () => ExecuteNonQuery("ALTER TABLE patient ADD COLUMN phone VARCHAR(45) NULL AFTER Id;", null);
             Guard(fun);
+               fun = () => ExecuteNonQuery(" ALTER TABLE patient CHANGE COLUMN height height TEXT NULL DEFAULT NULL , CHANGE COLUMN weight weight TEXT NULL DEFAULT NULL ;", null);
+            Guard(fun);
+           
         }
 
         //protected void CreateDatabase(string password)

@@ -137,7 +137,7 @@ namespace PhongKham
             //init comboBoxName
 
             comboBoxClinicRoomName.Items.Clear();
-            Helper.GetAllRowsOfSpecialColumn("Patient","Name");
+           // Helper.GetAllRowsOfSpecialColumn("Patient","Name");
 
         }
 
@@ -659,15 +659,15 @@ namespace PhongKham
 
                     this.dataGridViewMedicine.Rows.Clear();
 
-                    //for (int i = 0; i < medicineAndCount.Length; i = i + 2)
-                    //{
-                    //    if (this.dataGridViewMedicine.RowCount <= i / 2 + 1)
-                    //    {
-                    //        this.dataGridViewMedicine.Rows.Add();
-                    //    }
-                    //    this.dataGridViewMedicine.Rows[i / 2].Cells[0].Value = medicineAndCount[i];
-                    //    this.dataGridViewMedicine.Rows[i / 2].Cells[1].Value = medicineAndCount[i + 1];
-                    //}
+                    for (int i = 0; i < medicineAndCount.Length; i = i + 2)
+                    {
+                        if (this.dataGridViewMedicine.RowCount <= i / 2 + 1)
+                        {
+                            this.dataGridViewMedicine.Rows.Add();
+                        }
+                        this.dataGridViewMedicine.Rows[i / 2].Cells[0].Value = medicineAndCount[i];
+                        this.dataGridViewMedicine.Rows[i / 2].Cells[1].Value = medicineAndCount[i + 1];
+                    }
 
                 }
             }
@@ -1253,5 +1253,67 @@ namespace PhongKham
             RefreshIdOfNewMedicine();
             textBoxServicesCost.Text = "0";
         }
+
+        private void buttonClinicClear_Click(object sender, EventArgs e)
+        {
+            ClearClinicRoomForm();
+            InitClinicRoom();
+        }
+
+        private void buttonClinicCreateNew_Click(object sender, EventArgs e)
+        {
+            if (this.comboBoxClinicRoomName.Text == null || this.comboBoxClinicRoomName.Text == string.Empty)
+            {
+                MessageBox.Show("Ten Benh Nhan");
+                return;
+            }
+
+            string originalName = Helper.hasOtherNameForThisId(db, this.lblClinicRoomId.Text,
+                this.comboBoxClinicRoomName.Text);
+            if (originalName != null)
+            {
+                MessageBox.Show("Bạn không thể sửa tên bệnh nhân đã nhập!");
+                this.comboBoxClinicRoomName.Text = originalName;
+                return;
+            }
+
+            bool isPatientExist = Helper.checkPatientExists(db, this.lblClinicRoomId.Text);
+
+            if (!isPatientExist)
+            {
+                List<string> columns = new List<string>() { "Name", "Address", "Birthday", "Height", "Weight", "Id", "phone" };
+                List<string> values = new List<string>()
+                {
+                    comboBoxClinicRoomName.Text,
+                    txtBoxClinicRoomAddress.Text,
+                    dateTimePickerBirthDay.Value.ToString("yyyy-MM-dd"),
+                    txtBoxClinicRoomHeight.Text,
+                    txtBoxClinicRoomWeight.Text,
+                    lblClinicRoomId.Text,
+                    textBoxClinicPhone.Text
+                };
+                db.InsertRowToTable("patient", columns, values);
+                List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines" };
+                string medicines = "Dd nhập bệnh nhân mới,!";
+                
+
+                List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, DateTime.Now.ToString("yyyy-MM-dd"), medicines };
+                db.InsertRowToTable("history", columnsHistory, valuesHistory);
+                MessageBox.Show("Thêm bệnh nhân mới thành công");
+            }
+            else // cap nhat
+            {
+                List<string> columns = new List<string>() { "Address", "Birthday", "Height", "Weight", "phone" };
+                List<string> values = new List<string>() {  txtBoxClinicRoomAddress.Text, dateTimePickerBirthDay.Value.ToString("yyyy-MM-dd"), txtBoxClinicRoomHeight.Text, txtBoxClinicRoomWeight.Text, textBoxClinicPhone.Text };
+                Helper.UpdateRowToTable(db, "patient", columns, values, lblClinicRoomId.Text);
+                MessageBox.Show("Sửa thông tin thành công");
+            }
+
+
+
+        }
+
+
+
     }
 }
