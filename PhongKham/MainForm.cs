@@ -21,6 +21,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Threading;
 using Clinic;
+using System.Globalization;
 
 
 
@@ -31,6 +32,7 @@ namespace PhongKham
         private static int maxIdOfCalendarItem;
         private  InfoClinic infoClinic;
         private static string UserName;
+        public static string nameOfDoctor;
         private IDatabase db = DatabaseFactory.Instance;
         List<CalendarItem> _items = new List<CalendarItem>();
         List<string> currentMedicines = new List<string>();
@@ -44,9 +46,11 @@ namespace PhongKham
         {
 
             InitializeComponent();
+            this.DoubleBuffered = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Text ="Phòng Khám -"+"User: " +name;
             UserName = name;
+            nameOfDoctor = Helper.GetNameOfDoctor(db,name);
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Authority = Authority;
             this.WindowState = Clinic.Properties.Settings.Default.State;
@@ -187,6 +191,10 @@ namespace PhongKham
                 this.dataGridViewMedicine.Visible = false;
                 this.label9.Visible = false;
                 this.label30.Visible = false;
+                this.label44.Visible = false; // SDT:
+                this.textBoxClinicPhone.Visible = false;
+                this.txtBoxClinicRoomSymptom.Visible = false;
+                this.txtBoxClinicRoomDiagnose.Visible = false;
             }
             else
             {
@@ -575,13 +583,17 @@ namespace PhongKham
                     using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
                     {
                         reader.Read();
-                        string temp = reader[DatabaseContants.medicine.CostOut].ToString();
-                        string HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
-                        string id = reader["Id"].ToString();
+                        if (reader.HasRows)
+                        {
+                            string temp = reader[DatabaseContants.medicine.CostOut].ToString();
+                            string HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+                            string id = reader["Id"].ToString();
+                            
+                            dataGridViewMedicine[2, e.RowIndex].Value = temp;
+                            dataGridViewMedicine[DatabaseContants.HDSDColumnInDataGridViewMedicines, e.RowIndex].Value = HDSD;
+                            dataGridViewMedicine[DatabaseContants.IdColumnInDataGridViewMedicines, e.RowIndex].Value = id;
+                        }
                         reader.Close();
-                        dataGridViewMedicine[2, e.RowIndex].Value = temp;
-                        dataGridViewMedicine[DatabaseContants.HDSDColumnInDataGridViewMedicines, e.RowIndex].Value = HDSD;
-                        dataGridViewMedicine[DatabaseContants.IdColumnInDataGridViewMedicines, e.RowIndex].Value = id;
                     }
                     if (nameOfMedicine[0] == '@')
                     {
@@ -626,7 +638,9 @@ namespace PhongKham
 
 
                 }
-                label30.Text = total.ToString();
+
+                int temp = total;
+                label30.Text = temp.ToString("C3");
             }
         }
         private void dataGridViewSearchValue_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -808,7 +822,7 @@ namespace PhongKham
         private void buttonPutIn_Click(object sender, EventArgs e)
         {
 
-            Patient patient = new Patient(this.lblClinicRoomId.Text,comboBoxClinicRoomName.Text,int.Parse(txtBoxClinicRoomWeight.Text),int.Parse(txtBoxClinicRoomHeight.Text),txtBoxClinicRoomAddress.Text,dateTimePickerBirthDay.Value);
+            Patient patient = new Patient(this.lblClinicRoomId.Text,comboBoxClinicRoomName.Text,txtBoxClinicRoomWeight.Text,txtBoxClinicRoomHeight.Text,txtBoxClinicRoomAddress.Text,dateTimePickerBirthDay.Value);
 
 
             if (this.comboBoxClinicRoomName.Text == null || this.comboBoxClinicRoomName.Text == string.Empty)
@@ -849,7 +863,7 @@ namespace PhongKham
             if (this.dataGridViewMedicine.Rows.Count>1)
             {
 
-            listMedicines = Helper.GetAllMedicinesFromDataGrid(db,this.dataGridViewMedicine);
+                listMedicines = Helper.GetAllMedicinesFromDataGrid(db,this.dataGridViewMedicine);
             }
 
             if (!Helper.checkVisitExists(db, this.lblClinicRoomId.Text, this.dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd")))
@@ -862,8 +876,8 @@ namespace PhongKham
             }
 
 
-            ClearClinicRoomForm();
-            InitClinicRoom();
+            //ClearClinicRoomForm();
+            //InitClinicRoom();
 
 
             //Thread thread = new Thread(()=>
@@ -893,8 +907,18 @@ namespace PhongKham
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
+
+
+
+            string username = textBox1.Text.Trim();
+            string password = textBox2.Text.Trim();
+
+            if (Helper.checkUserExistsWithoutPassword(username))
+            {
+                MessageBox.Show("Tên đăng nhập đã tồn tại, vui lòng nhập tên đăng nhập khác!");
+                return;
+            }
+
             int Authority = 0;
             if (checkBox1.Checked == true && checkBox2.Checked == true)
             {
@@ -924,8 +948,8 @@ namespace PhongKham
                 Authority += 100;
             }
 
-            List<string> columns = new List<string>() { "Username", "Password1", "Authority" };
-            List<string> values = new List<string>() { username, Helper.Encrypt(password), Authority.ToString() };
+            List<string> columns = new List<string>() { "Username", "Password1", "Authority", "namedoctor"};
+            List<string> values = new List<string>() { username, Helper.Encrypt(password), Authority.ToString(),textBoxNameDoctor.Text};
 
             db.InsertRowToTable("ClinicUser", columns, values);
             MessageBox.Show("Thêm mới nhân viên thành công");

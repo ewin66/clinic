@@ -350,6 +350,27 @@ using PdfSharp.Drawing.Layout;
            
         }
 
+        public static bool checkUserExistsWithoutPassword(string user)
+        {
+            string strCommand = "Select * From ClinicUser Where Username = " + Helper.ConvertToSqlString(user) ;
+
+            IDatabase database = DatabaseFactory.Instance;
+
+            IDataReader reader = database.ExecuteReader(strCommand, null);
+            reader.Read();
+            if (((DbDataReader)reader).HasRows)
+            {
+                reader.Close();
+                return true;
+            }
+            else
+            {
+                reader.Close();
+                return false;
+            }
+
+        }
+
         public static bool checkAdminExists( string nameOfTable)
         {
 
@@ -690,7 +711,7 @@ using PdfSharp.Drawing.Layout;
             rowsignatureAndMore1.Cells[2].AddParagraph("Tp. HCM, "+"Ngày "+DateTime.Now.Day+" tháng "+DateTime.Now.Month+" năm "+DateTime.Now.Year);
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
-            Paragraph para= rowsignatureAndMore2.Cells[2].AddParagraph("Bác sĩ khám");
+            Paragraph para= rowsignatureAndMore2.Cells[2].AddParagraph("Bác sĩ: "+ Form1.nameOfDoctor);
             para.Format.Alignment = ParagraphAlignment.Center;
 
             document.LastSection.Add(table);
@@ -735,36 +756,46 @@ using PdfSharp.Drawing.Layout;
 
         internal static List<Medicine> GetAllMedicinesFromDataGrid(IDatabase db,System.Windows.Forms.DataGridView dataGridView)
         {
-            List<string> listIdMedicines = new List<string>();
-            List<int> listCountMedicines = new List<int>();
+            //List<string> listIdMedicines = new List<string>();
+            //List<string> listNameMedicines = new List<string>();
 
+            //List<int> listCountMedicines = new List<int>();
+            List<Medicine> result = new List<Medicine>();
 
             for (int i = 0; i < dataGridView.Rows.Count-1; i++)
             {
-                listIdMedicines.Add(dataGridView[DatabaseContants.IdColumnInDataGridViewMedicines, i].Value.ToString());
-                listCountMedicines.Add(int.Parse(dataGridView[DatabaseContants.CountColumnInDataGridViewMedicines, i].Value.ToString()));
-            }
-
-            string listStr = ConvertListToListSQL(listIdMedicines);
-
-            string command = "select * from medicine WHERE Id IN " + listStr;
-            DbDataReader reader = db.ExecuteReader(command, null) as DbDataReader;
-            
-            List<Medicine> result = new List<Medicine>();
-
-            int k = 0;
-            while (reader.Read())
-            {
                 Medicine medic = new Medicine();
-                medic.Id =  reader[DatabaseContants.medicine.Id].ToString();
-                medic.Number = listCountMedicines[k];
-                k++;
-
-                medic.Name = reader[DatabaseContants.medicine.Name].ToString();
-                medic.HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+                medic.Id = dataGridView[DatabaseContants.IdColumnInDataGridViewMedicines, i].Value.ToString();
+                medic.Number = int.Parse(dataGridView[DatabaseContants.CountColumnInDataGridViewMedicines, i].Value.ToString());
+                medic.Name = dataGridView[DatabaseContants.NameColumnInDataGridViewMedicines, i].Value.ToString();
+                medic.HDSD = dataGridView[DatabaseContants.HDSDColumnInDataGridViewMedicines, i].Value.ToString();
                 result.Add(medic);
+                //listIdMedicines.Add(dataGridView[DatabaseContants.IdColumnInDataGridViewMedicines, i].Value.ToString());
+                //listCountMedicines.Add(int.Parse(dataGridView[DatabaseContants.CountColumnInDataGridViewMedicines, i].Value.ToString()));
             }
-            reader.Close();
+
+            //string listStr = ConvertListToListSQL(listIdMedicines);
+
+            //string command = "select * from medicine WHERE Id IN " + listStr;
+            //DbDataReader reader = db.ExecuteReader(command, null) as DbDataReader;
+            
+           
+
+
+
+            //int k = 0;
+            //while (reader.Read())
+            //{
+            //    Medicine medic = new Medicine();
+            //    medic.Id =  reader[DatabaseContants.medicine.Id].ToString();
+            //    medic.Number = listCountMedicines[k];
+            //    k++;
+
+            //    medic.Name = reader[DatabaseContants.medicine.Name].ToString();
+            //    medic.HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+            //    result.Add(medic);
+            //}
+            //reader.Close();
             return result;
 
             //for (int i = 0; i < listMedicines.Count; i++)
@@ -833,6 +864,23 @@ using PdfSharp.Drawing.Layout;
                 }
             }
             return result;
+        }
+
+        internal static string GetNameOfDoctor(IDatabase db,string name)
+        {
+            string strCommand = "SELECT * FROM clinicuser where Username = " + Helper.ConvertToSqlString(name) ;
+            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
+            reader.Read();
+
+            try
+            {
+                return reader["namedoctor"].ToString();
+            }
+            finally
+            {
+                reader.Close();
+
+            }
         }
     }
 }

@@ -46,16 +46,16 @@ namespace Clinic.Models
             get { return address; }
             set { address = value; }
         }
-        private int height;
+        private string height;
 
-        public int Height
+        public string Height
         {
             get { return height; }
             set { height = value; }
         }
-        private int weight;
+        private string weight;
 
-        public int Weight
+        public string Weight
         {
             get { return weight; }
             set { weight = value; }
@@ -77,7 +77,7 @@ namespace Clinic.Models
         #endregion
 
         #region ctors
-        public Patient(string id, string name, int weight, int height, string address, DateTime birthday)
+        public Patient(string id, string name, string weight, string height, string address, DateTime birthday)
         {
             this.id = id;
             this.name = name;

@@ -8,6 +8,7 @@ namespace Clinic.Database
     public class DatabaseContants
     {
         public static int IdColumnInDataGridViewMedicines = 4;
+        public static int NameColumnInDataGridViewMedicines = 0;
         public static int HDSDColumnInDataGridViewMedicines = 5;
         public static int CountColumnInDataGridViewMedicines = 1;
 
@@ -46,6 +47,16 @@ namespace Clinic.Database
            public static string height = "height";
            public static string weight = "weight";
            public static string Id = "Id";
+        }
+
+        public struct tables
+        {
+            public static string clinicuser = "clinicuser";
+            public static string history = "history";
+            public static string medicine = "medicine";
+            public static string patient = "patient";
+            public static string calendar = "calendar";
+
         }
 
 
