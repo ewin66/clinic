@@ -25,9 +25,19 @@ namespace Clinic.Database
         {
           public static string  Id = "Id";
           public static string  Symptom = "Symptom";
+          public static string temperature = "temperature";
           public static string  Diagnose = "Diagnose";
           public static string  Medicines = "Medicines";
           public static string  Day = "Day";
+        }
+
+        public struct doanhthu
+        {
+            public static string Iddoanhthu = "Iddoanhthu";
+            public static string Namedoctor = "Namedoctor";
+            public static string Money = "Money";
+            public static string time = "time";
+
         }
         public struct medicine
         {

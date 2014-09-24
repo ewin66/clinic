@@ -147,7 +147,11 @@ namespace Clinic.Database
 
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
 
-               
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS listpatienttoday(Id varchar(10) NOT NULL,Name TEXT NULL,State VARCHAR(45) NULL, PRIMARY KEY (Id));", null);
+
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS doanhthu(Iddoanhthu INT NOT NULL AUTO_INCREMENT,Namedoctor TEXT NULL,Money int NULL,time datetime, PRIMARY KEY (Iddoanhthu));", null);
+
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS lichhen(Idlichhen INT NOT NULL AUTO_INCREMENT,Idpatient varchar(10),Namedoctor TEXT NULL,Namepatient TEXT NULL,time datetime, PRIMARY KEY (Idlichhen));", null);
 
                 UpdateDatabase(password);
             }
@@ -186,7 +190,14 @@ namespace Clinic.Database
 
             fun = () => ExecuteNonQuery("ALTER TABLE clinicuser ADD COLUMN namedoctor TEXT NULL AFTER Password2;", null);
             Guard(fun);
-           
+
+            fun = () => ExecuteNonQuery("ALTER TABLE history ADD COLUMN temperature TEXT NULL AFTER Symptom;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("CREATE event delete on schedule every 1 day starts at timestamp '2007-03-25 23:59:00' do delete from listpatienttoday", null);
+            Guard(fun);
+
+
         }
 
         //protected void CreateDatabase(string password)

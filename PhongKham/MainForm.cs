@@ -22,6 +22,7 @@ using System.Xml.Serialization;
 using System.Threading;
 using Clinic;
 using System.Globalization;
+using System.Runtime.InteropServices;
 
 
 
@@ -29,7 +30,14 @@ namespace PhongKham
 {
     public partial class Form1 : DevComponents.DotNetBar.Office2007Form
     {
+
+        [DllImport("user32")]
+        public static extern int SetParent(int hWndChild, int hWndNewParent);
+
+
+        public static Dictionary<string, string> listPatientToday = new Dictionary<string, string>();
         private static int maxIdOfCalendarItem;
+        private int TongTien;
         private  InfoClinic infoClinic;
         private static string UserName;
         public static string nameOfDoctor;
@@ -40,7 +48,7 @@ namespace PhongKham
         private int Authority;
 
         System.Threading.Timer TimerItem;
-
+        private ListPatientsTodayForm listPatientForm;
 
         public Form1(int Authority,string name)
         {
@@ -69,7 +77,23 @@ namespace PhongKham
 
             Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
             thread.Start();
+            listPatientForm = new Clinic.ListPatientsTodayForm();
+            listPatientForm.sendCommandKham = new Clinic.ListPatientsTodayForm.SendCommandKham(KhamVaXoa);
+            ///favouriteForm.sendCommand = new Form2.SendCommand(PlayFromFavouriteForm);
+        }
 
+        private void KhamVaXoa(string id, string name)
+        {
+            string strCommand = "Select * From patient  Where Name = " + Helper.ConvertToSqlString(name) + " and Id =" + Helper.ConvertToSqlString(id);
+
+             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+             {
+                 reader.Read();
+                 FillInfoToClinicForm(reader,true);
+             }
+
+             buttonSearch.PerformClick();
+             Helper.DeleteRowFromTablelistpatienttoday(db, id, name);
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -174,8 +198,11 @@ namespace PhongKham
 
         private void InitUser(int authority)
         {
-            if (authority == 1) //admin
+            if (authority == 1)
+            { //admin
+               
                 return;
+            }
 
             if (authority < 100) // khong co quyen tao user moi
             {
@@ -190,11 +217,12 @@ namespace PhongKham
             {
                 this.dataGridViewMedicine.Visible = false;
                 this.label9.Visible = false;
-                this.label30.Visible = false;
+                this.labelTongTien.Visible = false;
                 this.label44.Visible = false; // SDT:
                 this.textBoxClinicPhone.Visible = false;
                 this.txtBoxClinicRoomSymptom.Visible = false;
                 this.txtBoxClinicRoomDiagnose.Visible = false;
+                this.buttonPutIn.Visible = false;
             }
             else
             {
@@ -329,7 +357,7 @@ namespace PhongKham
             lblClinicRoomId.Text = "";
             // comboBoxClinicRoomMedicines.Text = "";
             dataGridViewMedicine.Rows.Clear();
-            label30.Text = "0";
+            labelTongTien.Text = "0";
             textBoxClinicPhone.Text = "";
 
         }
@@ -374,24 +402,30 @@ namespace PhongKham
             labelServicesID.Text = strNewID; // Services
             reader.Close();
 
-
+            
         }
-        private void FillInfoToClinicForm(DbDataReader reader)
+        private void FillInfoToClinicForm(DbDataReader reader,bool onlyInfo)
         {
             lblClinicRoomId.Text = reader["Id"].ToString();
             txtBoxClinicRoomAddress.Text = reader["Address"].ToString();
             txtBoxClinicRoomWeight.Text = reader["Weight"].ToString();
             txtBoxClinicRoomHeight.Text = reader["Height"].ToString();
             dateTimePickerBirthDay.Text = reader["Birthday"].ToString();
+            comboBoxClinicRoomName.Text = reader["name"].ToString();
            // dateTimePickerNgayKham.Text = reader["Day"].ToString(); //we update new Date 
-            txtBoxClinicRoomSymptom.Text = reader["Symptom"].ToString();
-            txtBoxClinicRoomDiagnose.Text = reader["Diagnose"].ToString();
+            if (!onlyInfo)
+            {
+                txtBoxClinicRoomSymptom.Text = reader["Symptom"].ToString();
+                txtBoxClinicRoomDiagnose.Text = reader["Diagnose"].ToString();
+                textBoxClinicNhietDo.Text = reader[DatabaseContants.history.temperature].ToString();
+            }
             textBoxClinicPhone.Text = reader["phone"].ToString();
+            
         }
         private void AddVisitData()
         {
             //Save to history
-            List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines" };
+            List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines", "temperature"};
             string medicines = "";
             for (int i = 0; i < dataGridViewMedicine.Rows.Count - 1; i++)
             {
@@ -405,7 +439,7 @@ namespace PhongKham
                 }
             }
 
-            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, DateTime.Now.ToString("yyyy-MM-dd"), medicines };
+            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, DateTime.Now.ToString("yyyy-MM-dd"), medicines,textBoxClinicNhietDo.Text };
             db.InsertRowToTable("history", columnsHistory, valuesHistory);
         }
         private void ChangeVisitData()
@@ -415,7 +449,7 @@ namespace PhongKham
             Helper.UpdateRowToTable(db, "patient", columns, values, lblClinicRoomId.Text);
 
             //Save to history
-            List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines" };
+            List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines", "temperature"};
             string medicines = "";
             for (int i = 0; i < dataGridViewMedicine.Rows.Count - 1; i++)
             {
@@ -429,7 +463,7 @@ namespace PhongKham
                 }
             }
 
-            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"), medicines };
+            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"), medicines,textBoxClinicNhietDo.Text };
             Helper.UpdateRowToTable(db, "history", columnsHistory, valuesHistory, lblClinicRoomId.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"));
         }
         private void RefreshMedicineLess100()
@@ -621,7 +655,7 @@ namespace PhongKham
             }
             if (e.ColumnIndex == 3 && e.RowIndex > -1) // change cost
             {
-                label30.Text = "0";
+                labelTongTien.Text = "0";
                 int total = 0;
                 if (dataGridViewMedicine[e.ColumnIndex, e.RowIndex].Value != null)
                 {
@@ -640,7 +674,8 @@ namespace PhongKham
                 }
 
                 int temp = total;
-                label30.Text = temp.ToString("C3");
+                TongTien = total;
+                labelTongTien.Text = temp.ToString("C3");
             }
         }
         private void dataGridViewSearchValue_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -660,9 +695,8 @@ namespace PhongKham
 
                     string medicines = reader["Medicines"].ToString();
                     string name = reader["Name"].ToString();
-                    textBoxNameClinic.Text = name;
                     comboBoxClinicRoomName.Text = name;
-                    FillInfoToClinicForm(reader);
+                    FillInfoToClinicForm(reader,false);
                     reader.Close();
 
                     string[] medicineAndCount = new string[] { };
@@ -695,7 +729,7 @@ namespace PhongKham
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
             {
                 reader.Read();
-                FillInfoToClinicForm(reader);
+                FillInfoToClinicForm(reader,false);
                 reader.Close();
 
             }
@@ -769,9 +803,9 @@ namespace PhongKham
                     row.Cells[2].Value = reader2.GetDateTime(reader2.GetOrdinal(DatabaseContants.patient.birthday)).ToString("dd-MM-yyyy");//birthday
                     row.Cells[3].Value = reader2.GetDateTime(reader2.GetOrdinal(DatabaseContants.history.Day)).ToString("dd-MM-yyyy");  // ngay kham
                     row.Cells[4].Value = reader2[DatabaseContants.patient.Address].ToString();//address
-                    row.Cells[5].Value = reader2[DatabaseContants.history.Symptom].ToString();//symptom
+                    row.Cells[5].Value = reader2[DatabaseContants.history.Symptom].ToString() ;//symptom
                     row.Cells[6].Value = reader2[DatabaseContants.history.Diagnose].ToString(); // chan doan
-                    row.Cells[7].Value = reader2.GetString(9) != null ? reader2.GetString(9) : ""; // Total
+                    row.Cells[7].Value = "Nhiệt độ: " + reader2[DatabaseContants.history.temperature].ToString(); // Total
                     medicines = reader2[DatabaseContants.history.Medicines].ToString();
                     row.Cells[8].Value = Helper.ChangeListMedicines(medicines);
                 }
@@ -783,29 +817,29 @@ namespace PhongKham
             int daySum = 0;
             foreach (DataGridViewRow row in this.dataGridViewSearchValue.Rows)
             {
-                int total = 0;
+                //int total = 0;
 
-                string[] medicineAndCount = row.Cells[7].Value.ToString().Split(',');
+                //string[] medicineAndCount = row.Cells[7].Value.ToString().Split(',');
 
-                for (int i = 0; i < medicineAndCount.Length; i = i + 2)
-                {
-                    askCostOut = "Select CostOut From Medicine Where Name =" + Helper.ConvertToSqlString(medicineAndCount[i]);
-                    //newCommand = new MySqlCommand(askCostOut, Program.conn);
-                    DbDataReader newReader = db.ExecuteReader(askCostOut, null) as DbDataReader;
-                    newReader.Read();
-                    try
-                    {
-                        total += int.Parse(medicineAndCount[i + 1]) * (int)newReader.GetValue(0);
-                    }
-                    catch (Exception)
-                    {
-                        newReader.Close();
-                    }
-                    newReader.Close();
-                }
+                //for (int i = 0; i < medicineAndCount.Length; i = i + 2)
+                //{
+                //    askCostOut = "Select CostOut From Medicine Where Name =" + Helper.ConvertToSqlString(medicineAndCount[i]);
+                //    //newCommand = new MySqlCommand(askCostOut, Program.conn);
+                //    DbDataReader newReader = db.ExecuteReader(askCostOut, null) as DbDataReader;
+                //    newReader.Read();
+                //    try
+                //    {
+                //        total += int.Parse(medicineAndCount[i + 1]) * (int)newReader.GetValue(0);
+                //    }
+                //    catch (Exception)
+                //    {
+                //        newReader.Close();
+                //    }
+                //    newReader.Close();
+                //}
 
-                row.Cells[7].Value = total.ToString();
-                daySum += total;
+                //row.Cells[7].Value = total.ToString();
+                //daySum += total;
             }
 
             //label33.Text = daySum.ToString();
@@ -896,7 +930,14 @@ namespace PhongKham
 
             //thread.Start();
             
-         
+
+            //save to doanhthu
+                List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time"};
+                List<string> valuesDoanhThu = new List<string>(){Form1.nameOfDoctor,TongTien.ToString(),DateTime.Now.ToString("yyyy-MM-dd")};
+                db.InsertRowToTable("doanhthu", columnsDoanhThu, valuesDoanhThu);
+
+                MessageBox.Show("Thành Công");
+
         }
 
         
@@ -1333,9 +1374,49 @@ namespace PhongKham
                 MessageBox.Show("Sửa thông tin thành công");
             }
 
-
+            //put into listpatientToday
+            List<string> columnslistpatientToday = new List<string>() { "Id", "Name", "State"};
+            List<string> valueslistpatientToday = new List<string>() { lblClinicRoomId.Text, comboBoxClinicRoomName.Text, "Chờ" };
+            db.InsertRowToTable("listpatienttoday", columnslistpatientToday, valueslistpatientToday);
 
         }
+
+        private void buttonList_MouseHover(object sender, EventArgs e)
+        {
+           
+
+
+
+
+            listPatientForm.Show();
+            SetParent((int)listPatientForm.Handle, (int)this.Handle);
+            listPatientForm.Location = new Point(10, 100);
+
+            //update database
+
+            listPatientToday = Helper.GetListPatientToday(db);
+            listPatientForm.PutIntoGrid(listPatientToday);
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void doanhThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DoanhThuForm dtForm = new Clinic.DoanhThuForm();
+            dtForm.Show();
+            DoanhThuForm.db = this.db;
+        }
+
+        private void buttonHen_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

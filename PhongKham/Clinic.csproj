@@ -126,7 +126,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DoanhThuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoanhThuForm.Designer.cs">
+      <DependentUpon>DoanhThuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Converter.cs" />
+    <Compile Include="ItemDoanhThu.cs" />
+    <Compile Include="ListPatientsTodayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListPatientsTodayForm.Designer.cs">
+      <DependentUpon>ListPatientsTodayForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ADate.cs" />
     <Compile Include="CreateUserForm.cs">
       <SubType>Form</SubType>
@@ -167,6 +180,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CreateUserForm.resx">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoanhThuForm.resx">
+      <DependentUpon>DoanhThuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListPatientsTodayForm.resx">
+      <DependentUpon>ListPatientsTodayForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

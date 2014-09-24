@@ -267,6 +267,16 @@ using PdfSharp.Drawing.Layout;
             db.ExecuteNonQuery(strCommand, null);
         }
 
+        public static void DeleteRowFromTablelistpatienttoday(IDatabase db, string id, string name)
+        {
+            string strCommand = "Delete From listpatienttoday";
+
+            strCommand += " Where Id='" + id + "' AND Name='" + name + "';";
+
+            //MySqlCommand comm = new MySqlCommand(strCommand, conn);
+            db.ExecuteNonQuery(strCommand, null);
+        }
+
         public static bool checkAdminExists(SqlConnection conn, string nameOfTable)
         {
 
@@ -584,63 +594,42 @@ using PdfSharp.Drawing.Layout;
 
         public static void CreateAPdf(InfoClinic InformationOfClinic , string MaBn,Patient patient ,List<Medicine> Medicines)
         {
-           //  PdfDocument pdf = new PdfDocument();
-           // PdfPage pdfPage = pdf.AddPage();
-           // XGraphics graph = XGraphics.FromPdfPage(pdfPage);
-           //// FontFamily theFont = FontFamily.Families.Single<FontFamily>(font => font.Name == "VNI-Times");
-           // XPdfFontOptions options = new XPdfFontOptions(PdfFontEncoding.Unicode, PdfFontEmbedding.Always);
-           // XFont font = new XFont("Times New Roman", 12, XFontStyle.Bold, options);
-           // XFont fontNotBold = new XFont("Times New Roman", 12,XFontStyle.Regular, options);
-           // XFont fontBoldTitle = new XFont("Times New Roman", 26, XFontStyle.Bold, options);
-           // XTextFormatter tf = new XTextFormatter(graph);
-           // XRect rectTopLeft = new XRect(0, 0, 150, 120);
-           // XRect rectTopRight = new XRect(pdfPage.Width-200, 0, 150, 120);
-
-           // XRect rectPatient = new XRect(20, 120, pdfPage.Width, 100);
-           // XRect rectMedicines = new XRect(20, 200, pdfPage.Width, pdfPage.Height);
-
-           // graph.DrawRectangle(XBrushes.White, rectTopLeft);
-           // graph.DrawRectangle(XBrushes.White, rectTopRight);
-           // graph.DrawRectangle(XBrushes.White, rectPatient);
-           // graph.DrawRectangle(XBrushes.White, rectMedicines);
- 
-
-           // //
-           // // top left
-           // tf.DrawString("Bệnh viện xxxxx \n" + " Địa chỉ xxxxx", font, XBrushes.Black, rectTopLeft, XStringFormats.TopLeft);
-           // //
-           // //top right
-           // tf.DrawString("Mã BN: " + MaBn, font, XBrushes.Black, rectTopRight, XStringFormats.TopLeft);
 
 
-
-           // //
-           // //patient
-           // int tuoi = DateTime.Now.Year - patient.Birthday.Year;
-
-           // tf.DrawString("Bệnh nhân:   " + patient.Name + "         - Tuổi: " + tuoi + " \n" + "Địa chỉ:         " + patient.Address, fontNotBold, XBrushes.Black, rectPatient, XStringFormats.TopLeft);
-
-
-
-           // //
-           // //medicine, notes, sign, 
-
-
-           // //title
-           // tf.Alignment = XParagraphAlignment.Center;
-           // tf.DrawString("TOA THUỐC", fontBoldTitle, XBrushes.Black, new XRect(0, 70, pdfPage.Width.Point, pdfPage.Height.Point), XStringFormats.TopLeft);
-            
-
-           // pdf.Save("firstpage.pdf");
 
             Document document = new Document();
-
-            
             document.Info.Author = "Luong Y";
 
             // Get the A4 page size
             Unit width, height;
             PageSetup.GetPageSize(PageFormat.A5, out width, out height);
+            AddSection(document,InformationOfClinic,MaBn,patient,Medicines,false);
+            for (int i = 0; i < Medicines.Count; i++)
+            {
+                if (Medicines[i].Name[0] == '@')
+                {
+                    AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true);
+                    break;
+
+                }
+            }
+            
+            //document.LastSection.AddPageBreak();
+
+
+
+            
+
+            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+            pdfRenderer.Document = document;
+            pdfRenderer.RenderDocument();
+            pdfRenderer.PdfDocument.Save("firstpage.pdf");
+
+
+        }
+
+        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines,bool onlyServices)
+        {
             Section section = document.AddSection();
 
             Paragraph paragraph = section.AddParagraph();
@@ -656,7 +645,14 @@ using PdfSharp.Drawing.Layout;
 
             Paragraph paragraphTitle = section.AddParagraph();
             paragraphTitle.Format.Alignment = ParagraphAlignment.Center;
-            paragraphTitle.AddFormattedText("TOA THUỐC \n \n", new MigraDoc.DocumentObjectModel.Font("Times New Roman", 28));
+            if (!onlyServices)
+            {
+                paragraphTitle.AddFormattedText("TOA THUỐC \n \n", new MigraDoc.DocumentObjectModel.Font("Times New Roman", 28));
+            }
+            else
+            {
+                paragraphTitle.AddFormattedText("Bảng Dịch Vụ \n \n", new MigraDoc.DocumentObjectModel.Font("Times New Roman", 28));
+            }
 
 
 
@@ -677,7 +673,7 @@ using PdfSharp.Drawing.Layout;
             Row row2 = table.AddRow();
             row2.Cells[0].AddParagraph("Địa chỉ: ");
             row2.Cells[1].AddParagraph(patient.Address);
-            
+
 
 
 
@@ -689,14 +685,43 @@ using PdfSharp.Drawing.Layout;
             Column columnMedicines3 = tableMedicines.AddColumn(70);
             Row rowMedicinesHeader = tableMedicines.AddRow();
             rowMedicinesHeader.Cells[0].AddParagraph("STT");
-            rowMedicinesHeader.Cells[1].AddParagraph("Tên thuốc/Cách dùng");
-            rowMedicinesHeader.Cells[2].AddParagraph("Số lượng");
-            for (int i = 0; i < Medicines.Count; i++)
+            if (!onlyServices)
             {
-                Row rowDetail = tableMedicines.AddRow();
-                rowDetail.Cells[0].AddParagraph((i+1).ToString());
-                rowDetail.Cells[1].AddParagraph(Medicines[i].Name +"\n"+ Medicines[i].HDSD);        
-                rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
+                rowMedicinesHeader.Cells[1].AddParagraph("Tên thuốc/Cách dùng");
+            }
+            else
+            {
+                rowMedicinesHeader.Cells[1].AddParagraph("Tên dịch vụ");
+            }
+            rowMedicinesHeader.Cells[2].AddParagraph("Số lượng");
+            if (onlyServices)
+            {
+                for (int i = 0; i < Medicines.Count; i++)
+                {
+                    if (Medicines[i].Name[0] == '@')
+                    {
+                        string name = Medicines[i].Name.Substring(1, Medicines[i].Name.Length - 2);
+                        Row rowDetail = tableMedicines.AddRow();
+                        rowDetail.Cells[0].AddParagraph((i + 1).ToString());
+                        rowDetail.Cells[1].AddParagraph(name + "\n" + Medicines[i].HDSD);
+                        rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
+
+                    }
+
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Medicines.Count; i++)
+                {
+                    if (Medicines[i].Name[0] != '@')
+                    {
+                        Row rowDetail = tableMedicines.AddRow();
+                        rowDetail.Cells[0].AddParagraph((i + 1).ToString());
+                        rowDetail.Cells[1].AddParagraph(Medicines[i].Name + "\n" + Medicines[i].HDSD);
+                        rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
+                    }
+                }
             }
 
             //Table loi dan , chu ky
@@ -706,12 +731,15 @@ using PdfSharp.Drawing.Layout;
             Column columnsignatureAndMore2 = signatureAndMore.AddColumn(30);
             Column columnsignatureAndMore3 = signatureAndMore.AddColumn(200);
             Row rowsignatureAndMore1 = signatureAndMore.AddRow();
-            
-            rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: "+InformationOfClinic.Advice);
-            rowsignatureAndMore1.Cells[2].AddParagraph("Tp. HCM, "+"Ngày "+DateTime.Now.Day+" tháng "+DateTime.Now.Month+" năm "+DateTime.Now.Year);
+
+            if (!onlyServices)
+            {
+                rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: " + InformationOfClinic.Advice);
+            }
+            rowsignatureAndMore1.Cells[2].AddParagraph("Tp. HCM, " + "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year);
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
-            Paragraph para= rowsignatureAndMore2.Cells[2].AddParagraph("Bác sĩ: "+ Form1.nameOfDoctor);
+            Paragraph para = rowsignatureAndMore2.Cells[2].AddParagraph("Bác sĩ: " + Form1.nameOfDoctor);
             para.Format.Alignment = ParagraphAlignment.Center;
 
             document.LastSection.Add(table);
@@ -719,15 +747,6 @@ using PdfSharp.Drawing.Layout;
             document.LastSection.Add(tableMedicines);
             document.LastSection.AddParagraph("\n");
             document.LastSection.Add(signatureAndMore);
-
-
-
-            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
-            pdfRenderer.Document = document;
-            pdfRenderer.RenderDocument();
-            pdfRenderer.PdfDocument.Save("firstpage.pdf");
-
-
         }
 
         internal static string ConvertToDatetimeSql(DateTime dateTime)
@@ -756,8 +775,7 @@ using PdfSharp.Drawing.Layout;
 
         internal static List<Medicine> GetAllMedicinesFromDataGrid(IDatabase db,System.Windows.Forms.DataGridView dataGridView)
         {
-            //List<string> listIdMedicines = new List<string>();
-            //List<string> listNameMedicines = new List<string>();
+
 
             //List<int> listCountMedicines = new List<int>();
             List<Medicine> result = new List<Medicine>();
@@ -770,38 +788,13 @@ using PdfSharp.Drawing.Layout;
                 medic.Name = dataGridView[DatabaseContants.NameColumnInDataGridViewMedicines, i].Value.ToString();
                 medic.HDSD = dataGridView[DatabaseContants.HDSDColumnInDataGridViewMedicines, i].Value.ToString();
                 result.Add(medic);
-                //listIdMedicines.Add(dataGridView[DatabaseContants.IdColumnInDataGridViewMedicines, i].Value.ToString());
-                //listCountMedicines.Add(int.Parse(dataGridView[DatabaseContants.CountColumnInDataGridViewMedicines, i].Value.ToString()));
+
             }
 
-            //string listStr = ConvertListToListSQL(listIdMedicines);
-
-            //string command = "select * from medicine WHERE Id IN " + listStr;
-            //DbDataReader reader = db.ExecuteReader(command, null) as DbDataReader;
-            
-           
 
 
-
-            //int k = 0;
-            //while (reader.Read())
-            //{
-            //    Medicine medic = new Medicine();
-            //    medic.Id =  reader[DatabaseContants.medicine.Id].ToString();
-            //    medic.Number = listCountMedicines[k];
-            //    k++;
-
-            //    medic.Name = reader[DatabaseContants.medicine.Name].ToString();
-            //    medic.HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
-            //    result.Add(medic);
-            //}
-            //reader.Close();
             return result;
 
-            //for (int i = 0; i < listMedicines.Count; i++)
-            //{
-
-            //}
         }
 
         private static string ConvertListToListSQL( List<string>  listIdMedicines)
@@ -881,6 +874,75 @@ using PdfSharp.Drawing.Layout;
                 reader.Close();
 
             }
+        }
+
+        internal static Dictionary<string, string> GetListPatientToday(IDatabase db)
+        {
+            Dictionary<string, string> result = new Dictionary<string, string>();
+
+            string strCommand = "SELECT * FROM listpatienttoday";
+            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
+
+
+            try
+            {
+                while (reader.Read())
+                {
+                    if (reader.HasRows)
+                    {
+                        result.Add(reader["Id"].ToString(), reader["name"].ToString() + ";" + reader["state"].ToString());
+                    }
+
+                }
+                return result;
+            }
+            finally
+            {
+                reader.Close();
+
+            }
+        }
+
+
+
+        internal static List<ItemDoanhThu> DoanhThuTheoNgay(IDatabase db, DateTime dateTime)
+        {
+            List<ItemDoanhThu> result = new List<ItemDoanhThu>();
+
+            string strCommand = " SELECT * FROM doanhthu   WHERE time = " + Helper.ConvertToSqlString(dateTime.ToString("yyyy-MM-dd"));
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+                    ItemDoanhThu item = new ItemDoanhThu();
+                    item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
+                    item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
+                    item.Money = (int)reader[DatabaseContants.doanhthu.Money];
+                    result.Add(item);
+                }
+            }
+
+            return result;
+        }
+
+        internal static List<ItemDoanhThu> DoanhThuTheoThang(IDatabase db, DateTime dateTime)
+        {
+            List<ItemDoanhThu> result = new List<ItemDoanhThu>();
+
+            string strCommand = " SELECT * FROM doanhthu   WHERE month(time) = " + dateTime.Month.ToString();
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+                    ItemDoanhThu item = new ItemDoanhThu();
+                    item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
+                    item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
+                    item.Money = (int)reader[DatabaseContants.doanhthu.Money];
+                    result.Add(item);
+                }
+            }
+
+            return result;
         }
     }
 }
