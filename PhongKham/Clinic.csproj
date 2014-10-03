@@ -80,6 +80,9 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>clinic.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2, Version=11.0.0.0, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -126,6 +129,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoTableLayoutPanel .cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DoanhThuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Age.cs" />
     <Compile Include="Models\Contants.cs" />
     <Compile Include="Models\InfoClinic.cs" />
     <Compile Include="Models\Medicine.cs" />
@@ -267,6 +274,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="clinic.ico" />
     <Content Include="Libs\DevComponents.DotNetBar2.dll" />
     <Content Include="Libs\Microsoft.CSharp.dll" />
     <Content Include="Libs\MigraDoc.DocumentObjectModel.dll" />

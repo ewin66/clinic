@@ -592,7 +592,7 @@ using PdfSharp.Drawing.Layout;
 
        // }
 
-        public static void CreateAPdf(InfoClinic InformationOfClinic , string MaBn,Patient patient ,List<Medicine> Medicines)
+        public static void CreateAPdf(InfoClinic InformationOfClinic , string MaBn,Patient patient ,List<Medicine> Medicines,string taikham,string Diagno,string tuoi)
         {
 
 
@@ -603,16 +603,18 @@ using PdfSharp.Drawing.Layout;
             // Get the A4 page size
             Unit width, height;
             PageSetup.GetPageSize(PageFormat.A5, out width, out height);
-            AddSection(document,InformationOfClinic,MaBn,patient,Medicines,false);
-            for (int i = 0; i < Medicines.Count; i++)
-            {
-                if (Medicines[i].Name[0] == '@')
-                {
-                    AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true);
-                    break;
+            int tongTienThuoc =0;
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno,tuoi);
+            //for (int i = 0; i < Medicines.Count; i++)
+            //{
+            //    if (Medicines[i].Name[0] == '@')
+            //    {
+                   
+            //        break;
 
-                }
-            }
+            //    }
+            //}
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno,tuoi);
             
             //document.LastSection.AddPageBreak();
 
@@ -628,16 +630,18 @@ using PdfSharp.Drawing.Layout;
 
         }
 
-        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines,bool onlyServices)
+        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc,string Diagno,string tuoi)
         {
             Section section = document.AddSection();
 
             Paragraph paragraph = section.AddParagraph();
             paragraph.Format.Alignment = ParagraphAlignment.Left;
 
-            paragraph.AddText("Bệnh viện: " + InformationOfClinic.Name); //+"Mã BN: " + patient.Id + " \n" +" Địa chỉ xxxxx");
+            paragraph.AddText(InformationOfClinic.Name); //+"Mã BN: " + patient.Id + " \n" +" Địa chỉ xxxxx");
             paragraph.AddText(" \n");
-            paragraph.AddText("Địa chỉ: " + InformationOfClinic.Address);
+            paragraph.AddText("    "+InformationOfClinic.Address);
+            paragraph.AddText(" \n");
+            paragraph.AddText("         "+InformationOfClinic.Sdt);
             paragraph.AddText(" \n");
             paragraph.AddText(" \n");
 
@@ -663,17 +667,24 @@ using PdfSharp.Drawing.Layout;
             table.Borders.Width = 0;
             Column column = table.AddColumn();
             column.Width = 80;
-            table.AddColumn(280);
-            table.AddColumn();
+            table.AddColumn(440);
+
             Row row = table.AddRow();
             row.Cells[0].AddParagraph("Bệnh nhân: ");
             row.Cells[1].AddParagraph(patient.Name);
-            int tuoi = DateTime.Now.Year - patient.Birthday.Year;
-            row.Cells[2].AddParagraph("Tuổi:" + tuoi);
+            //int tuoi = DateTime.Now.Year - patient.Birthday.Year;
+            row.Cells[0].AddParagraph("Tuổi:" );
+            row.Cells[1].AddParagraph(tuoi);
             Row row2 = table.AddRow();
             row2.Cells[0].AddParagraph("Địa chỉ: ");
             row2.Cells[1].AddParagraph(patient.Address);
-
+            //row2.Cells[2].AddParagraph("Mã BN: "+ patient.Id);
+            if (!onlyServices)
+            {
+                Row row3 = table.AddRow();
+                row3.Cells[0].AddParagraph("Chẩn đoán: ");
+                row3.Cells[1].AddParagraph(Diagno);
+            }
 
 
 
@@ -681,8 +692,9 @@ using PdfSharp.Drawing.Layout;
             tableMedicines.Borders.Width = 0;
             tableMedicines.BottomPadding = 10;
             Column columnMedicines1 = tableMedicines.AddColumn(30);
-            Column columnMedicines2 = tableMedicines.AddColumn(300);
+            Column columnMedicines2 = tableMedicines.AddColumn(240);
             Column columnMedicines3 = tableMedicines.AddColumn(70);
+            Column columnMedicines4 = tableMedicines.AddColumn(130);
             Row rowMedicinesHeader = tableMedicines.AddRow();
             rowMedicinesHeader.Cells[0].AddParagraph("STT");
             if (!onlyServices)
@@ -694,32 +706,59 @@ using PdfSharp.Drawing.Layout;
                 rowMedicinesHeader.Cells[1].AddParagraph("Tên dịch vụ");
             }
             rowMedicinesHeader.Cells[2].AddParagraph("Số lượng");
+
+            
             if (onlyServices)
             {
+                rowMedicinesHeader.Cells[3].AddParagraph("Số tiền");
+                int totalServices = 0;
+                int indexServices = 1;
                 for (int i = 0; i < Medicines.Count; i++)
                 {
                     if (Medicines[i].Name[0] == '@')
                     {
-                        string name = Medicines[i].Name.Substring(1, Medicines[i].Name.Length - 2);
+                        string name = Medicines[i].Name.Substring(1, Medicines[i].Name.Length - 1);
                         Row rowDetail = tableMedicines.AddRow();
-                        rowDetail.Cells[0].AddParagraph((i + 1).ToString());
+                        rowDetail.Cells[0].AddParagraph(indexServices.ToString());
                         rowDetail.Cells[1].AddParagraph(name + "\n" + Medicines[i].HDSD);
                         rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
+                        rowDetail.Cells[3].AddParagraph(Medicines[i].CostOut.ToString("C0"));
+                        indexServices++;
 
+                        totalServices += Medicines[i].CostOut;
                     }
 
                 }
+                //tong cong thuoc
+
+                Row rowTotalThuoc = tableMedicines.AddRow();
+                rowTotalThuoc.Cells[1].AddParagraph("Thuốc");
+                rowTotalThuoc.Cells[3].AddParagraph(tongTienThuoc.ToString("C0"));
+
+
+
+                Row gachdit = tableMedicines.AddRow();
+                gachdit.Cells[3].AddParagraph("________________");
+
+                int total = totalServices + tongTienThuoc;
+
+                Row rowTotal = tableMedicines.AddRow();
+                rowTotal.Cells[2].AddParagraph("Tổng cộng:");
+                rowTotal.Cells[3].AddParagraph(total.ToString("C0"));
             }
             else
             {
+                int indexMedicines = 1;
                 for (int i = 0; i < Medicines.Count; i++)
                 {
                     if (Medicines[i].Name[0] != '@')
                     {
                         Row rowDetail = tableMedicines.AddRow();
-                        rowDetail.Cells[0].AddParagraph((i + 1).ToString());
+                        rowDetail.Cells[0].AddParagraph(indexMedicines.ToString());
                         rowDetail.Cells[1].AddParagraph(Medicines[i].Name + "\n" + Medicines[i].HDSD);
                         rowDetail.Cells[2].AddParagraph(Medicines[i].Number.ToString());
+                        indexMedicines++;
+                        tongTienThuoc += Medicines[i].CostOut;
                     }
                 }
             }
@@ -736,10 +775,11 @@ using PdfSharp.Drawing.Layout;
             {
                 rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: " + InformationOfClinic.Advice);
             }
-            rowsignatureAndMore1.Cells[2].AddParagraph("Tp. HCM, " + "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year);
+            rowsignatureAndMore1.Cells[2].AddParagraph("Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year);
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
-            Paragraph para = rowsignatureAndMore2.Cells[2].AddParagraph("Bác sĩ: " + Form1.nameOfDoctor);
+            rowsignatureAndMore2.Cells[0].AddParagraph(taikham);
+            Paragraph para = rowsignatureAndMore2.Cells[2].AddParagraph(" \n \n \n \n"+ Form1.nameOfDoctor);
             para.Format.Alignment = ParagraphAlignment.Center;
 
             document.LastSection.Add(table);
@@ -787,6 +827,7 @@ using PdfSharp.Drawing.Layout;
                 medic.Number = int.Parse(dataGridView[DatabaseContants.CountColumnInDataGridViewMedicines, i].Value.ToString());
                 medic.Name = dataGridView[DatabaseContants.NameColumnInDataGridViewMedicines, i].Value.ToString();
                 medic.HDSD = dataGridView[DatabaseContants.HDSDColumnInDataGridViewMedicines, i].Value.ToString();
+                medic.CostOut = int.Parse(dataGridView[DatabaseContants.MoneyColumnInDataGridViewMedicines, i].Value.ToString());
                 result.Add(medic);
 
             }

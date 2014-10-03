@@ -35,7 +35,8 @@ namespace Clinic
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namepatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhamVaXoa = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.state = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNhietDo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHuyetAp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,11 +58,12 @@ namespace Clinic
             this.Id,
             this.namepatient,
             this.KhamVaXoa,
-            this.state});
+            this.ColumnNhietDo,
+            this.ColumnHuyetAp});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.Location = new System.Drawing.Point(0, 56);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(624, 592);
+            this.dataGridView1.Size = new System.Drawing.Size(709, 592);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -94,20 +96,26 @@ namespace Clinic
             this.KhamVaXoa.Text = "Khám Và Xóa";
             this.KhamVaXoa.UseColumnTextForButtonValue = true;
             // 
-            // state
+            // ColumnNhietDo
             // 
-            this.state.HeaderText = "Trạng Thái";
-            this.state.Name = "state";
-            this.state.ReadOnly = true;
-            this.state.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.state.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ColumnNhietDo.HeaderText = "Nhiệt độ";
+            this.ColumnNhietDo.Name = "ColumnNhietDo";
+            this.ColumnNhietDo.ReadOnly = true;
+            this.ColumnNhietDo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnNhietDo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ColumnHuyetAp
+            // 
+            this.ColumnHuyetAp.HeaderText = "Huyết Áp";
+            this.ColumnHuyetAp.Name = "ColumnHuyetAp";
+            this.ColumnHuyetAp.ReadOnly = true;
             // 
             // ListPatientsTodayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(624, 648);
+            this.BackColor = System.Drawing.Color.Orange;
+            this.ClientSize = new System.Drawing.Size(709, 648);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -126,10 +134,11 @@ namespace Clinic
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn namepatient;
-        private System.Windows.Forms.DataGridViewButtonColumn KhamVaXoa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn state;
+        private DataGridViewTextBoxColumn STT;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn namepatient;
+        private DataGridViewButtonColumn KhamVaXoa;
+        private DataGridViewTextBoxColumn ColumnNhietDo;
+        private DataGridViewTextBoxColumn ColumnHuyetAp;
     }
 }

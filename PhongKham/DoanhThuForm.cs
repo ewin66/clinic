@@ -61,7 +61,7 @@ namespace Clinic
                 DataGridViewRow row = dataGridView1.Rows[i];
                 total += int.Parse(row.Cells[3].Value.ToString());
             }
-            labelTotal.Text = total.ToString("C3");
+            labelTotal.Text = total.ToString("C0");
         }
     }
 }

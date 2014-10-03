@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using PhongKham;
 
 namespace Clinic
 {
@@ -13,7 +14,7 @@ namespace Clinic
     {
 
 
-        public delegate void SendCommandKham(string id, string name);
+        public delegate void SendCommandKham(string id, string name,string nhietdo);
         public SendCommandKham sendCommandKham;
 
         public ListPatientsTodayForm()
@@ -52,10 +53,11 @@ namespace Clinic
                 row.Cells[1].Value = keys[i];
                 string[] nameAndState = listPatientToday[keys[i]].Split(';');
                 row.Cells[2].Value = nameAndState[0];
-                row.Cells[4].Value = nameAndState[1];
+                row.Cells["ColumnNhietDo"].Value = nameAndState[1];
+                row.Cells["ColumnHuyetAp"].Value = nameAndState[2];
             }
         }
-
+                    
         void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Ignore clicks that are not on button cells.  
@@ -63,11 +65,16 @@ namespace Clinic
                 dataGridView1.Columns["KhamVaXoa"].Index) return;
 
             //MessageBox.Show(dataGridView1.Rows[1].Cells[2].Value.ToString());
-            
 
-            sendCommandKham(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString());
+            if (Form1.Authority == 0 || Form1.Authority == 3)
+            {
+                MessageBox.Show("Không có quyền!", "Lỗi");
+                return;
+            }
+            sendCommandKham(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["ColumnNhietDo"].Value.ToString() + ';' + dataGridView1.Rows[e.RowIndex].Cells["ColumnHuyetAp"].Value.ToString());
             dataGridView1.Rows.RemoveAt(e.RowIndex);
         }
+
 
     }
 }

@@ -21,6 +21,14 @@ namespace Clinic.Models
             get { return address; }
             set { address = value; }
         }
+
+        private string sdt;
+
+        public string Sdt
+        {
+            get { return sdt; }
+            set { sdt = value; }
+        }
         private string advice;
 
         public string Advice

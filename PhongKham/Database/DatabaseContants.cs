@@ -11,6 +11,8 @@ namespace Clinic.Database
         public static int NameColumnInDataGridViewMedicines = 0;
         public static int HDSDColumnInDataGridViewMedicines = 5;
         public static int CountColumnInDataGridViewMedicines = 1;
+        public static int CostColumnInDataGridViewMedicines = 2;
+        public static int MoneyColumnInDataGridViewMedicines = 3;
 
         public static   List<string> columnsCalendar = new List<string>() { "IdCalendar", "Username", "StartTime", "EndTime", "Text", "Color" };
 
@@ -26,9 +28,11 @@ namespace Clinic.Database
           public static string  Id = "Id";
           public static string  Symptom = "Symptom";
           public static string temperature = "temperature";
+          public static string huyetap = "huyetap";
           public static string  Diagnose = "Diagnose";
           public static string  Medicines = "Medicines";
           public static string  Day = "Day";
+
         }
 
         public struct doanhthu

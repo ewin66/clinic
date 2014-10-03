@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <InfoClinic xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>van khanh 2</Name>
-  <Address>65/1 ap thong nhat 2 xa tan thoi nhi</Address>
-  <Advice>nho uong thuoc day du</Advice>
+  <Name>Phong Kham DA Khoa Khanh Loan</Name>
+  <Address>               65/1A Ngo gia tu</Address>
+  <Sdt>                SDT:08237273</Sdt>
+  <Advice>ádasdasdas</Advice>
 </InfoClinic>
