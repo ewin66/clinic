@@ -41,6 +41,8 @@ namespace Clinic.Database
             public static string Namedoctor = "Namedoctor";
             public static string Money = "Money";
             public static string time = "time";
+            public static string IdPatient = "Idpatient";
+            public static string NamePatient = "Namepatient";
 
         }
         public struct medicine

@@ -57,3 +57,5 @@ C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.ListPatientsTodayForm.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.DoanhThuForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.TuThuocForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Services.resources

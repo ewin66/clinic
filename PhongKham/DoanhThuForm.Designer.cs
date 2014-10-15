@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,48 +38,33 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnIdPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNamePatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
             this.date,
             this.NameDoctor,
-            this.Money});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 81);
+            this.Money,
+            this.ColumnIdPatient,
+            this.ColumnNamePatient});
+            this.dataGridView1.Location = new System.Drawing.Point(-1, 153);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(592, 679);
+            this.dataGridView1.Size = new System.Drawing.Size(887, 715);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Ngày tháng";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
-            // 
-            // NameDoctor
-            // 
-            this.NameDoctor.HeaderText = "Tên bác sĩ";
-            this.NameDoctor.Name = "NameDoctor";
-            this.NameDoctor.ReadOnly = true;
-            this.NameDoctor.Width = 200;
-            // 
-            // Money
-            // 
-            this.Money.HeaderText = "Số tiền";
-            this.Money.Name = "Money";
-            this.Money.ReadOnly = true;
-            this.Money.Width = 150;
             // 
             // label1
             // 
@@ -102,10 +83,11 @@
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.dataGridView2.Location = new System.Drawing.Point(629, 81);
+            this.dataGridView2.Location = new System.Drawing.Point(892, 12);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(243, 285);
+            this.dataGridView2.Size = new System.Drawing.Size(243, 130);
             this.dataGridView2.TabIndex = 2;
+            this.dataGridView2.Visible = false;
             // 
             // Column1
             // 
@@ -122,7 +104,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(264, 780);
+            this.label2.Location = new System.Drawing.Point(87, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 3;
@@ -132,7 +114,7 @@
             // 
             this.labelTotal.AutoSize = true;
             this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTotal.Location = new System.Drawing.Point(364, 780);
+            this.labelTotal.Location = new System.Drawing.Point(174, 77);
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(29, 31);
             this.labelTotal.TabIndex = 4;
@@ -165,11 +147,48 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // STT
+            // 
+            this.STT.HeaderText = "STT";
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
+            // 
+            // date
+            // 
+            this.date.HeaderText = "Ngày tháng";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
+            // 
+            // NameDoctor
+            // 
+            this.NameDoctor.HeaderText = "Tên bác sĩ";
+            this.NameDoctor.Name = "NameDoctor";
+            this.NameDoctor.ReadOnly = true;
+            this.NameDoctor.Width = 200;
+            // 
+            // Money
+            // 
+            this.Money.HeaderText = "Số tiền";
+            this.Money.Name = "Money";
+            this.Money.ReadOnly = true;
+            this.Money.Width = 150;
+            // 
+            // ColumnIdPatient
+            // 
+            this.ColumnIdPatient.HeaderText = "Id bệnh nhân";
+            this.ColumnIdPatient.Name = "ColumnIdPatient";
+            // 
+            // ColumnNamePatient
+            // 
+            this.ColumnNamePatient.HeaderText = "Tên bệnh nhân";
+            this.ColumnNamePatient.Name = "ColumnNamePatient";
+            this.ColumnNamePatient.Width = 200;
+            // 
             // DoanhThuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 874);
+            this.ClientSize = new System.Drawing.Size(1147, 874);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dateTimePicker1);
@@ -180,6 +199,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "DoanhThuForm";
             this.Text = "DoanhThuForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
@@ -190,10 +210,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameDoctor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Money;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -203,5 +219,11 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameDoctor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Money;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIdPatient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNamePatient;
     }
 }

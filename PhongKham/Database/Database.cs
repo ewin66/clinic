@@ -143,7 +143,7 @@ namespace Clinic.Database
 
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10));", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),Id varchar(10));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Idpatient INT NOT NULL AUTO_INCREMENT,Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),PRIMARY KEY (Idpatient));", null);
 
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
 
@@ -185,7 +185,7 @@ namespace Clinic.Database
             fun = () => ExecuteNonQuery("ALTER TABLE listpatienttoday ADD COLUMN time datetime NULL AFTER Id", null);
             Guard(fun);
 
-            fun = () => ExecuteNonQuery("ALTER TABLE patient ADD COLUMN phone VARCHAR(45) NULL AFTER Id;", null);
+            fun = () => ExecuteNonQuery("ALTER TABLE patient ADD COLUMN phone VARCHAR(45) NULL AFTER Name;", null);
             Guard(fun);
 
             fun = () => ExecuteNonQuery(" ALTER TABLE patient CHANGE COLUMN height height TEXT NULL DEFAULT NULL , CHANGE COLUMN weight weight TEXT NULL DEFAULT NULL ;", null);
@@ -203,6 +203,8 @@ namespace Clinic.Database
             fun = () => ExecuteNonQuery("CREATE event delete on schedule every 1 day starts at timestamp '2007-03-25 23:59:00' do delete from listpatienttoday", null);
             Guard(fun);
 
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN Idpatient TEXT NULL , ADD COLUMN Namepatient TEXT NULL;", null);
+            Guard(fun);
 
         }
 

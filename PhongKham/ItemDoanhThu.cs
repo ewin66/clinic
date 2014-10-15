@@ -28,6 +28,23 @@ namespace Clinic
             get { return date; }
             set { date = value; }
         }
+
+
+        private string idPatient;
+
+        public string IdPatient
+        {
+            get { return idPatient; }
+            set { idPatient = value; }
+        }
+        private string namePatient;
+
+        public string NamePatient
+        {
+            get { return namePatient; }
+            set { namePatient = value; }
+        }
+
         public ItemDoanhThu()
         { }
         public ItemDoanhThu(string date, string nameOfDoctor, int money)

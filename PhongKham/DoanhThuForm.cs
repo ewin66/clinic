@@ -32,6 +32,8 @@ namespace Clinic
                 row.Cells[1].Value = listItem[i].Date;
                 row.Cells[2].Value = listItem[i].NameOfDoctor;
                 row.Cells[3].Value = listItem[i].Money;
+                row.Cells["ColumnIdPatient"].Value = listItem[i].IdPatient;
+                row.Cells["ColumnNamePatient"].Value = listItem[i].NamePatient;
                 //listItem[i].
             }
         }
