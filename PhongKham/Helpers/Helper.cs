@@ -679,21 +679,40 @@ namespace Clinic.Helpers
 
             style.ParagraphFormat.Font.Color = Colors.Blue;
         }
+        internal static void CreateAPdfThongKe(System.Windows.Forms.DataGridView dataGridView, string namePDF)
+        {
+            Document document = new Document();
+            document.Info.Author = "Luong Y";
+            Unit width, height;
+            PageSetup.GetPageSize(PageFormat.A5, out width, out height);
+            document.DefaultPageSetup.PageWidth = width;
+            document.DefaultPageSetup.PageHeight = height;
 
+            Section section = document.AddSection();
+            section.PageSetup.LeftMargin = 10;
+
+            Table tableMedicines = new Table();
+            tableMedicines.Borders.Width = 0;
+            tableMedicines.BottomPadding = 10;
+            Column columnMedicines1 = tableMedicines.AddColumn(30);
+
+
+            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+            pdfRenderer.Document = document;
+            pdfRenderer.RenderDocument();
+            pdfRenderer.PdfDocument.Save(namePDF+".pdf");
+        }
         public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi)
         {
 
 
 
             Document document = new Document();
-           // DefineStyles(document);
             document.Info.Author = "Luong Y";
              Unit width, height;
             PageSetup.GetPageSize(PageFormat.A5, out width, out height);
             document.DefaultPageSetup.PageWidth = width;
             document.DefaultPageSetup.PageHeight = height;
-            //DefineStyles
-            // Get the A4 page size
            
             int tongTienThuoc = 0;
             AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi);
@@ -899,7 +918,7 @@ namespace Clinic.Helpers
 
             if (!onlyServices)
             {
-                rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: " + InformationOfClinic.Advice);
+               // rowsignatureAndMore1.Cells[0].AddParagraph("Lời dặn: " + InformationOfClinic.Advice);
             }
             Paragraph paramNgayThang = rowsignatureAndMore1.Cells[2].AddParagraph("Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year);
             paramNgayThang.Format.Alignment = ParagraphAlignment.Center;
@@ -1215,25 +1234,44 @@ namespace Clinic.Helpers
 
         }
 
+        internal static string GetIdMedicineFromName(IDatabase db, string name)
+        {
+            string id = "";
+            string strCommand = "Select Id from medicine where Name = " +ConvertToSqlString(name)  ;
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    id = reader[DatabaseContants.medicine.Id].ToString();
+                }
+            }
+            return id;
+        }
+
         internal static List<Medicine> GetMedicinesFromHistory(IDatabase db,string IdPatient, string datetime)
         {
             List<Medicine> result = new List<Medicine>();
             string strCommand = "Select Medicines from history where Id = " + IdPatient + " And Day=" + ConvertToSqlString(datetime);
-            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
-            reader.Read();
-            if (reader.HasRows)
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
             {
-                string medicines = reader[DatabaseContants.history.Medicines].ToString();
-                string[] medicineAndCount = new string[] { };
-                if (!string.IsNullOrEmpty(medicines))
+                reader.Read();
+                if (reader.HasRows)
                 {
-                    medicineAndCount = medicines.Split(',');
-                    for (int i = 0; i < medicineAndCount.Length; i = i + 2)
+                    string medicines = reader[DatabaseContants.history.Medicines].ToString();
+                    string[] medicineAndCount = new string[] { };
+                    if (!string.IsNullOrEmpty(medicines))
                     {
-                        Medicine medicine = new Medicine();
-                        medicine.Name = medicineAndCount[i];
-                        medicine.Number = int.Parse(medicineAndCount[i + 1]);
-                        result.Add(medicine);
+                        medicineAndCount = medicines.Split(',');
+                        for (int i = 0; i < medicineAndCount.Length; i = i + 2)
+                        {
+                            Medicine medicine = new Medicine();
+                            medicine.Name = medicineAndCount[i];
+                            reader.Close();
+                            medicine.Id = GetIdMedicineFromName(db, medicine.Name);
+                            medicine.Number = int.Parse(medicineAndCount[i + 1]);
+                            result.Add(medicine);
+                        }
                     }
                 }
             }
@@ -1252,13 +1290,109 @@ namespace Clinic.Helpers
                 int numberInStore = int.Parse(reader[DatabaseContants.medicine.Count].ToString());
                 int numberWillBe = numberInStore - offset;
                 reader.Close();
-                
+
                 strCommand = "Update Medicine Set Count =" + numberWillBe.ToString() + " Where Id =" + p_2;
                 db.ExecuteNonQuery(strCommand, null);
             }
-
-
+            else
+            {
+                reader.Close();
+            }
             
         }
+
+        internal static void TruTuThuoc(IDatabase db,List<Medicine> listMedicines)
+        {
+            //tru tu thuoc
+            for (int iThuoc = 0; iThuoc < listMedicines.Count; iThuoc++)
+            {
+                if (listMedicines[iThuoc].Name[0] != '@')
+                {
+                    int offsetThuoc = listMedicines[iThuoc].Number;
+                    string idThuoc = listMedicines[iThuoc].Id.ToString();
+                    Helper.UpdateRowToTableMedicine(db, "medicine", offsetThuoc, idThuoc);
+                }
+            }
+        }
+
+        internal static List<Medicine> CompareTwoListMedicineToUpdate(List<Medicine> listMedicineFromHistory, List<Medicine> listMedicines)
+        {
+            List<Medicine> result = new List<Medicine>();
+            foreach (Medicine medicine in listMedicines)
+            {
+                Medicine medicineFromHistory= listMedicineFromHistory.Where(i => i.Name == medicine.Name).FirstOrDefault();
+                if (medicineFromHistory != null)
+                {
+                    int offset = medicine.Number - medicineFromHistory.Number;
+                    Medicine medicineUpdate = new Medicine();
+                    medicineUpdate.Name = medicine.Name;
+                    medicineUpdate.Id = medicine.Id;
+                    medicineUpdate.Number = offset;
+                    result.Add(medicineUpdate);
+                }
+                else // new
+                {
+
+                    Medicine medicineUpdate = new Medicine();
+                    medicineUpdate.Name = medicine.Name;
+                    medicineUpdate.Id = medicine.Id;
+                    medicineUpdate.Number = medicine.Number;
+                    result.Add(medicineUpdate);
+                }
+            }
+
+
+            //case: delete row so we must add medicine again
+            foreach (Medicine medicine in listMedicineFromHistory)
+            {
+                Medicine medicineFromNew = listMedicines.Where(i => i.Name == medicine.Name).FirstOrDefault();
+                if (medicineFromNew == null)
+                {
+                    Medicine medicineUpdate = new Medicine();
+                    medicineUpdate.Name = medicine.Name;
+
+                    medicineUpdate.Id = medicine.Id;
+                    medicineUpdate.Number = 0-medicine.Number;
+                    result.Add(medicineUpdate);
+                }
+            }
+
+            return result;
+        }
+
+
+
+        internal static bool ExistMoreThanOneRowOfMedicine(System.Windows.Forms.DataGridView dataGridView)
+        {
+            List<string> medicines = new List<string>();
+            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            {
+                //dataGridViewMedicinesId
+                if(medicines.Contains(dataGridView.Rows[i].Cells["dataGridViewMedicinesId"].Value.ToString()))
+                {
+                    return true;
+                }
+                else
+                {
+                    medicines.Add(dataGridView.Rows[i].Cells["dataGridViewMedicinesId"].Value.ToString());
+                }
+            }
+            return false;
+        }
+
+        internal static bool EmptyNumberCell(System.Windows.Forms.DataGridView dataGridView)
+        {
+            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            {
+                //dataGridViewMedicinesId
+                if (dataGridView.Rows[i].Cells["Column19"].Value==null|| dataGridView.Rows[i].Cells["Column19"].Value.ToString()=="0")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

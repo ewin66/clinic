@@ -54,8 +54,8 @@ C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLi
 C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe.config
-C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.ListPatientsTodayForm.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.DoanhThuForm.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.TuThuocForm.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Services.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache

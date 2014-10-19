@@ -104,9 +104,6 @@ namespace Clinic.Database
                     internalOpen = true;
                 }
 
-
-               
-
                 return (TDataReader)cmd.ExecuteReader();
 
             }

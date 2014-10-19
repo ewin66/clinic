@@ -98,11 +98,7 @@ namespace PhongKham
 
         private void KhamVaXoa(string id, string name,string state)
         {
-            if (Form1.Authority == 0 || Form1.Authority == 3)
-            {
-                MessageBox.Show("Không có quyền!","Lỗi");
-                return;
-            }
+
             string strCommand = "Select * From patient  Where Name = " + Helper.ConvertToSqlString(name) + " and Idpatient =" + Helper.ConvertToSqlString(id);
 
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
@@ -957,6 +953,17 @@ namespace PhongKham
                 return;
             }
 
+            if (Helper.EmptyNumberCell(this.dataGridViewMedicine))
+            {
+                MessageBox.Show("Ô số lượng trống!");
+                return;
+            }
+            if (Helper.ExistMoreThanOneRowOfMedicine(this.dataGridViewMedicine))
+            {
+                MessageBox.Show("Trùng Thuốc!");
+                return;
+            }
+
             string thongbao = "Kết thúc phiên khám! và không hẹn";
             if (checkBoxHen.Checked == true)
             {
@@ -1035,25 +1042,32 @@ namespace PhongKham
                 db.InsertRowToTable("doanhthu", columnsDoanhThu, valuesDoanhThu);
 
                 //tru tu thuoc
-                for (int iThuoc = 0; iThuoc < listMedicines.Count; iThuoc++)
-                {
-                    int offsetThuoc = listMedicines[iThuoc].Number;
-                    string idThuoc = listMedicines[iThuoc].Id.ToString();
-                    Helper.UpdateRowToTableMedicine(db, "medicine", offsetThuoc, idThuoc);
-                }
+                Helper.TruTuThuoc(db, listMedicines);
 
                 
                 
             }
             else
             {
+                //sua tu thuoc 
+                List<Medicine> listMedicineFromHistory = new List<Medicine>();
+                try
+                {
+                     listMedicineFromHistory = Helper.GetMedicinesFromHistory(db, lblClinicRoomId.Text, DateTime.Now.ToString("yyyy-MM-dd"));
+                }
+                catch (Exception exss)
+                {
+
+                }
+                List<Medicine> UpdateMedicines = Helper.CompareTwoListMedicineToUpdate(listMedicineFromHistory, listMedicines);
+
+                Helper.TruTuThuoc(db, UpdateMedicines);
+
                 ChangeVisitData();
                 //update to doanhthu
                 List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time" };
                 List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd") };
                 Helper.UpdateRowToTableDoanhThu(db, "doanhthu", columnsDoanhThu, valuesDoanhThu, lblClinicRoomId.Text);
-
-                //sua tu thuoc 
 
 
             }
@@ -1496,6 +1510,9 @@ namespace PhongKham
                 return;
             }
 
+
+
+
             string originalName = Helper.hasOtherNameForThisId(db, this.lblClinicRoomId.Text,
                 this.comboBoxClinicRoomName.Text);
             if (originalName != null)
@@ -1712,6 +1729,18 @@ namespace PhongKham
             int temp = total;
             TongTien = total;
             labelTongTien.Text = temp.ToString("C0");
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            int intId = Helper.SearchMaxValueOfTable("Patient", "Idpatient", "DESC");
+            string ID = intId.ToString();
+            lblClinicRoomId.Text = ID;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
 

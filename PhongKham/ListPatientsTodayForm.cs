@@ -66,11 +66,6 @@ namespace Clinic
 
             //MessageBox.Show(dataGridView1.Rows[1].Cells[2].Value.ToString());
 
-            if (Form1.Authority == 0 || Form1.Authority == 3)
-            {
-                MessageBox.Show("Không có quyền!", "Lỗi");
-                return;
-            }
             sendCommandKham(dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString(), dataGridView1.Rows[e.RowIndex].Cells["ColumnNhietDo"].Value.ToString() + ';' + dataGridView1.Rows[e.RowIndex].Cells["ColumnHuyetAp"].Value.ToString());
             dataGridView1.Rows.RemoveAt(e.RowIndex);
         }

@@ -34,5 +34,18 @@ namespace Clinic
             }
         }
 
+
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            string namePDF = "";
+            Helper.CreateAPdfThongKe(this.dataGridView1, namePDF);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
     }
 }
