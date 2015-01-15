@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <InfoClinic xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Name>Phòng khám bác sĩ khánh loan</Name>
-  <Address>5;NGô Gia Tự</Address>
-  <Sdt>6;89239239</Sdt>
-  <Advice>ádsadasdasds</Advice>
+  <Name>net pt</Name>
+  <Address>3;65/1</Address>
+  <Sdt>5;088844</Sdt>
+  <Advice>a</Advice>
+  <PathData>C:\Program Files (x86)\MySQL\MySQL Server 5.0\data\clinic</PathData>
+  <PathTargetBackup>C:\Users\Administrator\Desktop\BU</PathTargetBackup>
+  <CheckedBackup1>True</CheckedBackup1>
+  <TimeBackup>2</TimeBackup>
 </InfoClinic>

@@ -33,15 +33,18 @@ namespace PhongKham
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label label26;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Show1Record = new System.Windows.Forms.CheckBox();
+            this.ShowMedicines = new System.Windows.Forms.CheckBox();
+            this.ShowBigForm = new System.Windows.Forms.CheckBox();
             this.checkBoxHen = new System.Windows.Forms.CheckBox();
             this.buttonList = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -79,7 +82,7 @@ namespace PhongKham
             this.txtBoxClinicRoomAddress = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
-            this.comboBoxClinicRoomName = new System.Windows.Forms.ComboBox();
+            this.comboBoxClinicRoomName = new System.Windows.Forms.TextBox();
             this.buttonClinicCreateNew = new System.Windows.Forms.Button();
             this.buttonClinicClear = new System.Windows.Forms.Button();
             this.txtBoxClinicRoomWeight = new System.Windows.Forms.TextBox();
@@ -301,9 +304,9 @@ namespace PhongKham
             // 
             // MainTab
             // 
-            this.MainTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.MainTab.Controls.Add(this.tabPage1);
             this.MainTab.Controls.Add(this.Calendar);
             this.MainTab.Controls.Add(this.tabPagenhapthuoc);
@@ -319,6 +322,9 @@ namespace PhongKham
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Show1Record);
+            this.tabPage1.Controls.Add(this.ShowMedicines);
+            this.tabPage1.Controls.Add(this.ShowBigForm);
             this.tabPage1.Controls.Add(this.checkBoxHen);
             this.tabPage1.Controls.Add(this.buttonList);
             this.tabPage1.Controls.Add(this.pictureBox2);
@@ -347,6 +353,45 @@ namespace PhongKham
             this.tabPage1.Text = "Phòng Khám";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // Show1Record
+            // 
+            this.Show1Record.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Show1Record.AutoSize = true;
+            this.Show1Record.Checked = true;
+            this.Show1Record.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Show1Record.Location = new System.Drawing.Point(1211, 67);
+            this.Show1Record.Name = "Show1Record";
+            this.Show1Record.Size = new System.Drawing.Size(138, 22);
+            this.Show1Record.TabIndex = 49;
+            this.Show1Record.Text = "Chỉ 1 Record /bn";
+            this.Show1Record.UseVisualStyleBackColor = true;
+            // 
+            // ShowMedicines
+            // 
+            this.ShowMedicines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowMedicines.AutoSize = true;
+            this.ShowMedicines.Checked = true;
+            this.ShowMedicines.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowMedicines.Location = new System.Drawing.Point(1211, 39);
+            this.ShowMedicines.Name = "ShowMedicines";
+            this.ShowMedicines.Size = new System.Drawing.Size(103, 22);
+            this.ShowMedicines.TabIndex = 48;
+            this.ShowMedicines.Text = "Hiện Thuốc";
+            this.ShowMedicines.UseVisualStyleBackColor = true;
+            // 
+            // ShowBigForm
+            // 
+            this.ShowBigForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ShowBigForm.AutoSize = true;
+            this.ShowBigForm.Checked = true;
+            this.ShowBigForm.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShowBigForm.Location = new System.Drawing.Point(1211, 11);
+            this.ShowBigForm.Name = "ShowBigForm";
+            this.ShowBigForm.Size = new System.Drawing.Size(126, 22);
+            this.ShowBigForm.TabIndex = 47;
+            this.ShowBigForm.Text = "Hiện Form Lớn";
+            this.ShowBigForm.UseVisualStyleBackColor = true;
+            // 
             // checkBoxHen
             // 
             this.checkBoxHen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -371,8 +416,8 @@ namespace PhongKham
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Lime;
             this.pictureBox2.Location = new System.Drawing.Point(9, 445);
             this.pictureBox2.Name = "pictureBox2";
@@ -402,8 +447,8 @@ namespace PhongKham
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(1104, 488);
@@ -429,9 +474,9 @@ namespace PhongKham
             // 
             // dataGridViewMedicine
             // 
-            this.dataGridViewMedicine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewMedicine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewMedicine.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewMedicine.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridViewMedicine.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -518,9 +563,9 @@ namespace PhongKham
             this.buttonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSearch.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearch.Location = new System.Drawing.Point(1222, 45);
+            this.buttonSearch.Location = new System.Drawing.Point(1222, 108);
             this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(127, 134);
+            this.buttonSearch.Size = new System.Drawing.Size(127, 93);
             this.buttonSearch.TabIndex = 34;
             this.buttonSearch.Text = "Tìm";
             this.buttonSearch.UseVisualStyleBackColor = false;
@@ -530,8 +575,8 @@ namespace PhongKham
             // 
             this.dataGridViewSearchValue.AllowUserToAddRows = false;
             this.dataGridViewSearchValue.AllowUserToDeleteRows = false;
-            this.dataGridViewSearchValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewSearchValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewSearchValue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSearchValue.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewSearchValue.ColumnHeadersHeight = 40;
@@ -618,8 +663,8 @@ namespace PhongKham
             // 
             // ColumnSearchValueMedicines
             // 
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnSearchValueMedicines.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnSearchValueMedicines.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnSearchValueMedicines.FillWeight = 22.3252F;
             this.ColumnSearchValueMedicines.HeaderText = "Thuốc đã dùng";
             this.ColumnSearchValueMedicines.Name = "ColumnSearchValueMedicines";
@@ -627,8 +672,8 @@ namespace PhongKham
             // 
             // labelTongTien
             // 
-            this.labelTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTongTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTongTien.AutoSize = true;
             this.labelTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTongTien.Location = new System.Drawing.Point(1119, 512);
@@ -641,8 +686,8 @@ namespace PhongKham
             // 
             // CoTableLayoutPanel1
             // 
-            this.CoTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.CoTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.CoTableLayoutPanel1.AutoSize = true;
             this.CoTableLayoutPanel1.BackColor = System.Drawing.Color.Gainsboro;
             this.CoTableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
@@ -651,7 +696,7 @@ namespace PhongKham
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.30303F));
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.06061F));
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 448F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 513F));
             this.CoTableLayoutPanel1.Controls.Add(this.label28, 0, 0);
             this.CoTableLayoutPanel1.Controls.Add(this.lblClinicRoomId, 1, 0);
             this.CoTableLayoutPanel1.Controls.Add(this.label1, 0, 1);
@@ -699,7 +744,7 @@ namespace PhongKham
             // lblClinicRoomId
             // 
             this.lblClinicRoomId.AutoSize = true;
-            this.lblClinicRoomId.Location = new System.Drawing.Point(112, 3);
+            this.lblClinicRoomId.Location = new System.Drawing.Point(103, 3);
             this.lblClinicRoomId.Name = "lblClinicRoomId";
             this.lblClinicRoomId.Size = new System.Drawing.Size(19, 18);
             this.lblClinicRoomId.TabIndex = 1;
@@ -726,7 +771,7 @@ namespace PhongKham
             // textBoxClinicNhietDo
             // 
             this.textBoxClinicNhietDo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(496, 119);
+            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(452, 119);
             this.textBoxClinicNhietDo.Name = "textBoxClinicNhietDo";
             this.textBoxClinicNhietDo.Size = new System.Drawing.Size(147, 24);
             this.textBoxClinicNhietDo.TabIndex = 22;
@@ -734,17 +779,18 @@ namespace PhongKham
             // dateTimePickerBirthDay
             // 
             this.dateTimePickerBirthDay.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(112, 85);
+            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(103, 85);
             this.dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
-            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(227, 24);
+            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(219, 24);
             this.dateTimePickerBirthDay.TabIndex = 18;
             this.dateTimePickerBirthDay.ValueChanged += new System.EventHandler(this.dateTimePickerBirthDay_ValueChanged);
             // 
             // txtBoxClinicRoomAddress
             // 
-            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(112, 119);
+            this.txtBoxClinicRoomAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(103, 119);
             this.txtBoxClinicRoomAddress.Name = "txtBoxClinicRoomAddress";
-            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(227, 24);
+            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(219, 24);
             this.txtBoxClinicRoomAddress.TabIndex = 19;
             // 
             // label3
@@ -759,7 +805,7 @@ namespace PhongKham
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(363, 116);
+            this.label45.Location = new System.Drawing.Point(331, 116);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(67, 18);
             this.label45.TabIndex = 40;
@@ -767,18 +813,16 @@ namespace PhongKham
             // 
             // comboBoxClinicRoomName
             // 
-            this.comboBoxClinicRoomName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxClinicRoomName.FormattingEnabled = true;
-            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(112, 49);
+            this.comboBoxClinicRoomName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(103, 49);
             this.comboBoxClinicRoomName.Name = "comboBoxClinicRoomName";
-            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(227, 26);
+            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(219, 24);
             this.comboBoxClinicRoomName.TabIndex = 17;
-            this.comboBoxClinicRoomName.SelectedValueChanged += new System.EventHandler(this.comboBoxClinicRoomName_SelectedValueChanged);
             this.comboBoxClinicRoomName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxClinicRoomName_KeyPress);
             // 
             // buttonClinicCreateNew
             // 
-            this.buttonClinicCreateNew.Location = new System.Drawing.Point(740, 6);
+            this.buttonClinicCreateNew.Location = new System.Drawing.Point(674, 6);
             this.buttonClinicCreateNew.Name = "buttonClinicCreateNew";
             this.buttonClinicCreateNew.Size = new System.Drawing.Size(187, 26);
             this.buttonClinicCreateNew.TabIndex = 24;
@@ -788,7 +832,7 @@ namespace PhongKham
             // 
             // buttonClinicClear
             // 
-            this.buttonClinicClear.Location = new System.Drawing.Point(740, 49);
+            this.buttonClinicClear.Location = new System.Drawing.Point(674, 49);
             this.buttonClinicClear.Name = "buttonClinicClear";
             this.buttonClinicClear.Size = new System.Drawing.Size(75, 26);
             this.buttonClinicClear.TabIndex = 30;
@@ -798,7 +842,7 @@ namespace PhongKham
             // 
             // txtBoxClinicRoomWeight
             // 
-            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(496, 85);
+            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(452, 85);
             this.txtBoxClinicRoomWeight.Name = "txtBoxClinicRoomWeight";
             this.txtBoxClinicRoomWeight.Size = new System.Drawing.Size(147, 24);
             this.txtBoxClinicRoomWeight.TabIndex = 21;
@@ -807,7 +851,7 @@ namespace PhongKham
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(363, 82);
+            this.label5.Location = new System.Drawing.Point(331, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 18);
             this.label5.TabIndex = 4;
@@ -816,7 +860,7 @@ namespace PhongKham
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(363, 46);
+            this.label4.Location = new System.Drawing.Point(331, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 18);
             this.label4.TabIndex = 3;
@@ -824,7 +868,7 @@ namespace PhongKham
             // 
             // txtBoxClinicRoomHeight
             // 
-            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(496, 49);
+            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(452, 49);
             this.txtBoxClinicRoomHeight.Name = "txtBoxClinicRoomHeight";
             this.txtBoxClinicRoomHeight.Size = new System.Drawing.Size(147, 24);
             this.txtBoxClinicRoomHeight.TabIndex = 20;
@@ -832,28 +876,28 @@ namespace PhongKham
             // 
             // label31
             // 
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(363, 3);
+            this.label31.Location = new System.Drawing.Point(331, 3);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(124, 40);
+            this.label31.Size = new System.Drawing.Size(112, 40);
             this.label31.TabIndex = 25;
             this.label31.Text = "Ngày Khám";
             // 
             // dateTimePickerNgayKham
             // 
             this.dateTimePickerNgayKham.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(496, 6);
+            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(452, 6);
             this.dateTimePickerNgayKham.Name = "dateTimePickerNgayKham";
-            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(214, 24);
+            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(213, 24);
             this.dateTimePickerNgayKham.TabIndex = 26;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(363, 152);
+            this.label30.Location = new System.Drawing.Point(331, 152);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(71, 18);
             this.label30.TabIndex = 41;
@@ -861,7 +905,7 @@ namespace PhongKham
             // 
             // textBoxHuyetAp
             // 
-            this.textBoxHuyetAp.Location = new System.Drawing.Point(496, 155);
+            this.textBoxHuyetAp.Location = new System.Drawing.Point(452, 155);
             this.textBoxHuyetAp.Name = "textBoxHuyetAp";
             this.textBoxHuyetAp.Size = new System.Drawing.Size(147, 24);
             this.textBoxHuyetAp.TabIndex = 23;
@@ -878,7 +922,7 @@ namespace PhongKham
             // labelTuoi
             // 
             this.labelTuoi.AutoSize = true;
-            this.labelTuoi.Location = new System.Drawing.Point(112, 152);
+            this.labelTuoi.Location = new System.Drawing.Point(103, 152);
             this.labelTuoi.Name = "labelTuoi";
             this.labelTuoi.Size = new System.Drawing.Size(16, 18);
             this.labelTuoi.TabIndex = 44;
@@ -886,7 +930,7 @@ namespace PhongKham
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(740, 155);
+            this.button3.Location = new System.Drawing.Point(674, 155);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(162, 32);
             this.button3.TabIndex = 45;
@@ -1097,32 +1141,32 @@ namespace PhongKham
             // 
             // calendar1
             // 
-            this.calendar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.calendar1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.calendar1.ContextMenuStrip = this.contextMenuStrip1;
             this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange6,
-        calendarHighlightRange7,
-        calendarHighlightRange8,
-        calendarHighlightRange9,
-        calendarHighlightRange10};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
             this.calendar1.Location = new System.Drawing.Point(0, 0);
             this.calendar1.Name = "calendar1";
             this.calendar1.Size = new System.Drawing.Size(496, 643);
@@ -1819,7 +1863,7 @@ namespace PhongKham
             this.CoTableLayoutPanel6.ColumnCount = 3;
             this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20567F));
             this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79433F));
-            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 244F));
+            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
             this.CoTableLayoutPanel6.Controls.Add(this.label39, 0, 1);
             this.CoTableLayoutPanel6.Controls.Add(this.label40, 0, 2);
             this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupSource, 1, 0);
@@ -1858,28 +1902,28 @@ namespace PhongKham
             // 
             // textBoxBackupSource
             // 
-            this.textBoxBackupSource.Location = new System.Drawing.Point(99, 3);
+            this.textBoxBackupSource.Location = new System.Drawing.Point(95, 3);
             this.textBoxBackupSource.Name = "textBoxBackupSource";
-            this.textBoxBackupSource.Size = new System.Drawing.Size(205, 24);
+            this.textBoxBackupSource.Size = new System.Drawing.Size(196, 24);
             this.textBoxBackupSource.TabIndex = 3;
             // 
             // textBoxBackupTarget
             // 
-            this.textBoxBackupTarget.Location = new System.Drawing.Point(99, 47);
+            this.textBoxBackupTarget.Location = new System.Drawing.Point(95, 47);
             this.textBoxBackupTarget.Name = "textBoxBackupTarget";
-            this.textBoxBackupTarget.Size = new System.Drawing.Size(205, 24);
+            this.textBoxBackupTarget.Size = new System.Drawing.Size(196, 24);
             this.textBoxBackupTarget.TabIndex = 4;
             // 
             // textBoxBackupTimeAuto
             // 
-            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(99, 91);
+            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(95, 91);
             this.textBoxBackupTimeAuto.Name = "textBoxBackupTimeAuto";
             this.textBoxBackupTimeAuto.Size = new System.Drawing.Size(100, 24);
             this.textBoxBackupTimeAuto.TabIndex = 5;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(310, 3);
+            this.button2.Location = new System.Drawing.Point(297, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 38);
             this.button2.TabIndex = 6;
@@ -1889,7 +1933,7 @@ namespace PhongKham
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(310, 47);
+            this.button4.Location = new System.Drawing.Point(297, 47);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 38);
             this.button4.TabIndex = 7;
@@ -1900,7 +1944,7 @@ namespace PhongKham
             // checkBoxAutoCopy
             // 
             this.checkBoxAutoCopy.AutoSize = true;
-            this.checkBoxAutoCopy.Location = new System.Drawing.Point(310, 91);
+            this.checkBoxAutoCopy.Location = new System.Drawing.Point(297, 91);
             this.checkBoxAutoCopy.Name = "checkBoxAutoCopy";
             this.checkBoxAutoCopy.Size = new System.Drawing.Size(93, 22);
             this.checkBoxAutoCopy.TabIndex = 8;
@@ -2628,7 +2672,7 @@ namespace PhongKham
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Button buttonSearch;
         private System.Windows.Forms.DataGridView dataGridViewSearchValue;
-        private System.Windows.Forms.ComboBox comboBoxClinicRoomName;
+        private System.Windows.Forms.TextBox comboBoxClinicRoomName;
         private DataGridView dataGridViewMedicine;
         private Button buttonPutIn;
         private Label label8;
@@ -2772,6 +2816,9 @@ namespace PhongKham
         private DataGridViewTextBoxColumn dataGridViewButtonColumn1;
         private DataGridViewButtonColumn ColumnKhamVaXoa;
         private Button button3;
+        private CheckBox ShowMedicines;
+        private CheckBox ShowBigForm;
+        private CheckBox Show1Record;
     }
 }
 

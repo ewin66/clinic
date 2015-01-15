@@ -53,5 +53,7 @@ namespace Clinic
             this.nameOfDoctor = nameOfDoctor;
             this.money = money;
         }
+
+
     }
 }

@@ -38,8 +38,9 @@ namespace Clinic
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string namePDF = "";
+            string namePDF = "TuThuoc";
             Helper.CreateAPdfThongKe(this.dataGridView1, namePDF);
+            this.PDFShowMedicines.LoadFile("TuThuoc.pdf");
         }
 
         private void button2_Click(object sender, EventArgs e)

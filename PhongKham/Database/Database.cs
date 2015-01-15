@@ -131,29 +131,31 @@ namespace Clinic.Database
             {
                 string strCommand = "grant all privileges on *.* to 'root'@'%' identified by " + Helper.ConvertToSqlString(password);
                 ExecuteNonQuery(strCommand, null);
-                ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic;", null);
+                ExecuteNonQuery("CREATE DATABASE IF NOT EXISTS clinic DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
                 tConnection.ConnectionString += ";database=clinic;";
                 tConnection.ConnectionString += ";password=" + password;
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS clinicuser(Username varchar(50),Password1  varchar(50),Authority  smallint(6), Password2  varchar(50));", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime);", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Idpatient INT NOT NULL AUTO_INCREMENT,Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),PRIMARY KEY (Idpatient));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS patient(Idpatient INT NOT NULL AUTO_INCREMENT,Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11),PRIMARY KEY (Idpatient)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS calendar(IdCalendar INT NOT NULL,Username varchar(50),StartTime datetime,EndTime datetime,Text Longtext,Color int, PRIMARY KEY (IdCalendar)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS listpatienttoday(Id varchar(10) NOT NULL,Name TEXT NULL,State VARCHAR(45) NULL, PRIMARY KEY (Id));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS listpatienttoday(Id varchar(10) NOT NULL,Name TEXT NULL,State VARCHAR(45) NULL, PRIMARY KEY (Id)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS doanhthu(Iddoanhthu INT NOT NULL AUTO_INCREMENT,Namedoctor TEXT NULL,Money int NULL,time datetime, PRIMARY KEY (Iddoanhthu));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS doanhthu(Iddoanhthu INT NOT NULL AUTO_INCREMENT,Namedoctor TEXT NULL,Money int NULL,time datetime, PRIMARY KEY (Iddoanhthu)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
-                ExecuteNonQuery("CREATE Table IF NOT EXISTS lichhen(Idlichhen INT NOT NULL AUTO_INCREMENT,Idpatient varchar(10),Namedoctor TEXT NULL,Namepatient TEXT NULL,time datetime,benh TEXT NULL,phone VARCHAR(45), PRIMARY KEY (Idlichhen));", null);
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS lichhen(Idlichhen INT NOT NULL AUTO_INCREMENT,Idpatient varchar(10),Namedoctor TEXT NULL,Namepatient TEXT NULL,time datetime,benh TEXT NULL,phone VARCHAR(45), PRIMARY KEY (Idlichhen)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
                 UpdateDatabase(password);
             }
             catch (Exception e)
-            { }
+            {
+                
+            }
             
         }
 

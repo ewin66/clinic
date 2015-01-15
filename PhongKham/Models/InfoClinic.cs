@@ -36,5 +36,37 @@ namespace Clinic.Models
             get { return advice; }
             set { advice = value; }
         }
+
+        private string pathData;
+
+        public string PathData
+        {
+            get { return pathData; }
+            set { pathData = value; }
+        }
+        private string pathTargetBackup;
+
+        public string PathTargetBackup
+        {
+            get { return pathTargetBackup; }
+            set { pathTargetBackup = value; }
+        }
+
+        private string CheckedBackup;
+
+        public string CheckedBackup1
+        {
+            get { return CheckedBackup; }
+            set { CheckedBackup = value; }
+        }
+
+        private string timeBackup;
+
+        public string TimeBackup
+        {
+            get { return timeBackup; }
+            set { timeBackup = value; }
+        }
+
     }
 }

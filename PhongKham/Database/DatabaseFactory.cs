@@ -26,7 +26,7 @@ namespace Clinic.Database
             //if else here
             MySqlConnectionStringBuilder stringBuilder = new MySqlConnectionStringBuilder();
             StringBuilderCopy(strBuilder, stringBuilder);
-            instance = new MySqlDatabase(stringBuilder.ConnectionString);
+            instance = new MySqlDatabase(stringBuilder.ConnectionString + ';' + "charset = utf8");
         }
 
         private static void StringBuilderCopy(DbConStringBuilder strBuilder, MySqlConnectionStringBuilder stringBuilder)

@@ -76,7 +76,7 @@ namespace Clinic
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Kết nối SQl server thất bại , vui lòng thử lại !");
+                MessageBox.Show("Kết nối SQl server thất bại , vui lòng thử lại !"+ex.Message);
                 File.Delete("WriteLines.txt");
                 return;
             }

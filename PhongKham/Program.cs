@@ -31,7 +31,8 @@ namespace PhongKham
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
+
 
             if (!File.Exists("WriteLines.txt"))
             {

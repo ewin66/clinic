@@ -679,30 +679,150 @@ namespace Clinic.Helpers
 
             style.ParagraphFormat.Font.Color = Colors.Blue;
         }
+
+        internal static void CreateAPdfThongKeDoanhThu(System.Windows.Forms.DataGridView dataGridView, string namePDF,int tongLuotKham,string tongDoanhThu)
+        {
+            Document document = new Document();
+            document.Info.Author = "Luong Y";
+            Unit width, height;
+            PageSetup.GetPageSize(PageFormat.A4, out width, out height);
+            document.DefaultPageSetup.PageWidth = width;
+            document.DefaultPageSetup.PageHeight = height;
+
+            Section section = document.AddSection();
+
+            Paragraph paragraphTitle = section.AddParagraph();
+            paragraphTitle.Format.Alignment = ParagraphAlignment.Center;
+            paragraphTitle.AddTab();
+            paragraphTitle.AddTab();
+
+
+
+            paragraphTitle.AddFormattedText("Doanh Thu \n \n", new MigraDoc.DocumentObjectModel.Font("Times New Roman", 24));
+
+
+
+
+            section.PageSetup.LeftMargin = 1;
+
+            Paragraph paragraph = section.Headers.Primary.AddParagraph();
+
+            paragraph.AddText("Lượt Khám: "+tongLuotKham.ToString()); 
+            paragraph.AddText(" \n");
+
+            paragraph.AddText("Tổng tiền: "+tongDoanhThu);
+            paragraph.AddText(" \n");
+
+            Table tableMedicines = section.AddTable();
+            tableMedicines.Borders.Width = 0.5;
+            tableMedicines.BottomPadding = 1;
+            //Column columnMedicines1 = tableMedicines.AddColumn(30);
+            //for (int i = 0; i < dataGridView.Columns.Count; i++)
+            //{
+                Column columnMedicines1 = tableMedicines.AddColumn();
+                Column columnMedicines2 = tableMedicines.AddColumn(200);
+                Column columnMedicines3 = tableMedicines.AddColumn(100);
+                Column columnMedicines4 = tableMedicines.AddColumn(50);
+                Column columnMedicines5 = tableMedicines.AddColumn(200);
+            //}
+
+
+                Row rowHeaderText = tableMedicines.AddRow();
+                rowHeaderText.Cells[0].AddParagraph("Ngày khám");
+                rowHeaderText.Cells[1].AddParagraph("Tên bác sĩ");
+                rowHeaderText.Cells[2].AddParagraph("Tiền");
+                rowHeaderText.Cells[3].AddParagraph("ID bệnh nhân");
+                rowHeaderText.Cells[4].AddParagraph("Tên bệnh nhân");
+
+
+
+            for (int i = 0; i < dataGridView.Rows.Count - 1; i++)
+            {
+                Row row = tableMedicines.AddRow();
+                row.Cells[0].AddParagraph(dataGridView.Rows[i].Cells["date"].Value != null ? dataGridView.Rows[i].Cells["date"].Value.ToString() : "");
+                row.Cells[1].AddParagraph(dataGridView.Rows[i].Cells["NameDoctor"].Value != null ? dataGridView.Rows[i].Cells["NameDoctor"].Value.ToString() : "");
+                row.Cells[2].AddParagraph(dataGridView.Rows[i].Cells["Money"].Value != null ? dataGridView.Rows[i].Cells["Money"].Value.ToString() : "");
+                row.Cells[3].AddParagraph(dataGridView.Rows[i].Cells["ColumnIdPatient"].Value != null ? dataGridView.Rows[i].Cells["ColumnIdPatient"].Value.ToString() : "");
+                row.Cells[4].AddParagraph(dataGridView.Rows[i].Cells["ColumnNamePatient"].Value != null ? dataGridView.Rows[i].Cells["ColumnNamePatient"].Value.ToString() : "");
+
+            }
+
+
+            PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+            pdfRenderer.Document = document;
+            pdfRenderer.RenderDocument();
+            pdfRenderer.PdfDocument.Save(namePDF + ".pdf");
+        }
+
+
         internal static void CreateAPdfThongKe(System.Windows.Forms.DataGridView dataGridView, string namePDF)
         {
             Document document = new Document();
             document.Info.Author = "Luong Y";
             Unit width, height;
-            PageSetup.GetPageSize(PageFormat.A5, out width, out height);
+            PageSetup.GetPageSize(PageFormat.A4, out width, out height);
             document.DefaultPageSetup.PageWidth = width;
             document.DefaultPageSetup.PageHeight = height;
 
             Section section = document.AddSection();
-            section.PageSetup.LeftMargin = 10;
 
-            Table tableMedicines = new Table();
-            tableMedicines.Borders.Width = 0;
-            tableMedicines.BottomPadding = 10;
-            Column columnMedicines1 = tableMedicines.AddColumn(30);
+            Paragraph paragraphTitle = section.AddParagraph();
+            paragraphTitle.Format.Alignment = ParagraphAlignment.Center;
+            paragraphTitle.AddTab();
+            paragraphTitle.AddTab();
 
+
+
+              paragraphTitle.AddFormattedText("Tủ Thuốc \n \n", new MigraDoc.DocumentObjectModel.Font("Times New Roman", 24));
+ 
+
+
+
+            section.PageSetup.LeftMargin = 1;
+
+            Table tableMedicines = section.AddTable();
+            tableMedicines.Borders.Width = 0.5;
+            tableMedicines.BottomPadding = 1;
+            //Column columnMedicines1 = tableMedicines.AddColumn(30);
+            for (int i = 0; i<dataGridView.Columns.Count; i++)
+            {
+
+                if (i == 1)
+                {
+                    Column columnMedicines1 = tableMedicines.AddColumn(150);
+                    
+                }
+                else {
+                    Column columnMedicines1 = tableMedicines.AddColumn();
+                }
+            }
+
+            Row rowHeaderText = tableMedicines.AddRow();
+            rowHeaderText.Cells[0].AddParagraph("Id");
+            rowHeaderText.Cells[1].AddParagraph("Tên thuốc");
+            rowHeaderText.Cells[2].AddParagraph("Số lượng");
+            rowHeaderText.Cells[3].AddParagraph("Giá vào");
+            rowHeaderText.Cells[4].AddParagraph("Giá ra");
+            rowHeaderText.Cells[5].AddParagraph("Ngày nhập");
+
+            for (int i = 0; i < dataGridView.Rows.Count-1; i++)
+            {
+                Row row = tableMedicines.AddRow();
+                row.Cells[0].AddParagraph(dataGridView.Rows[i].Cells["ColumnId"].Value != null ? dataGridView.Rows[i].Cells["ColumnId"].Value.ToString() : "");
+                row.Cells[1].AddParagraph(dataGridView.Rows[i].Cells["ColumnName"].Value != null ? dataGridView.Rows[i].Cells["ColumnName"].Value.ToString() : "");
+                row.Cells[2].AddParagraph(dataGridView.Rows[i].Cells["ColumnCount"].Value != null ? dataGridView.Rows[i].Cells["ColumnCount"].Value.ToString() : "");
+                row.Cells[3].AddParagraph(dataGridView.Rows[i].Cells["ColumnCostIn"].Value != null ? dataGridView.Rows[i].Cells["ColumnCostIn"].Value.ToString() : "");
+                row.Cells[4].AddParagraph(dataGridView.Rows[i].Cells["ColumnCostOut"].Value != null ? dataGridView.Rows[i].Cells["ColumnCostOut"].Value.ToString() : "");
+                row.Cells[5].AddParagraph(dataGridView.Rows[i].Cells["ColumnInputDay"].Value != null ? dataGridView.Rows[i].Cells["ColumnInputDay"].Value.ToString() : "");
+            }
+            
 
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
             pdfRenderer.PdfDocument.Save(namePDF+".pdf");
         }
-        public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi)
+        public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi,int Stt)
         {
 
 
@@ -715,9 +835,9 @@ namespace Clinic.Helpers
             document.DefaultPageSetup.PageHeight = height;
            
             int tongTienThuoc = 0;
-            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi);
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi,Stt);
 
-            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno, tuoi);
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno, tuoi,Stt);
 
             //document.LastSection.AddPageBreak();
 
@@ -734,7 +854,7 @@ namespace Clinic.Helpers
 
         }
 
-        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc, string Diagno, string tuoi)
+        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc, string Diagno, string tuoi,int Stt)
         {
             Section section = document.AddSection();
             section.PageSetup.LeftMargin = 10;
@@ -754,9 +874,20 @@ namespace Clinic.Helpers
             paragraph.AddText(addressArray[1]);
             paragraph.AddText(" \n");
 
+
+
             string[] sdtArray = InformationOfClinic.Sdt.Split(';');
             paragraph.AddSpace(int.Parse(sdtArray[0]));
             paragraph.AddText(sdtArray[1]);
+
+
+            Paragraph paragraph2 = section.Headers.Primary.AddParagraph();
+
+            paragraph2.Format.Alignment = ParagraphAlignment.Right;
+            paragraph2.AddText("ID : " + MaBn);
+            paragraph2.AddText(" \n");
+            paragraph2.AddText("STT : " + Stt);
+
             paragraph.AddText(" \n");
             paragraph.AddText(" \n");
             paragraph.AddText(" \n");
@@ -1102,17 +1233,48 @@ namespace Clinic.Helpers
             {
                 while (reader.Read())
                 {
+                    
                     ItemDoanhThu item = new ItemDoanhThu();
                     item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
                     item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
                     item.Money = (int)reader[DatabaseContants.doanhthu.Money];
                     item.IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
                     item.NamePatient = reader[DatabaseContants.doanhthu.NamePatient].ToString();
-                    result.Add(item);
+                    if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
+                    {
+                        result.Add(item);
+                    }
+                   
                 }
             }
 
             return result;
+        }
+
+
+        internal static int LaySTTTheoNgay(IDatabase db, DateTime dateTime, string Id)
+        {
+
+            List<string> result = new List<string>();
+
+            string strCommand = " SELECT * FROM doanhthu   WHERE time = " + Helper.ConvertToSqlString(dateTime.ToString("yyyy-MM-dd"));
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+
+
+                    string IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
+                    if (result.Contains(IdPatient)==false)
+                    {
+                        result.Add(IdPatient);
+                    }
+
+                }
+            }
+
+            int k = result.Count;
+            return k++;
         }
 
         internal static List<ItemDoanhThu> DoanhThuTheoThang(IDatabase db, DateTime dateTime)
@@ -1130,7 +1292,11 @@ namespace Clinic.Helpers
                     item.Money = (int)reader[DatabaseContants.doanhthu.Money];
                     item.IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
                     item.NamePatient = reader[DatabaseContants.doanhthu.NamePatient].ToString();
-                    result.Add(item);
+                    if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
+                    {
+                        result.Add(item);
+                    }
+
                 }
             }
 
@@ -1249,7 +1415,7 @@ namespace Clinic.Helpers
             return id;
         }
 
-        internal static List<Medicine> GetMedicinesFromHistory(IDatabase db,string IdPatient, string datetime)
+        internal static List<Medicine> GetMedicinesFromHistory(IDatabase db,string IdPatient, string datetime, ref bool isNew )
         {
             List<Medicine> result = new List<Medicine>();
             string strCommand = "Select Medicines from history where Id = " + IdPatient + " And Day=" + ConvertToSqlString(datetime);
@@ -1259,6 +1425,11 @@ namespace Clinic.Helpers
                 if (reader.HasRows)
                 {
                     string medicines = reader[DatabaseContants.history.Medicines].ToString();
+                    if (medicines == "Dd nhập bệnh nhân mới,!"|| medicines =="Dd nh?p b?nh nhân m?i,!")
+                    {
+                        isNew = true;
+                        return result;
+                    }
                     string[] medicineAndCount = new string[] { };
                     if (!string.IsNullOrEmpty(medicines))
                     {
@@ -1394,5 +1565,28 @@ namespace Clinic.Helpers
         }
 
 
+
+        internal static void RefreshDoanhThu()
+        {
+             
+        }
+
+        internal static bool SameAddressAndName(IDatabase db, string name, string address)
+        {
+
+            string strCommand = "SELECT Name,Address FROM Patient WHERE Name = " + ConvertToSqlString(name) + " and " + "Address = " + ConvertToSqlString(address);
+            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
+            reader.Read();
+
+            try
+            {
+                return reader.HasRows;
+            }
+            finally
+            {
+                reader.Close();
+
+            }
+        }
     }
 }

@@ -12,7 +12,6 @@ C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.exe
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.pdb
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.pdb
-C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\DevComponents.DotNetBar2.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MySql.Data.dll
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
@@ -59,3 +58,4 @@ C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Doa
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.TuThuocForm.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Services.resources
 C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.SearchForm.resources
