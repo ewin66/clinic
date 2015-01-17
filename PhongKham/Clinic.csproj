@@ -129,6 +129,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClinicConstant.cs" />
     <Compile Include="CoTableLayoutPanel .cs">
       <SubType>Component</SubType>
     </Compile>

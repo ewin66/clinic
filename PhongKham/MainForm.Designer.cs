@@ -40,6 +40,7 @@ namespace PhongKham
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.circularProgress1 = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.Show1Record = new System.Windows.Forms.CheckBox();
@@ -302,6 +303,24 @@ namespace PhongKham
             label26.TabIndex = 26;
             label26.Text = "Đây là khung nhập mới thuốc , số Id là mặc định";
             // 
+            // circularProgress1
+            // 
+            this.circularProgress1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.circularProgress1.BackColor = System.Drawing.SystemColors.Window;
+            // 
+            // 
+            // 
+            this.circularProgress1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.circularProgress1.FocusCuesEnabled = false;
+            this.circularProgress1.Location = new System.Drawing.Point(454, 219);
+            this.circularProgress1.Name = "circularProgress1";
+            this.circularProgress1.ProgressBarType = DevComponents.DotNetBar.eCircularProgressType.Donut;
+            this.circularProgress1.ProgressColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.circularProgress1.ProgressTextVisible = true;
+            this.circularProgress1.Size = new System.Drawing.Size(301, 70);
+            this.circularProgress1.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
+            this.circularProgress1.TabIndex = 0;
+            // 
             // MainTab
             // 
             this.MainTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -323,6 +342,7 @@ namespace PhongKham
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.Show1Record);
+            this.tabPage1.Controls.Add(this.circularProgress1);
             this.tabPage1.Controls.Add(this.ShowMedicines);
             this.tabPage1.Controls.Add(this.ShowBigForm);
             this.tabPage1.Controls.Add(this.checkBoxHen);
@@ -696,7 +716,7 @@ namespace PhongKham
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.30303F));
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.06061F));
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 513F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 518F));
             this.CoTableLayoutPanel1.Controls.Add(this.label28, 0, 0);
             this.CoTableLayoutPanel1.Controls.Add(this.lblClinicRoomId, 1, 0);
             this.CoTableLayoutPanel1.Controls.Add(this.label1, 0, 1);
@@ -744,7 +764,7 @@ namespace PhongKham
             // lblClinicRoomId
             // 
             this.lblClinicRoomId.AutoSize = true;
-            this.lblClinicRoomId.Location = new System.Drawing.Point(103, 3);
+            this.lblClinicRoomId.Location = new System.Drawing.Point(102, 3);
             this.lblClinicRoomId.Name = "lblClinicRoomId";
             this.lblClinicRoomId.Size = new System.Drawing.Size(19, 18);
             this.lblClinicRoomId.TabIndex = 1;
@@ -771,7 +791,7 @@ namespace PhongKham
             // textBoxClinicNhietDo
             // 
             this.textBoxClinicNhietDo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(452, 119);
+            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(449, 119);
             this.textBoxClinicNhietDo.Name = "textBoxClinicNhietDo";
             this.textBoxClinicNhietDo.Size = new System.Drawing.Size(147, 24);
             this.textBoxClinicNhietDo.TabIndex = 22;
@@ -779,18 +799,18 @@ namespace PhongKham
             // dateTimePickerBirthDay
             // 
             this.dateTimePickerBirthDay.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(103, 85);
+            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(102, 85);
             this.dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
-            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(219, 24);
+            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(218, 24);
             this.dateTimePickerBirthDay.TabIndex = 18;
             this.dateTimePickerBirthDay.ValueChanged += new System.EventHandler(this.dateTimePickerBirthDay_ValueChanged);
             // 
             // txtBoxClinicRoomAddress
             // 
             this.txtBoxClinicRoomAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(103, 119);
+            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(102, 119);
             this.txtBoxClinicRoomAddress.Name = "txtBoxClinicRoomAddress";
-            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(219, 24);
+            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(218, 24);
             this.txtBoxClinicRoomAddress.TabIndex = 19;
             // 
             // label3
@@ -805,7 +825,7 @@ namespace PhongKham
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(331, 116);
+            this.label45.Location = new System.Drawing.Point(329, 116);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(67, 18);
             this.label45.TabIndex = 40;
@@ -814,15 +834,15 @@ namespace PhongKham
             // comboBoxClinicRoomName
             // 
             this.comboBoxClinicRoomName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(103, 49);
+            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(102, 49);
             this.comboBoxClinicRoomName.Name = "comboBoxClinicRoomName";
-            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(219, 24);
+            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(218, 24);
             this.comboBoxClinicRoomName.TabIndex = 17;
             this.comboBoxClinicRoomName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxClinicRoomName_KeyPress);
             // 
             // buttonClinicCreateNew
             // 
-            this.buttonClinicCreateNew.Location = new System.Drawing.Point(674, 6);
+            this.buttonClinicCreateNew.Location = new System.Drawing.Point(669, 6);
             this.buttonClinicCreateNew.Name = "buttonClinicCreateNew";
             this.buttonClinicCreateNew.Size = new System.Drawing.Size(187, 26);
             this.buttonClinicCreateNew.TabIndex = 24;
@@ -832,7 +852,7 @@ namespace PhongKham
             // 
             // buttonClinicClear
             // 
-            this.buttonClinicClear.Location = new System.Drawing.Point(674, 49);
+            this.buttonClinicClear.Location = new System.Drawing.Point(669, 49);
             this.buttonClinicClear.Name = "buttonClinicClear";
             this.buttonClinicClear.Size = new System.Drawing.Size(75, 26);
             this.buttonClinicClear.TabIndex = 30;
@@ -842,7 +862,7 @@ namespace PhongKham
             // 
             // txtBoxClinicRoomWeight
             // 
-            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(452, 85);
+            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(449, 85);
             this.txtBoxClinicRoomWeight.Name = "txtBoxClinicRoomWeight";
             this.txtBoxClinicRoomWeight.Size = new System.Drawing.Size(147, 24);
             this.txtBoxClinicRoomWeight.TabIndex = 21;
@@ -851,7 +871,7 @@ namespace PhongKham
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(331, 82);
+            this.label5.Location = new System.Drawing.Point(329, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 18);
             this.label5.TabIndex = 4;
@@ -860,7 +880,7 @@ namespace PhongKham
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(331, 46);
+            this.label4.Location = new System.Drawing.Point(329, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 18);
             this.label4.TabIndex = 3;
@@ -868,7 +888,7 @@ namespace PhongKham
             // 
             // txtBoxClinicRoomHeight
             // 
-            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(452, 49);
+            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(449, 49);
             this.txtBoxClinicRoomHeight.Name = "txtBoxClinicRoomHeight";
             this.txtBoxClinicRoomHeight.Size = new System.Drawing.Size(147, 24);
             this.txtBoxClinicRoomHeight.TabIndex = 20;
@@ -880,24 +900,24 @@ namespace PhongKham
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(331, 3);
+            this.label31.Location = new System.Drawing.Point(329, 3);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(112, 40);
+            this.label31.Size = new System.Drawing.Size(111, 40);
             this.label31.TabIndex = 25;
             this.label31.Text = "Ngày Khám";
             // 
             // dateTimePickerNgayKham
             // 
             this.dateTimePickerNgayKham.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(452, 6);
+            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(449, 6);
             this.dateTimePickerNgayKham.Name = "dateTimePickerNgayKham";
-            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(213, 24);
+            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(211, 24);
             this.dateTimePickerNgayKham.TabIndex = 26;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(331, 152);
+            this.label30.Location = new System.Drawing.Point(329, 152);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(71, 18);
             this.label30.TabIndex = 41;
@@ -905,7 +925,7 @@ namespace PhongKham
             // 
             // textBoxHuyetAp
             // 
-            this.textBoxHuyetAp.Location = new System.Drawing.Point(452, 155);
+            this.textBoxHuyetAp.Location = new System.Drawing.Point(449, 155);
             this.textBoxHuyetAp.Name = "textBoxHuyetAp";
             this.textBoxHuyetAp.Size = new System.Drawing.Size(147, 24);
             this.textBoxHuyetAp.TabIndex = 23;
@@ -922,7 +942,7 @@ namespace PhongKham
             // labelTuoi
             // 
             this.labelTuoi.AutoSize = true;
-            this.labelTuoi.Location = new System.Drawing.Point(103, 152);
+            this.labelTuoi.Location = new System.Drawing.Point(102, 152);
             this.labelTuoi.Name = "labelTuoi";
             this.labelTuoi.Size = new System.Drawing.Size(16, 18);
             this.labelTuoi.TabIndex = 44;
@@ -930,7 +950,7 @@ namespace PhongKham
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(674, 155);
+            this.button3.Location = new System.Drawing.Point(669, 155);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(162, 32);
             this.button3.TabIndex = 45;
@@ -1084,10 +1104,10 @@ namespace PhongKham
             this.expandableSplitter1.ExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.expandableSplitter1.GripDarkColor = System.Drawing.SystemColors.ControlText;
             this.expandableSplitter1.GripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandableSplitter1.GripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.expandableSplitter1.GripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(236)))), ((int)(((byte)(248)))));
             this.expandableSplitter1.GripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
-            this.expandableSplitter1.HotBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(254)))), ((int)(((byte)(142)))), ((int)(((byte)(75)))));
-            this.expandableSplitter1.HotBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(207)))), ((int)(((byte)(139)))));
+            this.expandableSplitter1.HotBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(140)))), ((int)(((byte)(72)))));
+            this.expandableSplitter1.HotBackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(204)))), ((int)(((byte)(136)))));
             this.expandableSplitter1.HotBackColor2SchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground2;
             this.expandableSplitter1.HotBackColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemPressedBackground;
             this.expandableSplitter1.HotExpandFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
@@ -1096,7 +1116,7 @@ namespace PhongKham
             this.expandableSplitter1.HotExpandLineColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.expandableSplitter1.HotGripDarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(45)))), ((int)(((byte)(150)))));
             this.expandableSplitter1.HotGripDarkColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBorder;
-            this.expandableSplitter1.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.expandableSplitter1.HotGripLightColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(236)))), ((int)(((byte)(248)))));
             this.expandableSplitter1.HotGripLightColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
             this.expandableSplitter1.Location = new System.Drawing.Point(0, 0);
             this.expandableSplitter1.Name = "expandableSplitter1";
@@ -1863,7 +1883,7 @@ namespace PhongKham
             this.CoTableLayoutPanel6.ColumnCount = 3;
             this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20567F));
             this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79433F));
-            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 257F));
+            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 258F));
             this.CoTableLayoutPanel6.Controls.Add(this.label39, 0, 1);
             this.CoTableLayoutPanel6.Controls.Add(this.label40, 0, 2);
             this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupSource, 1, 0);
@@ -1902,28 +1922,28 @@ namespace PhongKham
             // 
             // textBoxBackupSource
             // 
-            this.textBoxBackupSource.Location = new System.Drawing.Point(95, 3);
+            this.textBoxBackupSource.Location = new System.Drawing.Point(94, 3);
             this.textBoxBackupSource.Name = "textBoxBackupSource";
             this.textBoxBackupSource.Size = new System.Drawing.Size(196, 24);
             this.textBoxBackupSource.TabIndex = 3;
             // 
             // textBoxBackupTarget
             // 
-            this.textBoxBackupTarget.Location = new System.Drawing.Point(95, 47);
+            this.textBoxBackupTarget.Location = new System.Drawing.Point(94, 47);
             this.textBoxBackupTarget.Name = "textBoxBackupTarget";
             this.textBoxBackupTarget.Size = new System.Drawing.Size(196, 24);
             this.textBoxBackupTarget.TabIndex = 4;
             // 
             // textBoxBackupTimeAuto
             // 
-            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(95, 91);
+            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(94, 91);
             this.textBoxBackupTimeAuto.Name = "textBoxBackupTimeAuto";
             this.textBoxBackupTimeAuto.Size = new System.Drawing.Size(100, 24);
             this.textBoxBackupTimeAuto.TabIndex = 5;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(297, 3);
+            this.button2.Location = new System.Drawing.Point(296, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 38);
             this.button2.TabIndex = 6;
@@ -1933,7 +1953,7 @@ namespace PhongKham
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(297, 47);
+            this.button4.Location = new System.Drawing.Point(296, 47);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 38);
             this.button4.TabIndex = 7;
@@ -1944,7 +1964,7 @@ namespace PhongKham
             // checkBoxAutoCopy
             // 
             this.checkBoxAutoCopy.AutoSize = true;
-            this.checkBoxAutoCopy.Location = new System.Drawing.Point(297, 91);
+            this.checkBoxAutoCopy.Location = new System.Drawing.Point(296, 91);
             this.checkBoxAutoCopy.Name = "checkBoxAutoCopy";
             this.checkBoxAutoCopy.Size = new System.Drawing.Size(93, 22);
             this.checkBoxAutoCopy.TabIndex = 8;
@@ -2544,7 +2564,6 @@ namespace PhongKham
             this.ClientSize = new System.Drawing.Size(1375, 707);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.MainTab);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -2819,6 +2838,8 @@ namespace PhongKham
         private CheckBox ShowMedicines;
         private CheckBox ShowBigForm;
         private CheckBox Show1Record;
+
+        private DevComponents.DotNetBar.Controls.CircularProgress circularProgress1;
     }
 }
 
