@@ -30,13 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoanhThuForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnIdPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnNamePatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.G2NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.G2SoLuotKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.G2TongCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -44,21 +41,31 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.PatientNumber = new System.Windows.Forms.Label();
+            this.PatientCountLabel = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.PDFShowDoanhThu = new AxAcroPDFLib.AxAcroPDF();
-            this.G2NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.G2SoLuotKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.G2TongCong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientCountLabel = new System.Windows.Forms.Label();
-            this.PatientNumber = new System.Windows.Forms.Label();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnIdPatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNamePatient = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnServices = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.ColumnServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAdminOfService = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTotalMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDFShowDoanhThu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -73,48 +80,12 @@
             this.NameDoctor,
             this.Money,
             this.ColumnIdPatient,
-            this.ColumnNamePatient});
+            this.ColumnNamePatient,
+            this.ColumnServices});
             this.dataGridView1.Location = new System.Drawing.Point(3, 215);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1323, 630);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Ngày tháng";
-            this.date.Name = "date";
-            this.date.ReadOnly = true;
-            // 
-            // NameDoctor
-            // 
-            this.NameDoctor.HeaderText = "Tên bác sĩ";
-            this.NameDoctor.Name = "NameDoctor";
-            this.NameDoctor.ReadOnly = true;
-            this.NameDoctor.Width = 200;
-            // 
-            // Money
-            // 
-            this.Money.HeaderText = "Số tiền";
-            this.Money.Name = "Money";
-            this.Money.ReadOnly = true;
-            this.Money.Width = 150;
-            // 
-            // ColumnIdPatient
-            // 
-            this.ColumnIdPatient.HeaderText = "Id bệnh nhân";
-            this.ColumnIdPatient.Name = "ColumnIdPatient";
-            // 
-            // ColumnNamePatient
-            // 
-            this.ColumnNamePatient.HeaderText = "Tên bệnh nhân";
-            this.ColumnNamePatient.Name = "ColumnNamePatient";
-            this.ColumnNamePatient.Width = 200;
             // 
             // dataGridView2
             // 
@@ -123,10 +94,28 @@
             this.G2NameDoctor,
             this.G2SoLuotKham,
             this.G2TongCong});
-            this.dataGridView2.Location = new System.Drawing.Point(777, 45);
+            this.dataGridView2.Location = new System.Drawing.Point(777, 6);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(475, 130);
+            this.dataGridView2.Size = new System.Drawing.Size(475, 108);
             this.dataGridView2.TabIndex = 2;
+            // 
+            // G2NameDoctor
+            // 
+            this.G2NameDoctor.HeaderText = "Tên bác sĩ";
+            this.G2NameDoctor.Name = "G2NameDoctor";
+            this.G2NameDoctor.ReadOnly = true;
+            this.G2NameDoctor.Width = 185;
+            // 
+            // G2SoLuotKham
+            // 
+            this.G2SoLuotKham.HeaderText = "Lượt Khám";
+            this.G2SoLuotKham.Name = "G2SoLuotKham";
+            // 
+            // G2TongCong
+            // 
+            this.G2TongCong.HeaderText = "Tổng Cộng";
+            this.G2TongCong.Name = "G2TongCong";
+            this.G2TongCong.ReadOnly = true;
             // 
             // label2
             // 
@@ -187,6 +176,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dataGridView3);
             this.tabPage1.Controls.Add(this.PatientNumber);
             this.tabPage1.Controls.Add(this.PatientCountLabel);
             this.tabPage1.Controls.Add(this.button4);
@@ -205,6 +195,24 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Doanh Thu";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // PatientNumber
+            // 
+            this.PatientNumber.AutoSize = true;
+            this.PatientNumber.Location = new System.Drawing.Point(108, 85);
+            this.PatientNumber.Name = "PatientNumber";
+            this.PatientNumber.Size = new System.Drawing.Size(13, 13);
+            this.PatientNumber.TabIndex = 11;
+            this.PatientNumber.Text = "0";
+            // 
+            // PatientCountLabel
+            // 
+            this.PatientCountLabel.AutoSize = true;
+            this.PatientCountLabel.Location = new System.Drawing.Point(26, 85);
+            this.PatientCountLabel.Name = "PatientCountLabel";
+            this.PatientCountLabel.Size = new System.Drawing.Size(62, 13);
+            this.PatientCountLabel.TabIndex = 10;
+            this.PatientCountLabel.Text = "Bệnh nhân:";
             // 
             // button4
             // 
@@ -234,7 +242,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1139, 848);
+            this.tabPage2.Size = new System.Drawing.Size(1329, 848);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Print";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -246,44 +254,84 @@
             this.PDFShowDoanhThu.Location = new System.Drawing.Point(3, 3);
             this.PDFShowDoanhThu.Name = "PDFShowDoanhThu";
             this.PDFShowDoanhThu.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("PDFShowDoanhThu.OcxState")));
-            this.PDFShowDoanhThu.Size = new System.Drawing.Size(1133, 842);
+            this.PDFShowDoanhThu.Size = new System.Drawing.Size(1323, 842);
             this.PDFShowDoanhThu.TabIndex = 0;
             // 
-            // G2NameDoctor
+            // STT
             // 
-            this.G2NameDoctor.HeaderText = "Tên bác sĩ";
-            this.G2NameDoctor.Name = "G2NameDoctor";
-            this.G2NameDoctor.ReadOnly = true;
-            this.G2NameDoctor.Width = 185;
+            this.STT.HeaderText = "STT";
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
             // 
-            // G2SoLuotKham
+            // date
             // 
-            this.G2SoLuotKham.HeaderText = "Lượt Khám";
-            this.G2SoLuotKham.Name = "G2SoLuotKham";
+            this.date.HeaderText = "Ngày tháng";
+            this.date.Name = "date";
+            this.date.ReadOnly = true;
             // 
-            // G2TongCong
+            // NameDoctor
             // 
-            this.G2TongCong.HeaderText = "Tổng Cộng";
-            this.G2TongCong.Name = "G2TongCong";
-            this.G2TongCong.ReadOnly = true;
+            this.NameDoctor.HeaderText = "Tên bác sĩ";
+            this.NameDoctor.Name = "NameDoctor";
+            this.NameDoctor.ReadOnly = true;
+            this.NameDoctor.Width = 200;
             // 
-            // PatientCountLabel
+            // Money
             // 
-            this.PatientCountLabel.AutoSize = true;
-            this.PatientCountLabel.Location = new System.Drawing.Point(26, 85);
-            this.PatientCountLabel.Name = "PatientCountLabel";
-            this.PatientCountLabel.Size = new System.Drawing.Size(62, 13);
-            this.PatientCountLabel.TabIndex = 10;
-            this.PatientCountLabel.Text = "Bệnh nhân:";
+            this.Money.HeaderText = "Số tiền";
+            this.Money.Name = "Money";
+            this.Money.ReadOnly = true;
+            this.Money.Width = 150;
             // 
-            // PatientNumber
+            // ColumnIdPatient
             // 
-            this.PatientNumber.AutoSize = true;
-            this.PatientNumber.Location = new System.Drawing.Point(108, 85);
-            this.PatientNumber.Name = "PatientNumber";
-            this.PatientNumber.Size = new System.Drawing.Size(13, 13);
-            this.PatientNumber.TabIndex = 11;
-            this.PatientNumber.Text = "0";
+            this.ColumnIdPatient.HeaderText = "Id bệnh nhân";
+            this.ColumnIdPatient.Name = "ColumnIdPatient";
+            // 
+            // ColumnNamePatient
+            // 
+            this.ColumnNamePatient.HeaderText = "Tên bệnh nhân";
+            this.ColumnNamePatient.Name = "ColumnNamePatient";
+            this.ColumnNamePatient.Width = 200;
+            // 
+            // ColumnServices
+            // 
+            this.ColumnServices.HeaderText = "Các dịch vụ";
+            this.ColumnServices.Name = "ColumnServices";
+            this.ColumnServices.Width = 350;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnServiceName,
+            this.ColumnAdminOfService,
+            this.ColumnCount,
+            this.ColumnTotalMoney});
+            this.dataGridView3.Location = new System.Drawing.Point(777, 119);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(475, 90);
+            this.dataGridView3.TabIndex = 12;
+            // 
+            // ColumnServiceName
+            // 
+            this.ColumnServiceName.HeaderText = "Tên Dịch Vụ";
+            this.ColumnServiceName.Name = "ColumnServiceName";
+            // 
+            // ColumnAdminOfService
+            // 
+            this.ColumnAdminOfService.HeaderText = "Người phụ trách";
+            this.ColumnAdminOfService.Name = "ColumnAdminOfService";
+            // 
+            // ColumnCount
+            // 
+            this.ColumnCount.HeaderText = "Số ca";
+            this.ColumnCount.Name = "ColumnCount";
+            // 
+            // ColumnTotalMoney
+            // 
+            this.ColumnTotalMoney.HeaderText = "Tổng tiền";
+            this.ColumnTotalMoney.Name = "ColumnTotalMoney";
             // 
             // DoanhThuForm
             // 
@@ -301,6 +349,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PDFShowDoanhThu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,12 +363,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameDoctor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Money;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIdPatient;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNamePatient;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -331,5 +374,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn G2TongCong;
         private System.Windows.Forms.Label PatientNumber;
         private System.Windows.Forms.Label PatientCountLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameDoctor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Money;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIdPatient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNamePatient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServices;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServiceName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAdminOfService;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTotalMoney;
     }
 }

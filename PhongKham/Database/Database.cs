@@ -150,6 +150,8 @@ namespace Clinic.Database
 
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS lichhen(Idlichhen INT NOT NULL AUTO_INCREMENT,Idpatient varchar(10),Namedoctor TEXT NULL,Namepatient TEXT NULL,time datetime,benh TEXT NULL,phone VARCHAR(45), PRIMARY KEY (Idlichhen)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS loaikham(Idloaikham INT NOT NULL AUTO_INCREMENT,Nameloaikham TEXT NOT NULL, PRIMARY KEY (Idloaikham)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
+
                 UpdateDatabase(password);
             }
             catch (Exception e)
@@ -203,6 +205,12 @@ namespace Clinic.Database
             Guard(fun);
 
             fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN Idpatient TEXT NULL , ADD COLUMN Namepatient TEXT NULL;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN "+ ClinicConstant.MedicineTable_Admin +" TEXT NULL", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.DoanhThuTable_Services + " TEXT NULL;", null);
             Guard(fun);
 
         }

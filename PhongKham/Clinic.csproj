@@ -139,7 +139,14 @@
     <Compile Include="DoanhThuForm.Designer.cs">
       <DependentUpon>DoanhThuForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\LoaiKham\themLoaiForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extensions\LoaiKham\themLoaiForm.Designer.cs">
+      <DependentUpon>themLoaiForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Converter.cs" />
+    <Compile Include="Helpers\HelperDatabase.cs" />
     <Compile Include="ItemDoanhThu.cs" />
     <Compile Include="ListPatientsTodayForm.cs">
       <SubType>Form</SubType>
@@ -211,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DoanhThuForm.resx">
       <DependentUpon>DoanhThuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extensions\LoaiKham\themLoaiForm.resx">
+      <DependentUpon>themLoaiForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListPatientsTodayForm.resx">
       <DependentUpon>ListPatientsTodayForm.cs</DependentUpon>

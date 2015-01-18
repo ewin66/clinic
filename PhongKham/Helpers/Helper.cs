@@ -1129,14 +1129,18 @@ namespace Clinic.Helpers
             return result;
         }
 
-        internal static List<string> FilterServicesFromAllMedicines(List<string> currentMedicines)
+        internal static Dictionary<string,Service> FilterServicesFromAllMedicines(List<Medicine> currentMedicinesAndServices)
         {
-            List<string> services = new List<string>();
-            foreach (string medi in currentMedicines)
+            Dictionary<string, Service> services = new Dictionary<string,Service>();
+            foreach (Medicine medi in currentMedicinesAndServices)
             {
-                if (medi[0] == '@')
+                if (medi.Name[0] == '@')
                 {
-                    services.Add(medi);
+                    Service service = new Service();
+                    service.Id = medi.Id;
+                    service.Name = medi.Name;
+                    service.Admin = medi.Admin;
+                    services.Add(medi.Name,service);
                 }
             }
             return services;
@@ -1235,11 +1239,12 @@ namespace Clinic.Helpers
                 {
                     
                     ItemDoanhThu item = new ItemDoanhThu();
-                    item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
-                    item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
-                    item.Money = (int)reader[DatabaseContants.doanhthu.Money];
-                    item.IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
-                    item.NamePatient = reader[DatabaseContants.doanhthu.NamePatient].ToString();
+                    item.Date = reader.GetDateTime(reader.GetOrdinal(ClinicConstant.DoanhThuTable_Time)).ToString("dd-MM-yyyy");
+                    item.NameOfDoctor = reader[ClinicConstant.DoanhThuTable_Namedoctor].ToString();
+                    item.Money = (int)reader[ClinicConstant.DoanhThuTable_Money];
+                    item.IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
+                    item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
+                    item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1264,7 +1269,7 @@ namespace Clinic.Helpers
                 {
 
 
-                    string IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
+                    string IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
                     if (result.Contains(IdPatient)==false)
                     {
                         result.Add(IdPatient);
@@ -1287,11 +1292,12 @@ namespace Clinic.Helpers
                 while (reader.Read())
                 {
                     ItemDoanhThu item = new ItemDoanhThu();
-                    item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
-                    item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
-                    item.Money = (int)reader[DatabaseContants.doanhthu.Money];
-                    item.IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
-                    item.NamePatient = reader[DatabaseContants.doanhthu.NamePatient].ToString();
+                    item.Date = reader.GetDateTime(reader.GetOrdinal(ClinicConstant.DoanhThuTable_Time)).ToString("dd-MM-yyyy");
+                    item.NameOfDoctor = reader[ClinicConstant.DoanhThuTable_Namedoctor].ToString();
+                    item.Money = (int)reader[ClinicConstant.DoanhThuTable_Money];
+                    item.IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
+                    item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
+                    item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1303,9 +1309,9 @@ namespace Clinic.Helpers
             return result;
         }
 
-        internal static List<Medicine> GetAllMedicinesFromDB()
+        internal static void GetAllMedicinesAndServicesFromDB(ref List<Service> resultServices,ref List<Medicine> resultMedicines)
         {
-            List<Medicine> result = new List<Medicine>();
+            
             IDatabase db = DatabaseFactory.Instance;
             string strCommand = " SELECT * FROM medicine";
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
@@ -1314,14 +1320,27 @@ namespace Clinic.Helpers
                 {
                     try
                     {
-                        Medicine medicine = new Medicine();
-                        medicine.Id = reader[DatabaseContants.medicine.Id].ToString();
-                        medicine.Name = reader[DatabaseContants.medicine.Name].ToString();
-                        medicine.Count = (int)reader[DatabaseContants.medicine.Count];
-                        medicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
-                        medicine.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
-                        medicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
-                        result.Add(medicine);
+                        if (reader[DatabaseContants.medicine.Name].ToString()[0] == '@')
+                        {
+                            Service service = new Service();
+                            service.Id = reader[DatabaseContants.medicine.Id].ToString();
+                            service.Name = reader[DatabaseContants.medicine.Name].ToString();
+                            service.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
+                            service.Admin = reader[ClinicConstant.MedicineTable_Admin].ToString();
+                            resultServices.Add(service);
+                        }
+                        else
+                        {
+
+                            Medicine medicine = new Medicine();
+                            medicine.Id = reader[DatabaseContants.medicine.Id].ToString();
+                            medicine.Name = reader[DatabaseContants.medicine.Name].ToString();
+                            medicine.Count = (int)reader[DatabaseContants.medicine.Count];
+                            medicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
+                            medicine.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
+                            medicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
+                            resultMedicines.Add(medicine);
+                        }
                     }
                     catch (Exception e)
                     {
@@ -1329,38 +1348,10 @@ namespace Clinic.Helpers
                     }
                 }
             }
-            return result;
         }
 
 
-        internal static List<Service> GetAllServicesFromDB()
-        {
-            List<Service> result = new List<Service>();
-            IDatabase db = DatabaseFactory.Instance;
-            string strCommand = " SELECT * FROM medicine";
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                while (reader.Read())
-                {
-                    try
-                    {
-                        if (reader[DatabaseContants.medicine.Name].ToString()[0]=='@')
-                        {
-                            Service service = new Service();
-                            service.Id = reader[DatabaseContants.medicine.Id].ToString();
-                            service.Name = reader[DatabaseContants.medicine.Name].ToString();
-                            service.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
-                            result.Add(service);
-                        }
-                    }
-                    catch (Exception e)
-                    {
 
-                    }
-                }
-            }
-            return result;
-        }
 
         internal static void UpdateRowToTableDoanhThu(IDatabase db, string nameOfTable, List<string> columnsDoanhThu, List<string> valuesDoanhThu, string p_2)
         {
@@ -1637,6 +1628,46 @@ namespace Clinic.Helpers
                 result+=(fields[i]+',');
             }
             result+=fields[fields.Count-1];
+            return result;
+        }
+
+        internal static List<string> GetAllLoaiKham(IDatabase iDatabase)
+        {
+            List<string> result = new List<string>();
+            string strCommand = BuildStringCommandGettingFieldsFromTableWithoutCondition(ClinicConstant.LoaiKhamTable, new List<string>() { ClinicConstant.LoaiKhamTable_Nameloaikham });
+            using (DbDataReader reader = iDatabase.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+                    try
+                    {
+                        if (!result.Contains(reader[ClinicConstant.LoaiKhamTable_Nameloaikham].ToString()))
+                        {
+                            result.Add(reader[ClinicConstant.LoaiKhamTable_Nameloaikham].ToString());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        internal static string BuildStringServices4SavingToDoanhThu(List<Medicine> Medicines)
+        {
+            string result = "";
+            for (int i = 0; i < Medicines.Count-1; i++)
+            {
+                if (Medicines[i].Name[0] == '@')
+                {
+                    string name = Medicines[i].Name.Substring(1, Medicines[i].Name.Length - 1);
+                    result += (name + ClinicConstant.StringBetweenServicesInDoanhThu);
+                }
+
+            }
+            result += Medicines[Medicines.Count - 1].Name.Substring(1, Medicines[Medicines.Count - 1].Name.Length - 1);
             return result;
         }
     }

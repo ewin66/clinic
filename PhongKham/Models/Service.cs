@@ -29,5 +29,13 @@ namespace Clinic.Models
             set { costOut = value; }
         }
 
+        private string admin;
+
+        public string Admin
+        {
+            get { return admin; }
+            set { admin = value; }
+        }
+
     }
 }

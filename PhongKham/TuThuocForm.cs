@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Clinic.Models;
 using Clinic.Helpers;
+using PhongKham;
 
 namespace Clinic
 {
@@ -20,7 +21,8 @@ namespace Clinic
 
         private void TuThuocForm_Load(object sender, EventArgs e)
         {
-            List<Medicine> listMedicines = Helper.GetAllMedicinesFromDB();
+            List<Medicine> listMedicines = Form1.currentMedicines;
+
             for (int i = 0; i < listMedicines.Count; i++)
             {
                 int index = dataGridView1.Rows.Add();

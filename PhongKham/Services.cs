@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Clinic.Models;
 using Clinic.Helpers;
+using PhongKham;
 
 namespace Clinic
 {
@@ -20,14 +21,14 @@ namespace Clinic
 
         private void Services_Load(object sender, EventArgs e)
         {
-            List<Service> listMedicines = Helper.GetAllServicesFromDB();
-            for (int i = 0; i < listMedicines.Count; i++)
+            List<Service> listServices = Form1.currentServices;
+            for (int i = 0; i < listServices.Count; i++)
             {
                 int index = dataGridView1.Rows.Add();
                 DataGridViewRow row = dataGridView1.Rows[index];
-                row.Cells["ColumnId"].Value = listMedicines[i].Id;
-                row.Cells["ColumnName"].Value = listMedicines[i].Name;
-                row.Cells["ColumnCostOut"].Value = listMedicines[i].CostOut.ToString("C0");
+                row.Cells["ColumnId"].Value = listServices[i].Id;
+                row.Cells["ColumnName"].Value = listServices[i].Name;
+                row.Cells["ColumnCostOut"].Value = listServices[i].CostOut.ToString("C0");
             }
         }
     }

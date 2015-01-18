@@ -80,6 +80,15 @@ namespace Clinic.Models
             get { return inputDay; }
             set { inputDay = value; }
         }
+
+        private string admin;
+
+        public string Admin
+        {
+            get { return admin; }
+            set { admin = value; }
+        }
+
         #endregion
 
         #region ctors

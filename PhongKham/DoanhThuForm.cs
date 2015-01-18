@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Clinic.Database;
 using Clinic.Helpers;
 using Clinic.Models;
+using PhongKham;
 
 namespace Clinic
 {
@@ -57,8 +58,11 @@ namespace Clinic
 
                 row.Cells["ColumnNamePatient"].Value = listItem[i].NamePatient;
 
-                                 string nameDoctor= listItem[i].NameOfDoctor;
-                 row.Cells[2].Value = nameDoctor;
+                string nameDoctor= listItem[i].NameOfDoctor;
+                row.Cells[2].Value = nameDoctor;
+                row.Cells["ColumnServices"].Value = BuildStringServicesAndAdmin(listItem[i].Services);
+
+
                 DoanhThuBacSi bsTemp = listBacSi.Where(x => x.NameBacSi == nameDoctor).FirstOrDefault();
                 if (bsTemp == null)
                 {
@@ -92,6 +96,23 @@ namespace Clinic
 
             this.PatientNumber.Text = listID.Count.ToString();
 
+        }
+
+        private string BuildStringServicesAndAdmin(string servicesWithoutAdmin)
+        {
+            string result = "";
+            string[] serviceArray = servicesWithoutAdmin.Split(new string[] {ClinicConstant.StringBetweenServicesInDoanhThu}, StringSplitOptions.None);
+            for (int i = 0; i < serviceArray.Count() -1; i++)
+            {
+                Service service = Form1.currentServices.Where(x => x.Name == serviceArray[i]).FirstOrDefault();
+                result += (serviceArray[i] + ClinicConstant.StringBetweenServiceAndAdmin + (service==null?"": service.Admin));
+                result += " \n";
+            }
+            int k = serviceArray.Count() - 1;
+
+            Service serviceLast = Form1.currentServices.Where(x => x.Name == serviceArray[k]).FirstOrDefault();
+            result += (serviceArray[k] + ClinicConstant.StringBetweenServiceAndAdmin +(serviceLast == null ? "" :serviceLast.Admin));
+            return result;
         }
 
         private void button1_Click(object sender, EventArgs e) // ngay
