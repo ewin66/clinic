@@ -18,6 +18,8 @@ namespace Clinic
         /// <summary>
         /// history(Id varchar(10),Symptom Longtext,Diagnose Longtext,Medicines Longtext,Day Datetime)
         /// </summary>
+        /// 
+        public const string HistoryTable = "history";
         public const string HistoryTable_Id = "Id";
         public const string HistoryTable_Symptom = "Symptom";
         public const string HistoryTable_Diagnose = "Diagnose";

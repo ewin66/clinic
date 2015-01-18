@@ -45,6 +45,7 @@ namespace PhongKham
         List<CalendarItem> _items = new List<CalendarItem>();
         List<string> currentMedicines = new List<string>();
         List<string> currentServices = new List<string>();
+        private static List<string> listDiagnosesFromHistory = new List<string>();
         public static int Authority;
 
 
@@ -52,18 +53,18 @@ namespace PhongKham
         System.Threading.Timer TimerItem;
         private ListPatientsTodayForm listPatientForm;
 
-        public Form1(int Authority, string name)
+        private void backgroundWorkerLoadingDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
-            InitializeComponent();
-            //this.ResizeBegin += (s, e) => { this.SuspendLayout(); };
-            //this.ResizeEnd += (s, e) => { this.ResumeLayout(true); };
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Text = "Phòng Khám -" + "User: " + name;
-            UserName = name;
-            nameOfDoctor = Helper.GetNameOfDoctor(db, name);
+            
+            this.Enabled = true;
+        }
+        private void backgroundWorkerLoadingDatabase_DoWork(object sender, DoWorkEventArgs e)
+        {
+            listDiagnosesFromHistory = Helper.GetAllDiagnosesFromHistory(this.db);
+            this.txtBoxClinicRoomDiagnose.AutoCompleteCustomSource.AddRange(listDiagnosesFromHistory.ToArray());
+            
             this.StartPosition = FormStartPosition.CenterScreen;
-            Form1.Authority = Authority;
+
             this.WindowState = Clinic.Properties.Settings.Default.State;
             if (this.WindowState == FormWindowState.Normal) this.Size = Clinic.Properties.Settings.Default.Size;
             this.Resize += new System.EventHandler(this.Form1_Resize);
@@ -95,11 +96,53 @@ namespace PhongKham
 
                 sr.Close();
             }
-            catch (Exception e)
+            catch (Exception exx)
             { }
+            try
+            {
+                // do any background work
 
-            Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
-            thread.Start();
+                //do not change 
+
+                InitComboboxMedicinesMySql();
+                InitInputMedicineMySql();
+                InitClinicRoom();
+                InitTableServices();
+                dataGridView4.Visible = false;
+
+
+
+                maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
+                //
+                //Load calendar
+                //
+                List<ADate> listDate = Helper.GetAllDateOfUser(UserName, db);
+                foreach (ADate item in listDate)
+                {
+                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
+                    cal.Tag = item.Id;
+                    if (item.color != 0)
+                    {
+                        cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
+                    }
+                    _items.Add(cal);
+                }
+
+                PlaceItems();
+
+
+                //load lichhen
+                LoadLichHen(DateTime.Now);
+
+                //xoa listtoday
+                XoaListToday();
+            }
+            catch (Exception ex)
+            {
+                // log errors
+            }
+            //Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
+            //thread.Start();
             listPatientForm = new Clinic.ListPatientsTodayForm();
             listPatientForm.sendCommandKham = new Clinic.ListPatientsTodayForm.SendCommandKham(KhamVaXoa);
 
@@ -121,12 +164,49 @@ namespace PhongKham
 
 
             this.circularProgress1.Hide();
+        }
+
+        public Form1(int Authority, string name)
+        {
+
+            //init MainForm
+            this.TopLevel = true;
+            InitializeComponent();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Text = "Phòng Khám -" + "User: " + name;
+            Form1.Authority = Authority;
+
+            UserName = name;
+            nameOfDoctor = Helper.GetNameOfDoctor(db, name);
+
+
+            //LoadDatabase
+            CircularProgressAction("Loading Database");
+
+
+            this.Enabled = false;
+            BackgroundWorker backgroundWorkerLoadingDatabase = new BackgroundWorker();
+            backgroundWorkerLoadingDatabase.WorkerSupportsCancellation = true;
+            backgroundWorkerLoadingDatabase.DoWork += new DoWorkEventHandler(backgroundWorkerLoadingDatabase_DoWork);
+            backgroundWorkerLoadingDatabase.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerLoadingDatabase_RunWorkerCompleted);
+
+            backgroundWorkerLoadingDatabase.RunWorkerAsync();
+
+
+            
 
             //this.circularProgress1.Show();
             //this.circularProgress1.Visible = true;
             //this.circularProgress1.IsRunning = true;
 
 
+        }
+
+        private void CircularProgressAction(string text)
+        {
+            this.circularProgress1.Show();
+            this.circularProgress1.IsRunning = true;
+            this.circularProgress1.ProgressText = text;
         }
 
         private void KhamVaXoa(string id, string name, string state)
@@ -163,54 +243,7 @@ namespace PhongKham
 
         public void WorkThreadFunction()
         {
-            try
-            {
-                // do any background work
 
-                //do not change 
-
-                InitComboboxMedicinesMySql();
-                InitInputMedicineMySql();
-                InitClinicRoom();
-                InitTableServices();
-                dataGridView4.Visible = false;
-
-
-
-                maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
-                //
-                //Load calendar
-                //
-                List<ADate> listDate = Helper.GetAllDateOfUser(UserName, db);
-                foreach (ADate item in listDate)
-                {
-                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
-                    cal.Tag = item.Id;
-                    if (item.color != 0)
-                    {
-                        cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
-                    }
-                    //if (!(item.R == 0 && item.G == 0 && item.B == 0))
-                    //{
-                    //    cal.ApplyColor(Color.FromArgb(item.A, item.R, item.G, item.B));
-                    //}
-
-                    _items.Add(cal);
-                }
-
-                PlaceItems();
-
-
-                //load lichhen
-                LoadLichHen(DateTime.Now);
-
-                //xoa listtoday
-                XoaListToday();
-            }
-            catch (Exception ex)
-            {
-                // log errors
-            }
         }
 
         private void XoaListToday()
@@ -1129,8 +1162,8 @@ namespace PhongKham
             }
             int STT = Helper.LaySTTTheoNgay(db, DateTime.UtcNow, this.lblClinicRoomId.Text);
             Helper.CreateAPdf(infoClinic, idbenhnhan, patient, listMedicines, strHenTaiKham, this.txtBoxClinicRoomDiagnose.Text, this.labelTuoi.Text, STT);
-            axAcroPDF1.LoadFile("firstpage.pdf");
-            Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, idbenhnhan);
+            e.Result = idbenhnhan;
+
         }
 
         private string BuildStringHenTaiKham(string idbenhnhan, string strHenTaiKham)
@@ -1193,6 +1226,9 @@ namespace PhongKham
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+
+            axAcroPDF1.LoadFile("firstpage.pdf");
+            Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, e.Result.ToString());
             this.Enabled = true;
         }
 

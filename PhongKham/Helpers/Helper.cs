@@ -1588,5 +1588,56 @@ namespace Clinic.Helpers
 
             }
         }
+
+
+
+        /// <summary>
+        /// Should be called 1 time when loading the program
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        internal static List<string> GetAllDiagnosesFromHistory(IDatabase db)
+        {
+            List<string> result = new List<string>();
+            string strCommand = BuildStringCommandGettingFieldsFromTableWithoutCondition(ClinicConstant.HistoryTable,new List<string>(){ ClinicConstant.HistoryTable_Diagnose});
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+                    try
+                    {
+                        if (!result.Contains(reader[ClinicConstant.HistoryTable_Diagnose].ToString()))
+                        {
+                            result.Add(reader[ClinicConstant.HistoryTable_Diagnose].ToString());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        private static string BuildStringCommandGettingFieldsFromTableWithoutCondition(string tableName, List<string> fields)
+        {
+            return "SELECT " + BuildStringFieldsInCommand(fields) + " FROM " + tableName;
+        }
+
+        private static string BuildStringFieldsInCommand(List<string> fields)
+        {
+            if(fields==null|| fields.Count==0)
+            {
+                return "*";
+            }
+            string result ="";
+            for(int i=0;i<fields.Count-1;i++)
+            {
+                result+=(fields[i]+',');
+            }
+            result+=fields[fields.Count-1];
+            return result;
+        }
     }
 }
