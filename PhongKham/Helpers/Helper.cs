@@ -1662,12 +1662,12 @@ namespace Clinic.Helpers
             {
                 if (Medicines[i].Name[0] == '@')
                 {
-                    string name = Medicines[i].Name.Substring(1, Medicines[i].Name.Length - 1);
+                    string name = Medicines[i].Name;
                     result += (name + ClinicConstant.StringBetweenServicesInDoanhThu);
                 }
 
             }
-            result += Medicines[Medicines.Count - 1].Name.Substring(1, Medicines[Medicines.Count - 1].Name.Length - 1);
+            result += Medicines[Medicines.Count - 1].Name;
             return result;
         }
     }

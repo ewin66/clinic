@@ -29,12 +29,18 @@ namespace Clinic
 
             //refresh Doanhthu
            // Helper.RefreshDoanhThu();
+            //this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnServices.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
 
         }
 
         public void FillToGrid(List<ItemDoanhThu> listItem)
         {
             List<DoanhThuBacSi> listBacSi = new List<DoanhThuBacSi>();
+            Dictionary<string, int> listService = new Dictionary<string,int>();
 
             List<string> listID = new List<string>();
 
@@ -60,7 +66,7 @@ namespace Clinic
 
                 string nameDoctor= listItem[i].NameOfDoctor;
                 row.Cells[2].Value = nameDoctor;
-                row.Cells["ColumnServices"].Value = BuildStringServicesAndAdmin(listItem[i].Services);
+                row.Cells["ColumnServices"].Value = BuildStringServicesAndAdmin(listItem[i].Services, ref listService);
 
 
                 DoanhThuBacSi bsTemp = listBacSi.Where(x => x.NameBacSi == nameDoctor).FirstOrDefault();
@@ -94,24 +100,44 @@ namespace Clinic
             }
 
 
+            dataGridView3.Rows.Clear();
+
+            for (int i = 0; i < listService.Count; i++)
+            {
+                int index = dataGridView3.Rows.Add();
+                DataGridViewRow row = dataGridView3.Rows[index];
+                row.Cells["G2NameDoctor"].Value = listBacSi[i].NameBacSi;
+                row.Cells["G2SoLuotKham"].Value = listBacSi[i].SoLuotKham.ToString();
+                row.Cells["G2TongCong"].Value = listBacSi[i].SoTien.ToString("C0");
+            }
+
             this.PatientNumber.Text = listID.Count.ToString();
 
         }
 
-        private string BuildStringServicesAndAdmin(string servicesWithoutAdmin)
+        private string BuildStringServicesAndAdmin(string servicesWithoutAdmin, ref Dictionary<string,int> listService)
         {
             string result = "";
             string[] serviceArray = servicesWithoutAdmin.Split(new string[] {ClinicConstant.StringBetweenServicesInDoanhThu}, StringSplitOptions.None);
-            for (int i = 0; i < serviceArray.Count() -1; i++)
+
+            for (int i = 0; i < serviceArray.Count(); i++)
             {
                 Service service = Form1.currentServices.Where(x => x.Name == serviceArray[i]).FirstOrDefault();
                 result += (serviceArray[i] + ClinicConstant.StringBetweenServiceAndAdmin + (service==null?"": service.Admin));
-                result += " \n";
+                if (i != serviceArray.Count() - 1)
+                {
+                    result += "\n";
+                }
+                if (listService.ContainsKey(serviceArray[i]))
+                {
+                    listService[serviceArray[i]]++;
+                }
+                else
+                {
+                    listService.Add(serviceArray[i],0);
+                }
             }
-            int k = serviceArray.Count() - 1;
 
-            Service serviceLast = Form1.currentServices.Where(x => x.Name == serviceArray[k]).FirstOrDefault();
-            result += (serviceArray[k] + ClinicConstant.StringBetweenServiceAndAdmin +(serviceLast == null ? "" :serviceLast.Admin));
             return result;
         }
 
