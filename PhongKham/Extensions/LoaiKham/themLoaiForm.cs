@@ -25,5 +25,7 @@ namespace Clinic.Extensions.LoaiKham
                 DatabaseFactory.Instance.InsertRowToTable(ClinicConstant.LoaiKhamTable, new List<string>() { ClinicConstant.LoaiKhamTable_Nameloaikham }, new List<string>() {textBox1.Text });
             }
         }
+
+
     }
 }

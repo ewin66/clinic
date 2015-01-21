@@ -7,6 +7,15 @@ namespace Clinic
 {
     public class ItemDoanhThu
     {
+        private string loaiKham;
+
+        public string LoaiKham
+        {
+            get { return loaiKham; }
+            set { loaiKham = value; }
+        }
+
+
         private string services;
         public string Services
         {
@@ -59,6 +68,7 @@ namespace Clinic
             this.nameOfDoctor = nameOfDoctor;
             this.money = money;
         }
+
 
 
     }

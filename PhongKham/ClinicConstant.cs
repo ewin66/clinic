@@ -57,6 +57,7 @@ namespace Clinic
         /// </summary>
         public const string DoanhThuTable = "doanhthu";
         public const string DoanhThuTable_Services = "Services";
+        public const string DoanhThuTable_LoaiKham = "LoaiKham";
         public const string DoanhThuTable_Namedoctor = "Namedoctor";
         public const string DoanhThuTable_Money = "Money";
         public const string DoanhThuTable_Time = "time";

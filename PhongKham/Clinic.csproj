@@ -184,9 +184,11 @@
     <Compile Include="Models\Contants.cs" />
     <Compile Include="Models\DoanhThuBacSi.cs" />
     <Compile Include="Models\InfoClinic.cs" />
-    <Compile Include="Models\Medicine.cs" />
+    <Compile Include="Models\ItemMedicine\IMedicine.cs" />
+    <Compile Include="Models\ItemMedicine\Medicine.cs" />
+    <Compile Include="Models\ItemMedicine\ObjectMedicine.cs" />
     <Compile Include="Models\Patient.cs" />
-    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\ItemMedicine\Service.cs" />
     <Compile Include="PassSQL.cs">
       <SubType>Form</SubType>
     </Compile>

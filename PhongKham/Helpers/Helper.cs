@@ -23,6 +23,7 @@ namespace Clinic.Helpers
     using MigraDoc.DocumentObjectModel;
     using MigraDoc.Rendering;
     using MigraDoc.DocumentObjectModel.Tables;
+    using Clinic.Models.ItemMedicine;
 
     /// <summary>
     /// Comment for the class
@@ -1245,6 +1246,7 @@ namespace Clinic.Helpers
                     item.IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
                     item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
                     item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
+                    item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1298,6 +1300,7 @@ namespace Clinic.Helpers
                     item.IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
                     item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
                     item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
+                    item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1309,9 +1312,9 @@ namespace Clinic.Helpers
             return result;
         }
 
-        internal static void GetAllMedicinesAndServicesFromDB(ref List<Service> resultServices,ref List<Medicine> resultMedicines)
+        internal static List<IMedicine> GetAllMedicinesAndServicesFromDB()
         {
-            
+            List<IMedicine> result = new List<IMedicine>();
             IDatabase db = DatabaseFactory.Instance;
             string strCommand = " SELECT * FROM medicine";
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
@@ -1320,27 +1323,31 @@ namespace Clinic.Helpers
                 {
                     try
                     {
-                        if (reader[DatabaseContants.medicine.Name].ToString()[0] == '@')
-                        {
-                            Service service = new Service();
-                            service.Id = reader[DatabaseContants.medicine.Id].ToString();
-                            service.Name = reader[DatabaseContants.medicine.Name].ToString();
-                            service.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
-                            service.Admin = reader[ClinicConstant.MedicineTable_Admin].ToString();
-                            resultServices.Add(service);
-                        }
-                        else
-                        {
 
-                            Medicine medicine = new Medicine();
-                            medicine.Id = reader[DatabaseContants.medicine.Id].ToString();
-                            medicine.Name = reader[DatabaseContants.medicine.Name].ToString();
-                            medicine.Count = (int)reader[DatabaseContants.medicine.Count];
-                            medicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
-                            medicine.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
-                            medicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
-                            resultMedicines.Add(medicine);
+                        ObjectMedicine objectMedicine = new ObjectMedicine();
+                        objectMedicine.Id = reader[DatabaseContants.medicine.Id].ToString();
+                        objectMedicine.Name = reader[DatabaseContants.medicine.Name].ToString();
+                        if (objectMedicine.Name[0] != '@')
+                        {
+                            objectMedicine.Count = (int)reader[DatabaseContants.medicine.Count];
+                            objectMedicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
+                            objectMedicine.Admin = "";
+                            objectMedicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
                         }
+                        else // service
+                        {
+                            objectMedicine.Count = 0;
+                            objectMedicine.CostIn = 1;
+                            objectMedicine.Admin = reader[ClinicConstant.MedicineTable_Admin].ToString();
+                            objectMedicine.InputDay = DateTime.Now;
+                        }
+
+                        objectMedicine.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
+       
+
+
+                        result.Add(objectMedicine);
+                        
                     }
                     catch (Exception e)
                     {
@@ -1348,9 +1355,21 @@ namespace Clinic.Helpers
                     }
                 }
             }
+
+            return result;
         }
 
+        public static List<IMedicine> GetAllMedicineFromDb()
+        {
+            return GetAllMedicinesAndServicesFromDB().Where(x => x.Name[0] != '@').ToList();
+        
+        }
 
+        public static List<IMedicine> GetAllServiceFromDb()
+        {
+            return GetAllMedicinesAndServicesFromDB().Where(x => x.Name[0] == '@').ToList();
+
+        }
 
 
         internal static void UpdateRowToTableDoanhThu(IDatabase db, string nameOfTable, List<string> columnsDoanhThu, List<string> valuesDoanhThu, string p_2)

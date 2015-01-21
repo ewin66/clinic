@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Clinic.Models;
 using Clinic.Helpers;
 using PhongKham;
+using Clinic.Models.ItemMedicine;
 
 namespace Clinic
 {
@@ -21,7 +22,7 @@ namespace Clinic
 
         private void TuThuocForm_Load(object sender, EventArgs e)
         {
-            List<Medicine> listMedicines = Form1.currentMedicines;
+            List<IMedicine> listMedicines = Helper.GetAllMedicineFromDb();
 
             for (int i = 0; i < listMedicines.Count; i++)
             {

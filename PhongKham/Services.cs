@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Clinic.Models;
 using Clinic.Helpers;
 using PhongKham;
+using Clinic.Models.ItemMedicine;
 
 namespace Clinic
 {
@@ -21,7 +22,7 @@ namespace Clinic
 
         private void Services_Load(object sender, EventArgs e)
         {
-            List<Service> listServices = Form1.currentServices;
+            List<IMedicine> listServices = Helper.GetAllServiceFromDb();
             for (int i = 0; i < listServices.Count; i++)
             {
                 int index = dataGridView1.Rows.Add();

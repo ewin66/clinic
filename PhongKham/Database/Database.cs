@@ -213,6 +213,11 @@ namespace Clinic.Database
             fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.DoanhThuTable_Services + " TEXT NULL;", null);
             Guard(fun);
 
+
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.DoanhThuTable_LoaiKham + " TEXT NULL;", null);
+            Guard(fun);
+
+
         }
 
         //protected void CreateDatabase(string password)

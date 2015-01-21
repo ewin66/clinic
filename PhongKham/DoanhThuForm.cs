@@ -10,6 +10,7 @@ using Clinic.Database;
 using Clinic.Helpers;
 using Clinic.Models;
 using PhongKham;
+using Clinic.Models.ItemMedicine;
 
 namespace Clinic
 {
@@ -18,22 +19,26 @@ namespace Clinic
 
     public partial class DoanhThuForm : Form
     {
-        public static IDatabase db;
+
         private List<ItemDoanhThu> listItem;
         private string tongDoanhThu="0";
         private int tongLuotKham=0;
+        List<IMedicine> currentMedicines;
+        List<IMedicine> currentServices;
+        List<string> AllLoaiKham;
+
 
         public DoanhThuForm()
         {
             InitializeComponent();
 
-            //refresh Doanhthu
-           // Helper.RefreshDoanhThu();
-            //this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnServices.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            currentMedicines = Helper.GetAllMedicineFromDb();
+            currentServices = Helper.GetAllServiceFromDb();
+            AllLoaiKham = Helper.GetAllLoaiKham(DatabaseFactory.Instance);
 
         }
 
@@ -67,7 +72,7 @@ namespace Clinic
                 string nameDoctor= listItem[i].NameOfDoctor;
                 row.Cells[2].Value = nameDoctor;
                 row.Cells["ColumnServices"].Value = BuildStringServicesAndAdmin(listItem[i].Services, ref listService);
-
+                row.Cells["ColumnLoaiKham"].Value = listItem[i].LoaiKham;
 
                 DoanhThuBacSi bsTemp = listBacSi.Where(x => x.NameBacSi == nameDoctor).FirstOrDefault();
                 if (bsTemp == null)
@@ -87,9 +92,24 @@ namespace Clinic
             }
 
 
-            dataGridView2.Rows.Clear();
+            dataGridView3.Rows.Clear();
 
-                  //each doctor
+             
+            foreach (string keyService in listService.Keys)
+            {
+
+                    int index = dataGridView3.Rows.Add();
+                    DataGridViewRow row = dataGridView3.Rows[index];
+                    row.Cells["ColumnServiceName"].Value = keyService;
+                    row.Cells["ColumnServiceAdmin"].Value = currentServices.Where(x => x.Name == keyService).FirstOrDefault().Admin;
+                    row.Cells["ColumnServiceCount"].Value = listService[keyService].ToString();
+                    row.Cells["ColumnServiceTotal"].Value = (listService[keyService] * currentServices.Where(x => x.Name == keyService).FirstOrDefault().CostOut).ToString();
+                
+            }
+
+
+            dataGridView2.Rows.Clear();
+            //each doctor
             for (int i = 0; i < listBacSi.Count; i++)
             {
                 int index = dataGridView2.Rows.Add();
@@ -100,15 +120,15 @@ namespace Clinic
             }
 
 
-            dataGridView3.Rows.Clear();
-
-            for (int i = 0; i < listService.Count; i++)
+            dataGridView4.Rows.Clear();
+            //each LoaiKham
+            for (int i = 0; i < AllLoaiKham.Count; i++)
             {
-                int index = dataGridView3.Rows.Add();
-                DataGridViewRow row = dataGridView3.Rows[index];
-                row.Cells["G2NameDoctor"].Value = listBacSi[i].NameBacSi;
-                row.Cells["G2SoLuotKham"].Value = listBacSi[i].SoLuotKham.ToString();
-                row.Cells["G2TongCong"].Value = listBacSi[i].SoTien.ToString("C0");
+                int index = dataGridView4.Rows.Add();
+                DataGridViewRow row = dataGridView4.Rows[index];
+                row.Cells[0].Value = AllLoaiKham[i];
+                row.Cells[1].Value = listItem.Where(x => x.LoaiKham == AllLoaiKham[i]).Count();
+
             }
 
             this.PatientNumber.Text = listID.Count.ToString();
@@ -122,19 +142,22 @@ namespace Clinic
 
             for (int i = 0; i < serviceArray.Count(); i++)
             {
-                Service service = Form1.currentServices.Where(x => x.Name == serviceArray[i]).FirstOrDefault();
+                IMedicine service = currentServices.Where(x => x.Name == serviceArray[i]).FirstOrDefault();
                 result += (serviceArray[i] + ClinicConstant.StringBetweenServiceAndAdmin + (service==null?"": service.Admin));
                 if (i != serviceArray.Count() - 1)
                 {
                     result += "\n";
                 }
-                if (listService.ContainsKey(serviceArray[i]))
+                if ((!String.IsNullOrEmpty(serviceArray[i])) && serviceArray[i][0] == '@')
                 {
-                    listService[serviceArray[i]]++;
-                }
-                else
-                {
-                    listService.Add(serviceArray[i],0);
+                    if (listService.ContainsKey(serviceArray[i]))
+                    {
+                        listService[serviceArray[i]]++;
+                    }
+                    else
+                    {
+                        listService.Add(serviceArray[i], 1);
+                    }
                 }
             }
 
@@ -144,7 +167,7 @@ namespace Clinic
         private void button1_Click(object sender, EventArgs e) // ngay
         {
             dataGridView1.Rows.Clear();
-             listItem  = Helpers.Helper.DoanhThuTheoNgay(db,dateTimePicker1.Value);
+             listItem  = Helpers.Helper.DoanhThuTheoNgay(DatabaseFactory.Instance,dateTimePicker1.Value);
              FillToGrid(listItem);
              CalcuTotal();
         }
@@ -152,7 +175,7 @@ namespace Clinic
         private void button2_Click(object sender, EventArgs e) // thang
         {
             dataGridView1.Rows.Clear();
-            listItem = Helpers.Helper.DoanhThuTheoThang(db, dateTimePicker1.Value);
+            listItem = Helpers.Helper.DoanhThuTheoThang(DatabaseFactory.Instance, dateTimePicker1.Value);
             FillToGrid(listItem);
             CalcuTotal();
         }

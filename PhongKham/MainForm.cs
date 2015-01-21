@@ -23,6 +23,8 @@ using System.Threading;
 using Clinic;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using Clinic.Models.ItemMedicine;
+using Clinic.Extensions.LoaiKham;
 
 
 
@@ -46,8 +48,8 @@ namespace PhongKham
         List<CalendarItem> _items = new List<CalendarItem>();
 
 
-        public static List<Medicine> currentMedicines = new List<Medicine>();
-        public static List<Service> currentServices = new List<Service>();
+        public  List<IMedicine> currentMedicines = new List<IMedicine>();
+        public List<IMedicine> currentServices = new List<IMedicine>();
 
         private static List<string> listDiagnosesFromHistory = new List<string>();
         public static int Authority;
@@ -68,6 +70,7 @@ namespace PhongKham
 
             List<string> listLoaiKham = Helper.GetAllLoaiKham(this.db);
             this.comboBoxLoaiKham.Items.AddRange(listLoaiKham.ToArray());
+                comboBoxLoaiKham.Text ="Loại Khám: ";
 
             listDiagnosesFromHistory = Helper.GetAllDiagnosesFromHistory(this.db);
             this.txtBoxClinicRoomDiagnose.AutoCompleteCustomSource.AddRange(listDiagnosesFromHistory.ToArray());
@@ -300,10 +303,11 @@ namespace PhongKham
         {
             this.Column18.Items.Clear();
 
-            Helper.GetAllMedicinesAndServicesFromDB(ref currentServices, ref currentMedicines);
+            currentMedicines= Helper.GetAllMedicinesAndServicesFromDB();
+            currentServices = currentMedicines.Where(x => x.Name[0] == '@').ToList();
 
             this.Column18.Items.AddRange(currentMedicines.Select(x=>x.Name).ToArray());
-            this.Column18.Items.AddRange(currentServices.Select(x => x.Name).ToArray());
+
         }
 
         public void Init()
@@ -399,9 +403,8 @@ namespace PhongKham
             textBoxServicesCost.Text = "0";
             textBoxAdminOfService.Text = "";
             textBoxServices.AutoCompleteCustomSource.Clear();
-            textBoxServices.AutoCompleteCustomSource.AddRange(currentServices.Select(x=>x.Name).ToArray());
+            textBoxServices.AutoCompleteCustomSource.AddRange((currentServices.Select(x => x.Name).ToArray()));
         }
-
         private void InitWaitRoomMySql()
         {
 
@@ -1123,8 +1126,8 @@ namespace PhongKham
             {
                 AddVisitData();
                 //save to doanhthu
-                List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient",ClinicConstant.DoanhThuTable_Services };
-                List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), lblClinicRoomId.Text, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines) };
+                List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient",ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham };
+                List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), lblClinicRoomId.Text, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines), comboBoxLoaiKham.Text };
                 db.InsertRowToTable("doanhthu", columnsDoanhThu, valuesDoanhThu);
 
                 //tru tu thuoc
@@ -1157,16 +1160,16 @@ namespace PhongKham
                 {
 
                     //save to doanhthu
-                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient", ClinicConstant.DoanhThuTable_Services };
-                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), idbenhnhan, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines) };
+                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient", ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham };
+                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), idbenhnhan, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines),this.comboBoxLoaiKham.Text };
                     db.InsertRowToTable("doanhthu", columnsDoanhThu, valuesDoanhThu);
                 }
                 else
                 {
 
                     //update to doanhthu
-                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", ClinicConstant.DoanhThuTable_Services };
-                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), Helper.BuildStringServices4SavingToDoanhThu(listMedicines) };
+                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham };
+                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), Helper.BuildStringServices4SavingToDoanhThu(listMedicines),comboBoxLoaiKham.Text };
                     Helper.UpdateRowToTableDoanhThu(db, "doanhthu", columnsDoanhThu, valuesDoanhThu, idbenhnhan);
                 }
             }
@@ -1585,11 +1588,12 @@ namespace PhongKham
 
                 db.InsertRowToTable(ClinicConstant.MedicineTable, columns, values);
                 MessageBox.Show("Thêm mới dịch vụ thành công");
+                InitTableServices();
             }
             else
             {
 
-                string strCommand = "Update Medicine Set CostOut =" + giaOut.ToString()+" Where Id =" + Id;
+                string strCommand = "Update Medicine Set CostOut =" + giaOut.ToString() + "," + ClinicConstant.MedicineTable_Admin + " = " + Helper.ConvertToSqlString(textBoxAdminOfService.Text) + " Where Id =" + Id;
                 db.ExecuteNonQuery(strCommand, null);
                 MessageBox.Show("Cập nhật dịch vụ thành công");
             }
@@ -1614,10 +1618,11 @@ namespace PhongKham
                 if (reader.Read())
                 {
                     string temp = reader[DatabaseContants.medicine.CostOut].ToString();
-                    string HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+                    string admin = reader[ClinicConstant.MedicineTable_Admin].ToString();
                     string id = reader["Id"].ToString();
                     reader.Close();
                     textBoxServicesCost.Text = temp;
+                    textBoxAdminOfService.Text = admin;
                     labelServicesID.Text = id;
                     return;
                 }
@@ -1775,7 +1780,7 @@ namespace PhongKham
             {
                 DoanhThuForm dtForm = new Clinic.DoanhThuForm();
                 dtForm.Show();
-                DoanhThuForm.db = this.db;
+
             }
             else
             {
@@ -1899,8 +1904,11 @@ namespace PhongKham
 
         private void themLoaiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            //db.InsertRowToTable(ClinicConstant.LoaiKhamTable,new List<string>(){ClinicConstant.LoaiKhamTable_Nameloaikham},new List<string>(){te}
+            themLoaiForm form = new themLoaiForm();
+            form.Show();
         }
+
 
 
 
