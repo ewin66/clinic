@@ -80,7 +80,13 @@ namespace PhongKham
             this.WindowState = Clinic.Properties.Settings.Default.State;
             if (this.WindowState == FormWindowState.Normal) this.Size = Clinic.Properties.Settings.Default.Size;
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            InitUser(Authority);
+
+                InitUser(Authority);
+
+            //this.Invoke(delegate
+            // {
+          
+            //});
             try
             {
 
@@ -194,7 +200,10 @@ namespace PhongKham
 
             //LoadDatabase
             CircularProgressAction("Loading Database");
-
+            //Load Settings
+            this.checkBoxShowBigForm.Checked = Clinic.Properties.Settings.Default.checkBoxBigSearchForm;
+            this.checkBoxShow1Record.Checked = Clinic.Properties.Settings.Default.checkBox1RecordInSearchForm;
+            this.checkBoxShowMedicines.Checked = Clinic.Properties.Settings.Default.checkBoxShowMedicineInSearchForm;
 
             this.Enabled = false;
             BackgroundWorker backgroundWorkerLoadingDatabase = new BackgroundWorker();
@@ -246,6 +255,9 @@ namespace PhongKham
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Clinic.Properties.Settings.Default.checkBoxBigSearchForm = this.checkBoxShowBigForm.Checked;
+            Clinic.Properties.Settings.Default.checkBox1RecordInSearchForm = this.checkBoxShow1Record.Checked;
+            Clinic.Properties.Settings.Default.checkBoxShowMedicineInSearchForm = this.checkBoxShowMedicines.Checked;
             Clinic.Properties.Settings.Default.Save();
         }
 
@@ -253,10 +265,6 @@ namespace PhongKham
         #region Init
 
 
-        public void WorkThreadFunction()
-        {
-
-        }
 
         private void XoaListToday()
         {
@@ -341,6 +349,8 @@ namespace PhongKham
 
                 return;
             }
+                        this.Invoke(new MethodInvoker(delegate
+            {
 
             MainTab.TabPages.Remove(tabPageTools);
             MainTab.TabPages.Remove(tabPagePrint);
@@ -354,11 +364,11 @@ namespace PhongKham
                     break;
                 case 2:
                     MainTab.TabPages.Add(tabPagePrint);
-                    this.Show1Record.Checked = false;
+                    this.checkBoxShow1Record.Checked = false;
                     this.pictureBox1.Visible = true;
                     break;
                 case 3://khong co quyen ke thuoc
-                    this.Show1Record.Checked = false;
+                    this.checkBoxShow1Record.Checked = false;
                     this.dataGridViewMedicine.Visible = false;
                     this.label9.Visible = false;
                     this.labelTongTien.Visible = false;
@@ -375,7 +385,7 @@ namespace PhongKham
                     MainTab.TabPages.Add(tabPagenhapthuoc);
                     break;
                 case 0:
-                    this.ShowMedicines.Checked = false;
+                    this.checkBoxShowMedicines.Checked = false;
                     this.dataGridViewMedicine.Visible = false;
                     this.label9.Visible = false;
                     this.labelTongTien.Visible = false;
@@ -386,6 +396,7 @@ namespace PhongKham
                     this.buttonPutIn.Visible = false;
                     break;
             }
+            }));
         }
 
         private void InitInputMedicineMySql()
@@ -959,7 +970,7 @@ namespace PhongKham
                 }
             }
 
-            if (Show1Record.Checked) // Get 1 Record
+            if (checkBoxShow1Record.Checked) // Get 1 Record
             {
                 strCommandMain += " GROUP BY h.Id";
             }
@@ -990,7 +1001,7 @@ namespace PhongKham
                     row.Cells["ColumnSymtom"].Value = reader2[DatabaseContants.history.Symptom].ToString();//symptom
                     row.Cells["ColumnDiagno"].Value = reader2[DatabaseContants.history.Diagnose].ToString(); // chan doan
                     row.Cells["ColumnNhietDo"].Value = reader2[DatabaseContants.history.temperature].ToString();
-                    if (ShowMedicines.Checked)
+                    if (checkBoxShowMedicines.Checked)
                     {
                         medicines = reader2[DatabaseContants.history.Medicines].ToString();
                         try
@@ -1011,7 +1022,7 @@ namespace PhongKham
         {
             SearchOnTextBox_PressEnter();
 
-            if (ShowBigForm.Checked)
+            if (checkBoxShowBigForm.Checked)
             {
                 SearchForm searchForm = new Clinic.SearchForm();
                 SearchForm.dataGridView1.Rows.Clear();
