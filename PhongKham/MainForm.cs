@@ -507,7 +507,7 @@ namespace PhongKham
             txtBoxClinicRoomHeight.Text = "0";
             dateTimePickerBirthDay.ResetText();
             txtBoxClinicRoomSymptom.Clear();
-            txtBoxClinicRoomWeight.Text = "0";
+            txtBoxClinicRoomWeight.Text = "ddd";
             lblClinicRoomId.Text = "";
             // comboBoxClinicRoomMedicines.Text = "";
             dataGridViewMedicine.Rows.Clear();

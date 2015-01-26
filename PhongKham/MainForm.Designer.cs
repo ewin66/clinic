@@ -1606,7 +1606,7 @@ namespace PhongKham
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.06061F));
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 141F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.CoTableLayoutPanel1.Controls.Add(this.label28, 0, 0);
             this.CoTableLayoutPanel1.Controls.Add(this.lblClinicRoomId, 1, 0);
             this.CoTableLayoutPanel1.Controls.Add(this.label1, 0, 1);
@@ -1654,7 +1654,7 @@ namespace PhongKham
             // lblClinicRoomId
             // 
             this.lblClinicRoomId.AutoSize = true;
-            this.lblClinicRoomId.Location = new System.Drawing.Point(129, 3);
+            this.lblClinicRoomId.Location = new System.Drawing.Point(128, 3);
             this.lblClinicRoomId.Name = "lblClinicRoomId";
             this.lblClinicRoomId.Size = new System.Drawing.Size(19, 18);
             this.lblClinicRoomId.TabIndex = 1;
@@ -1681,7 +1681,7 @@ namespace PhongKham
             // textBoxClinicNhietDo
             // 
             this.textBoxClinicNhietDo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(577, 119);
+            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(571, 119);
             this.textBoxClinicNhietDo.Name = "textBoxClinicNhietDo";
             this.textBoxClinicNhietDo.Size = new System.Drawing.Size(147, 24);
             this.textBoxClinicNhietDo.TabIndex = 22;
@@ -1689,18 +1689,18 @@ namespace PhongKham
             // dateTimePickerBirthDay
             // 
             this.dateTimePickerBirthDay.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(129, 85);
+            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(128, 85);
             this.dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
-            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(284, 24);
+            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(280, 24);
             this.dateTimePickerBirthDay.TabIndex = 18;
             this.dateTimePickerBirthDay.ValueChanged += new System.EventHandler(this.dateTimePickerBirthDay_ValueChanged);
             // 
             // txtBoxClinicRoomAddress
             // 
             this.txtBoxClinicRoomAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(129, 119);
+            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(128, 119);
             this.txtBoxClinicRoomAddress.Name = "txtBoxClinicRoomAddress";
-            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(284, 24);
+            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(280, 24);
             this.txtBoxClinicRoomAddress.TabIndex = 19;
             // 
             // label3
@@ -1715,7 +1715,7 @@ namespace PhongKham
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(422, 116);
+            this.label45.Location = new System.Drawing.Point(417, 116);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(67, 18);
             this.label45.TabIndex = 40;
@@ -1724,15 +1724,15 @@ namespace PhongKham
             // comboBoxClinicRoomName
             // 
             this.comboBoxClinicRoomName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(129, 49);
+            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(128, 49);
             this.comboBoxClinicRoomName.Name = "comboBoxClinicRoomName";
-            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(284, 24);
+            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(280, 24);
             this.comboBoxClinicRoomName.TabIndex = 17;
             this.comboBoxClinicRoomName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxClinicRoomName_KeyPress);
             // 
             // buttonClinicCreateNew
             // 
-            this.buttonClinicCreateNew.Location = new System.Drawing.Point(862, 6);
+            this.buttonClinicCreateNew.Location = new System.Drawing.Point(852, 6);
             this.buttonClinicCreateNew.Name = "buttonClinicCreateNew";
             this.buttonClinicCreateNew.Size = new System.Drawing.Size(175, 26);
             this.buttonClinicCreateNew.TabIndex = 24;
@@ -1742,7 +1742,7 @@ namespace PhongKham
             // 
             // buttonClinicClear
             // 
-            this.buttonClinicClear.Location = new System.Drawing.Point(862, 49);
+            this.buttonClinicClear.Location = new System.Drawing.Point(852, 49);
             this.buttonClinicClear.Name = "buttonClinicClear";
             this.buttonClinicClear.Size = new System.Drawing.Size(75, 26);
             this.buttonClinicClear.TabIndex = 30;
@@ -1752,16 +1752,16 @@ namespace PhongKham
             // 
             // txtBoxClinicRoomWeight
             // 
-            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(577, 85);
+            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(571, 85);
             this.txtBoxClinicRoomWeight.Name = "txtBoxClinicRoomWeight";
             this.txtBoxClinicRoomWeight.Size = new System.Drawing.Size(147, 24);
             this.txtBoxClinicRoomWeight.TabIndex = 21;
-            this.txtBoxClinicRoomWeight.Text = "0";
+            this.txtBoxClinicRoomWeight.Text = "";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(422, 82);
+            this.label5.Location = new System.Drawing.Point(417, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 18);
             this.label5.TabIndex = 4;
@@ -1770,7 +1770,7 @@ namespace PhongKham
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(422, 46);
+            this.label4.Location = new System.Drawing.Point(417, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 18);
             this.label4.TabIndex = 3;
@@ -1778,7 +1778,7 @@ namespace PhongKham
             // 
             // txtBoxClinicRoomHeight
             // 
-            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(577, 49);
+            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(571, 49);
             this.txtBoxClinicRoomHeight.Name = "txtBoxClinicRoomHeight";
             this.txtBoxClinicRoomHeight.Size = new System.Drawing.Size(147, 24);
             this.txtBoxClinicRoomHeight.TabIndex = 20;
@@ -1790,16 +1790,16 @@ namespace PhongKham
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(422, 3);
+            this.label31.Location = new System.Drawing.Point(417, 3);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(146, 40);
+            this.label31.Size = new System.Drawing.Size(145, 40);
             this.label31.TabIndex = 25;
             this.label31.Text = "Ngày Khám";
             // 
             // dateTimePickerNgayKham
             // 
             this.dateTimePickerNgayKham.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(577, 6);
+            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(571, 6);
             this.dateTimePickerNgayKham.Name = "dateTimePickerNgayKham";
             this.dateTimePickerNgayKham.Size = new System.Drawing.Size(252, 24);
             this.dateTimePickerNgayKham.TabIndex = 26;
@@ -1807,7 +1807,7 @@ namespace PhongKham
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(422, 152);
+            this.label30.Location = new System.Drawing.Point(417, 152);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(71, 18);
             this.label30.TabIndex = 41;
@@ -1815,7 +1815,7 @@ namespace PhongKham
             // 
             // textBoxHuyetAp
             // 
-            this.textBoxHuyetAp.Location = new System.Drawing.Point(577, 155);
+            this.textBoxHuyetAp.Location = new System.Drawing.Point(571, 155);
             this.textBoxHuyetAp.Name = "textBoxHuyetAp";
             this.textBoxHuyetAp.Size = new System.Drawing.Size(147, 24);
             this.textBoxHuyetAp.TabIndex = 23;
@@ -1832,7 +1832,7 @@ namespace PhongKham
             // labelTuoi
             // 
             this.labelTuoi.AutoSize = true;
-            this.labelTuoi.Location = new System.Drawing.Point(129, 152);
+            this.labelTuoi.Location = new System.Drawing.Point(128, 152);
             this.labelTuoi.Name = "labelTuoi";
             this.labelTuoi.Size = new System.Drawing.Size(16, 18);
             this.labelTuoi.TabIndex = 44;
@@ -1840,7 +1840,7 @@ namespace PhongKham
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(862, 155);
+            this.button3.Location = new System.Drawing.Point(852, 155);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(162, 32);
             this.button3.TabIndex = 45;
@@ -2265,7 +2265,7 @@ namespace PhongKham
             this.CoTableLayoutPanel6.ColumnCount = 3;
             this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20567F));
             this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79433F));
-            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 283F));
+            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 285F));
             this.CoTableLayoutPanel6.Controls.Add(this.label39, 0, 1);
             this.CoTableLayoutPanel6.Controls.Add(this.label40, 0, 2);
             this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupSource, 1, 0);
@@ -2306,14 +2306,14 @@ namespace PhongKham
             // 
             this.textBoxBackupSource.Location = new System.Drawing.Point(86, 3);
             this.textBoxBackupSource.Name = "textBoxBackupSource";
-            this.textBoxBackupSource.Size = new System.Drawing.Size(179, 24);
+            this.textBoxBackupSource.Size = new System.Drawing.Size(177, 24);
             this.textBoxBackupSource.TabIndex = 3;
             // 
             // textBoxBackupTarget
             // 
             this.textBoxBackupTarget.Location = new System.Drawing.Point(86, 47);
             this.textBoxBackupTarget.Name = "textBoxBackupTarget";
-            this.textBoxBackupTarget.Size = new System.Drawing.Size(179, 24);
+            this.textBoxBackupTarget.Size = new System.Drawing.Size(177, 24);
             this.textBoxBackupTarget.TabIndex = 4;
             // 
             // textBoxBackupTimeAuto
@@ -2325,7 +2325,7 @@ namespace PhongKham
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(271, 3);
+            this.button2.Location = new System.Drawing.Point(269, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 38);
             this.button2.TabIndex = 6;
@@ -2335,7 +2335,7 @@ namespace PhongKham
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(271, 47);
+            this.button4.Location = new System.Drawing.Point(269, 47);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 38);
             this.button4.TabIndex = 7;
@@ -2346,7 +2346,7 @@ namespace PhongKham
             // checkBoxAutoCopy
             // 
             this.checkBoxAutoCopy.AutoSize = true;
-            this.checkBoxAutoCopy.Location = new System.Drawing.Point(271, 91);
+            this.checkBoxAutoCopy.Location = new System.Drawing.Point(269, 91);
             this.checkBoxAutoCopy.Name = "checkBoxAutoCopy";
             this.checkBoxAutoCopy.Size = new System.Drawing.Size(93, 22);
             this.checkBoxAutoCopy.TabIndex = 8;

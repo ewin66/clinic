@@ -1263,25 +1263,34 @@ namespace Clinic.Helpers
         {
 
             List<string> result = new List<string>();
-
+            int i = 0;
             string strCommand = " SELECT * FROM doanhthu   WHERE time = " + Helper.ConvertToSqlString(dateTime.ToString("yyyy-MM-dd"));
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
             {
                 while (reader.Read())
                 {
 
-
+                    i++;
+                  
                     string IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
-                    if (result.Contains(IdPatient)==false)
+                    if (Id == IdPatient)
                     {
-                        result.Add(IdPatient);
+                        return i;
                     }
+                    //if (result.Contains(IdPatient) == false)
+                    //{
+                    //    result.Add(IdPatient);
+                    //}
+                    //else
+                    //{
+                    //    return i;
+                    //}
 
                 }
             }
 
-            int k = result.Count;
-            return k++;
+
+            return i;
         }
 
         internal static List<ItemDoanhThu> DoanhThuTheoThang(IDatabase db, DateTime dateTime)
