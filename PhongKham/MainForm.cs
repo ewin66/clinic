@@ -402,9 +402,10 @@ namespace PhongKham
         private void InitInputMedicineMySql()
         {
 
+            currentMedicines = Helper.GetAllMedicinesAndServicesFromDB();
             RefreshIdOfNewMedicine();
             comboBoxInputMedicineName.Items.Clear();
-            comboBoxInputMedicineName.Items.AddRange(currentMedicines.ToArray());
+            comboBoxInputMedicineName.Items.AddRange(currentMedicines.Select(x=>x.Name).ToArray());
         }
 
         private void InitTableServices()
@@ -498,16 +499,19 @@ namespace PhongKham
             comboBoxInputMedicineName.Text = "";
             lblInputMedicineCount.Text = "0";
             txtBoxInputMedicineAdd.Text = "0";
+            this.textBoxNewCostOut.Text = "";
+            InitInputMedicineMySql();
+
         }
         private void ClearClinicRoomForm()
         {
             txtBoxClinicRoomAddress.Clear();
             comboBoxClinicRoomName.Text = "";
             txtBoxClinicRoomDiagnose.Clear();
-            txtBoxClinicRoomHeight.Text = "0";
+            txtBoxClinicRoomHeight.Text = "";
             dateTimePickerBirthDay.ResetText();
             txtBoxClinicRoomSymptom.Clear();
-            txtBoxClinicRoomWeight.Text = "ddd";
+            txtBoxClinicRoomWeight.Text = "";
             lblClinicRoomId.Text = "";
             // comboBoxClinicRoomMedicines.Text = "";
             dataGridViewMedicine.Rows.Clear();
@@ -524,39 +528,41 @@ namespace PhongKham
         {
             this.lblInputMedicineCount.Text = reader["Count"].ToString();
             this.label34.Text = reader["Id"].ToString();
-            this.textBox3.Text = reader["CostOut"].ToString();
+            this.textBoxNewCostOut.Text = reader["CostOut"].ToString();
         }
         private void RefreshIdOfNewMedicine()
         {
 
 
             string strCommand = " SELECT ID FROM Medicine ORDER BY ID DESC LIMIT 1";
-            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
-            reader.Read();
-            int intTemp = 0;
-            if (reader.HasRows)
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
             {
-                string temp = reader.GetString(0);
-
-                try
+                reader.Read();
+                int intTemp = 0;
+                if (reader.HasRows)
                 {
-                    intTemp = int.Parse(temp);
+                    string temp = reader.GetString(0);
 
+                    try
+                    {
+                        intTemp = int.Parse(temp);
+
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
-                catch (Exception)
+                else
                 {
+                    intTemp = 0;
                 }
-            }
-            else
-            {
-                intTemp = 0;
-            }
-            int newId = intTemp + 1;
-            string strNewID = String.Format("{0:000000}", newId);
+                int newId = intTemp + 1;
+                string strNewID = String.Format("{0:000000}", newId);
 
-            lblInputMedicineNewId.Text = strNewID;
-            labelServicesID.Text = strNewID; // Services
-            reader.Close();
+                lblInputMedicineNewId.Text = strNewID;
+                labelServicesID.Text = strNewID; // Services
+
+            }
 
 
         }
@@ -564,8 +570,8 @@ namespace PhongKham
         {
             lblClinicRoomId.Text = reader["Idpatient"].ToString();
             txtBoxClinicRoomAddress.Text = reader["Address"].ToString();
-            txtBoxClinicRoomWeight.Text = reader["Weight"].ToString();
-            txtBoxClinicRoomHeight.Text = reader["Height"].ToString();
+            if (String.IsNullOrEmpty(txtBoxClinicRoomWeight.Text)) txtBoxClinicRoomWeight.Text = reader["Weight"].ToString();
+            if (String.IsNullOrEmpty(txtBoxClinicRoomHeight.Text)) txtBoxClinicRoomHeight.Text = reader["Height"].ToString();
             dateTimePickerBirthDay.Text = reader["Birthday"].ToString();
             comboBoxClinicRoomName.Text = reader["name"].ToString();
             // dateTimePickerNgayKham.Text = reader["Day"].ToString(); //we update new Date 
@@ -573,8 +579,8 @@ namespace PhongKham
             {
                 txtBoxClinicRoomSymptom.Text = reader["Symptom"].ToString();
                 txtBoxClinicRoomDiagnose.Text = reader["Diagnose"].ToString();
-                textBoxClinicNhietDo.Text = reader[DatabaseContants.history.temperature].ToString();
-                textBoxHuyetAp.Text = reader[DatabaseContants.history.huyetap].ToString();
+                if (String.IsNullOrEmpty(textBoxClinicNhietDo.Text)) textBoxClinicNhietDo.Text = reader[DatabaseContants.history.temperature].ToString();
+                if (String.IsNullOrEmpty(textBoxHuyetAp.Text)) textBoxHuyetAp.Text = reader[DatabaseContants.history.huyetap].ToString();
             }
             textBoxClinicPhone.Text = reader["phone"].ToString();
 
@@ -709,7 +715,10 @@ namespace PhongKham
             int count = 0;
             try
             {
-                count = int.Parse(lblInputMedicineCount.Text) + int.Parse(txtBoxInputMedicineAdd.Text);
+                if (comboBoxInputMedicineName.Text[0] != '@')
+                {
+                    count = int.Parse(lblInputMedicineCount.Text) + int.Parse(txtBoxInputMedicineAdd.Text);
+                }
             }
             catch (Exception ex)
             {
@@ -723,7 +732,7 @@ namespace PhongKham
 
             try
             {
-                newOutPreise = int.Parse(textBox3.Text);
+                newOutPreise = int.Parse(textBoxNewCostOut.Text);
             }
             catch (Exception ex)
             {
@@ -731,10 +740,10 @@ namespace PhongKham
                 return;
             }
 
-            string strCommand = "Update Medicine Set Count =" + count.ToString() + ", CostOut =" + newOutPreise.ToString() + " Where Id =" + Id;
+            string strCommand = "Update Medicine  Set Count =" + count.ToString() + ", CostOut =" + newOutPreise.ToString() + ",Name = " +Helper.ConvertToSqlString(comboBoxInputMedicineName.Text) + " Where Id =" + Id;
             db.ExecuteNonQuery(strCommand, null);
 
-            MessageBox.Show("Thêm thuốc thành công : " + txtBoxInputMedicineAdd.Text + " " + comboBoxInputMedicineName.Text);
+            MessageBox.Show("Cập nhật thành công : " + txtBoxInputMedicineAdd.Text + " " + comboBoxInputMedicineName.Text);
             ClearInputMedicine();
 
 
@@ -1096,6 +1105,7 @@ namespace PhongKham
             if (this.comboBoxClinicRoomName.Text == null || this.comboBoxClinicRoomName.Text == string.Empty)
             {
                 MessageBox.Show("Ten Benh Nhan");
+                this.Enabled = true;
                 return;
             }
 
@@ -1105,6 +1115,7 @@ namespace PhongKham
             {
                 MessageBox.Show("Bạn không thể sửa tên bệnh nhân đã nhập!");
                 this.comboBoxClinicRoomName.Text = originalName;
+                this.Enabled = true;
                 return;
             }
 
@@ -1250,9 +1261,16 @@ namespace PhongKham
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            try
+            {
+                axAcroPDF1.LoadFile("firstpage.pdf");
+                Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, e.Result.ToString());
+            }
+            catch
+            {
+               
 
-            axAcroPDF1.LoadFile("firstpage.pdf");
-            Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, e.Result.ToString());
+            }
             this.Enabled = true;
         }
 

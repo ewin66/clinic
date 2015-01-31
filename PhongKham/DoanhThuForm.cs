@@ -26,7 +26,7 @@ namespace Clinic
         List<IMedicine> currentMedicines;
         List<IMedicine> currentServices;
         List<string> AllLoaiKham;
-
+        private bool needOptimize =true;
 
         public DoanhThuForm()
         {
@@ -40,6 +40,18 @@ namespace Clinic
             currentServices = Helper.GetAllServiceFromDb();
             AllLoaiKham = Helper.GetAllLoaiKham(DatabaseFactory.Instance);
 
+            InitForm(needOptimize);
+
+        }
+
+        private void InitForm(bool needOptimize)
+        {
+            if (needOptimize)
+            {
+                this.dataGridView1.Columns.Remove(this.ColumnIdPatient);
+                this.dataGridView1.Columns.Remove(this.NameDoctor);
+            }
+            this.dataGridView1.Columns.Remove(this.ColumnLoaiKham);
         }
 
         public void FillToGrid(List<ItemDoanhThu> listItem)
@@ -55,12 +67,17 @@ namespace Clinic
                 int index = dataGridView1.Rows.Add();
                 DataGridViewRow row = dataGridView1.Rows[index];
                 row.Cells["STT"].Value = i + 1;
-                row.Cells[1].Value = listItem[i].Date;
+                row.Cells[this.date.Name].Value = listItem[i].Date;
 
 
-                   
-                row.Cells[3].Value = listItem[i].Money;
-                row.Cells["ColumnIdPatient"].Value = listItem[i].IdPatient;
+
+                row.Cells[Money.Name].Value = listItem[i].Money;
+                string nameDoctor = listItem[i].NameOfDoctor;
+                if (!needOptimize)
+                {
+                    row.Cells["ColumnIdPatient"].Value = listItem[i].IdPatient;
+                    row.Cells[NameDoctor.Name].Value = nameDoctor;
+                }
                 if (!listID.Contains(listItem[i].IdPatient))
                 {
                     listID.Add(listItem[i].IdPatient);
@@ -69,10 +86,13 @@ namespace Clinic
 
                 row.Cells["ColumnNamePatient"].Value = listItem[i].NamePatient;
 
-                string nameDoctor= listItem[i].NameOfDoctor;
-                row.Cells[2].Value = nameDoctor;
+
+
                 row.Cells["ColumnServices"].Value = BuildStringServicesAndAdmin(listItem[i].Services, ref listService);
-                row.Cells["ColumnLoaiKham"].Value = listItem[i].LoaiKham;
+                //if (!needOptimize)
+                //{
+                //    row.Cells["ColumnLoaiKham"].Value = listItem[i].LoaiKham;
+                //}
 
                 DoanhThuBacSi bsTemp = listBacSi.Where(x => x.NameBacSi == nameDoctor).FirstOrDefault();
                 if (bsTemp == null)
@@ -101,9 +121,14 @@ namespace Clinic
                     int index = dataGridView3.Rows.Add();
                     DataGridViewRow row = dataGridView3.Rows[index];
                     row.Cells["ColumnServiceName"].Value = keyService;
-                    row.Cells["ColumnServiceAdmin"].Value = currentServices.Where(x => x.Name == keyService).FirstOrDefault().Admin;
+                    try
+                    {
+                        row.Cells["ColumnServiceAdmin"].Value = currentServices.Where(x => x.Name == keyService).FirstOrDefault().Admin;
+    
                     row.Cells["ColumnServiceCount"].Value = listService[keyService].ToString();
                     row.Cells["ColumnServiceTotal"].Value = (listService[keyService] * currentServices.Where(x => x.Name == keyService).FirstOrDefault().CostOut).ToString();
+                    }
+                    catch { }
                 
             }
 
@@ -130,6 +155,43 @@ namespace Clinic
                 row.Cells[1].Value = listItem.Where(x => x.LoaiKham == AllLoaiKham[i]).Count();
 
             }
+
+
+            Dictionary<string, int> Admins = new Dictionary<string, int>();
+            try
+            {
+                for (int i = 0; i < dataGridView3.Rows.Count - 1; i++)
+                {
+                    string nameAdmin = dataGridView3.Rows[i].Cells["ColumnServiceAdmin"].Value.ToString();
+                    if (!String.IsNullOrEmpty(nameAdmin))
+                    {
+                        if (Admins.ContainsKey(nameAdmin))
+                        {
+                            Admins[nameAdmin] += int.Parse(dataGridView3.Rows[i].Cells["ColumnServiceTotal"].Value.ToString());
+                        }
+                        else
+                        {
+                            Admins.Add(nameAdmin, int.Parse(dataGridView3.Rows[i].Cells["ColumnServiceTotal"].Value.ToString()));
+                        }
+
+                    }
+                }
+            }
+            catch { }
+
+            dataGridViewAdminOfService.Rows.Clear();
+
+            try
+            {
+                foreach (string keyAdmin in Admins.Keys)
+                {
+                    int index = dataGridViewAdminOfService.Rows.Add();
+                    DataGridViewRow row = dataGridViewAdminOfService.Rows[index];
+                    row.Cells[0].Value = keyAdmin;
+                    row.Cells[1].Value = Admins[keyAdmin];
+                }
+            }
+            catch { }
 
             this.PatientNumber.Text = listID.Count.ToString();
 
@@ -187,7 +249,7 @@ namespace Clinic
             for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
             {
                 DataGridViewRow row = dataGridView1.Rows[i];
-                total += int.Parse(row.Cells[3].Value.ToString());
+                total += int.Parse(row.Cells[this.Money.Name].Value.ToString());
             }
             labelTotal.Text = total.ToString("C0");
             this.tongDoanhThu = labelTotal.Text;

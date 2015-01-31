@@ -32,14 +32,14 @@ namespace PhongKham
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label label26;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.Label label26;
             this.circularProgress1 = new DevComponents.DotNetBar.Controls.CircularProgress();
             this.MainTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -67,30 +67,6 @@ namespace PhongKham
             this.ColumnDiagno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSearchValueMedicines = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTongTien = new System.Windows.Forms.Label();
-            this.CoTableLayoutPanel1 = new Clinic.CoTableLayoutPanel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.lblClinicRoomId = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxClinicNhietDo = new System.Windows.Forms.TextBox();
-            this.dateTimePickerBirthDay = new System.Windows.Forms.DateTimePicker();
-            this.txtBoxClinicRoomAddress = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.comboBoxClinicRoomName = new System.Windows.Forms.TextBox();
-            this.buttonClinicCreateNew = new System.Windows.Forms.Button();
-            this.buttonClinicClear = new System.Windows.Forms.Button();
-            this.txtBoxClinicRoomWeight = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtBoxClinicRoomHeight = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.dateTimePickerNgayKham = new System.Windows.Forms.DateTimePicker();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBoxHuyetAp = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.labelTuoi = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.txtBoxClinicRoomSymptom = new System.Windows.Forms.TextBox();
             this.textBoxClinicPhone = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -125,44 +101,6 @@ namespace PhongKham
             this.btnInputMedicineNewOk = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.btnInputMedicineOk = new System.Windows.Forms.Button();
-            this.CoTableLayoutPanel7 = new Clinic.CoTableLayoutPanel();
-            this.labelServicesID = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.textBoxServices = new System.Windows.Forms.TextBox();
-            this.textBoxServicesCost = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.textBoxAdminOfService = new System.Windows.Forms.TextBox();
-            this.CoTableLayoutPanel4 = new Clinic.CoTableLayoutPanel();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtBoxInputMedicineAdd = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.lblInputMedicineCount = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
-            this.label34 = new System.Windows.Forms.Label();
-            this.comboBoxInputMedicineName = new System.Windows.Forms.ComboBox();
-            this.CoTableLayoutPanel3 = new Clinic.CoTableLayoutPanel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblInputMedicineNewId = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtBoxInputMedicineNewName = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtBoxInputMedicineNewCount = new System.Windows.Forms.TextBox();
-            this.txtBoxInputMedicineNewCostOut = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtBoxInputMedicineNewCostIn = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBoxMedicineHdsd = new System.Windows.Forms.TextBox();
             this.tabPageTools = new System.Windows.Forms.TabPage();
             this.textBoxNameDoctor = new System.Windows.Forms.TextBox();
             this.label46 = new System.Windows.Forms.Label();
@@ -180,25 +118,6 @@ namespace PhongKham
             this.label10 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.CoTableLayoutPanel6 = new Clinic.CoTableLayoutPanel();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBoxBackupSource = new System.Windows.Forms.TextBox();
-            this.textBoxBackupTarget = new System.Windows.Forms.TextBox();
-            this.textBoxBackupTimeAuto = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.checkBoxAutoCopy = new System.Windows.Forms.CheckBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.CoTableLayoutPanel5 = new Clinic.CoTableLayoutPanel();
-            this.textBoxNameClinic = new System.Windows.Forms.TextBox();
-            this.textBoxAddressClinic = new System.Windows.Forms.TextBox();
-            this.textBoxAdviceClinic = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.labelSdt = new System.Windows.Forms.Label();
-            this.textBoxSDT = new System.Windows.Forms.TextBox();
             this.tabPagePrint = new System.Windows.Forms.TabPage();
             this.axAcroPDF1 = new AxAcroPDFLib.AxAcroPDF();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -232,23 +151,6 @@ namespace PhongKham
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CoTableLayoutPanel2 = new Clinic.CoTableLayoutPanel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.comboBoxWaitRoomId = new System.Windows.Forms.ComboBox();
-            this.txtBoxWaitRoomHeight = new System.Windows.Forms.TextBox();
-            this.txtBoxWaitRoomDiagnose = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.lblWaitRoomName = new System.Windows.Forms.Label();
-            this.txtBoxWaitRoomName = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtBoxWaitingRoomSymptom = new System.Windows.Forms.TextBox();
-            this.lblWaitRoomBirthday = new System.Windows.Forms.Label();
-            this.txtBoxWaitingRoomWeight = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label15 = new System.Windows.Forms.Label();
-            this.lblWaitRoomAddress = new System.Windows.Forms.Label();
-            this.txtBoxWaitRoomAddress = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.btnWaitRoomContinue = new System.Windows.Forms.Button();
             this.btnWaitRoomCancel = new System.Windows.Forms.Button();
             this.btnWaitRoomOK = new System.Windows.Forms.Button();
@@ -270,6 +172,104 @@ namespace PhongKham
             this.Column21 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.dataGridViewMedicinesId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMedicinesHDSD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CoTableLayoutPanel1 = new Clinic.CoTableLayoutPanel();
+            this.label28 = new System.Windows.Forms.Label();
+            this.lblClinicRoomId = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxClinicNhietDo = new System.Windows.Forms.TextBox();
+            this.dateTimePickerBirthDay = new System.Windows.Forms.DateTimePicker();
+            this.txtBoxClinicRoomAddress = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.comboBoxClinicRoomName = new System.Windows.Forms.TextBox();
+            this.buttonClinicCreateNew = new System.Windows.Forms.Button();
+            this.buttonClinicClear = new System.Windows.Forms.Button();
+            this.txtBoxClinicRoomWeight = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtBoxClinicRoomHeight = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.dateTimePickerNgayKham = new System.Windows.Forms.DateTimePicker();
+            this.label30 = new System.Windows.Forms.Label();
+            this.textBoxHuyetAp = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.labelTuoi = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.CoTableLayoutPanel7 = new Clinic.CoTableLayoutPanel();
+            this.labelServicesID = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.textBoxServices = new System.Windows.Forms.TextBox();
+            this.textBoxServicesCost = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.textBoxAdminOfService = new System.Windows.Forms.TextBox();
+            this.CoTableLayoutPanel4 = new Clinic.CoTableLayoutPanel();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtBoxInputMedicineAdd = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.lblInputMedicineCount = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBoxNewCostOut = new System.Windows.Forms.TextBox();
+            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
+            this.label34 = new System.Windows.Forms.Label();
+            this.comboBoxInputMedicineName = new System.Windows.Forms.ComboBox();
+            this.CoTableLayoutPanel3 = new Clinic.CoTableLayoutPanel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblInputMedicineNewId = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtBoxInputMedicineNewName = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtBoxInputMedicineNewCount = new System.Windows.Forms.TextBox();
+            this.txtBoxInputMedicineNewCostOut = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBoxInputMedicineNewCostIn = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBoxMedicineHdsd = new System.Windows.Forms.TextBox();
+            this.CoTableLayoutPanel6 = new Clinic.CoTableLayoutPanel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBoxBackupSource = new System.Windows.Forms.TextBox();
+            this.textBoxBackupTarget = new System.Windows.Forms.TextBox();
+            this.textBoxBackupTimeAuto = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.checkBoxAutoCopy = new System.Windows.Forms.CheckBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.CoTableLayoutPanel5 = new Clinic.CoTableLayoutPanel();
+            this.textBoxNameClinic = new System.Windows.Forms.TextBox();
+            this.textBoxAddressClinic = new System.Windows.Forms.TextBox();
+            this.textBoxAdviceClinic = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.labelSdt = new System.Windows.Forms.Label();
+            this.textBoxSDT = new System.Windows.Forms.TextBox();
+            this.CoTableLayoutPanel2 = new Clinic.CoTableLayoutPanel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBoxWaitRoomId = new System.Windows.Forms.ComboBox();
+            this.txtBoxWaitRoomHeight = new System.Windows.Forms.TextBox();
+            this.txtBoxWaitRoomDiagnose = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblWaitRoomName = new System.Windows.Forms.Label();
+            this.txtBoxWaitRoomName = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtBoxWaitingRoomSymptom = new System.Windows.Forms.TextBox();
+            this.lblWaitRoomBirthday = new System.Windows.Forms.Label();
+            this.txtBoxWaitingRoomWeight = new System.Windows.Forms.TextBox();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.lblWaitRoomAddress = new System.Windows.Forms.Label();
+            this.txtBoxWaitRoomAddress = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             label26 = new System.Windows.Forms.Label();
             this.MainTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -277,37 +277,27 @@ namespace PhongKham
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).BeginInit();
-            this.CoTableLayoutPanel1.SuspendLayout();
             this.Calendar.SuspendLayout();
             this.panelCalendarDate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).BeginInit();
             this.panelCalendar.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.tabPagenhapthuoc.SuspendLayout();
-            this.CoTableLayoutPanel7.SuspendLayout();
-            this.CoTableLayoutPanel4.SuspendLayout();
-            this.CoTableLayoutPanel3.SuspendLayout();
             this.tabPageTools.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.CoTableLayoutPanel6.SuspendLayout();
-            this.CoTableLayoutPanel5.SuspendLayout();
             this.tabPagePrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.CoTableLayoutPanel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.CoTableLayoutPanel1.SuspendLayout();
+            this.CoTableLayoutPanel7.SuspendLayout();
+            this.CoTableLayoutPanel4.SuspendLayout();
+            this.CoTableLayoutPanel3.SuspendLayout();
+            this.CoTableLayoutPanel6.SuspendLayout();
+            this.CoTableLayoutPanel5.SuspendLayout();
+            this.CoTableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label26.Location = new System.Drawing.Point(408, 3);
-            label26.Name = "label26";
-            label26.Size = new System.Drawing.Size(388, 37);
-            label26.TabIndex = 26;
-            label26.Text = "Đây là khung nhập mới thuốc , số Id là mặc định";
             // 
             // circularProgress1
             // 
@@ -630,8 +620,8 @@ namespace PhongKham
             // 
             // ColumnSearchValueMedicines
             // 
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnSearchValueMedicines.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnSearchValueMedicines.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnSearchValueMedicines.FillWeight = 22.3252F;
             this.ColumnSearchValueMedicines.HeaderText = "Thuốc đã dùng";
             this.ColumnSearchValueMedicines.Name = "ColumnSearchValueMedicines";
@@ -650,260 +640,6 @@ namespace PhongKham
             this.labelTongTien.Text = "0";
             this.labelTongTien.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.labelTongTien.Click += new System.EventHandler(this.label30_Click);
-            // 
-            // CoTableLayoutPanel1
-            // 
-            this.CoTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CoTableLayoutPanel1.AutoSize = true;
-            this.CoTableLayoutPanel1.BackColor = System.Drawing.Color.Gainsboro;
-            this.CoTableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.CoTableLayoutPanel1.ColumnCount = 6;
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.30303F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.06061F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
-            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
-            this.CoTableLayoutPanel1.Controls.Add(this.label28, 0, 0);
-            this.CoTableLayoutPanel1.Controls.Add(this.lblClinicRoomId, 1, 0);
-            this.CoTableLayoutPanel1.Controls.Add(this.label1, 0, 1);
-            this.CoTableLayoutPanel1.Controls.Add(this.label2, 0, 2);
-            this.CoTableLayoutPanel1.Controls.Add(this.textBoxClinicNhietDo, 3, 3);
-            this.CoTableLayoutPanel1.Controls.Add(this.dateTimePickerBirthDay, 1, 2);
-            this.CoTableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomAddress, 1, 3);
-            this.CoTableLayoutPanel1.Controls.Add(this.label3, 0, 3);
-            this.CoTableLayoutPanel1.Controls.Add(this.label45, 2, 3);
-            this.CoTableLayoutPanel1.Controls.Add(this.comboBoxClinicRoomName, 1, 1);
-            this.CoTableLayoutPanel1.Controls.Add(this.buttonClinicCreateNew, 4, 0);
-            this.CoTableLayoutPanel1.Controls.Add(this.buttonClinicClear, 4, 1);
-            this.CoTableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomWeight, 3, 2);
-            this.CoTableLayoutPanel1.Controls.Add(this.label5, 2, 2);
-            this.CoTableLayoutPanel1.Controls.Add(this.label4, 2, 1);
-            this.CoTableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomHeight, 3, 1);
-            this.CoTableLayoutPanel1.Controls.Add(this.label31, 2, 0);
-            this.CoTableLayoutPanel1.Controls.Add(this.dateTimePickerNgayKham, 3, 0);
-            this.CoTableLayoutPanel1.Controls.Add(this.label30, 2, 4);
-            this.CoTableLayoutPanel1.Controls.Add(this.textBoxHuyetAp, 3, 4);
-            this.CoTableLayoutPanel1.Controls.Add(this.label47, 0, 4);
-            this.CoTableLayoutPanel1.Controls.Add(this.labelTuoi, 1, 4);
-            this.CoTableLayoutPanel1.Controls.Add(this.button3, 4, 4);
-            this.CoTableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CoTableLayoutPanel1.Location = new System.Drawing.Point(9, 6);
-            this.CoTableLayoutPanel1.Name = "CoTableLayoutPanel1";
-            this.CoTableLayoutPanel1.RowCount = 5;
-            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.CoTableLayoutPanel1.Size = new System.Drawing.Size(1189, 193);
-            this.CoTableLayoutPanel1.TabIndex = 27;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(6, 3);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(22, 18);
-            this.label28.TabIndex = 0;
-            this.label28.Text = "ID";
-            // 
-            // lblClinicRoomId
-            // 
-            this.lblClinicRoomId.AutoSize = true;
-            this.lblClinicRoomId.Location = new System.Drawing.Point(126, 3);
-            this.lblClinicRoomId.Name = "lblClinicRoomId";
-            this.lblClinicRoomId.Size = new System.Drawing.Size(19, 18);
-            this.lblClinicRoomId.TabIndex = 1;
-            this.lblClinicRoomId.Text = "Id";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 46);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tên";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 18);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Ngày Sinh";
-            // 
-            // textBoxClinicNhietDo
-            // 
-            this.textBoxClinicNhietDo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(562, 119);
-            this.textBoxClinicNhietDo.Name = "textBoxClinicNhietDo";
-            this.textBoxClinicNhietDo.Size = new System.Drawing.Size(147, 24);
-            this.textBoxClinicNhietDo.TabIndex = 22;
-            // 
-            // dateTimePickerBirthDay
-            // 
-            this.dateTimePickerBirthDay.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(126, 85);
-            this.dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
-            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(276, 24);
-            this.dateTimePickerBirthDay.TabIndex = 18;
-            this.dateTimePickerBirthDay.ValueChanged += new System.EventHandler(this.dateTimePickerBirthDay_ValueChanged);
-            // 
-            // txtBoxClinicRoomAddress
-            // 
-            this.txtBoxClinicRoomAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(126, 119);
-            this.txtBoxClinicRoomAddress.Name = "txtBoxClinicRoomAddress";
-            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(276, 24);
-            this.txtBoxClinicRoomAddress.TabIndex = 19;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 116);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 18);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Địa chỉ";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(411, 116);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(67, 18);
-            this.label45.TabIndex = 40;
-            this.label45.Text = "Nhiệt độ:";
-            // 
-            // comboBoxClinicRoomName
-            // 
-            this.comboBoxClinicRoomName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(126, 49);
-            this.comboBoxClinicRoomName.Name = "comboBoxClinicRoomName";
-            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(276, 24);
-            this.comboBoxClinicRoomName.TabIndex = 17;
-            this.comboBoxClinicRoomName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxClinicRoomName_KeyPress);
-            // 
-            // buttonClinicCreateNew
-            // 
-            this.buttonClinicCreateNew.Location = new System.Drawing.Point(839, 6);
-            this.buttonClinicCreateNew.Name = "buttonClinicCreateNew";
-            this.buttonClinicCreateNew.Size = new System.Drawing.Size(175, 26);
-            this.buttonClinicCreateNew.TabIndex = 24;
-            this.buttonClinicCreateNew.Text = "Thêm mới/Cập nhật";
-            this.buttonClinicCreateNew.UseVisualStyleBackColor = true;
-            this.buttonClinicCreateNew.Click += new System.EventHandler(this.buttonClinicCreateNew_Click);
-            // 
-            // buttonClinicClear
-            // 
-            this.buttonClinicClear.Location = new System.Drawing.Point(839, 49);
-            this.buttonClinicClear.Name = "buttonClinicClear";
-            this.buttonClinicClear.Size = new System.Drawing.Size(75, 26);
-            this.buttonClinicClear.TabIndex = 30;
-            this.buttonClinicClear.Text = "Clear";
-            this.buttonClinicClear.UseVisualStyleBackColor = true;
-            this.buttonClinicClear.Click += new System.EventHandler(this.buttonClinicClear_Click);
-            // 
-            // txtBoxClinicRoomWeight
-            // 
-            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(562, 85);
-            this.txtBoxClinicRoomWeight.Name = "txtBoxClinicRoomWeight";
-            this.txtBoxClinicRoomWeight.Size = new System.Drawing.Size(147, 24);
-            this.txtBoxClinicRoomWeight.TabIndex = 21;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(411, 82);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 18);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Nặng";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(411, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 18);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Chiều Cao";
-            // 
-            // txtBoxClinicRoomHeight
-            // 
-            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(562, 49);
-            this.txtBoxClinicRoomHeight.Name = "txtBoxClinicRoomHeight";
-            this.txtBoxClinicRoomHeight.Size = new System.Drawing.Size(147, 24);
-            this.txtBoxClinicRoomHeight.TabIndex = 20;
-            this.txtBoxClinicRoomHeight.Text = "0";
-            // 
-            // label31
-            // 
-            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(411, 3);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(142, 40);
-            this.label31.TabIndex = 25;
-            this.label31.Text = "Ngày Khám";
-            // 
-            // dateTimePickerNgayKham
-            // 
-            this.dateTimePickerNgayKham.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(562, 6);
-            this.dateTimePickerNgayKham.Name = "dateTimePickerNgayKham";
-            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(252, 24);
-            this.dateTimePickerNgayKham.TabIndex = 26;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(411, 152);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(71, 18);
-            this.label30.TabIndex = 41;
-            this.label30.Text = "Huyết Áp:";
-            // 
-            // textBoxHuyetAp
-            // 
-            this.textBoxHuyetAp.Location = new System.Drawing.Point(562, 155);
-            this.textBoxHuyetAp.Name = "textBoxHuyetAp";
-            this.textBoxHuyetAp.Size = new System.Drawing.Size(147, 24);
-            this.textBoxHuyetAp.TabIndex = 23;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(6, 152);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(41, 18);
-            this.label47.TabIndex = 43;
-            this.label47.Text = "Tuổi:";
-            // 
-            // labelTuoi
-            // 
-            this.labelTuoi.AutoSize = true;
-            this.labelTuoi.Location = new System.Drawing.Point(126, 152);
-            this.labelTuoi.Name = "labelTuoi";
-            this.labelTuoi.Size = new System.Drawing.Size(16, 18);
-            this.labelTuoi.TabIndex = 44;
-            this.labelTuoi.Text = "0";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(839, 155);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(162, 32);
-            this.button3.TabIndex = 45;
-            this.button3.Text = "Chỉ Làm mới ID";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // txtBoxClinicRoomSymptom
             // 
@@ -1123,27 +859,27 @@ namespace PhongKham
             | System.Windows.Forms.AnchorStyles.Right)));
             this.calendar1.ContextMenuStrip = this.contextMenuStrip1;
             this.calendar1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("07:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("19:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("07:00:00");
+            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("19:00:00");
+            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("07:00:00");
             this.calendar1.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange6,
+        calendarHighlightRange7,
+        calendarHighlightRange8,
+        calendarHighlightRange9,
+        calendarHighlightRange10};
             this.calendar1.Location = new System.Drawing.Point(0, 0);
             this.calendar1.Name = "calendar1";
             this.calendar1.Size = new System.Drawing.Size(496, 624);
@@ -1296,407 +1032,6 @@ namespace PhongKham
             this.btnInputMedicineOk.Text = "OK";
             this.btnInputMedicineOk.UseVisualStyleBackColor = false;
             this.btnInputMedicineOk.Click += new System.EventHandler(this.btnInputMedicineOk_ClickMySql);
-            // 
-            // CoTableLayoutPanel7
-            // 
-            this.CoTableLayoutPanel7.BackColor = System.Drawing.Color.LightGray;
-            this.CoTableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.CoTableLayoutPanel7.ColumnCount = 2;
-            this.CoTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.59006F));
-            this.CoTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.40993F));
-            this.CoTableLayoutPanel7.Controls.Add(this.labelServicesID, 1, 0);
-            this.CoTableLayoutPanel7.Controls.Add(this.label41, 0, 1);
-            this.CoTableLayoutPanel7.Controls.Add(this.label42, 0, 2);
-            this.CoTableLayoutPanel7.Controls.Add(this.textBoxServices, 1, 1);
-            this.CoTableLayoutPanel7.Controls.Add(this.textBoxServicesCost, 1, 2);
-            this.CoTableLayoutPanel7.Controls.Add(this.label43, 0, 0);
-            this.CoTableLayoutPanel7.Controls.Add(this.label48, 0, 3);
-            this.CoTableLayoutPanel7.Controls.Add(this.textBoxAdminOfService, 1, 3);
-            this.CoTableLayoutPanel7.Location = new System.Drawing.Point(8, 523);
-            this.CoTableLayoutPanel7.Name = "CoTableLayoutPanel7";
-            this.CoTableLayoutPanel7.RowCount = 4;
-            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.CoTableLayoutPanel7.Size = new System.Drawing.Size(808, 117);
-            this.CoTableLayoutPanel7.TabIndex = 26;
-            // 
-            // labelServicesID
-            // 
-            this.labelServicesID.AutoSize = true;
-            this.labelServicesID.Location = new System.Drawing.Point(213, 3);
-            this.labelServicesID.Name = "labelServicesID";
-            this.labelServicesID.Size = new System.Drawing.Size(54, 18);
-            this.labelServicesID.TabIndex = 18;
-            this.labelServicesID.Text = "label44";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(6, 26);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(92, 18);
-            this.label41.TabIndex = 0;
-            this.label41.Text = "Tên Dịch Vụ:";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(6, 56);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(35, 18);
-            this.label42.TabIndex = 1;
-            this.label42.Text = "Giá:";
-            // 
-            // textBoxServices
-            // 
-            this.textBoxServices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.textBoxServices.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBoxServices.Location = new System.Drawing.Point(213, 29);
-            this.textBoxServices.Name = "textBoxServices";
-            this.textBoxServices.Size = new System.Drawing.Size(589, 24);
-            this.textBoxServices.TabIndex = 2;
-            this.textBoxServices.Text = "@";
-            this.textBoxServices.TextChanged += new System.EventHandler(this.textBoxServices_TextChanged);
-            // 
-            // textBoxServicesCost
-            // 
-            this.textBoxServicesCost.Location = new System.Drawing.Point(213, 59);
-            this.textBoxServicesCost.Name = "textBoxServicesCost";
-            this.textBoxServicesCost.Size = new System.Drawing.Size(589, 24);
-            this.textBoxServicesCost.TabIndex = 3;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(6, 3);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(26, 18);
-            this.label43.TabIndex = 4;
-            this.label43.Text = "ID:";
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(6, 86);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(171, 18);
-            this.label48.TabIndex = 19;
-            this.label48.Text = "Người phụ trách(nếu có):";
-            // 
-            // textBoxAdminOfService
-            // 
-            this.textBoxAdminOfService.Location = new System.Drawing.Point(213, 89);
-            this.textBoxAdminOfService.Name = "textBoxAdminOfService";
-            this.textBoxAdminOfService.Size = new System.Drawing.Size(589, 24);
-            this.textBoxAdminOfService.TabIndex = 20;
-            // 
-            // CoTableLayoutPanel4
-            // 
-            this.CoTableLayoutPanel4.BackColor = System.Drawing.Color.Gainsboro;
-            this.CoTableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.CoTableLayoutPanel4.ColumnCount = 2;
-            this.CoTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel4.Controls.Add(this.label23, 0, 0);
-            this.CoTableLayoutPanel4.Controls.Add(this.txtBoxInputMedicineAdd, 1, 3);
-            this.CoTableLayoutPanel4.Controls.Add(this.label24, 0, 3);
-            this.CoTableLayoutPanel4.Controls.Add(this.label18, 0, 1);
-            this.CoTableLayoutPanel4.Controls.Add(this.label19, 0, 2);
-            this.CoTableLayoutPanel4.Controls.Add(this.lblInputMedicineCount, 1, 2);
-            this.CoTableLayoutPanel4.Controls.Add(this.label27, 0, 5);
-            this.CoTableLayoutPanel4.Controls.Add(this.label32, 0, 4);
-            this.CoTableLayoutPanel4.Controls.Add(this.textBox3, 1, 4);
-            this.CoTableLayoutPanel4.Controls.Add(this.dateTimePicker6, 1, 5);
-            this.CoTableLayoutPanel4.Controls.Add(this.label34, 1, 0);
-            this.CoTableLayoutPanel4.Controls.Add(this.comboBoxInputMedicineName, 1, 1);
-            this.CoTableLayoutPanel4.Location = new System.Drawing.Point(8, 25);
-            this.CoTableLayoutPanel4.Name = "CoTableLayoutPanel4";
-            this.CoTableLayoutPanel4.RowCount = 6;
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.05195F));
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.94805F));
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.CoTableLayoutPanel4.Size = new System.Drawing.Size(808, 195);
-            this.CoTableLayoutPanel4.TabIndex = 25;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 3);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(22, 18);
-            this.label23.TabIndex = 18;
-            this.label23.Text = "ID";
-            // 
-            // txtBoxInputMedicineAdd
-            // 
-            this.txtBoxInputMedicineAdd.Location = new System.Drawing.Point(408, 90);
-            this.txtBoxInputMedicineAdd.Name = "txtBoxInputMedicineAdd";
-            this.txtBoxInputMedicineAdd.Size = new System.Drawing.Size(383, 24);
-            this.txtBoxInputMedicineAdd.TabIndex = 2;
-            this.txtBoxInputMedicineAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineAdd_KeyPress);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(6, 87);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(132, 18);
-            this.label24.TabIndex = 21;
-            this.label24.Text = "Số lượng thêm vào";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 30);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(79, 18);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Tên Thuốc";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 60);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(124, 18);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Số lượng đang có";
-            // 
-            // lblInputMedicineCount
-            // 
-            this.lblInputMedicineCount.AutoSize = true;
-            this.lblInputMedicineCount.Location = new System.Drawing.Point(408, 60);
-            this.lblInputMedicineCount.Name = "lblInputMedicineCount";
-            this.lblInputMedicineCount.Size = new System.Drawing.Size(16, 18);
-            this.lblInputMedicineCount.TabIndex = 23;
-            this.lblInputMedicineCount.Text = "0";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 157);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(78, 18);
-            this.label27.TabIndex = 24;
-            this.label27.Text = "Ngày nhập";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(6, 122);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(88, 18);
-            this.label32.TabIndex = 25;
-            this.label32.Text = "Giá Out Mới";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(408, 125);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(383, 24);
-            this.textBox3.TabIndex = 26;
-            // 
-            // dateTimePicker6
-            // 
-            this.dateTimePicker6.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker6.Location = new System.Drawing.Point(408, 160);
-            this.dateTimePicker6.Name = "dateTimePicker6";
-            this.dateTimePicker6.Size = new System.Drawing.Size(383, 24);
-            this.dateTimePicker6.TabIndex = 30;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(408, 3);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(0, 18);
-            this.label34.TabIndex = 32;
-            // 
-            // comboBoxInputMedicineName
-            // 
-            this.comboBoxInputMedicineName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBoxInputMedicineName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxInputMedicineName.FormattingEnabled = true;
-            this.comboBoxInputMedicineName.Location = new System.Drawing.Point(408, 33);
-            this.comboBoxInputMedicineName.Name = "comboBoxInputMedicineName";
-            this.comboBoxInputMedicineName.Size = new System.Drawing.Size(383, 26);
-            this.comboBoxInputMedicineName.Sorted = true;
-            this.comboBoxInputMedicineName.TabIndex = 1;
-            this.comboBoxInputMedicineName.SelectedValueChanged += new System.EventHandler(this.comboBoxInputMedicineName_SelectedValueChanged);
-            // 
-            // CoTableLayoutPanel3
-            // 
-            this.CoTableLayoutPanel3.BackColor = System.Drawing.Color.Gainsboro;
-            this.CoTableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
-            this.CoTableLayoutPanel3.ColumnCount = 2;
-            this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel3.Controls.Add(this.label13, 0, 1);
-            this.CoTableLayoutPanel3.Controls.Add(this.lblInputMedicineNewId, 1, 1);
-            this.CoTableLayoutPanel3.Controls.Add(this.label20, 0, 2);
-            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewName, 1, 2);
-            this.CoTableLayoutPanel3.Controls.Add(this.label21, 0, 3);
-            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewCount, 1, 3);
-            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewCostOut, 1, 5);
-            this.CoTableLayoutPanel3.Controls.Add(this.label22, 0, 0);
-            this.CoTableLayoutPanel3.Controls.Add(label26, 1, 0);
-            this.CoTableLayoutPanel3.Controls.Add(this.label25, 0, 6);
-            this.CoTableLayoutPanel3.Controls.Add(this.dateTimePicker3, 1, 6);
-            this.CoTableLayoutPanel3.Controls.Add(this.label12, 0, 5);
-            this.CoTableLayoutPanel3.Controls.Add(this.label8, 0, 4);
-            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewCostIn, 1, 4);
-            this.CoTableLayoutPanel3.Controls.Add(this.label33, 0, 7);
-            this.CoTableLayoutPanel3.Controls.Add(this.textBoxMedicineHdsd, 1, 7);
-            this.CoTableLayoutPanel3.Location = new System.Drawing.Point(8, 226);
-            this.CoTableLayoutPanel3.Name = "CoTableLayoutPanel3";
-            this.CoTableLayoutPanel3.RowCount = 8;
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.CoTableLayoutPanel3.Size = new System.Drawing.Size(808, 291);
-            this.CoTableLayoutPanel3.TabIndex = 24;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 43);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(26, 18);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "ID:";
-            // 
-            // lblInputMedicineNewId
-            // 
-            this.lblInputMedicineNewId.AutoSize = true;
-            this.lblInputMedicineNewId.Location = new System.Drawing.Point(408, 43);
-            this.lblInputMedicineNewId.Name = "lblInputMedicineNewId";
-            this.lblInputMedicineNewId.Size = new System.Drawing.Size(153, 18);
-            this.lblInputMedicineNewId.TabIndex = 17;
-            this.lblInputMedicineNewId.Text = "lblInputMedicineNewId";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(6, 84);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(79, 18);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "Tên Thuốc";
-            // 
-            // txtBoxInputMedicineNewName
-            // 
-            this.txtBoxInputMedicineNewName.Location = new System.Drawing.Point(408, 87);
-            this.txtBoxInputMedicineNewName.Name = "txtBoxInputMedicineNewName";
-            this.txtBoxInputMedicineNewName.Size = new System.Drawing.Size(383, 24);
-            this.txtBoxInputMedicineNewName.TabIndex = 6;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(6, 119);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(67, 18);
-            this.label21.TabIndex = 8;
-            this.label21.Text = "Số lượng";
-            // 
-            // txtBoxInputMedicineNewCount
-            // 
-            this.txtBoxInputMedicineNewCount.Location = new System.Drawing.Point(408, 122);
-            this.txtBoxInputMedicineNewCount.Name = "txtBoxInputMedicineNewCount";
-            this.txtBoxInputMedicineNewCount.Size = new System.Drawing.Size(383, 24);
-            this.txtBoxInputMedicineNewCount.TabIndex = 7;
-            this.txtBoxInputMedicineNewCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineNewCount_KeyPress);
-            // 
-            // txtBoxInputMedicineNewCostOut
-            // 
-            this.txtBoxInputMedicineNewCostOut.Location = new System.Drawing.Point(408, 196);
-            this.txtBoxInputMedicineNewCostOut.Name = "txtBoxInputMedicineNewCostOut";
-            this.txtBoxInputMedicineNewCostOut.Size = new System.Drawing.Size(383, 24);
-            this.txtBoxInputMedicineNewCostOut.TabIndex = 9;
-            this.txtBoxInputMedicineNewCostOut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineNewCostOut_KeyPress);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(6, 3);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(162, 26);
-            this.label22.TabIndex = 10;
-            this.label22.Text = "Form Nhập Mới";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(6, 229);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(81, 18);
-            this.label25.TabIndex = 25;
-            this.label25.Text = "Ngày Nhập";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(408, 232);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(383, 24);
-            this.dateTimePicker3.TabIndex = 10;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 193);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(59, 18);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Giá Out";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 160);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 18);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "Giá In";
-            // 
-            // txtBoxInputMedicineNewCostIn
-            // 
-            this.txtBoxInputMedicineNewCostIn.Location = new System.Drawing.Point(408, 163);
-            this.txtBoxInputMedicineNewCostIn.Name = "txtBoxInputMedicineNewCostIn";
-            this.txtBoxInputMedicineNewCostIn.Size = new System.Drawing.Size(383, 24);
-            this.txtBoxInputMedicineNewCostIn.TabIndex = 8;
-            this.txtBoxInputMedicineNewCostIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineNewCostIn_KeyPress);
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(6, 262);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(79, 18);
-            this.label33.TabIndex = 28;
-            this.label33.Text = "Cách dùng";
-            // 
-            // textBoxMedicineHdsd
-            // 
-            this.textBoxMedicineHdsd.Location = new System.Drawing.Point(408, 265);
-            this.textBoxMedicineHdsd.Name = "textBoxMedicineHdsd";
-            this.textBoxMedicineHdsd.Size = new System.Drawing.Size(383, 24);
-            this.textBoxMedicineHdsd.TabIndex = 29;
             // 
             // tabPageTools
             // 
@@ -1852,198 +1187,6 @@ namespace PhongKham
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 24);
             this.textBox1.TabIndex = 0;
-            // 
-            // CoTableLayoutPanel6
-            // 
-            this.CoTableLayoutPanel6.BackColor = System.Drawing.Color.DarkGray;
-            this.CoTableLayoutPanel6.ColumnCount = 3;
-            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20567F));
-            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79433F));
-            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 288F));
-            this.CoTableLayoutPanel6.Controls.Add(this.label39, 0, 1);
-            this.CoTableLayoutPanel6.Controls.Add(this.label40, 0, 2);
-            this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupSource, 1, 0);
-            this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupTarget, 1, 1);
-            this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupTimeAuto, 1, 2);
-            this.CoTableLayoutPanel6.Controls.Add(this.button2, 2, 0);
-            this.CoTableLayoutPanel6.Controls.Add(this.button4, 2, 1);
-            this.CoTableLayoutPanel6.Controls.Add(this.checkBoxAutoCopy, 2, 2);
-            this.CoTableLayoutPanel6.Controls.Add(this.label38, 0, 0);
-            this.CoTableLayoutPanel6.Location = new System.Drawing.Point(24, 351);
-            this.CoTableLayoutPanel6.Name = "CoTableLayoutPanel6";
-            this.CoTableLayoutPanel6.RowCount = 3;
-            this.CoTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.CoTableLayoutPanel6.Size = new System.Drawing.Size(552, 124);
-            this.CoTableLayoutPanel6.TabIndex = 32;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(3, 44);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(70, 36);
-            this.label39.TabIndex = 1;
-            this.label39.Text = "Thư mục backup:";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(3, 88);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(73, 36);
-            this.label40.TabIndex = 2;
-            this.label40.Text = "Thời gian(phút):";
-            // 
-            // textBoxBackupSource
-            // 
-            this.textBoxBackupSource.Location = new System.Drawing.Point(85, 3);
-            this.textBoxBackupSource.Name = "textBoxBackupSource";
-            this.textBoxBackupSource.Size = new System.Drawing.Size(175, 24);
-            this.textBoxBackupSource.TabIndex = 3;
-            // 
-            // textBoxBackupTarget
-            // 
-            this.textBoxBackupTarget.Location = new System.Drawing.Point(85, 47);
-            this.textBoxBackupTarget.Name = "textBoxBackupTarget";
-            this.textBoxBackupTarget.Size = new System.Drawing.Size(175, 24);
-            this.textBoxBackupTarget.TabIndex = 4;
-            // 
-            // textBoxBackupTimeAuto
-            // 
-            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(85, 91);
-            this.textBoxBackupTimeAuto.Name = "textBoxBackupTimeAuto";
-            this.textBoxBackupTimeAuto.Size = new System.Drawing.Size(100, 24);
-            this.textBoxBackupTimeAuto.TabIndex = 5;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(266, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 38);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Duyệt";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(266, 47);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 38);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Duyệt";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // checkBoxAutoCopy
-            // 
-            this.checkBoxAutoCopy.AutoSize = true;
-            this.checkBoxAutoCopy.Location = new System.Drawing.Point(266, 91);
-            this.checkBoxAutoCopy.Name = "checkBoxAutoCopy";
-            this.checkBoxAutoCopy.Size = new System.Drawing.Size(93, 22);
-            this.checkBoxAutoCopy.TabIndex = 8;
-            this.checkBoxAutoCopy.Text = "Auto copy";
-            this.checkBoxAutoCopy.UseVisualStyleBackColor = true;
-            this.checkBoxAutoCopy.CheckedChanged += new System.EventHandler(this.checkBoxAutoCopy_CheckedChanged);
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(3, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(70, 36);
-            this.label38.TabIndex = 0;
-            this.label38.Text = "Thư mục data:";
-            // 
-            // CoTableLayoutPanel5
-            // 
-            this.CoTableLayoutPanel5.BackColor = System.Drawing.Color.DarkGray;
-            this.CoTableLayoutPanel5.ColumnCount = 2;
-            this.CoTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.95951F));
-            this.CoTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.04049F));
-            this.CoTableLayoutPanel5.Controls.Add(this.textBoxNameClinic, 1, 0);
-            this.CoTableLayoutPanel5.Controls.Add(this.textBoxAddressClinic, 1, 1);
-            this.CoTableLayoutPanel5.Controls.Add(this.textBoxAdviceClinic, 1, 2);
-            this.CoTableLayoutPanel5.Controls.Add(this.label37, 0, 2);
-            this.CoTableLayoutPanel5.Controls.Add(this.label36, 0, 1);
-            this.CoTableLayoutPanel5.Controls.Add(this.label35, 0, 0);
-            this.CoTableLayoutPanel5.Controls.Add(this.labelSdt, 0, 3);
-            this.CoTableLayoutPanel5.Controls.Add(this.textBoxSDT, 1, 3);
-            this.CoTableLayoutPanel5.Location = new System.Drawing.Point(783, 13);
-            this.CoTableLayoutPanel5.Name = "CoTableLayoutPanel5";
-            this.CoTableLayoutPanel5.RowCount = 4;
-            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.CoTableLayoutPanel5.Size = new System.Drawing.Size(494, 144);
-            this.CoTableLayoutPanel5.TabIndex = 30;
-            // 
-            // textBoxNameClinic
-            // 
-            this.textBoxNameClinic.Location = new System.Drawing.Point(150, 3);
-            this.textBoxNameClinic.Name = "textBoxNameClinic";
-            this.textBoxNameClinic.Size = new System.Drawing.Size(287, 24);
-            this.textBoxNameClinic.TabIndex = 2;
-            // 
-            // textBoxAddressClinic
-            // 
-            this.textBoxAddressClinic.Location = new System.Drawing.Point(150, 46);
-            this.textBoxAddressClinic.Name = "textBoxAddressClinic";
-            this.textBoxAddressClinic.Size = new System.Drawing.Size(290, 24);
-            this.textBoxAddressClinic.TabIndex = 3;
-            // 
-            // textBoxAdviceClinic
-            // 
-            this.textBoxAdviceClinic.Location = new System.Drawing.Point(150, 89);
-            this.textBoxAdviceClinic.Name = "textBoxAdviceClinic";
-            this.textBoxAdviceClinic.Size = new System.Drawing.Size(290, 24);
-            this.textBoxAdviceClinic.TabIndex = 5;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(3, 86);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(56, 18);
-            this.label37.TabIndex = 4;
-            this.label37.Text = "Lời dặn";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(3, 43);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(53, 18);
-            this.label36.TabIndex = 1;
-            this.label36.Text = "Địa chỉ";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(3, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(119, 18);
-            this.label35.TabIndex = 0;
-            this.label35.Text = "Tên phòng khám";
-            // 
-            // labelSdt
-            // 
-            this.labelSdt.AutoSize = true;
-            this.labelSdt.Location = new System.Drawing.Point(3, 117);
-            this.labelSdt.Name = "labelSdt";
-            this.labelSdt.Size = new System.Drawing.Size(42, 18);
-            this.labelSdt.TabIndex = 6;
-            this.labelSdt.Text = "SĐT:";
-            // 
-            // textBoxSDT
-            // 
-            this.textBoxSDT.Location = new System.Drawing.Point(150, 120);
-            this.textBoxSDT.Name = "textBoxSDT";
-            this.textBoxSDT.Size = new System.Drawing.Size(287, 24);
-            this.textBoxSDT.TabIndex = 7;
             // 
             // tabPagePrint
             // 
@@ -2264,174 +1407,6 @@ namespace PhongKham
             this.Column6.HeaderText = "Số thứ tự";
             this.Column6.Name = "Column6";
             // 
-            // CoTableLayoutPanel2
-            // 
-            this.CoTableLayoutPanel2.BackColor = System.Drawing.Color.Gainsboro;
-            this.CoTableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetDouble;
-            this.CoTableLayoutPanel2.ColumnCount = 4;
-            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.01303F));
-            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.98697F));
-            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 378F));
-            this.CoTableLayoutPanel2.Controls.Add(this.label11, 0, 0);
-            this.CoTableLayoutPanel2.Controls.Add(this.comboBoxWaitRoomId, 1, 0);
-            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomHeight, 3, 0);
-            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomDiagnose, 3, 3);
-            this.CoTableLayoutPanel2.Controls.Add(this.label17, 2, 3);
-            this.CoTableLayoutPanel2.Controls.Add(this.lblWaitRoomName, 0, 1);
-            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomName, 1, 1);
-            this.CoTableLayoutPanel2.Controls.Add(this.label16, 2, 2);
-            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitingRoomSymptom, 3, 2);
-            this.CoTableLayoutPanel2.Controls.Add(this.lblWaitRoomBirthday, 0, 2);
-            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitingRoomWeight, 3, 1);
-            this.CoTableLayoutPanel2.Controls.Add(this.dateTimePicker2, 1, 2);
-            this.CoTableLayoutPanel2.Controls.Add(this.label15, 2, 1);
-            this.CoTableLayoutPanel2.Controls.Add(this.lblWaitRoomAddress, 0, 3);
-            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomAddress, 1, 3);
-            this.CoTableLayoutPanel2.Controls.Add(this.label14, 2, 0);
-            this.CoTableLayoutPanel2.Location = new System.Drawing.Point(9, 12);
-            this.CoTableLayoutPanel2.Name = "CoTableLayoutPanel2";
-            this.CoTableLayoutPanel2.RowCount = 4;
-            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
-            this.CoTableLayoutPanel2.Size = new System.Drawing.Size(778, 144);
-            this.CoTableLayoutPanel2.TabIndex = 20;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 3);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(16, 13);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "Id";
-            // 
-            // comboBoxWaitRoomId
-            // 
-            this.comboBoxWaitRoomId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.comboBoxWaitRoomId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxWaitRoomId.FormattingEnabled = true;
-            this.comboBoxWaitRoomId.Location = new System.Drawing.Point(87, 6);
-            this.comboBoxWaitRoomId.Name = "comboBoxWaitRoomId";
-            this.comboBoxWaitRoomId.Size = new System.Drawing.Size(98, 21);
-            this.comboBoxWaitRoomId.TabIndex = 0;
-            // 
-            // txtBoxWaitRoomHeight
-            // 
-            this.txtBoxWaitRoomHeight.Location = new System.Drawing.Point(399, 6);
-            this.txtBoxWaitRoomHeight.Name = "txtBoxWaitRoomHeight";
-            this.txtBoxWaitRoomHeight.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxWaitRoomHeight.TabIndex = 4;
-            // 
-            // txtBoxWaitRoomDiagnose
-            // 
-            this.txtBoxWaitRoomDiagnose.Location = new System.Drawing.Point(399, 110);
-            this.txtBoxWaitRoomDiagnose.Name = "txtBoxWaitRoomDiagnose";
-            this.txtBoxWaitRoomDiagnose.Size = new System.Drawing.Size(297, 20);
-            this.txtBoxWaitRoomDiagnose.TabIndex = 7;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(291, 107);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 13);
-            this.label17.TabIndex = 14;
-            this.label17.Text = "Chẩn đoán";
-            // 
-            // lblWaitRoomName
-            // 
-            this.lblWaitRoomName.AutoSize = true;
-            this.lblWaitRoomName.Location = new System.Drawing.Point(6, 36);
-            this.lblWaitRoomName.Name = "lblWaitRoomName";
-            this.lblWaitRoomName.Size = new System.Drawing.Size(26, 13);
-            this.lblWaitRoomName.TabIndex = 0;
-            this.lblWaitRoomName.Text = "Tên";
-            // 
-            // txtBoxWaitRoomName
-            // 
-            this.txtBoxWaitRoomName.Location = new System.Drawing.Point(87, 39);
-            this.txtBoxWaitRoomName.Name = "txtBoxWaitRoomName";
-            this.txtBoxWaitRoomName.Size = new System.Drawing.Size(174, 20);
-            this.txtBoxWaitRoomName.TabIndex = 1;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(291, 69);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(64, 13);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "Triệu chứng";
-            // 
-            // txtBoxWaitingRoomSymptom
-            // 
-            this.txtBoxWaitingRoomSymptom.Location = new System.Drawing.Point(399, 72);
-            this.txtBoxWaitingRoomSymptom.Name = "txtBoxWaitingRoomSymptom";
-            this.txtBoxWaitingRoomSymptom.Size = new System.Drawing.Size(297, 20);
-            this.txtBoxWaitingRoomSymptom.TabIndex = 6;
-            // 
-            // lblWaitRoomBirthday
-            // 
-            this.lblWaitRoomBirthday.AutoSize = true;
-            this.lblWaitRoomBirthday.Location = new System.Drawing.Point(6, 69);
-            this.lblWaitRoomBirthday.Name = "lblWaitRoomBirthday";
-            this.lblWaitRoomBirthday.Size = new System.Drawing.Size(54, 13);
-            this.lblWaitRoomBirthday.TabIndex = 16;
-            this.lblWaitRoomBirthday.Text = "Ngày sinh";
-            // 
-            // txtBoxWaitingRoomWeight
-            // 
-            this.txtBoxWaitingRoomWeight.Location = new System.Drawing.Point(399, 39);
-            this.txtBoxWaitingRoomWeight.Name = "txtBoxWaitingRoomWeight";
-            this.txtBoxWaitingRoomWeight.Size = new System.Drawing.Size(100, 20);
-            this.txtBoxWaitingRoomWeight.TabIndex = 5;
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.CustomFormat = "dd-MM-yyyy";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(87, 72);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(125, 20);
-            this.dateTimePicker2.TabIndex = 2;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(291, 36);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(33, 13);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "Nặng";
-            // 
-            // lblWaitRoomAddress
-            // 
-            this.lblWaitRoomAddress.AutoSize = true;
-            this.lblWaitRoomAddress.Location = new System.Drawing.Point(6, 107);
-            this.lblWaitRoomAddress.Name = "lblWaitRoomAddress";
-            this.lblWaitRoomAddress.Size = new System.Drawing.Size(40, 13);
-            this.lblWaitRoomAddress.TabIndex = 7;
-            this.lblWaitRoomAddress.Text = "Địa chỉ";
-            // 
-            // txtBoxWaitRoomAddress
-            // 
-            this.txtBoxWaitRoomAddress.Location = new System.Drawing.Point(87, 110);
-            this.txtBoxWaitRoomAddress.Name = "txtBoxWaitRoomAddress";
-            this.txtBoxWaitRoomAddress.Size = new System.Drawing.Size(166, 20);
-            this.txtBoxWaitRoomAddress.TabIndex = 3;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(291, 3);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(56, 13);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Chiều Cao";
-            // 
             // btnWaitRoomContinue
             // 
             this.btnWaitRoomContinue.Location = new System.Drawing.Point(578, 201);
@@ -2622,6 +1597,1031 @@ namespace PhongKham
             this.ColumnMedicinesHDSD.Name = "ColumnMedicinesHDSD";
             this.ColumnMedicinesHDSD.Width = 250;
             // 
+            // CoTableLayoutPanel1
+            // 
+            this.CoTableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CoTableLayoutPanel1.AutoSize = true;
+            this.CoTableLayoutPanel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.CoTableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.CoTableLayoutPanel1.ColumnCount = 6;
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.30303F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.06061F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
+            this.CoTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 190F));
+            this.CoTableLayoutPanel1.Controls.Add(this.label28, 0, 0);
+            this.CoTableLayoutPanel1.Controls.Add(this.lblClinicRoomId, 1, 0);
+            this.CoTableLayoutPanel1.Controls.Add(this.label1, 0, 1);
+            this.CoTableLayoutPanel1.Controls.Add(this.label2, 0, 2);
+            this.CoTableLayoutPanel1.Controls.Add(this.textBoxClinicNhietDo, 3, 3);
+            this.CoTableLayoutPanel1.Controls.Add(this.dateTimePickerBirthDay, 1, 2);
+            this.CoTableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomAddress, 1, 3);
+            this.CoTableLayoutPanel1.Controls.Add(this.label3, 0, 3);
+            this.CoTableLayoutPanel1.Controls.Add(this.label45, 2, 3);
+            this.CoTableLayoutPanel1.Controls.Add(this.comboBoxClinicRoomName, 1, 1);
+            this.CoTableLayoutPanel1.Controls.Add(this.buttonClinicCreateNew, 4, 0);
+            this.CoTableLayoutPanel1.Controls.Add(this.buttonClinicClear, 4, 1);
+            this.CoTableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomWeight, 3, 2);
+            this.CoTableLayoutPanel1.Controls.Add(this.label5, 2, 2);
+            this.CoTableLayoutPanel1.Controls.Add(this.label4, 2, 1);
+            this.CoTableLayoutPanel1.Controls.Add(this.txtBoxClinicRoomHeight, 3, 1);
+            this.CoTableLayoutPanel1.Controls.Add(this.label31, 2, 0);
+            this.CoTableLayoutPanel1.Controls.Add(this.dateTimePickerNgayKham, 3, 0);
+            this.CoTableLayoutPanel1.Controls.Add(this.label30, 2, 4);
+            this.CoTableLayoutPanel1.Controls.Add(this.textBoxHuyetAp, 3, 4);
+            this.CoTableLayoutPanel1.Controls.Add(this.label47, 0, 4);
+            this.CoTableLayoutPanel1.Controls.Add(this.labelTuoi, 1, 4);
+            this.CoTableLayoutPanel1.Controls.Add(this.button3, 4, 4);
+            this.CoTableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CoTableLayoutPanel1.Location = new System.Drawing.Point(9, 6);
+            this.CoTableLayoutPanel1.Name = "CoTableLayoutPanel1";
+            this.CoTableLayoutPanel1.RowCount = 5;
+            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.CoTableLayoutPanel1.Size = new System.Drawing.Size(1189, 193);
+            this.CoTableLayoutPanel1.TabIndex = 27;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 3);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(22, 18);
+            this.label28.TabIndex = 0;
+            this.label28.Text = "ID";
+            // 
+            // lblClinicRoomId
+            // 
+            this.lblClinicRoomId.AutoSize = true;
+            this.lblClinicRoomId.Location = new System.Drawing.Point(122, 3);
+            this.lblClinicRoomId.Name = "lblClinicRoomId";
+            this.lblClinicRoomId.Size = new System.Drawing.Size(19, 18);
+            this.lblClinicRoomId.TabIndex = 1;
+            this.lblClinicRoomId.Text = "Id";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 18);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tên";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 18);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Ngày Sinh";
+            // 
+            // textBoxClinicNhietDo
+            // 
+            this.textBoxClinicNhietDo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBoxClinicNhietDo.Location = new System.Drawing.Point(544, 119);
+            this.textBoxClinicNhietDo.Name = "textBoxClinicNhietDo";
+            this.textBoxClinicNhietDo.Size = new System.Drawing.Size(147, 24);
+            this.textBoxClinicNhietDo.TabIndex = 22;
+            // 
+            // dateTimePickerBirthDay
+            // 
+            this.dateTimePickerBirthDay.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerBirthDay.Location = new System.Drawing.Point(122, 85);
+            this.dateTimePickerBirthDay.Name = "dateTimePickerBirthDay";
+            this.dateTimePickerBirthDay.Size = new System.Drawing.Size(267, 24);
+            this.dateTimePickerBirthDay.TabIndex = 18;
+            this.dateTimePickerBirthDay.ValueChanged += new System.EventHandler(this.dateTimePickerBirthDay_ValueChanged);
+            // 
+            // txtBoxClinicRoomAddress
+            // 
+            this.txtBoxClinicRoomAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtBoxClinicRoomAddress.Location = new System.Drawing.Point(122, 119);
+            this.txtBoxClinicRoomAddress.Name = "txtBoxClinicRoomAddress";
+            this.txtBoxClinicRoomAddress.Size = new System.Drawing.Size(267, 24);
+            this.txtBoxClinicRoomAddress.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 116);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 18);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Địa chỉ";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(398, 116);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(67, 18);
+            this.label45.TabIndex = 40;
+            this.label45.Text = "Nhiệt độ:";
+            // 
+            // comboBoxClinicRoomName
+            // 
+            this.comboBoxClinicRoomName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.comboBoxClinicRoomName.Location = new System.Drawing.Point(122, 49);
+            this.comboBoxClinicRoomName.Name = "comboBoxClinicRoomName";
+            this.comboBoxClinicRoomName.Size = new System.Drawing.Size(267, 24);
+            this.comboBoxClinicRoomName.TabIndex = 17;
+            this.comboBoxClinicRoomName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.comboBoxClinicRoomName_KeyPress);
+            // 
+            // buttonClinicCreateNew
+            // 
+            this.buttonClinicCreateNew.Location = new System.Drawing.Point(812, 6);
+            this.buttonClinicCreateNew.Name = "buttonClinicCreateNew";
+            this.buttonClinicCreateNew.Size = new System.Drawing.Size(175, 26);
+            this.buttonClinicCreateNew.TabIndex = 24;
+            this.buttonClinicCreateNew.Text = "Thêm mới/Cập nhật";
+            this.buttonClinicCreateNew.UseVisualStyleBackColor = true;
+            this.buttonClinicCreateNew.Click += new System.EventHandler(this.buttonClinicCreateNew_Click);
+            // 
+            // buttonClinicClear
+            // 
+            this.buttonClinicClear.Location = new System.Drawing.Point(812, 49);
+            this.buttonClinicClear.Name = "buttonClinicClear";
+            this.buttonClinicClear.Size = new System.Drawing.Size(75, 26);
+            this.buttonClinicClear.TabIndex = 30;
+            this.buttonClinicClear.Text = "Clear";
+            this.buttonClinicClear.UseVisualStyleBackColor = true;
+            this.buttonClinicClear.Click += new System.EventHandler(this.buttonClinicClear_Click);
+            // 
+            // txtBoxClinicRoomWeight
+            // 
+            this.txtBoxClinicRoomWeight.Location = new System.Drawing.Point(544, 85);
+            this.txtBoxClinicRoomWeight.Name = "txtBoxClinicRoomWeight";
+            this.txtBoxClinicRoomWeight.Size = new System.Drawing.Size(147, 24);
+            this.txtBoxClinicRoomWeight.TabIndex = 21;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(398, 82);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 18);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Nặng";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(398, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 18);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Chiều Cao";
+            // 
+            // txtBoxClinicRoomHeight
+            // 
+            this.txtBoxClinicRoomHeight.Location = new System.Drawing.Point(544, 49);
+            this.txtBoxClinicRoomHeight.Name = "txtBoxClinicRoomHeight";
+            this.txtBoxClinicRoomHeight.Size = new System.Drawing.Size(147, 24);
+            this.txtBoxClinicRoomHeight.TabIndex = 20;
+            this.txtBoxClinicRoomHeight.Text = "0";
+            // 
+            // label31
+            // 
+            this.label31.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(398, 3);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(137, 40);
+            this.label31.TabIndex = 25;
+            this.label31.Text = "Ngày Khám";
+            // 
+            // dateTimePickerNgayKham
+            // 
+            this.dateTimePickerNgayKham.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePickerNgayKham.Location = new System.Drawing.Point(544, 6);
+            this.dateTimePickerNgayKham.Name = "dateTimePickerNgayKham";
+            this.dateTimePickerNgayKham.Size = new System.Drawing.Size(252, 24);
+            this.dateTimePickerNgayKham.TabIndex = 26;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(398, 152);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(71, 18);
+            this.label30.TabIndex = 41;
+            this.label30.Text = "Huyết Áp:";
+            // 
+            // textBoxHuyetAp
+            // 
+            this.textBoxHuyetAp.Location = new System.Drawing.Point(544, 155);
+            this.textBoxHuyetAp.Name = "textBoxHuyetAp";
+            this.textBoxHuyetAp.Size = new System.Drawing.Size(147, 24);
+            this.textBoxHuyetAp.TabIndex = 23;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(6, 152);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(41, 18);
+            this.label47.TabIndex = 43;
+            this.label47.Text = "Tuổi:";
+            // 
+            // labelTuoi
+            // 
+            this.labelTuoi.AutoSize = true;
+            this.labelTuoi.Location = new System.Drawing.Point(122, 152);
+            this.labelTuoi.Name = "labelTuoi";
+            this.labelTuoi.Size = new System.Drawing.Size(16, 18);
+            this.labelTuoi.TabIndex = 44;
+            this.labelTuoi.Text = "0";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(812, 155);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(162, 32);
+            this.button3.TabIndex = 45;
+            this.button3.Text = "Chỉ Làm mới ID";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // CoTableLayoutPanel7
+            // 
+            this.CoTableLayoutPanel7.BackColor = System.Drawing.Color.LightGray;
+            this.CoTableLayoutPanel7.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.CoTableLayoutPanel7.ColumnCount = 2;
+            this.CoTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.59006F));
+            this.CoTableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 74.40993F));
+            this.CoTableLayoutPanel7.Controls.Add(this.labelServicesID, 1, 0);
+            this.CoTableLayoutPanel7.Controls.Add(this.label41, 0, 1);
+            this.CoTableLayoutPanel7.Controls.Add(this.label42, 0, 2);
+            this.CoTableLayoutPanel7.Controls.Add(this.textBoxServices, 1, 1);
+            this.CoTableLayoutPanel7.Controls.Add(this.textBoxServicesCost, 1, 2);
+            this.CoTableLayoutPanel7.Controls.Add(this.label43, 0, 0);
+            this.CoTableLayoutPanel7.Controls.Add(this.label48, 0, 3);
+            this.CoTableLayoutPanel7.Controls.Add(this.textBoxAdminOfService, 1, 3);
+            this.CoTableLayoutPanel7.Location = new System.Drawing.Point(8, 523);
+            this.CoTableLayoutPanel7.Name = "CoTableLayoutPanel7";
+            this.CoTableLayoutPanel7.RowCount = 4;
+            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.CoTableLayoutPanel7.Size = new System.Drawing.Size(808, 117);
+            this.CoTableLayoutPanel7.TabIndex = 26;
+            // 
+            // labelServicesID
+            // 
+            this.labelServicesID.AutoSize = true;
+            this.labelServicesID.Location = new System.Drawing.Point(213, 3);
+            this.labelServicesID.Name = "labelServicesID";
+            this.labelServicesID.Size = new System.Drawing.Size(54, 18);
+            this.labelServicesID.TabIndex = 18;
+            this.labelServicesID.Text = "label44";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(6, 26);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(92, 18);
+            this.label41.TabIndex = 0;
+            this.label41.Text = "Tên Dịch Vụ:";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(6, 56);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(35, 18);
+            this.label42.TabIndex = 1;
+            this.label42.Text = "Giá:";
+            // 
+            // textBoxServices
+            // 
+            this.textBoxServices.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.textBoxServices.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBoxServices.Location = new System.Drawing.Point(213, 29);
+            this.textBoxServices.Name = "textBoxServices";
+            this.textBoxServices.Size = new System.Drawing.Size(589, 24);
+            this.textBoxServices.TabIndex = 2;
+            this.textBoxServices.Text = "@";
+            this.textBoxServices.TextChanged += new System.EventHandler(this.textBoxServices_TextChanged);
+            // 
+            // textBoxServicesCost
+            // 
+            this.textBoxServicesCost.Location = new System.Drawing.Point(213, 59);
+            this.textBoxServicesCost.Name = "textBoxServicesCost";
+            this.textBoxServicesCost.Size = new System.Drawing.Size(589, 24);
+            this.textBoxServicesCost.TabIndex = 3;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(6, 3);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(26, 18);
+            this.label43.TabIndex = 4;
+            this.label43.Text = "ID:";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(6, 86);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(171, 18);
+            this.label48.TabIndex = 19;
+            this.label48.Text = "Người phụ trách(nếu có):";
+            // 
+            // textBoxAdminOfService
+            // 
+            this.textBoxAdminOfService.Location = new System.Drawing.Point(213, 89);
+            this.textBoxAdminOfService.Name = "textBoxAdminOfService";
+            this.textBoxAdminOfService.Size = new System.Drawing.Size(589, 24);
+            this.textBoxAdminOfService.TabIndex = 20;
+            // 
+            // CoTableLayoutPanel4
+            // 
+            this.CoTableLayoutPanel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.CoTableLayoutPanel4.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.CoTableLayoutPanel4.ColumnCount = 2;
+            this.CoTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel4.Controls.Add(this.label23, 0, 0);
+            this.CoTableLayoutPanel4.Controls.Add(this.txtBoxInputMedicineAdd, 1, 3);
+            this.CoTableLayoutPanel4.Controls.Add(this.label24, 0, 3);
+            this.CoTableLayoutPanel4.Controls.Add(this.label18, 0, 1);
+            this.CoTableLayoutPanel4.Controls.Add(this.label19, 0, 2);
+            this.CoTableLayoutPanel4.Controls.Add(this.lblInputMedicineCount, 1, 2);
+            this.CoTableLayoutPanel4.Controls.Add(this.label27, 0, 5);
+            this.CoTableLayoutPanel4.Controls.Add(this.label32, 0, 4);
+            this.CoTableLayoutPanel4.Controls.Add(this.textBoxNewCostOut, 1, 4);
+            this.CoTableLayoutPanel4.Controls.Add(this.dateTimePicker6, 1, 5);
+            this.CoTableLayoutPanel4.Controls.Add(this.label34, 1, 0);
+            this.CoTableLayoutPanel4.Controls.Add(this.comboBoxInputMedicineName, 1, 1);
+            this.CoTableLayoutPanel4.Location = new System.Drawing.Point(8, 25);
+            this.CoTableLayoutPanel4.Name = "CoTableLayoutPanel4";
+            this.CoTableLayoutPanel4.RowCount = 6;
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.05195F));
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.94805F));
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.CoTableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.CoTableLayoutPanel4.Size = new System.Drawing.Size(808, 195);
+            this.CoTableLayoutPanel4.TabIndex = 25;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 3);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(22, 18);
+            this.label23.TabIndex = 18;
+            this.label23.Text = "ID";
+            // 
+            // txtBoxInputMedicineAdd
+            // 
+            this.txtBoxInputMedicineAdd.Location = new System.Drawing.Point(408, 90);
+            this.txtBoxInputMedicineAdd.Name = "txtBoxInputMedicineAdd";
+            this.txtBoxInputMedicineAdd.Size = new System.Drawing.Size(383, 24);
+            this.txtBoxInputMedicineAdd.TabIndex = 2;
+            this.txtBoxInputMedicineAdd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineAdd_KeyPress);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 87);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(132, 18);
+            this.label24.TabIndex = 21;
+            this.label24.Text = "Số lượng thêm vào";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(6, 30);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(79, 18);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Tên Thuốc";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 60);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(124, 18);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Số lượng đang có";
+            // 
+            // lblInputMedicineCount
+            // 
+            this.lblInputMedicineCount.AutoSize = true;
+            this.lblInputMedicineCount.Location = new System.Drawing.Point(408, 60);
+            this.lblInputMedicineCount.Name = "lblInputMedicineCount";
+            this.lblInputMedicineCount.Size = new System.Drawing.Size(16, 18);
+            this.lblInputMedicineCount.TabIndex = 23;
+            this.lblInputMedicineCount.Text = "0";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 157);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(78, 18);
+            this.label27.TabIndex = 24;
+            this.label27.Text = "Ngày nhập";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 122);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(88, 18);
+            this.label32.TabIndex = 25;
+            this.label32.Text = "Giá Out Mới";
+            // 
+            // textBoxNewCostOut
+            // 
+            this.textBoxNewCostOut.Location = new System.Drawing.Point(408, 125);
+            this.textBoxNewCostOut.Name = "textBoxNewCostOut";
+            this.textBoxNewCostOut.Size = new System.Drawing.Size(383, 24);
+            this.textBoxNewCostOut.TabIndex = 26;
+            // 
+            // dateTimePicker6
+            // 
+            this.dateTimePicker6.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker6.Location = new System.Drawing.Point(408, 160);
+            this.dateTimePicker6.Name = "dateTimePicker6";
+            this.dateTimePicker6.Size = new System.Drawing.Size(383, 24);
+            this.dateTimePicker6.TabIndex = 30;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(408, 3);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(0, 18);
+            this.label34.TabIndex = 32;
+            // 
+            // comboBoxInputMedicineName
+            // 
+            this.comboBoxInputMedicineName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxInputMedicineName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxInputMedicineName.FormattingEnabled = true;
+            this.comboBoxInputMedicineName.Location = new System.Drawing.Point(408, 33);
+            this.comboBoxInputMedicineName.Name = "comboBoxInputMedicineName";
+            this.comboBoxInputMedicineName.Size = new System.Drawing.Size(383, 26);
+            this.comboBoxInputMedicineName.Sorted = true;
+            this.comboBoxInputMedicineName.TabIndex = 1;
+            this.comboBoxInputMedicineName.SelectedValueChanged += new System.EventHandler(this.comboBoxInputMedicineName_SelectedValueChanged);
+            // 
+            // CoTableLayoutPanel3
+            // 
+            this.CoTableLayoutPanel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.CoTableLayoutPanel3.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.InsetDouble;
+            this.CoTableLayoutPanel3.ColumnCount = 2;
+            this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel3.Controls.Add(this.label13, 0, 1);
+            this.CoTableLayoutPanel3.Controls.Add(this.lblInputMedicineNewId, 1, 1);
+            this.CoTableLayoutPanel3.Controls.Add(this.label20, 0, 2);
+            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewName, 1, 2);
+            this.CoTableLayoutPanel3.Controls.Add(this.label21, 0, 3);
+            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewCount, 1, 3);
+            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewCostOut, 1, 5);
+            this.CoTableLayoutPanel3.Controls.Add(this.label22, 0, 0);
+            this.CoTableLayoutPanel3.Controls.Add(label26, 1, 0);
+            this.CoTableLayoutPanel3.Controls.Add(this.label25, 0, 6);
+            this.CoTableLayoutPanel3.Controls.Add(this.dateTimePicker3, 1, 6);
+            this.CoTableLayoutPanel3.Controls.Add(this.label12, 0, 5);
+            this.CoTableLayoutPanel3.Controls.Add(this.label8, 0, 4);
+            this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewCostIn, 1, 4);
+            this.CoTableLayoutPanel3.Controls.Add(this.label33, 0, 7);
+            this.CoTableLayoutPanel3.Controls.Add(this.textBoxMedicineHdsd, 1, 7);
+            this.CoTableLayoutPanel3.Location = new System.Drawing.Point(8, 226);
+            this.CoTableLayoutPanel3.Name = "CoTableLayoutPanel3";
+            this.CoTableLayoutPanel3.RowCount = 8;
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.CoTableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.CoTableLayoutPanel3.Size = new System.Drawing.Size(808, 291);
+            this.CoTableLayoutPanel3.TabIndex = 24;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(6, 43);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(26, 18);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "ID:";
+            // 
+            // lblInputMedicineNewId
+            // 
+            this.lblInputMedicineNewId.AutoSize = true;
+            this.lblInputMedicineNewId.Location = new System.Drawing.Point(408, 43);
+            this.lblInputMedicineNewId.Name = "lblInputMedicineNewId";
+            this.lblInputMedicineNewId.Size = new System.Drawing.Size(153, 18);
+            this.lblInputMedicineNewId.TabIndex = 17;
+            this.lblInputMedicineNewId.Text = "lblInputMedicineNewId";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 84);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 18);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "Tên Thuốc";
+            // 
+            // txtBoxInputMedicineNewName
+            // 
+            this.txtBoxInputMedicineNewName.Location = new System.Drawing.Point(408, 87);
+            this.txtBoxInputMedicineNewName.Name = "txtBoxInputMedicineNewName";
+            this.txtBoxInputMedicineNewName.Size = new System.Drawing.Size(383, 24);
+            this.txtBoxInputMedicineNewName.TabIndex = 6;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 119);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(67, 18);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "Số lượng";
+            // 
+            // txtBoxInputMedicineNewCount
+            // 
+            this.txtBoxInputMedicineNewCount.Location = new System.Drawing.Point(408, 122);
+            this.txtBoxInputMedicineNewCount.Name = "txtBoxInputMedicineNewCount";
+            this.txtBoxInputMedicineNewCount.Size = new System.Drawing.Size(383, 24);
+            this.txtBoxInputMedicineNewCount.TabIndex = 7;
+            this.txtBoxInputMedicineNewCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineNewCount_KeyPress);
+            // 
+            // txtBoxInputMedicineNewCostOut
+            // 
+            this.txtBoxInputMedicineNewCostOut.Location = new System.Drawing.Point(408, 196);
+            this.txtBoxInputMedicineNewCostOut.Name = "txtBoxInputMedicineNewCostOut";
+            this.txtBoxInputMedicineNewCostOut.Size = new System.Drawing.Size(383, 24);
+            this.txtBoxInputMedicineNewCostOut.TabIndex = 9;
+            this.txtBoxInputMedicineNewCostOut.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineNewCostOut_KeyPress);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(6, 3);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(162, 26);
+            this.label22.TabIndex = 10;
+            this.label22.Text = "Form Nhập Mới";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label26.Location = new System.Drawing.Point(408, 3);
+            label26.Name = "label26";
+            label26.Size = new System.Drawing.Size(388, 37);
+            label26.TabIndex = 26;
+            label26.Text = "Đây là khung nhập mới thuốc , số Id là mặc định";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 229);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(81, 18);
+            this.label25.TabIndex = 25;
+            this.label25.Text = "Ngày Nhập";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker3.Location = new System.Drawing.Point(408, 232);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(383, 24);
+            this.dateTimePicker3.TabIndex = 10;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 193);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(59, 18);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Giá Out";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 160);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(46, 18);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Giá In";
+            // 
+            // txtBoxInputMedicineNewCostIn
+            // 
+            this.txtBoxInputMedicineNewCostIn.Location = new System.Drawing.Point(408, 163);
+            this.txtBoxInputMedicineNewCostIn.Name = "txtBoxInputMedicineNewCostIn";
+            this.txtBoxInputMedicineNewCostIn.Size = new System.Drawing.Size(383, 24);
+            this.txtBoxInputMedicineNewCostIn.TabIndex = 8;
+            this.txtBoxInputMedicineNewCostIn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxInputMedicineNewCostIn_KeyPress);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 262);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(79, 18);
+            this.label33.TabIndex = 28;
+            this.label33.Text = "Cách dùng";
+            // 
+            // textBoxMedicineHdsd
+            // 
+            this.textBoxMedicineHdsd.Location = new System.Drawing.Point(408, 265);
+            this.textBoxMedicineHdsd.Name = "textBoxMedicineHdsd";
+            this.textBoxMedicineHdsd.Size = new System.Drawing.Size(383, 24);
+            this.textBoxMedicineHdsd.TabIndex = 29;
+            // 
+            // CoTableLayoutPanel6
+            // 
+            this.CoTableLayoutPanel6.BackColor = System.Drawing.Color.DarkGray;
+            this.CoTableLayoutPanel6.ColumnCount = 3;
+            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.20567F));
+            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.79433F));
+            this.CoTableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 293F));
+            this.CoTableLayoutPanel6.Controls.Add(this.label39, 0, 1);
+            this.CoTableLayoutPanel6.Controls.Add(this.label40, 0, 2);
+            this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupSource, 1, 0);
+            this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupTarget, 1, 1);
+            this.CoTableLayoutPanel6.Controls.Add(this.textBoxBackupTimeAuto, 1, 2);
+            this.CoTableLayoutPanel6.Controls.Add(this.button2, 2, 0);
+            this.CoTableLayoutPanel6.Controls.Add(this.button4, 2, 1);
+            this.CoTableLayoutPanel6.Controls.Add(this.checkBoxAutoCopy, 2, 2);
+            this.CoTableLayoutPanel6.Controls.Add(this.label38, 0, 0);
+            this.CoTableLayoutPanel6.Location = new System.Drawing.Point(24, 351);
+            this.CoTableLayoutPanel6.Name = "CoTableLayoutPanel6";
+            this.CoTableLayoutPanel6.RowCount = 3;
+            this.CoTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.CoTableLayoutPanel6.Size = new System.Drawing.Size(552, 124);
+            this.CoTableLayoutPanel6.TabIndex = 32;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(3, 44);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(70, 36);
+            this.label39.TabIndex = 1;
+            this.label39.Text = "Thư mục backup:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(3, 88);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(73, 36);
+            this.label40.TabIndex = 2;
+            this.label40.Text = "Thời gian(phút):";
+            // 
+            // textBoxBackupSource
+            // 
+            this.textBoxBackupSource.Location = new System.Drawing.Point(83, 3);
+            this.textBoxBackupSource.Name = "textBoxBackupSource";
+            this.textBoxBackupSource.Size = new System.Drawing.Size(172, 24);
+            this.textBoxBackupSource.TabIndex = 3;
+            // 
+            // textBoxBackupTarget
+            // 
+            this.textBoxBackupTarget.Location = new System.Drawing.Point(83, 47);
+            this.textBoxBackupTarget.Name = "textBoxBackupTarget";
+            this.textBoxBackupTarget.Size = new System.Drawing.Size(172, 24);
+            this.textBoxBackupTarget.TabIndex = 4;
+            // 
+            // textBoxBackupTimeAuto
+            // 
+            this.textBoxBackupTimeAuto.Location = new System.Drawing.Point(83, 91);
+            this.textBoxBackupTimeAuto.Name = "textBoxBackupTimeAuto";
+            this.textBoxBackupTimeAuto.Size = new System.Drawing.Size(100, 24);
+            this.textBoxBackupTimeAuto.TabIndex = 5;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(261, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 38);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Duyệt";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(261, 47);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 38);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Duyệt";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // checkBoxAutoCopy
+            // 
+            this.checkBoxAutoCopy.AutoSize = true;
+            this.checkBoxAutoCopy.Location = new System.Drawing.Point(261, 91);
+            this.checkBoxAutoCopy.Name = "checkBoxAutoCopy";
+            this.checkBoxAutoCopy.Size = new System.Drawing.Size(93, 22);
+            this.checkBoxAutoCopy.TabIndex = 8;
+            this.checkBoxAutoCopy.Text = "Auto copy";
+            this.checkBoxAutoCopy.UseVisualStyleBackColor = true;
+            this.checkBoxAutoCopy.CheckedChanged += new System.EventHandler(this.checkBoxAutoCopy_CheckedChanged);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(3, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(70, 36);
+            this.label38.TabIndex = 0;
+            this.label38.Text = "Thư mục data:";
+            // 
+            // CoTableLayoutPanel5
+            // 
+            this.CoTableLayoutPanel5.BackColor = System.Drawing.Color.DarkGray;
+            this.CoTableLayoutPanel5.ColumnCount = 2;
+            this.CoTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.95951F));
+            this.CoTableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70.04049F));
+            this.CoTableLayoutPanel5.Controls.Add(this.textBoxNameClinic, 1, 0);
+            this.CoTableLayoutPanel5.Controls.Add(this.textBoxAddressClinic, 1, 1);
+            this.CoTableLayoutPanel5.Controls.Add(this.textBoxAdviceClinic, 1, 2);
+            this.CoTableLayoutPanel5.Controls.Add(this.label37, 0, 2);
+            this.CoTableLayoutPanel5.Controls.Add(this.label36, 0, 1);
+            this.CoTableLayoutPanel5.Controls.Add(this.label35, 0, 0);
+            this.CoTableLayoutPanel5.Controls.Add(this.labelSdt, 0, 3);
+            this.CoTableLayoutPanel5.Controls.Add(this.textBoxSDT, 1, 3);
+            this.CoTableLayoutPanel5.Location = new System.Drawing.Point(783, 13);
+            this.CoTableLayoutPanel5.Name = "CoTableLayoutPanel5";
+            this.CoTableLayoutPanel5.RowCount = 4;
+            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.CoTableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.CoTableLayoutPanel5.Size = new System.Drawing.Size(494, 144);
+            this.CoTableLayoutPanel5.TabIndex = 30;
+            // 
+            // textBoxNameClinic
+            // 
+            this.textBoxNameClinic.Location = new System.Drawing.Point(150, 3);
+            this.textBoxNameClinic.Name = "textBoxNameClinic";
+            this.textBoxNameClinic.Size = new System.Drawing.Size(287, 24);
+            this.textBoxNameClinic.TabIndex = 2;
+            // 
+            // textBoxAddressClinic
+            // 
+            this.textBoxAddressClinic.Location = new System.Drawing.Point(150, 46);
+            this.textBoxAddressClinic.Name = "textBoxAddressClinic";
+            this.textBoxAddressClinic.Size = new System.Drawing.Size(290, 24);
+            this.textBoxAddressClinic.TabIndex = 3;
+            // 
+            // textBoxAdviceClinic
+            // 
+            this.textBoxAdviceClinic.Location = new System.Drawing.Point(150, 89);
+            this.textBoxAdviceClinic.Name = "textBoxAdviceClinic";
+            this.textBoxAdviceClinic.Size = new System.Drawing.Size(290, 24);
+            this.textBoxAdviceClinic.TabIndex = 5;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(3, 86);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(56, 18);
+            this.label37.TabIndex = 4;
+            this.label37.Text = "Lời dặn";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(3, 43);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(53, 18);
+            this.label36.TabIndex = 1;
+            this.label36.Text = "Địa chỉ";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(3, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(119, 18);
+            this.label35.TabIndex = 0;
+            this.label35.Text = "Tên phòng khám";
+            // 
+            // labelSdt
+            // 
+            this.labelSdt.AutoSize = true;
+            this.labelSdt.Location = new System.Drawing.Point(3, 117);
+            this.labelSdt.Name = "labelSdt";
+            this.labelSdt.Size = new System.Drawing.Size(42, 18);
+            this.labelSdt.TabIndex = 6;
+            this.labelSdt.Text = "SĐT:";
+            // 
+            // textBoxSDT
+            // 
+            this.textBoxSDT.Location = new System.Drawing.Point(150, 120);
+            this.textBoxSDT.Name = "textBoxSDT";
+            this.textBoxSDT.Size = new System.Drawing.Size(287, 24);
+            this.textBoxSDT.TabIndex = 7;
+            // 
+            // CoTableLayoutPanel2
+            // 
+            this.CoTableLayoutPanel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.CoTableLayoutPanel2.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetDouble;
+            this.CoTableLayoutPanel2.ColumnCount = 4;
+            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.01303F));
+            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.98697F));
+            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.CoTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 378F));
+            this.CoTableLayoutPanel2.Controls.Add(this.label11, 0, 0);
+            this.CoTableLayoutPanel2.Controls.Add(this.comboBoxWaitRoomId, 1, 0);
+            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomHeight, 3, 0);
+            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomDiagnose, 3, 3);
+            this.CoTableLayoutPanel2.Controls.Add(this.label17, 2, 3);
+            this.CoTableLayoutPanel2.Controls.Add(this.lblWaitRoomName, 0, 1);
+            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomName, 1, 1);
+            this.CoTableLayoutPanel2.Controls.Add(this.label16, 2, 2);
+            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitingRoomSymptom, 3, 2);
+            this.CoTableLayoutPanel2.Controls.Add(this.lblWaitRoomBirthday, 0, 2);
+            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitingRoomWeight, 3, 1);
+            this.CoTableLayoutPanel2.Controls.Add(this.dateTimePicker2, 1, 2);
+            this.CoTableLayoutPanel2.Controls.Add(this.label15, 2, 1);
+            this.CoTableLayoutPanel2.Controls.Add(this.lblWaitRoomAddress, 0, 3);
+            this.CoTableLayoutPanel2.Controls.Add(this.txtBoxWaitRoomAddress, 1, 3);
+            this.CoTableLayoutPanel2.Controls.Add(this.label14, 2, 0);
+            this.CoTableLayoutPanel2.Location = new System.Drawing.Point(9, 12);
+            this.CoTableLayoutPanel2.Name = "CoTableLayoutPanel2";
+            this.CoTableLayoutPanel2.RowCount = 4;
+            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.CoTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.CoTableLayoutPanel2.Size = new System.Drawing.Size(778, 144);
+            this.CoTableLayoutPanel2.TabIndex = 20;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 3);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(16, 13);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Id";
+            // 
+            // comboBoxWaitRoomId
+            // 
+            this.comboBoxWaitRoomId.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxWaitRoomId.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxWaitRoomId.FormattingEnabled = true;
+            this.comboBoxWaitRoomId.Location = new System.Drawing.Point(87, 6);
+            this.comboBoxWaitRoomId.Name = "comboBoxWaitRoomId";
+            this.comboBoxWaitRoomId.Size = new System.Drawing.Size(98, 21);
+            this.comboBoxWaitRoomId.TabIndex = 0;
+            // 
+            // txtBoxWaitRoomHeight
+            // 
+            this.txtBoxWaitRoomHeight.Location = new System.Drawing.Point(399, 6);
+            this.txtBoxWaitRoomHeight.Name = "txtBoxWaitRoomHeight";
+            this.txtBoxWaitRoomHeight.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxWaitRoomHeight.TabIndex = 4;
+            // 
+            // txtBoxWaitRoomDiagnose
+            // 
+            this.txtBoxWaitRoomDiagnose.Location = new System.Drawing.Point(399, 110);
+            this.txtBoxWaitRoomDiagnose.Name = "txtBoxWaitRoomDiagnose";
+            this.txtBoxWaitRoomDiagnose.Size = new System.Drawing.Size(297, 20);
+            this.txtBoxWaitRoomDiagnose.TabIndex = 7;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(291, 107);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(60, 13);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "Chẩn đoán";
+            // 
+            // lblWaitRoomName
+            // 
+            this.lblWaitRoomName.AutoSize = true;
+            this.lblWaitRoomName.Location = new System.Drawing.Point(6, 36);
+            this.lblWaitRoomName.Name = "lblWaitRoomName";
+            this.lblWaitRoomName.Size = new System.Drawing.Size(26, 13);
+            this.lblWaitRoomName.TabIndex = 0;
+            this.lblWaitRoomName.Text = "Tên";
+            // 
+            // txtBoxWaitRoomName
+            // 
+            this.txtBoxWaitRoomName.Location = new System.Drawing.Point(87, 39);
+            this.txtBoxWaitRoomName.Name = "txtBoxWaitRoomName";
+            this.txtBoxWaitRoomName.Size = new System.Drawing.Size(174, 20);
+            this.txtBoxWaitRoomName.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(291, 69);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(64, 13);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "Triệu chứng";
+            // 
+            // txtBoxWaitingRoomSymptom
+            // 
+            this.txtBoxWaitingRoomSymptom.Location = new System.Drawing.Point(399, 72);
+            this.txtBoxWaitingRoomSymptom.Name = "txtBoxWaitingRoomSymptom";
+            this.txtBoxWaitingRoomSymptom.Size = new System.Drawing.Size(297, 20);
+            this.txtBoxWaitingRoomSymptom.TabIndex = 6;
+            // 
+            // lblWaitRoomBirthday
+            // 
+            this.lblWaitRoomBirthday.AutoSize = true;
+            this.lblWaitRoomBirthday.Location = new System.Drawing.Point(6, 69);
+            this.lblWaitRoomBirthday.Name = "lblWaitRoomBirthday";
+            this.lblWaitRoomBirthday.Size = new System.Drawing.Size(54, 13);
+            this.lblWaitRoomBirthday.TabIndex = 16;
+            this.lblWaitRoomBirthday.Text = "Ngày sinh";
+            // 
+            // txtBoxWaitingRoomWeight
+            // 
+            this.txtBoxWaitingRoomWeight.Location = new System.Drawing.Point(399, 39);
+            this.txtBoxWaitingRoomWeight.Name = "txtBoxWaitingRoomWeight";
+            this.txtBoxWaitingRoomWeight.Size = new System.Drawing.Size(100, 20);
+            this.txtBoxWaitingRoomWeight.TabIndex = 5;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "dd-MM-yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(87, 72);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(125, 20);
+            this.dateTimePicker2.TabIndex = 2;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(291, 36);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(33, 13);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Nặng";
+            // 
+            // lblWaitRoomAddress
+            // 
+            this.lblWaitRoomAddress.AutoSize = true;
+            this.lblWaitRoomAddress.Location = new System.Drawing.Point(6, 107);
+            this.lblWaitRoomAddress.Name = "lblWaitRoomAddress";
+            this.lblWaitRoomAddress.Size = new System.Drawing.Size(40, 13);
+            this.lblWaitRoomAddress.TabIndex = 7;
+            this.lblWaitRoomAddress.Text = "Địa chỉ";
+            // 
+            // txtBoxWaitRoomAddress
+            // 
+            this.txtBoxWaitRoomAddress.Location = new System.Drawing.Point(87, 110);
+            this.txtBoxWaitRoomAddress.Name = "txtBoxWaitRoomAddress";
+            this.txtBoxWaitRoomAddress.Size = new System.Drawing.Size(166, 20);
+            this.txtBoxWaitRoomAddress.TabIndex = 3;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(291, 3);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(56, 13);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Chiều Cao";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2642,35 +2642,35 @@ namespace PhongKham
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMedicine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSearchValue)).EndInit();
-            this.CoTableLayoutPanel1.ResumeLayout(false);
-            this.CoTableLayoutPanel1.PerformLayout();
             this.Calendar.ResumeLayout(false);
             this.panelCalendarDate.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCalendar)).EndInit();
             this.panelCalendar.ResumeLayout(false);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tabPagenhapthuoc.ResumeLayout(false);
+            this.tabPageTools.ResumeLayout(false);
+            this.tabPageTools.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.tabPagePrint.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            this.CoTableLayoutPanel1.ResumeLayout(false);
+            this.CoTableLayoutPanel1.PerformLayout();
             this.CoTableLayoutPanel7.ResumeLayout(false);
             this.CoTableLayoutPanel7.PerformLayout();
             this.CoTableLayoutPanel4.ResumeLayout(false);
             this.CoTableLayoutPanel4.PerformLayout();
             this.CoTableLayoutPanel3.ResumeLayout(false);
             this.CoTableLayoutPanel3.PerformLayout();
-            this.tabPageTools.ResumeLayout(false);
-            this.tabPageTools.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.CoTableLayoutPanel6.ResumeLayout(false);
             this.CoTableLayoutPanel6.PerformLayout();
             this.CoTableLayoutPanel5.ResumeLayout(false);
             this.CoTableLayoutPanel5.PerformLayout();
-            this.tabPagePrint.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.CoTableLayoutPanel2.ResumeLayout(false);
             this.CoTableLayoutPanel2.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2779,7 +2779,7 @@ namespace PhongKham
         private DateTimePicker dateTimePickerNgayKham;
         private Label label31;
         private Label label32;
-        private TextBox textBox3;
+        private TextBox textBoxNewCostOut;
         private DateTimePicker dateTimePicker6;
         private Label label34;
         private CheckBox checkBoxKethuoc;
