@@ -69,7 +69,7 @@ namespace Clinic
                 row.Cells["STT"].Value = i + 1;
                 row.Cells[this.date.Name].Value = listItem[i].Date;
 
-
+                row.Cells[this.ColumnDiagnose.Name].Value = listItem[i].Diagnose;
 
                 row.Cells[Money.Name].Value = listItem[i].Money;
                 string nameDoctor = listItem[i].NameOfDoctor;

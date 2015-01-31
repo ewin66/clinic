@@ -9,6 +9,7 @@ namespace Clinic.Database
     public class DatabaseFactory
     {
         private static IDatabase instance;
+        private static IDatabase instance2;
 
         public static IDatabase Instance
         {
@@ -20,13 +21,25 @@ namespace Clinic.Database
                 return DatabaseFactory.instance; 
             }
         }
+        public static IDatabase Instance2
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    throw new Exception("Object not created");
+                }
+                return DatabaseFactory.instance2;
+            }
+        }
         
         public static void CreateNewDatabase(string kindOfDatabase,DbConStringBuilder strBuilder)
         {
             //if else here
             MySqlConnectionStringBuilder stringBuilder = new MySqlConnectionStringBuilder();
             StringBuilderCopy(strBuilder, stringBuilder);
-            instance = new MySqlDatabase(stringBuilder.ConnectionString + ';' + "charset = utf8");
+            instance = new MySqlDatabase(stringBuilder.ConnectionString + ';' + "charset = utf8;");
+            instance2 = new MySqlDatabase(stringBuilder.ConnectionString + ';' + "charset = utf8;");
         }
 
         private static void StringBuilderCopy(DbConStringBuilder strBuilder, MySqlConnectionStringBuilder stringBuilder)

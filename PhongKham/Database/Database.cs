@@ -36,6 +36,7 @@ namespace Clinic.Database
             {
 
                 cmd = new TCommand();
+                
                 //cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = StoreProcName;
                 if (tTransaction != default(TTransaction))
@@ -215,6 +216,13 @@ namespace Clinic.Database
 
 
             fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.DoanhThuTable_LoaiKham + " TEXT NULL;", null);
+            Guard(fun);
+
+
+            fun = () => ExecuteNonQuery("ALTER TABLE history  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NOT NULL AUTO_INCREMENT ,ADD PRIMARY KEY (`IdHistory`) ;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NULL ;", null);
             Guard(fun);
 
 

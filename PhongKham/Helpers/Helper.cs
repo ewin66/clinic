@@ -550,6 +550,40 @@ namespace Clinic.Helpers
             }
         }
 
+        internal static int SearchMaxValueOfTableWithoutPlusPlus(string table, string nameOfColumn, string order)
+        {
+            string strCommand = " SELECT  " + nameOfColumn + " FROM " + table + " ORDER BY " + nameOfColumn + " " + order + " LIMIT 1";
+            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
+            IDatabase db = DatabaseFactory.Instance;
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+
+                reader.Read();
+                int intTemp = 0;
+                if (reader.HasRows)
+                {
+                    string temp = reader.GetValue(0).ToString();
+                    try
+                    {
+                        intTemp = int.Parse(temp);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                }
+                else
+                {
+                    intTemp = 0;
+                }
+                int newId = intTemp;
+                return newId;
+            }
+        }
+
 
         // public Patient AddNewPatient(SqlConnection conn, string id, bool Old)
         //{
@@ -1247,6 +1281,8 @@ namespace Clinic.Helpers
                     item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
                     item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
                     item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
+                    int idHistory= (int)reader[ClinicConstant.HistoryTable_IdHistory];
+                    item.Diagnose = GetDiagnoseFromHistoryByIdHistory(idHistory,DatabaseFactory.Instance2);
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1254,7 +1290,23 @@ namespace Clinic.Helpers
                    
                 }
             }
+            return result;
 
+        }
+
+        static string  GetDiagnoseFromHistoryByIdHistory(int idHistory , IDatabase db2)
+        {
+            string result = "";
+
+            string strCommand = " SELECT "+ClinicConstant.HistoryTable_Diagnose+" FROM "+ClinicConstant.HistoryTable  +" WHERE "+ClinicConstant.HistoryTable_IdHistory+" = " + Helper.ConvertToSqlString(idHistory.ToString());
+            using (DbDataReader reader = db2.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    result = reader[ClinicConstant.HistoryTable_Diagnose].ToString();
+                }
+            }
             return result;
         }
 
@@ -1310,6 +1362,13 @@ namespace Clinic.Helpers
                     item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
                     item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
                     item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
+
+                    try
+                    {
+                        int idHistory = (int)reader[ClinicConstant.HistoryTable_IdHistory];
+                        item.Diagnose = GetDiagnoseFromHistoryByIdHistory(idHistory, DatabaseFactory.Instance2);
+                    }
+                    catch { item.Diagnose = ""; }
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1385,7 +1444,7 @@ namespace Clinic.Helpers
         {
             string strCommand = BuildFirstPartUpdateQuery(nameOfTable, columnsDoanhThu, valuesDoanhThu);
 
-            strCommand += " Where Idpatient='" + p_2 + "';";
+            strCommand += " Where Idpatient='" + p_2 + "'And time=" + ConvertToSqlString(DateTime.Now.ToString("yyyy-MM-dd")) + ";";
 
             //MySqlCommand comm = new MySqlCommand(strCommand, conn);
             db.ExecuteNonQuery(strCommand, null);
@@ -1697,6 +1756,21 @@ namespace Clinic.Helpers
             }
             result += Medicines[Medicines.Count - 1].Name;
             return result;
+        }
+
+        internal static string GetIdHistoryFromHistory()
+        {
+            int result =0;
+            string strCommand = "SELECT LAST_INSERT_ID() FROM " + ClinicConstant.HistoryTable_IdHistory;
+            using (DbDataReader reader = DatabaseFactory.Instance.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                if (reader.HasRows)
+                {
+                    result = reader.GetInt32(0);
+                }
+
+            }
+            return result.ToString();
         }
     }
 }

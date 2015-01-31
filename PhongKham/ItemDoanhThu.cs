@@ -7,6 +7,14 @@ namespace Clinic
 {
     public class ItemDoanhThu
     {
+        private string diagnose;
+
+        public string Diagnose
+        {
+            get { return diagnose; }
+            set { diagnose = value; }
+        }
+
         private string loaiKham;
 
         public string LoaiKham
