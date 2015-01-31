@@ -39,6 +39,7 @@ namespace Clinic
         public const string MedicineTable_InputDay = "InputDay";
         public const string MedicineTable_Id = "Id";
         public const string MedicineTable_Admin = "Admin";
+        public const string MedicineTable_Hdsd = "Hdsd";
 
         /// <summary>
         /// patient(Idpatient INT NOT NULL AUTO_INCREMENT,Name varchar(50),Address Varchar(400),birthday datetime,height int(11),weight int(11)

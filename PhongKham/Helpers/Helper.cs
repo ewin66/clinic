@@ -1405,6 +1405,7 @@ namespace Clinic.Helpers
                             objectMedicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
                             objectMedicine.Admin = "";
                             objectMedicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
+                            objectMedicine.HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
                         }
                         else // service
                         {
