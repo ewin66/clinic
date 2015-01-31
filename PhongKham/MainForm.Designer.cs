@@ -166,7 +166,7 @@ namespace PhongKham
             this.loaiKhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thêmLoạiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Column18 = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
+            this.ColumnNameMedicine = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
             this.Column19 = new DevComponents.DotNetBar.Controls.DataGridViewTextBoxDropDownColumn();
             this.Column20 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.Column21 = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
@@ -498,7 +498,7 @@ namespace PhongKham
             this.dataGridViewMedicine.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dataGridViewMedicine.ColumnHeadersHeight = 40;
             this.dataGridViewMedicine.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column18,
+            this.ColumnNameMedicine,
             this.Column19,
             this.Column20,
             this.Column21,
@@ -1535,20 +1535,20 @@ namespace PhongKham
             // 
             // Column18
             // 
-            this.Column18.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.Column18.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column18.DisplayMember = "Text";
-            this.Column18.DropDownHeight = 106;
-            this.Column18.DropDownWidth = 121;
-            this.Column18.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column18.HeaderText = "Tên Thuốc";
-            this.Column18.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.Column18.IntegralHeight = false;
-            this.Column18.ItemHeight = 15;
-            this.Column18.Name = "Column18";
-            this.Column18.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column18.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ColumnNameMedicine.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.ColumnNameMedicine.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.ColumnNameMedicine.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnNameMedicine.DisplayMember = "Text";
+            this.ColumnNameMedicine.DropDownHeight = 106;
+            this.ColumnNameMedicine.DropDownWidth = 121;
+            this.ColumnNameMedicine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnNameMedicine.HeaderText = "Tên Thuốc";
+            this.ColumnNameMedicine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.ColumnNameMedicine.IntegralHeight = false;
+            this.ColumnNameMedicine.ItemHeight = 15;
+            this.ColumnNameMedicine.Name = "Column18";
+            this.ColumnNameMedicine.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnNameMedicine.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // Column19
             // 
@@ -2905,7 +2905,7 @@ namespace PhongKham
         private ComboBox comboBoxLoaiKham;
         private Label label48;
         private TextBox textBoxAdminOfService;
-        private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn Column18;
+        private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn ColumnNameMedicine;
         private DevComponents.DotNetBar.Controls.DataGridViewTextBoxDropDownColumn Column19;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column20;
         private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Column21;

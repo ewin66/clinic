@@ -309,12 +309,12 @@ namespace PhongKham
 
         private void InitComboboxMedicinesMySql()
         {
-            this.Column18.Items.Clear();
+            this.ColumnNameMedicine.Items.Clear();
 
             currentMedicines= Helper.GetAllMedicinesAndServicesFromDB();
             currentServices = currentMedicines.Where(x => x.Name[0] == '@').ToList();
 
-            this.Column18.Items.AddRange(currentMedicines.Select(x=>x.Name).ToArray());
+            this.ColumnNameMedicine.Items.AddRange(currentMedicines.Select(x=>x.Name).ToArray());
 
         }
 

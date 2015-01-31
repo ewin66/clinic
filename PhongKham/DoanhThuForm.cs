@@ -35,23 +35,27 @@ namespace Clinic
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnServices.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewMain.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             currentMedicines = Helper.GetAllMedicineFromDb();
             currentServices = Helper.GetAllServiceFromDb();
             AllLoaiKham = Helper.GetAllLoaiKham(DatabaseFactory.Instance);
 
             InitForm(needOptimize);
-
+            this.dataGridViewLoaiKham.AllowUserToAddRows = false;
+            this.dataGridViewMain.AllowUserToAddRows = false;
+            this.dataGridViewAdminOfService.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToAddRows = false;
         }
 
         private void InitForm(bool needOptimize)
         {
             if (needOptimize)
             {
-                this.dataGridView1.Columns.Remove(this.ColumnIdPatient);
-                this.dataGridView1.Columns.Remove(this.NameDoctor);
+                this.dataGridViewMain.Columns[this.ColumnIdPatient.Index].Visible=false;
+                this.dataGridViewMain.Columns[this.NameDoctor.Index].Visible=false;
             }
-            this.dataGridView1.Columns.Remove(this.ColumnLoaiKham);
+            this.dataGridViewMain.Columns[this.ColumnLoaiKham.Index].Visible=false;
         }
 
         public void FillToGrid(List<ItemDoanhThu> listItem)
@@ -64,8 +68,8 @@ namespace Clinic
             for (int i = 0; i < listItem.Count; i++)
             {
 
-                int index = dataGridView1.Rows.Add();
-                DataGridViewRow row = dataGridView1.Rows[index];
+                int index = dataGridViewMain.Rows.Add();
+                DataGridViewRow row = dataGridViewMain.Rows[index];
                 row.Cells["STT"].Value = i + 1;
                 row.Cells[this.date.Name].Value = listItem[i].Date;
 
@@ -89,10 +93,9 @@ namespace Clinic
 
 
                 row.Cells["ColumnServices"].Value = BuildStringServicesAndAdmin(listItem[i].Services, ref listService);
-                //if (!needOptimize)
-                //{
-                //    row.Cells["ColumnLoaiKham"].Value = listItem[i].LoaiKham;
-                //}
+
+                row.Cells["ColumnLoaiKham"].Value = listItem[i].LoaiKham;
+                
 
                 DoanhThuBacSi bsTemp = listBacSi.Where(x => x.NameBacSi == nameDoctor).FirstOrDefault();
                 if (bsTemp == null)
@@ -145,12 +148,12 @@ namespace Clinic
             }
 
 
-            dataGridView4.Rows.Clear();
+            dataGridViewLoaiKham.Rows.Clear();
             //each LoaiKham
             for (int i = 0; i < AllLoaiKham.Count; i++)
             {
-                int index = dataGridView4.Rows.Add();
-                DataGridViewRow row = dataGridView4.Rows[index];
+                int index = dataGridViewLoaiKham.Rows.Add();
+                DataGridViewRow row = dataGridViewLoaiKham.Rows[index];
                 row.Cells[0].Value = AllLoaiKham[i];
                 row.Cells[1].Value = listItem.Where(x => x.LoaiKham == AllLoaiKham[i]).Count();
 
@@ -160,24 +163,31 @@ namespace Clinic
             Dictionary<string, int> Admins = new Dictionary<string, int>();
             try
             {
-                for (int i = 0; i < dataGridView3.Rows.Count - 1; i++)
+                for (int i = 0; i < dataGridView3.Rows.Count; i++)
                 {
-                    string nameAdmin = dataGridView3.Rows[i].Cells["ColumnServiceAdmin"].Value.ToString();
+                    string nameAdmin = dataGridView3.Rows[i].Cells["ColumnServiceAdmin"].Value!=null ?dataGridView3.Rows[i].Cells["ColumnServiceAdmin"].Value.ToString():"";
+                    int tien =0;
+                    tien = int.Parse(dataGridView3.Rows[i].Cells["ColumnServiceTotal"].Value!=null? dataGridView3.Rows[i].Cells["ColumnServiceTotal"].Value.ToString():"0");
                     if (!String.IsNullOrEmpty(nameAdmin))
                     {
                         if (Admins.ContainsKey(nameAdmin))
                         {
-                            Admins[nameAdmin] += int.Parse(dataGridView3.Rows[i].Cells["ColumnServiceTotal"].Value.ToString());
+                            
+           
+                            Admins[nameAdmin] += tien;
                         }
                         else
                         {
-                            Admins.Add(nameAdmin, int.Parse(dataGridView3.Rows[i].Cells["ColumnServiceTotal"].Value.ToString()));
+                            Admins.Add(nameAdmin, tien);
                         }
 
                     }
                 }
             }
-            catch { }
+            catch 
+            {
+
+            }
 
             dataGridViewAdminOfService.Rows.Clear();
 
@@ -195,6 +205,29 @@ namespace Clinic
 
             this.PatientNumber.Text = listID.Count.ToString();
 
+        }
+
+
+        void dataGridViewLoaiKham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignore clicks that are not on button cells.  
+            if (e.RowIndex < 0 || e.ColumnIndex !=
+                this.dataGridViewLoaiKham.Columns[this.ColumnLkName.Name].Index) return;
+
+            //filter by LoaiKham
+            List<DataGridViewRow> listRowWillDelete = new List<DataGridViewRow>();
+            foreach (DataGridViewRow row in dataGridViewMain.Rows)
+            {
+                string loaiKhamOnMainGrid = row.Cells[this.ColumnLoaiKham.Name].Value!=null?  row.Cells[this.ColumnLoaiKham.Name].Value.ToString() :"";
+                if (loaiKhamOnMainGrid != this.dataGridViewLoaiKham.Rows[e.RowIndex].Cells[this.ColumnLkName.Name].Value.ToString())
+                {
+                    listRowWillDelete.Add(row);
+                }
+            }
+            foreach (DataGridViewRow row in listRowWillDelete)
+            {
+                dataGridViewMain.Rows.Remove(row);
+            }
         }
 
         private string BuildStringServicesAndAdmin(string servicesWithoutAdmin, ref Dictionary<string,int> listService)
@@ -228,7 +261,7 @@ namespace Clinic
 
         private void button1_Click(object sender, EventArgs e) // ngay
         {
-            dataGridView1.Rows.Clear();
+            dataGridViewMain.Rows.Clear();
              listItem  = Helpers.Helper.DoanhThuTheoNgay(DatabaseFactory.Instance,dateTimePicker1.Value);
              FillToGrid(listItem);
              CalcuTotal();
@@ -236,7 +269,7 @@ namespace Clinic
 
         private void button2_Click(object sender, EventArgs e) // thang
         {
-            dataGridView1.Rows.Clear();
+            dataGridViewMain.Rows.Clear();
             listItem = Helpers.Helper.DoanhThuTheoThang(DatabaseFactory.Instance, dateTimePicker1.Value);
             FillToGrid(listItem);
             CalcuTotal();
@@ -246,9 +279,9 @@ namespace Clinic
         private void CalcuTotal()
         {
             int total =0;
-            for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
+            for (int i = 0; i < dataGridViewMain.Rows.Count; i++)
             {
-                DataGridViewRow row = dataGridView1.Rows[i];
+                DataGridViewRow row = dataGridViewMain.Rows[i];
                 total += int.Parse(row.Cells[this.Money.Name].Value.ToString());
             }
             labelTotal.Text = total.ToString("C0");
@@ -264,8 +297,30 @@ namespace Clinic
         private void button3_Click(object sender, EventArgs e)
         {
             string namePDF = "DoanhThu";
-            Helper.CreateAPdfThongKeDoanhThu(this.dataGridView1, namePDF,tongLuotKham,tongDoanhThu);
+            Helper.CreateAPdfThongKeDoanhThu(this.dataGridViewMain, namePDF,tongLuotKham,tongDoanhThu);
             this.PDFShowDoanhThu.LoadFile("DoanhThu.pdf");
+        }
+
+        private void dataGridViewAdminOfService_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ignore clicks that are not on button cells.  
+            if (e.RowIndex < 0 || e.ColumnIndex !=
+                this.dataGridViewAdminOfService.Columns[this.ColumnAdminInAdminOfService.Name].Index) return;
+
+            //filter by LoaiKham
+            List<DataGridViewRow> listRowWillDelete = new List<DataGridViewRow>();
+            foreach (DataGridViewRow row in dataGridViewMain.Rows)
+            {
+                string dichVuOnMainGrid = row.Cells[this.ColumnServices.Name].Value != null ? row.Cells[this.ColumnServices.Name].Value.ToString() : "";
+                if (!dichVuOnMainGrid.Contains(this.dataGridViewAdminOfService.Rows[e.RowIndex].Cells[this.ColumnAdminInAdminOfService.Name].Value.ToString()))
+                {
+                    listRowWillDelete.Add(row);
+                }
+            }
+            foreach (DataGridViewRow row in listRowWillDelete)
+            {
+                dataGridViewMain.Rows.Remove(row);
+            }
         }
     }
 }

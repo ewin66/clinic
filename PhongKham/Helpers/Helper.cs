@@ -1281,8 +1281,12 @@ namespace Clinic.Helpers
                     item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
                     item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
                     item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
-                    int idHistory= (int)reader[ClinicConstant.HistoryTable_IdHistory];
-                    item.Diagnose = GetDiagnoseFromHistoryByIdHistory(idHistory,DatabaseFactory.Instance2);
+                    try
+                    {
+                        int idHistory = (int)reader[ClinicConstant.HistoryTable_IdHistory];
+                        item.Diagnose = GetDiagnoseFromHistoryByIdHistory(idHistory, DatabaseFactory.Instance2);
+                    }
+                    catch { item.Diagnose = ""; }
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);

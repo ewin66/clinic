@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DoanhThuForm));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewMain = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.G2NameDoctor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.G2SoLuotKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,9 +42,11 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridViewAdminOfService = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAdminInAdminOfService = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewLoaiKham = new System.Windows.Forms.DataGridView();
+            this.ColumnLkName = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnLkCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.ColumnServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnServiceAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,26 +67,24 @@
             this.ColumnServices = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnLoaiKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Money = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLkName = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnLkCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdminOfService)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLoaiKham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDFShowDoanhThu)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewMain
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridViewMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
             this.date,
             this.NameDoctor,
@@ -94,10 +94,10 @@
             this.ColumnServices,
             this.ColumnLoaiKham,
             this.Money});
-            this.dataGridView1.Location = new System.Drawing.Point(3, 340);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1323, 505);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewMain.Location = new System.Drawing.Point(3, 340);
+            this.dataGridViewMain.Name = "dataGridViewMain";
+            this.dataGridViewMain.Size = new System.Drawing.Size(1323, 505);
+            this.dataGridViewMain.TabIndex = 0;
             // 
             // dataGridView2
             // 
@@ -189,13 +189,13 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridViewAdminOfService);
-            this.tabPage1.Controls.Add(this.dataGridView4);
+            this.tabPage1.Controls.Add(this.dataGridViewLoaiKham);
             this.tabPage1.Controls.Add(this.dataGridView3);
             this.tabPage1.Controls.Add(this.PatientNumber);
             this.tabPage1.Controls.Add(this.PatientCountLabel);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.dataGridViewMain);
             this.tabPage1.Controls.Add(this.dataGridView2);
             this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button1);
@@ -215,33 +215,55 @@
             this.dataGridViewAdminOfService.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAdminOfService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAdminOfService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
+            this.ColumnAdminInAdminOfService,
             this.Column2});
             this.dataGridViewAdminOfService.Location = new System.Drawing.Point(323, 217);
             this.dataGridViewAdminOfService.Name = "dataGridViewAdminOfService";
             this.dataGridViewAdminOfService.Size = new System.Drawing.Size(491, 100);
             this.dataGridViewAdminOfService.TabIndex = 14;
+            this.dataGridViewAdminOfService.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAdminOfService_CellClick);
             // 
-            // Column1
+            // ColumnAdminInAdminOfService
             // 
-            this.Column1.HeaderText = "Người phụ trách";
-            this.Column1.Name = "Column1";
+            this.ColumnAdminInAdminOfService.HeaderText = "Người phụ trách";
+            this.ColumnAdminInAdminOfService.Name = "ColumnAdminInAdminOfService";
+            this.ColumnAdminInAdminOfService.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnAdminInAdminOfService.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // Column2
             // 
             this.Column2.HeaderText = "Tổng tiền";
             this.Column2.Name = "Column2";
             // 
-            // dataGridView4
+            // dataGridViewLoaiKham
             // 
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewLoaiKham.AllowUserToAddRows = false;
+            this.dataGridViewLoaiKham.AllowUserToDeleteRows = false;
+            this.dataGridViewLoaiKham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLoaiKham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnLkName,
             this.ColumnLkCount});
-            this.dataGridView4.Location = new System.Drawing.Point(872, 164);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(451, 153);
-            this.dataGridView4.TabIndex = 13;
+            this.dataGridViewLoaiKham.Location = new System.Drawing.Point(872, 164);
+            this.dataGridViewLoaiKham.Name = "dataGridViewLoaiKham";
+            this.dataGridViewLoaiKham.Size = new System.Drawing.Size(451, 153);
+            this.dataGridViewLoaiKham.TabIndex = 13;
+            this.dataGridViewLoaiKham.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLoaiKham_CellClick);
+            // 
+            // ColumnLkName
+            // 
+            this.ColumnLkName.FillWeight = 194.9239F;
+            this.ColumnLkName.HeaderText = "Tên Loại Khám";
+            this.ColumnLkName.Name = "ColumnLkName";
+            this.ColumnLkName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnLkName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnLkName.Width = 300;
+            // 
+            // ColumnLkCount
+            // 
+            this.ColumnLkCount.FillWeight = 5.076141F;
+            this.ColumnLkCount.HeaderText = "Số Ca";
+            this.ColumnLkCount.Name = "ColumnLkCount";
+            this.ColumnLkCount.Width = 50;
             // 
             // dataGridView3
             // 
@@ -375,6 +397,7 @@
             // 
             this.ColumnDiagnose.HeaderText = "Chẩn đoán";
             this.ColumnDiagnose.Name = "ColumnDiagnose";
+            this.ColumnDiagnose.Width = 200;
             // 
             // ColumnServices
             // 
@@ -394,18 +417,6 @@
             this.Money.ReadOnly = true;
             this.Money.Width = 150;
             // 
-            // ColumnLkName
-            // 
-            this.ColumnLkName.HeaderText = "Tên Loại Khám";
-            this.ColumnLkName.Name = "ColumnLkName";
-            this.ColumnLkName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnLkName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ColumnLkCount
-            // 
-            this.ColumnLkCount.HeaderText = "Số Ca";
-            this.ColumnLkCount.Name = "ColumnLkCount";
-            // 
             // DoanhThuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -415,13 +426,13 @@
             this.Name = "DoanhThuForm";
             this.Text = "DoanhThuForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAdminOfService)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLoaiKham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PDFShowDoanhThu)).EndInit();
@@ -431,7 +442,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewMain;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelTotal;
@@ -450,13 +461,15 @@
         private System.Windows.Forms.Label PatientNumber;
         private System.Windows.Forms.Label PatientCountLabel;
         private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.DataGridView dataGridViewLoaiKham;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServiceName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServiceAdmin;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServiceCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServiceTotal;
         private System.Windows.Forms.DataGridView dataGridViewAdminOfService;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnLkName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLkCount;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnAdminInAdminOfService;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
@@ -467,7 +480,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnServices;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLoaiKham;
         private System.Windows.Forms.DataGridViewTextBoxColumn Money;
-        private System.Windows.Forms.DataGridViewButtonColumn ColumnLkName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLkCount;
     }
 }
