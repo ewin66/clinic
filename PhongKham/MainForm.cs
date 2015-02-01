@@ -270,7 +270,7 @@ namespace PhongKham
             string cmd = "Select * from lichhen Where time = " + Helper.ConvertToSqlString(time.ToString("yyyy-MM-dd"));
             using (DbDataReader reader = db.ExecuteReader(cmd, null) as DbDataReader)
             {
-
+                int timeCompare = time.CompareTo(DateTime.Now);
                 while (reader.Read())
                 {
 
@@ -285,6 +285,15 @@ namespace PhongKham
                     {
                         int idHistory = (int)reader[ClinicConstant.HistoryTable_IdHistory];
                         row.Cells[this.ColumnReason.Name].Value =Helper.GetReasonComeBackFromHistoryByIdHistory(idHistory, DatabaseFactory.Instance2);
+                        if (timeCompare <= 0)
+                        {
+                            row.Cells[this.ColumnState.Name].Value = Helper.GetStateComeBackFromHistoryByIdPatient(row.Cells[0].Value.ToString(), DatabaseFactory.Instance2, time);
+                        }
+                        else
+                        {
+                            row.Cells[this.ColumnState.Name].Value = "Chưa";
+                        }
+
                     }
                     catch { }
 

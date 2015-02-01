@@ -1795,5 +1795,19 @@ namespace Clinic.Helpers
             }
             return result;
         }
+
+        internal static string GetStateComeBackFromHistoryByIdPatient(string IdPatient, IDatabase iDatabase2, DateTime time)
+        {
+            string strCommand = "Select Id from history Where Day = " + Helper.ConvertToSqlString(time.ToString("yyyy-MM-dd")) + " And Id = " + Helper.ConvertToSqlString(IdPatient);
+            using (DbDataReader reader = iDatabase2.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    return "Đã tái khám";
+                }
+            }
+            return "Chưa";
+        }
     }
 }
