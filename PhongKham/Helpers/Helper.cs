@@ -1092,7 +1092,7 @@ namespace Clinic.Helpers
             paramNgayThang.Format.Alignment = ParagraphAlignment.Center;
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
-            rowsignatureAndMore2.Cells[0].AddParagraph(taikham + ". " + reasonComeBack);
+            rowsignatureAndMore2.Cells[0].AddParagraph(taikham + ": " + reasonComeBack);
             Paragraph para = rowsignatureAndMore2.Cells[2].AddParagraph(" \n \n \n \n" + Form1.nameOfDoctor);
             para.Format.Alignment = ParagraphAlignment.Center;
 

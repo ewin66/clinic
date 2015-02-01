@@ -1972,8 +1972,15 @@ namespace PhongKham
 
         private void cácChẩnĐoánToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DiagnosesHistory form = new DiagnosesHistory();
-            form.Show();
+            if (Authority == 1)
+            {
+                DiagnosesHistory form = new DiagnosesHistory(listDiagnosesFromHistory);
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("Chỉ khả dụng cho admin! ");
+            }
         }
 
 

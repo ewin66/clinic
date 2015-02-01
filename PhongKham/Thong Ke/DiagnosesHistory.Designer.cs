@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnIdHistory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnUpdate = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -41,7 +40,6 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnIdHistory,
             this.ColumnName,
             this.ColumnUpdate});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -49,12 +47,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1078, 632);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // ColumnIdHistory
-            // 
-            this.ColumnIdHistory.HeaderText = "IdHistory";
-            this.ColumnIdHistory.Name = "ColumnIdHistory";
-            this.ColumnIdHistory.ReadOnly = true;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // ColumnName
             // 
@@ -76,7 +69,7 @@
             this.ClientSize = new System.Drawing.Size(1078, 632);
             this.Controls.Add(this.dataGridView1);
             this.Name = "DiagnosesHistory";
-            this.Text = "Bảng Chẩn Đoán";
+            this.Text = "Bảng Chẩn Đoán- Chỉ nên sửa cho đúng chuẩn - không sửa nội dung";
             this.Load += new System.EventHandler(this.DiagnosesHistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -86,7 +79,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnIdHistory;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnUpdate;
     }
