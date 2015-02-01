@@ -33,6 +33,8 @@ namespace Clinic.Helpers
         #region Fields
         private static readonly byte[] _key = { 0xA1, 0xF1, 0xA6, 0xBB, 0xA2, 0x5A, 0x37, 0x6F, 0x81, 0x2E, 0x17, 0x41, 0x72, 0x2C, 0x43, 0x27 };
         private static readonly byte[] _initVector = { 0xE1, 0xF1, 0xA6, 0xBB, 0xA9, 0x5B, 0x31, 0x2F, 0x81, 0x2E, 0x17, 0x4C, 0xA2, 0x81, 0x53, 0x61 };
+        public static List<string> ColumnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines", "temperature", "huyetap", ClinicConstant.HistoryTable_Reason };
+        public static List<string> ColumnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient", ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham, ClinicConstant.HistoryTable_IdHistory };
         #endregion
 
         #region ctors
@@ -857,7 +859,7 @@ namespace Clinic.Helpers
             pdfRenderer.RenderDocument();
             pdfRenderer.PdfDocument.Save(namePDF+".pdf");
         }
-        public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi,int Stt)
+        public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi,int Stt,string reasonComeBack)
         {
 
 
@@ -870,9 +872,9 @@ namespace Clinic.Helpers
             document.DefaultPageSetup.PageHeight = height;
            
             int tongTienThuoc = 0;
-            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi,Stt);
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi, Stt, reasonComeBack);
 
-            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno, tuoi,Stt);
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno, tuoi, Stt, reasonComeBack);
 
             //document.LastSection.AddPageBreak();
 
@@ -889,7 +891,7 @@ namespace Clinic.Helpers
 
         }
 
-        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc, string Diagno, string tuoi,int Stt)
+        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc, string Diagno, string tuoi, int Stt, string reasonComeBack)
         {
             Section section = document.AddSection();
             section.PageSetup.LeftMargin = 10;
@@ -1090,7 +1092,7 @@ namespace Clinic.Helpers
             paramNgayThang.Format.Alignment = ParagraphAlignment.Center;
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
-            rowsignatureAndMore2.Cells[0].AddParagraph(taikham);
+            rowsignatureAndMore2.Cells[0].AddParagraph(taikham + ". " + reasonComeBack);
             Paragraph para = rowsignatureAndMore2.Cells[2].AddParagraph(" \n \n \n \n" + Form1.nameOfDoctor);
             para.Format.Alignment = ParagraphAlignment.Center;
 
@@ -1776,6 +1778,22 @@ namespace Clinic.Helpers
 
             }
             return result.ToString();
+        }
+
+        internal static string GetReasonComeBackFromHistoryByIdHistory(int idHistory, IDatabase iDatabase2)
+        {
+            string result = "";
+
+            string strCommand = " SELECT " + ClinicConstant.HistoryTable_Reason + " FROM " + ClinicConstant.HistoryTable + " WHERE " + ClinicConstant.HistoryTable_IdHistory + " = " + Helper.ConvertToSqlString(idHistory.ToString());
+            using (DbDataReader reader = iDatabase2.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    result = reader[ClinicConstant.HistoryTable_Reason].ToString();
+                }
+            }
+            return result;
         }
     }
 }

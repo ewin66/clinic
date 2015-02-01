@@ -26,6 +26,7 @@ namespace Clinic
         public const string HistoryTable_Medicines = "Medicines";
         public const string HistoryTable_Day = "Day";
         public const string HistoryTable_IdHistory = "IdHistory";
+        public const string HistoryTable_Reason = "Reason";
 
         /// <summary>
         /// medicine(Name varchar(50),Count int,CostIn int,CostOut int,InputDay Datetime,Id varchar(10))

@@ -225,6 +225,11 @@ namespace Clinic.Database
             fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NULL ;", null);
             Guard(fun);
 
+            fun = () => ExecuteNonQuery("ALTER TABLE history  ADD COLUMN " + ClinicConstant.HistoryTable_Reason + " TEXT NULL ;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE lichhen  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NULL ;", null);
+            Guard(fun);
 
         }
 
@@ -265,6 +270,10 @@ namespace Clinic.Database
 
         public void InsertRowToTable(string nameOfTable, List<string> nameOfColumns, List<string> values)
         {
+            if (nameOfColumns.Count != values.Count)
+            {
+                throw new Exception("số cột và số giá trị khác nhau");
+            }
             for (int i = 0; i < values.Count; i++)
             {
                 values[i] =Helper.ConvertToSqlString(values[i]);

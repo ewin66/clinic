@@ -26,7 +26,7 @@ namespace Clinic
         List<IMedicine> currentMedicines;
         List<IMedicine> currentServices;
         List<string> AllLoaiKham;
-        private bool needOptimize =true;
+        private bool needOptimize =false;
 
         public DoanhThuForm()
         {
@@ -53,7 +53,7 @@ namespace Clinic
             if (needOptimize)
             {
                 this.dataGridViewMain.Columns[this.ColumnIdPatient.Index].Visible=false;
-                this.dataGridViewMain.Columns[this.NameDoctor.Index].Visible=false;
+                this.dataGridViewMain.Columns[this.NameDoctor.Index].Visible=true;
             }
             this.dataGridViewMain.Columns[this.ColumnLoaiKham.Index].Visible=false;
         }
