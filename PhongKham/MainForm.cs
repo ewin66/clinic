@@ -25,6 +25,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using Clinic.Models.ItemMedicine;
 using Clinic.Extensions.LoaiKham;
+using Clinic.Thong_Ke;
 
 
 
@@ -1967,6 +1968,12 @@ namespace PhongKham
                 ToolTip tt = new ToolTip();
                 tt.Show("Lý do tái khám", TB, 0, 0, VisibleTime);
             }
+        }
+
+        private void cácChẩnĐoánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DiagnosesHistory form = new DiagnosesHistory();
+            form.Show();
         }
 
 

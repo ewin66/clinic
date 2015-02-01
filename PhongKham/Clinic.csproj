@@ -133,10 +133,16 @@
     <Compile Include="CoTableLayoutPanel .cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DoanhThuForm.cs">
+    <Compile Include="Thong Ke\DiagnosesHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DoanhThuForm.Designer.cs">
+    <Compile Include="Thong Ke\DiagnosesHistory.Designer.cs">
+      <DependentUpon>DiagnosesHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Thong Ke\DoanhThuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Thong Ke\DoanhThuForm.Designer.cs">
       <DependentUpon>DoanhThuForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\LoaiKham\themLoaiForm.cs">
@@ -147,7 +153,8 @@
     </Compile>
     <Compile Include="Helpers\Converter.cs" />
     <Compile Include="Helpers\HelperDatabase.cs" />
-    <Compile Include="ItemDoanhThu.cs" />
+    <Compile Include="Thong Ke\HelperThongKe.cs" />
+    <Compile Include="Thong Ke\ItemDoanhThu.cs" />
     <Compile Include="ListPatientsTodayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,22 +210,25 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services.cs">
+    <Compile Include="Thong Ke\Services.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Services.Designer.cs">
+    <Compile Include="Thong Ke\Services.Designer.cs">
       <DependentUpon>Services.cs</DependentUpon>
     </Compile>
-    <Compile Include="TuThuocForm.cs">
+    <Compile Include="Thong Ke\TuThuocForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TuThuocForm.Designer.cs">
+    <Compile Include="Thong Ke\TuThuocForm.Designer.cs">
       <DependentUpon>TuThuocForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CreateUserForm.resx">
       <DependentUpon>CreateUserForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DoanhThuForm.resx">
+    <EmbeddedResource Include="Thong Ke\DiagnosesHistory.resx">
+      <DependentUpon>DiagnosesHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Thong Ke\DoanhThuForm.resx">
       <DependentUpon>DoanhThuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Extensions\LoaiKham\themLoaiForm.resx">
@@ -249,10 +259,10 @@
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Services.resx">
+    <EmbeddedResource Include="Thong Ke\Services.resx">
       <DependentUpon>Services.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TuThuocForm.resx">
+    <EmbeddedResource Include="Thong Ke\TuThuocForm.resx">
       <DependentUpon>TuThuocForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
