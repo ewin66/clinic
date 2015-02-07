@@ -53,7 +53,7 @@ namespace Clinic
             if (needOptimize)
             {
                 this.dataGridViewMain.Columns[this.ColumnIdPatient.Index].Visible=false;
-                this.dataGridViewMain.Columns[this.NameDoctor.Index].Visible=true;
+                this.dataGridViewMain.Columns[this.NameDoctor.Index].Visible=false;
             }
             this.dataGridViewMain.Columns[this.ColumnLoaiKham.Index].Visible=false;
         }

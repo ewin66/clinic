@@ -83,7 +83,7 @@ namespace PhongKham
 
             //init delegate
             TuThuocForm.refreshMedicines4MainForm = new Clinic.TuThuocForm.RefreshMedicines4MainForm(InitComboboxMedicinesMySql);
-
+            Services.refreshMedicines4MainForm = new Clinic.Services.RefreshMedicines4MainForm(InitComboboxMedicinesMySql);
 
 
 
@@ -164,11 +164,7 @@ namespace PhongKham
 
                 InitComboboxMedicinesMySql();
                 InitClinicRoom();
-                InitTableServices();
                 dataGridView4.Visible = false;
-
-
-
                 maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
                 //
                 //Load calendar
@@ -370,7 +366,6 @@ namespace PhongKham
 
     MainTab.TabPages.Remove(tabPageTools);
     MainTab.TabPages.Remove(tabPagePrint);
-    MainTab.TabPages.Remove(tabPagenhapthuoc);
     this.pictureBox1.Visible = false;
 
     switch (authority)
@@ -393,12 +388,10 @@ namespace PhongKham
             this.txtBoxClinicRoomSymptom.Visible = false;
             this.txtBoxClinicRoomDiagnose.Visible = false;
             this.buttonPutIn.Visible = false;
-            MainTab.TabPages.Add(tabPagenhapthuoc);
             break;
         case 4:
             this.pictureBox1.Visible = true;
             MainTab.TabPages.Add(tabPagePrint);
-            MainTab.TabPages.Add(tabPagenhapthuoc);
             break;
         case 0:
             this.checkBoxShowMedicines.Checked = false;
@@ -417,15 +410,6 @@ namespace PhongKham
 
 
 
-        private void InitTableServices()
-        {
-
-            textBoxServices.Text = "@";
-            textBoxServicesCost.Text = "0";
-            textBoxAdminOfService.Text = "";
-            textBoxServices.AutoCompleteCustomSource.Clear();
-            textBoxServices.AutoCompleteCustomSource.AddRange((currentServices.Select(x => x.Name).ToArray()));
-        }
         private void InitWaitRoomMySql()
         {
 
@@ -1373,25 +1357,25 @@ namespace PhongKham
             //Trang Cuối
             //Tất Cả
             //Tùy Chỉnh
-            if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Đầu")
-            {
+            //if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Đầu")
+            //{
 
-                axAcroPDF1.printPages(1, 1);
-            }
-            else if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Cuối")
-            {
+            //    axAcroPDF1.printPages(1, 1);
+            //}
+            //else if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Cuối")
+            //{
 
-                axAcroPDF1.printPages(2, 2);
-            }
-            else if (this.comboBoxPrintPageOptions.SelectedItem == "Tất Cả")
-            {
+            //    axAcroPDF1.printPages(2, 2);
+            //}
+            //else if (this.comboBoxPrintPageOptions.SelectedItem == "Tất Cả")
+            //{
 
-                axAcroPDF1.printPages(1, 2);
-            }
-            else if (this.comboBoxPrintPageOptions.SelectedItem == "Tùy Chỉnh")
-            {
+            //    axAcroPDF1.printPages(1, 2);
+            //}
+            //else if (this.comboBoxPrintPageOptions.SelectedItem == "Tùy Chỉnh")
+            //{
                 axAcroPDF1.printWithDialog();
-            }
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1472,72 +1456,14 @@ namespace PhongKham
             }
         }
 
-        private void buttonServicesOK_Click(object sender, EventArgs e)
-        {
-            int giaOut;
-            if (textBoxServices.Text[0] != '@' || textBoxServices.Text == "")
-            {
-                MessageBox.Show("Tên dịch vụ phải bắt đầu với ký tự '@'", "Chú ý"); // phân biệt với thuốc
-                return;
-            }
-            try
-            {
-                giaOut = int.Parse(textBoxServicesCost.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Xin nhập lại giá. Giá không phù hợp!", "Chú ý");
-                return;
-            }
-            string Id = labelServicesID.Text;
-            if (!Helper.CheckMedicineExists(db, Id))
-            {
-                List<string> columns = new List<string>() { "Name", "CostOut", "ID", ClinicConstant.MedicineTable_Admin };
-                List<string> values = new List<string>() { textBoxServices.Text.Trim(), giaOut.ToString(), Id, textBoxAdminOfService.Text };
-
-                db.InsertRowToTable(ClinicConstant.MedicineTable, columns, values);
-                MessageBox.Show("Thêm mới dịch vụ thành công");
-                InitTableServices();
-            }
-            else
-            {
-
-                string strCommand = "Update Medicine Set CostOut =" + giaOut.ToString() + "," + ClinicConstant.MedicineTable_Admin + " = " + Helper.ConvertToSqlString(textBoxAdminOfService.Text) + " Where Id =" + Id;
-                db.ExecuteNonQuery(strCommand, null);
-                MessageBox.Show("Cập nhật dịch vụ thành công");
-            }
-
-
-
-            InitTableServices();
-        }
+       
 
         private void dataGridViewMedicine_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void textBoxServices_TextChanged(object sender, EventArgs e)
-        {
-            string nameOfService = textBoxServices.Text;
-            string strCommand = "Select * From Medicine Where Name =" + Helper.ConvertToSqlString(nameOfService);
-            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                if (reader.Read())
-                {
-                    string temp = reader[DatabaseContants.medicine.CostOut].ToString();
-                    string admin = reader[ClinicConstant.MedicineTable_Admin].ToString();
-                    string id = reader["Id"].ToString();
-                    reader.Close();
-                    textBoxServicesCost.Text = temp;
-                    textBoxAdminOfService.Text = admin;
-                    labelServicesID.Text = id;
-                    return;
-                }
-            }
-            textBoxServicesCost.Text = "0";
-        }
+
 
         private void buttonClinicClear_Click(object sender, EventArgs e)
         {
@@ -1755,20 +1681,20 @@ namespace PhongKham
 
         private void dataGridViewCalendar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dataGridViewCalendar.Columns["ColumnKhamVaXoa"].Index) return;
-            string id = dataGridViewCalendar.Rows[e.RowIndex].Cells["Id"].Value.ToString();
-            string name = dataGridViewCalendar.Rows[e.RowIndex].Cells["Patient"].Value.ToString();
+            //if (e.RowIndex < 0 || e.ColumnIndex != dataGridViewCalendar.Columns["ColumnState"].Index) return;
+            //string id = dataGridViewCalendar.Rows[e.RowIndex].Cells["Id"].Value.ToString();
+            //string name = dataGridViewCalendar.Rows[e.RowIndex].Cells["Patient"].Value.ToString();
 
-            string strCommand = "Select * From patient  Where Name = " + Helper.ConvertToSqlString(name) + " and Idpatient =" + Helper.ConvertToSqlString(id);
+            //string strCommand = "Select * From patient  Where Name = " + Helper.ConvertToSqlString(name) + " and Idpatient =" + Helper.ConvertToSqlString(id);
 
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                reader.Read();
-                FillInfoToClinicForm(reader, true);
-            }
-            buttonSearch.PerformClick();
-            Helper.DeleteRowFromTableCalendar(db, id, name);
-            dataGridViewCalendar.Rows.RemoveAt(e.RowIndex);
+            //using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            //{
+            //    reader.Read();
+            //    FillInfoToClinicForm(reader, true);
+            //}
+            //buttonSearch.PerformClick();
+            //Helper.DeleteRowFromTableCalendar(db, id, name);
+            //dataGridViewCalendar.Rows.RemoveAt(e.RowIndex);
         }
 
         private void dataGridViewMedicine_Leave(object sender, EventArgs e)

@@ -24,7 +24,6 @@ namespace Clinic
         public TuThuocForm()
         {
             InitializeComponent();
-            RefreshIdOfNewMedicine();
             this.FormClosing+=new FormClosingEventHandler(TuThuocForm_FormClosing);
         }
         private void TuThuocForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -34,7 +33,7 @@ namespace Clinic
 
         private void TuThuocForm_Load(object sender, EventArgs e)
         {
-                    
+            RefreshIdOfNewMedicine();
             dataGridView1.Rows.Clear();
             List<IMedicine> listMedicines = Helper.GetAllMedicineFromDb();
 

@@ -41,12 +41,6 @@
             this.ColumnDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.PDFShowMedicines = new AxAcroPDFLib.AxAcroPDF();
-            this.btnInputMedicineNewOk = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.CoTableLayoutPanel3 = new Clinic.CoTableLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -62,18 +56,27 @@
             this.label33 = new System.Windows.Forms.Label();
             this.textBoxMedicineHdsd = new System.Windows.Forms.TextBox();
             this.lblInputMedicineNewId = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnInputMedicineNewOk = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.PDFShowMedicines = new AxAcroPDFLib.AxAcroPDF();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.CoTableLayoutPanel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PDFShowMedicines)).BeginInit();
-            this.CoTableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnId,
@@ -85,7 +88,6 @@
             this.ColumnHDSD,
             this.ColumnUpdate,
             this.ColumnDelete});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView1.Location = new System.Drawing.Point(3, 222);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1221, 512);
@@ -171,70 +173,6 @@
             this.tabPage1.Text = "Danh sách thuốc";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(396, 181);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 35);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(214, 180);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 36);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.PDFShowMedicines);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1227, 737);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Print";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // PDFShowMedicines
-            // 
-            this.PDFShowMedicines.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PDFShowMedicines.Enabled = true;
-            this.PDFShowMedicines.Location = new System.Drawing.Point(3, 3);
-            this.PDFShowMedicines.Name = "PDFShowMedicines";
-            this.PDFShowMedicines.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("PDFShowMedicines.OcxState")));
-            this.PDFShowMedicines.Size = new System.Drawing.Size(1221, 731);
-            this.PDFShowMedicines.TabIndex = 0;
-            // 
-            // btnInputMedicineNewOk
-            // 
-            this.btnInputMedicineNewOk.BackColor = System.Drawing.Color.YellowGreen;
-            this.btnInputMedicineNewOk.Location = new System.Drawing.Point(214, 90);
-            this.btnInputMedicineNewOk.Name = "btnInputMedicineNewOk";
-            this.btnInputMedicineNewOk.Size = new System.Drawing.Size(92, 35);
-            this.btnInputMedicineNewOk.TabIndex = 10;
-            this.btnInputMedicineNewOk.Text = "Nhập mới";
-            this.btnInputMedicineNewOk.UseVisualStyleBackColor = false;
-            this.btnInputMedicineNewOk.Click += new System.EventHandler(this.btnInputMedicineNewOk_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Salmon;
-            this.button4.Location = new System.Drawing.Point(373, 90);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(74, 42);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "Cancel";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
             // CoTableLayoutPanel3
             // 
             this.CoTableLayoutPanel3.BackColor = System.Drawing.Color.Gainsboro;
@@ -246,7 +184,7 @@
             this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 343F));
+            this.CoTableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 347F));
             this.CoTableLayoutPanel3.Controls.Add(this.label13, 0, 0);
             this.CoTableLayoutPanel3.Controls.Add(this.label20, 1, 0);
             this.CoTableLayoutPanel3.Controls.Add(this.txtBoxInputMedicineNewName, 1, 1);
@@ -282,7 +220,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(97, 3);
+            this.label20.Location = new System.Drawing.Point(96, 3);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(60, 13);
             this.label20.TabIndex = 6;
@@ -290,7 +228,7 @@
             // 
             // txtBoxInputMedicineNewName
             // 
-            this.txtBoxInputMedicineNewName.Location = new System.Drawing.Point(97, 46);
+            this.txtBoxInputMedicineNewName.Location = new System.Drawing.Point(96, 46);
             this.txtBoxInputMedicineNewName.Name = "txtBoxInputMedicineNewName";
             this.txtBoxInputMedicineNewName.Size = new System.Drawing.Size(421, 20);
             this.txtBoxInputMedicineNewName.TabIndex = 6;
@@ -298,7 +236,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(542, 3);
+            this.label21.Location = new System.Drawing.Point(538, 3);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(49, 13);
             this.label21.TabIndex = 8;
@@ -306,7 +244,7 @@
             // 
             // txtBoxInputMedicineNewCount
             // 
-            this.txtBoxInputMedicineNewCount.Location = new System.Drawing.Point(542, 46);
+            this.txtBoxInputMedicineNewCount.Location = new System.Drawing.Point(538, 46);
             this.txtBoxInputMedicineNewCount.Name = "txtBoxInputMedicineNewCount";
             this.txtBoxInputMedicineNewCount.Size = new System.Drawing.Size(58, 20);
             this.txtBoxInputMedicineNewCount.TabIndex = 7;
@@ -314,7 +252,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(609, 3);
+            this.label8.Location = new System.Drawing.Point(605, 3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 27;
@@ -322,7 +260,7 @@
             // 
             // txtBoxInputMedicineNewCostIn
             // 
-            this.txtBoxInputMedicineNewCostIn.Location = new System.Drawing.Point(609, 46);
+            this.txtBoxInputMedicineNewCostIn.Location = new System.Drawing.Point(605, 46);
             this.txtBoxInputMedicineNewCostIn.Name = "txtBoxInputMedicineNewCostIn";
             this.txtBoxInputMedicineNewCostIn.Size = new System.Drawing.Size(66, 20);
             this.txtBoxInputMedicineNewCostIn.TabIndex = 8;
@@ -330,7 +268,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(684, 3);
+            this.label12.Location = new System.Drawing.Point(680, 3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 13);
             this.label12.TabIndex = 13;
@@ -338,7 +276,7 @@
             // 
             // txtBoxInputMedicineNewCostOut
             // 
-            this.txtBoxInputMedicineNewCostOut.Location = new System.Drawing.Point(684, 46);
+            this.txtBoxInputMedicineNewCostOut.Location = new System.Drawing.Point(680, 46);
             this.txtBoxInputMedicineNewCostOut.Name = "txtBoxInputMedicineNewCostOut";
             this.txtBoxInputMedicineNewCostOut.Size = new System.Drawing.Size(65, 20);
             this.txtBoxInputMedicineNewCostOut.TabIndex = 9;
@@ -346,7 +284,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(758, 3);
+            this.label25.Location = new System.Drawing.Point(754, 3);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(61, 13);
             this.label25.TabIndex = 25;
@@ -356,7 +294,7 @@
             // 
             this.dateTimePicker3.CustomFormat = "dd-MM-yyyy";
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(758, 46);
+            this.dateTimePicker3.Location = new System.Drawing.Point(754, 46);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(83, 20);
             this.dateTimePicker3.TabIndex = 10;
@@ -364,7 +302,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(854, 3);
+            this.label33.Location = new System.Drawing.Point(850, 3);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(59, 13);
             this.label33.TabIndex = 28;
@@ -372,7 +310,7 @@
             // 
             // textBoxMedicineHdsd
             // 
-            this.textBoxMedicineHdsd.Location = new System.Drawing.Point(854, 46);
+            this.textBoxMedicineHdsd.Location = new System.Drawing.Point(850, 46);
             this.textBoxMedicineHdsd.Name = "textBoxMedicineHdsd";
             this.textBoxMedicineHdsd.Size = new System.Drawing.Size(326, 20);
             this.textBoxMedicineHdsd.TabIndex = 29;
@@ -385,6 +323,70 @@
             this.lblInputMedicineNewId.Size = new System.Drawing.Size(35, 13);
             this.lblInputMedicineNewId.TabIndex = 30;
             this.lblInputMedicineNewId.Text = "label1";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.Location = new System.Drawing.Point(396, 181);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 35);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Close";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Salmon;
+            this.button4.Location = new System.Drawing.Point(373, 90);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(74, 42);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "Cancel";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button1.Location = new System.Drawing.Point(214, 180);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 36);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnInputMedicineNewOk
+            // 
+            this.btnInputMedicineNewOk.BackColor = System.Drawing.Color.YellowGreen;
+            this.btnInputMedicineNewOk.Location = new System.Drawing.Point(214, 90);
+            this.btnInputMedicineNewOk.Name = "btnInputMedicineNewOk";
+            this.btnInputMedicineNewOk.Size = new System.Drawing.Size(92, 35);
+            this.btnInputMedicineNewOk.TabIndex = 10;
+            this.btnInputMedicineNewOk.Text = "Nhập mới";
+            this.btnInputMedicineNewOk.UseVisualStyleBackColor = false;
+            this.btnInputMedicineNewOk.Click += new System.EventHandler(this.btnInputMedicineNewOk_Click);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.PDFShowMedicines);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1227, 737);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Print";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // PDFShowMedicines
+            // 
+            this.PDFShowMedicines.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PDFShowMedicines.Enabled = true;
+            this.PDFShowMedicines.Location = new System.Drawing.Point(3, 3);
+            this.PDFShowMedicines.Name = "PDFShowMedicines";
+            this.PDFShowMedicines.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("PDFShowMedicines.OcxState")));
+            this.PDFShowMedicines.Size = new System.Drawing.Size(1221, 731);
+            this.PDFShowMedicines.TabIndex = 0;
             // 
             // TuThuocForm
             // 
@@ -399,10 +401,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PDFShowMedicines)).EndInit();
             this.CoTableLayoutPanel3.ResumeLayout(false);
             this.CoTableLayoutPanel3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PDFShowMedicines)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -11,18 +11,63 @@ using Clinic.Helpers;
 using PhongKham;
 using Clinic.Models.ItemMedicine;
 using Clinic.Database;
+using System.Data.Common;
 
 namespace Clinic
 {
     public partial class Services : Form
     {
+        private IDatabase db = DatabaseFactory.Instance;
+        public delegate void RefreshMedicines4MainForm();
+        public static RefreshMedicines4MainForm refreshMedicines4MainForm;
         public Services()
         {
             InitializeComponent();
+            this.FormClosing+=new FormClosingEventHandler(Services_FormClosing);
+        }
+        private void Services_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            refreshMedicines4MainForm();
+        }
+
+        private void RefreshIdOfNewMedicine()
+        {
+
+
+            string strCommand = " SELECT ID FROM Medicine ORDER BY ID DESC LIMIT 1";
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                int intTemp = 0;
+                if (reader.HasRows)
+                {
+                    string temp = reader.GetString(0);
+
+                    try
+                    {
+                        intTemp = int.Parse(temp);
+
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+                else
+                {
+                    intTemp = 0;
+                }
+                int newId = intTemp + 1;
+                string strNewID = String.Format("{0:000000}", newId);
+
+                lblNewIdService.Text = strNewID;
+            }
+
+
         }
 
         private void Services_Load(object sender, EventArgs e)
         {
+            RefreshIdOfNewMedicine();
             dataGridView1.Rows.Clear();
             List<IMedicine> listServices = Helper.GetAllServiceFromDb();
             for (int i = 0; i < listServices.Count; i++)
@@ -38,6 +83,39 @@ namespace Clinic
             }
         }
 
+
+
+        private void buttonServicesOK_Click(object sender, EventArgs e)
+        {
+            int giaOut;
+            if (textBoxServices.Text[0] != '@' || textBoxServices.Text == "")
+            {
+                MessageBox.Show("Tên dịch vụ phải bắt đầu với ký tự '@'", "Chú ý"); // phân biệt với thuốc
+                return;
+            }
+            try
+            {
+                giaOut = int.Parse(textBoxServicesCost.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Xin nhập lại giá. Giá không phù hợp!", "Chú ý");
+                return;
+            }
+            string Id = lblNewIdService.Text;
+            if (!Helper.CheckMedicineExists(db, Id))
+            {
+                List<string> columns = new List<string>() { "Name", "CostOut", "ID", ClinicConstant.MedicineTable_Admin };
+                List<string> values = new List<string>() { textBoxServices.Text.Trim(), giaOut.ToString(), Id, textBoxAdminOfService.Text };
+
+                db.InsertRowToTable(ClinicConstant.MedicineTable, columns, values);
+                MessageBox.Show("Thêm mới dịch vụ thành công");
+            }
+
+            RefreshIdOfNewMedicine();
+            buttonClear_Click(sender, e);
+            Services_Load(sender, e);
+        }
 
         void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -69,6 +147,16 @@ namespace Clinic
             }
             
         }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            textBoxServicesCost.Text = "";
+            textBoxServices.Text = "@";
+            textBoxAdminOfService.Text = "";
+        }
+
+
+
 
     }
 }
