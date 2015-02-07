@@ -48,18 +48,22 @@ namespace Clinic.Helpers
         #region Methods
         public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
         {
-            DirectoryInfo[] directories = source.GetDirectories();
-            for (int i = 0; i < directories.Length; i++)
+            try
             {
-                DirectoryInfo directoryInfo = directories[i];
-                CopyFilesRecursively(directoryInfo, target.CreateSubdirectory(directoryInfo.Name));
+                DirectoryInfo[] directories = source.GetDirectories();
+                for (int i = 0; i < directories.Length; i++)
+                {
+                    DirectoryInfo directoryInfo = directories[i];
+                    CopyFilesRecursively(directoryInfo, target.CreateSubdirectory(directoryInfo.Name));
+                }
+                FileInfo[] files = source.GetFiles();
+                for (int i = 0; i < files.Length; i++)
+                {
+                    FileInfo fileInfo = files[i];
+                    fileInfo.CopyTo(Path.Combine(target.FullName, fileInfo.Name), true);
+                }
             }
-            FileInfo[] files = source.GetFiles();
-            for (int i = 0; i < files.Length; i++)
-            {
-                FileInfo fileInfo = files[i];
-                fileInfo.CopyTo(Path.Combine(target.FullName, fileInfo.Name), true);
-            }
+            catch { }
         }
 
         public static string ChangePositionOfDayAndYear(string datetime)

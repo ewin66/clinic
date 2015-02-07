@@ -54,7 +54,7 @@ namespace PhongKham
 
         private static List<string> listDiagnosesFromHistory = new List<string>();
         public static int Authority;
-
+        
 
 
         System.Threading.Timer TimerItem;
@@ -79,6 +79,14 @@ namespace PhongKham
             //init MainForm
             this.TopLevel = true;
             InitializeComponent();
+
+
+            //init delegate
+            TuThuocForm.refreshMedicines4MainForm = new Clinic.TuThuocForm.RefreshMedicines4MainForm(InitComboboxMedicinesMySql);
+
+
+
+
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Text = "Phòng Khám -" + "User: " + name;
             Form1.Authority = Authority;
@@ -155,7 +163,6 @@ namespace PhongKham
                 //do not change 
 
                 InitComboboxMedicinesMySql();
-                InitInputMedicineMySql();
                 InitClinicRoom();
                 InitTableServices();
                 dataGridView4.Visible = false;
@@ -408,18 +415,11 @@ namespace PhongKham
 }));
         }
 
-        private void InitInputMedicineMySql()
-        {
 
-            currentMedicines = Helper.GetAllMedicinesAndServicesFromDB();
-            RefreshIdOfNewMedicine();
-            comboBoxInputMedicineName.Items.Clear();
-            comboBoxInputMedicineName.Items.AddRange(currentMedicines.Select(x => x.Name).ToArray());
-        }
 
         private void InitTableServices()
         {
-            RefreshIdOfNewMedicine();
+
             textBoxServices.Text = "@";
             textBoxServicesCost.Text = "0";
             textBoxAdminOfService.Text = "";
@@ -494,24 +494,8 @@ namespace PhongKham
         #endregion
 
         #region ClearForm
-        private void ClearInputNewMedicine()
-        {
-            txtBoxInputMedicineNewName.Clear();
-            txtBoxInputMedicineNewCount.Clear();
-            txtBoxInputMedicineNewCostOut.Clear();
-            txtBoxInputMedicineNewCostIn.Clear();
-        }
-        private void ClearInputMedicine()
-        {
-            //comboBoxInputMedicineId.Text = "";
-            label34.Text = "";
-            comboBoxInputMedicineName.Text = "";
-            lblInputMedicineCount.Text = "0";
-            txtBoxInputMedicineAdd.Text = "0";
-            this.textBoxNewCostOut.Text = "";
-            InitInputMedicineMySql();
 
-        }
+
         private void ClearClinicRoomForm()
         {
             txtBoxClinicRoomAddress.Clear();
@@ -533,48 +517,8 @@ namespace PhongKham
         #endregion
 
         #region Helper
-        private void FillDataToInputMedicineForm(DbDataReader reader)
-        {
-            this.lblInputMedicineCount.Text = reader["Count"].ToString();
-            this.label34.Text = reader["Id"].ToString();
-            this.textBoxNewCostOut.Text = reader["CostOut"].ToString();
-        }
-        private void RefreshIdOfNewMedicine()
-        {
 
-
-            string strCommand = " SELECT ID FROM Medicine ORDER BY ID DESC LIMIT 1";
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                reader.Read();
-                int intTemp = 0;
-                if (reader.HasRows)
-                {
-                    string temp = reader.GetString(0);
-
-                    try
-                    {
-                        intTemp = int.Parse(temp);
-
-                    }
-                    catch (Exception)
-                    {
-                    }
-                }
-                else
-                {
-                    intTemp = 0;
-                }
-                int newId = intTemp + 1;
-                string strNewID = String.Format("{0:000000}", newId);
-
-                lblInputMedicineNewId.Text = strNewID;
-                labelServicesID.Text = strNewID; // Services
-
-            }
-
-
-        }
+        
         private void FillInfoToClinicForm(DbDataReader reader, bool onlyInfo)
         {
             lblClinicRoomId.Text = reader["Idpatient"].ToString();
@@ -668,94 +612,8 @@ namespace PhongKham
         #endregion
 
         #region Event Main Medicine
-        private void btnInputMedicineNewOk_ClickMySql(object sender, EventArgs e)
-        {
-            if (txtBoxInputMedicineNewName.Text.Contains(','))
-            {
-                MessageBox.Show("Tên thuốc không được chứa dấu phẩy .Gợi ý: dấu chấm ");
-                return;
-            }
-            string strCommand = "Select Name From medicine  Where Name = " + Helper.ConvertToSqlString(this.txtBoxInputMedicineNewName.Text);
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                reader.Read();
-                if (reader.HasRows == true) //level 2
-                {
-                    MessageBox.Show("Ten Thuoc Bi Trung, Xin Nhap Lai Ten Khac");
-                    return;
-                }
-            }
 
-            Medicine medicine = new Medicine();
-            medicine.Name = txtBoxInputMedicineNewName.Text.Trim();
-            medicine.InputDay = dateTimePicker3.Value;
-            try
-            {
-                medicine.CostOut = int.Parse(txtBoxInputMedicineNewCostOut.Text);
-                medicine.CostIn = int.Parse(txtBoxInputMedicineNewCostIn.Text);
-                medicine.Count = int.Parse(txtBoxInputMedicineNewCount.Text);
-                medicine.Id = lblInputMedicineNewId.Text;
-                medicine.HDSD = textBoxMedicineHdsd.Text;
-            }
-            catch (Exception)
-            {
-            }
-
-
-            if (medicine.CostOut < medicine.CostIn)
-            {
-                MessageBox.Show("Giá Out không thể nhỏ hơn giá In!", "Lỗi");
-                return;
-            }
-
-            List<string> columns = new List<string>() { "Name", "Count", "CostIn", "CostOut", "InputDay", "ID", "Hdsd" };
-            List<string> values = new List<string>() { medicine.Name, medicine.Count.ToString(), medicine.CostIn.ToString(), medicine.CostOut.ToString(), medicine.InputDay.ToString("yyyy-MM-dd"), medicine.Id, medicine.HDSD };
-            db.InsertRowToTable("Medicine", columns, values);
-            MessageBox.Show("Thêm mới thuốc thành công");
-            InitInputMedicineMySql();
-            InitComboboxMedicinesMySql();
-            RefreshIdOfNewMedicine();
-            ClearInputNewMedicine();
-
-        }
-        private void btnInputMedicineOk_ClickMySql(object sender, EventArgs e)
-        {
-            int count = 0;
-            try
-            {
-                if (comboBoxInputMedicineName.Text[0] != '@')
-                {
-                    count = int.Parse(lblInputMedicineCount.Text) + int.Parse(txtBoxInputMedicineAdd.Text);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Số lượng thêm vào phải là một số!");
-                return;
-            }
-
-            string Id = label34.Text;
-
-            int newOutPreise = 0;
-
-            try
-            {
-                newOutPreise = int.Parse(textBoxNewCostOut.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Giá mới phải là một số!");
-                return;
-            }
-
-            string strCommand = "Update Medicine  Set Count =" + count.ToString() + ", CostOut =" + newOutPreise.ToString() + ",Name = " + Helper.ConvertToSqlString(comboBoxInputMedicineName.Text) + " Where Id =" + Id;
-            db.ExecuteNonQuery(strCommand, null);
-
-            MessageBox.Show("Cập nhật thành công : " + txtBoxInputMedicineAdd.Text + " " + comboBoxInputMedicineName.Text);
-            ClearInputMedicine();
-
-
-        }
+        
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MainTab.SelectedTab.Name == "tabnhapthuoc")
@@ -767,27 +625,7 @@ namespace PhongKham
         }
 
 
-        private void comboBoxInputMedicineName_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (comboBoxInputMedicineName.Text.Length > 0)
-            {
 
-                string Name = comboBoxInputMedicineName.Text;
-                string strCommand = "Select * From Medicine Where Name =" + Helper.ConvertToSqlString(Name);
-                // MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-                DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    FillDataToInputMedicineForm(reader);
-                }
-                else
-                {
-                    ClearInputMedicine();
-                }
-                reader.Close();
-            }
-        }
 
         #endregion
 
@@ -1531,7 +1369,29 @@ namespace PhongKham
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            axAcroPDF1.printWithDialog();
+            //Trang Đầu
+            //Trang Cuối
+            //Tất Cả
+            //Tùy Chỉnh
+            if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Đầu")
+            {
+
+                axAcroPDF1.printPages(1, 1);
+            }
+            else if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Cuối")
+            {
+
+                axAcroPDF1.printPages(2, 2);
+            }
+            else if (this.comboBoxPrintPageOptions.SelectedItem == "Tất Cả")
+            {
+
+                axAcroPDF1.printPages(1, 2);
+            }
+            else if (this.comboBoxPrintPageOptions.SelectedItem == "Tùy Chỉnh")
+            {
+                axAcroPDF1.printWithDialog();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1676,7 +1536,6 @@ namespace PhongKham
                     return;
                 }
             }
-            RefreshIdOfNewMedicine();
             textBoxServicesCost.Text = "0";
         }
 
