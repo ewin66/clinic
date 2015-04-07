@@ -1,0 +1,11 @@
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\obj\Debug\CaptureTest.CaptureTest.resources
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\obj\Debug\CaptureTest.csproj.GenerateResource.Cache
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\bin\Debug\CaptureTest.exe
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\bin\Debug\CaptureTest.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\bin\Debug\DirectX.Capture.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\bin\Debug\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\bin\Debug\DirectX.Capture.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\bin\Debug\DShowNET.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\obj\Debug\CaptureTest.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\obj\Debug\CaptureTest.exe
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo_Enhanced\DirectXCapture_demo_Enhanced\DirectXCapture_demo\CaptureTest\obj\Debug\CaptureTest.pdb

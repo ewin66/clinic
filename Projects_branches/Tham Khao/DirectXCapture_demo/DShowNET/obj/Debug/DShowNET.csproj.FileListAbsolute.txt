@@ -1,0 +1,5 @@
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\bin\Debug\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\bin\Debug\DShowNET.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\obj\Debug\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\obj\Debug\DShowNET.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\obj\Debug\DShowNET.csprojResolveAssemblyReference.cache

@@ -1,0 +1,123 @@
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\bin\Debug\Clinic.exe
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\bin\Debug\Clinic.pdb
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.LoginForm.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.exe
+D:\Workspace\Projects\PhongKham\New\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.exe
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.LoginForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.ResolveComReference.cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\System.Windows.Forms.Calendar.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.ResolveComReference.cache
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.exe
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.LoginForm.resources
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.pdb
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\PdfSharp.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\System.Windows.Forms.Calendar.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Hung\Documents\GitHub\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\bin\Debug\Clinic.exe.config
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.ListPatientsTodayForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.DoanhThuForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.TuThuocForm.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.Services.resources
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\PhongKham\PhongKham\obj\Debug\Clinic.SearchForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\Clinic.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\Clinic.exe
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\PdfSharp.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\System.Windows.Forms.Calendar.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.csproj.ResolveComReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.DoanhThuForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.ListPatientsTodayForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.LoginForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.SearchForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.Services.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.TuThuocForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.exe
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.Extensions.LoaiKham.themLoaiForm.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\PhongKham\PhongKham\obj\Debug\Clinic.Thong_Ke.DiagnosesHistory.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\Clinic.exe.config
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.csproj.ResolveComReference.cache
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.exe
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\Clinic.exe
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\Clinic.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\PdfSharp.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\System.Windows.Forms.Calendar.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.CreateUserForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.Thong_Ke.DiagnosesHistory.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.DoanhThuForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.Extensions.LoaiKham.themLoaiForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.ListPatientsTodayForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\PhongKham.Form1.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.LoginForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.PassSQL.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.Properties.Resources.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.SearchForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.Services.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.TuThuocForm.resources
+C:\Users\Administrator\Google Drive\Projects_branches\PhongKham\PhongKham\obj\Debug\Clinic.csproj.GenerateResource.Cache

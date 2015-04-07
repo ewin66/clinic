@@ -1,0 +1,7 @@
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Debug\DirectX.Capture.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Debug\DirectX.Capture.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Debug\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Debug\DShowNET.pdb
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\obj\Debug\DirectX.Capture.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\obj\Debug\DirectX.Capture.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\obj\Debug\DirectX.Capture.pdb

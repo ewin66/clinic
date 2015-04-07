@@ -1,0 +1,5 @@
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Release\DirectX.Capture.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Release\DirectX.Capture.xml
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\bin\Release\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\obj\Release\DirectX.Capture.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DirectX.Capture\obj\Release\DirectX.Capture.dll

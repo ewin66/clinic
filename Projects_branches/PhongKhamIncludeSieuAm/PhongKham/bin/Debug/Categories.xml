@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TemplateCategories xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ListTemplateCategory>
+    <TemplateCategory>
+      <NameCategory>Siêu Âm Tổng Quát</NameCategory>
+      <ListControl>
+        <ControlSieuAm>
+          <NameControlDisplayed>Gan</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Cấu trúc echo đồng nhất, mặt gan phẳng, bờ gan đều, kích thước bình thường.Hệ thống tĩnh mạch trên gan, tĩnh mạch cửa không dãn.</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+		<ControlSieuAm>
+          <NameControlDisplayed>Mật</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Đường mật trong gan</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+				<ControlSieuAm>
+          <NameControlDisplayed>Tụy</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Cấu trúc đồng nhất</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+			<ControlSieuAm>
+          <NameControlDisplayed>Bàng quang</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Thành không dày không sỏi</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+					<ControlSieuAm>
+          <NameControlDisplayed>Tuyến tiền liệt</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Không to</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+							<ControlSieuAm>
+          <NameControlDisplayed>Dịch ổ bụng</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Không có</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+							<ControlSieuAm>
+          <NameControlDisplayed>Dịch màng phổi</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Không có</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+									<ControlSieuAm>
+          <NameControlDisplayed>ĐM chủ bụng</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Không phình</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+      </ListControl>
+    </TemplateCategory>
+	<TemplateCategory>
+		<NameCategory>Siêu âm bụng tổng quát 3D</NameCategory>
+		<ListControl>
+		 <ControlSieuAm>
+          <NameControlDisplayed>ĐM chủ bụng</NameControlDisplayed>
+          <TypeControl>System.Windows.Forms.TextBox</TypeControl>
+          <ListDefaultValue>
+            <string>Không phình</string>
+          </ListDefaultValue>
+        </ControlSieuAm>
+		</ListControl>
+	</TemplateCategory>
+  </ListTemplateCategory>
+</TemplateCategories>

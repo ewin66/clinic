@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MainFormSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ShowBigForm>false</ShowBigForm>
+  <ShowOneRecord>true</ShowOneRecord>
+  <ShowMedicines>true</ShowMedicines>
+</MainFormSettings>

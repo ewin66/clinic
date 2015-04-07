@@ -1,0 +1,2 @@
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\bin\Release\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\DShowNET\obj\Release\DShowNET.dll

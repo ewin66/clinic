@@ -1,0 +1,8 @@
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\bin\Release\CaptureTest.exe
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\bin\Release\DirectX.Capture.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\bin\Release\DShowNET.dll
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\bin\Release\DirectX.Capture.xml
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\obj\Release\CaptureTest.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\obj\Release\CaptureTest.CaptureTest.resources
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\obj\Release\CaptureTest.csproj.GenerateResource.Cache
+C:\Users\Administrator\Google Drive\Projects_branches\Tham Khao\DirectXCapture_demo\CaptureTest\obj\Release\CaptureTest.exe
