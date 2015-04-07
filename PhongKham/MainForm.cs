@@ -23,6 +23,9 @@ using System.Threading;
 using Clinic;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using Clinic.Models.ItemMedicine;
+using Clinic.Extensions.LoaiKham;
+using Clinic.Thong_Ke;
 
 
 
@@ -36,6 +39,7 @@ namespace PhongKham
 
 
         public static Dictionary<string, string> listPatientToday = new Dictionary<string, string>();
+
         private static int maxIdOfCalendarItem;
         private int TongTien;
         private InfoClinic infoClinic;
@@ -43,31 +47,86 @@ namespace PhongKham
         public static string nameOfDoctor;
         private IDatabase db = DatabaseFactory.Instance;
         List<CalendarItem> _items = new List<CalendarItem>();
-        List<string> currentMedicines = new List<string>();
-        List<string> currentServices = new List<string>();
-        public static int Authority;
 
+
+        public List<IMedicine> currentMedicines = new List<IMedicine>();
+        public List<IMedicine> currentServices = new List<IMedicine>();
+
+        private static List<string> listDiagnosesFromHistory = new List<string>();
+        public static int Authority;
+        
 
 
         System.Threading.Timer TimerItem;
         private ListPatientsTodayForm listPatientForm;
 
+        private void backgroundWorkerLoadingDatabase_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+            this.Enabled = true;
+        }
+        private void backgroundWorkerLoadingDatabase_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            InitUser(Authority);
+   
+
+        }
+
         public Form1(int Authority, string name)
         {
 
+            //init MainForm
+            this.TopLevel = true;
             InitializeComponent();
-            //this.ResizeBegin += (s, e) => { this.SuspendLayout(); };
-            //this.ResizeEnd += (s, e) => { this.ResumeLayout(true); };
+
+
+            //init delegate
+            TuThuocForm.refreshMedicines4MainForm = new Clinic.TuThuocForm.RefreshMedicines4MainForm(InitComboboxMedicinesMySql);
+            Services.refreshMedicines4MainForm = new Clinic.Services.RefreshMedicines4MainForm(InitComboboxMedicinesMySql);
+
+
+
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Text = "Phòng Khám -" + "User: " + name;
+            Form1.Authority = Authority;
+
             UserName = name;
             nameOfDoctor = Helper.GetNameOfDoctor(db, name);
+
+
+            //LoadDatabase
+            CircularProgressAction("Loading Database");
+            //Load Settings
+            this.checkBoxShowBigForm.Checked = Clinic.Properties.Settings.Default.checkBoxBigSearchForm;
+            this.checkBoxShow1Record.Checked = Clinic.Properties.Settings.Default.checkBox1RecordInSearchForm;
+            this.checkBoxShowMedicines.Checked = Clinic.Properties.Settings.Default.checkBoxShowMedicineInSearchForm;
+
+            this.Enabled = false;
+            BackgroundWorker backgroundWorkerLoadingDatabase = new BackgroundWorker();
+            backgroundWorkerLoadingDatabase.WorkerSupportsCancellation = true;
+            backgroundWorkerLoadingDatabase.DoWork += new DoWorkEventHandler(backgroundWorkerLoadingDatabase_DoWork);
+            backgroundWorkerLoadingDatabase.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorkerLoadingDatabase_RunWorkerCompleted);
+
+            backgroundWorkerLoadingDatabase.RunWorkerAsync();
+
+            this.textBoxReason.Visible = false;
+
+
+            List<string> listLoaiKham = Helper.GetAllLoaiKham(this.db);
+            this.comboBoxLoaiKham.Items.AddRange(listLoaiKham.ToArray());
+            comboBoxLoaiKham.Text = "Loại Khám: ";
+
+            listDiagnosesFromHistory = Helper.GetAllDiagnosesFromHistory(this.db);
+            this.txtBoxClinicRoomDiagnose.AutoCompleteCustomSource.AddRange(listDiagnosesFromHistory.ToArray());
+
             this.StartPosition = FormStartPosition.CenterScreen;
-            Form1.Authority = Authority;
+
             this.WindowState = Clinic.Properties.Settings.Default.State;
             if (this.WindowState == FormWindowState.Normal) this.Size = Clinic.Properties.Settings.Default.Size;
             this.Resize += new System.EventHandler(this.Form1_Resize);
-            InitUser(Authority);
+
+
             try
             {
 
@@ -95,11 +154,47 @@ namespace PhongKham
 
                 sr.Close();
             }
-            catch (Exception e)
+            catch (Exception exx)
             { }
+            try
+            {
+                // do any background work
 
-            Thread thread = new Thread(new ThreadStart(WorkThreadFunction));
-            thread.Start();
+                //do not change 
+
+                InitComboboxMedicinesMySql();
+                InitClinicRoom();
+                dataGridView4.Visible = false;
+                maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
+                //
+                //Load calendar
+                //
+                List<ADate> listDate = Helper.GetAllDateOfUser(UserName, db);
+                foreach (ADate item in listDate)
+                {
+                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
+                    cal.Tag = item.Id;
+                    if (item.color != 0)
+                    {
+                        cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
+                    }
+                    _items.Add(cal);
+                }
+
+                PlaceItems();
+
+
+                //load lichhen
+                LoadLichHen(DateTime.Now);
+
+                //xoa listtoday
+                XoaListToday();
+            }
+            catch (Exception ex)
+            {
+                // log errors
+            }
+
             listPatientForm = new Clinic.ListPatientsTodayForm();
             listPatientForm.sendCommandKham = new Clinic.ListPatientsTodayForm.SendCommandKham(KhamVaXoa);
 
@@ -122,11 +217,13 @@ namespace PhongKham
 
             this.circularProgress1.Hide();
 
-            //this.circularProgress1.Show();
-            //this.circularProgress1.Visible = true;
-            //this.circularProgress1.IsRunning = true;
+        }
 
-
+        private void CircularProgressAction(string text)
+        {
+            this.circularProgress1.Show();
+            this.circularProgress1.IsRunning = true;
+            this.circularProgress1.ProgressText = text;
         }
 
         private void KhamVaXoa(string id, string name, string state)
@@ -154,6 +251,9 @@ namespace PhongKham
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Clinic.Properties.Settings.Default.checkBoxBigSearchForm = this.checkBoxShowBigForm.Checked;
+            Clinic.Properties.Settings.Default.checkBox1RecordInSearchForm = this.checkBoxShow1Record.Checked;
+            Clinic.Properties.Settings.Default.checkBoxShowMedicineInSearchForm = this.checkBoxShowMedicines.Checked;
             Clinic.Properties.Settings.Default.Save();
         }
 
@@ -161,57 +261,6 @@ namespace PhongKham
         #region Init
 
 
-        public void WorkThreadFunction()
-        {
-            try
-            {
-                // do any background work
-
-                //do not change 
-
-                InitComboboxMedicinesMySql();
-                InitInputMedicineMySql();
-                InitClinicRoom();
-                InitTableServices();
-                dataGridView4.Visible = false;
-
-
-
-                maxIdOfCalendarItem = Helper.SearchMaxValueOfTable("calendar", "IdCalendar", "DESC");
-                //
-                //Load calendar
-                //
-                List<ADate> listDate = Helper.GetAllDateOfUser(UserName, db);
-                foreach (ADate item in listDate)
-                {
-                    CalendarItem cal = new CalendarItem(calendar1, item.StartTime, item.EndTime, item.Text);
-                    cal.Tag = item.Id;
-                    if (item.color != 0)
-                    {
-                        cal.ApplyColor(Helper.ConvertCodeToColor(item.color));
-                    }
-                    //if (!(item.R == 0 && item.G == 0 && item.B == 0))
-                    //{
-                    //    cal.ApplyColor(Color.FromArgb(item.A, item.R, item.G, item.B));
-                    //}
-
-                    _items.Add(cal);
-                }
-
-                PlaceItems();
-
-
-                //load lichhen
-                LoadLichHen(DateTime.Now);
-
-                //xoa listtoday
-                XoaListToday();
-            }
-            catch (Exception ex)
-            {
-                // log errors
-            }
-        }
 
         private void XoaListToday()
         {
@@ -224,7 +273,7 @@ namespace PhongKham
             string cmd = "Select * from lichhen Where time = " + Helper.ConvertToSqlString(time.ToString("yyyy-MM-dd"));
             using (DbDataReader reader = db.ExecuteReader(cmd, null) as DbDataReader)
             {
-
+                int timeCompare = time.CompareTo(DateTime.Now);
                 while (reader.Read())
                 {
 
@@ -235,6 +284,23 @@ namespace PhongKham
                     row.Cells[2].Value = reader["phone"].ToString();
                     row.Cells[3].Value = reader["benh"].ToString();
                     row.Cells[4].Value = reader["Namedoctor"].ToString();
+                    try
+                    {
+                        int idHistory = (int)reader[ClinicConstant.HistoryTable_IdHistory];
+                        row.Cells[this.ColumnReason.Name].Value =Helper.GetReasonComeBackFromHistoryByIdHistory(idHistory, DatabaseFactory.Instance2);
+                        if (timeCompare <= 0)
+                        {
+                            row.Cells[this.ColumnState.Name].Value = Helper.GetStateComeBackFromHistoryByIdPatient(row.Cells[0].Value.ToString(), DatabaseFactory.Instance2, time);
+                        }
+                        else
+                        {
+                            row.Cells[this.ColumnState.Name].Value = "Chưa";
+                        }
+
+                    }
+                    catch { }
+
+                       
                 }
             }
         }
@@ -256,12 +322,12 @@ namespace PhongKham
 
         private void InitComboboxMedicinesMySql()
         {
-            this.Column18.Items.Clear();
+            this.ColumnNameAllMedicine.Items.Clear();
 
-            currentMedicines = Helper.GetAllRowsOfSpecialColumn("Medicine", "Name");
-            currentServices = Helper.FilterServicesFromAllMedicines(currentMedicines);
+            currentMedicines = Helper.GetAllMedicinesAndServicesFromDB();
+            currentServices = currentMedicines.Where(x => x.Name[0] == '@').ToList();
+            this.ColumnNameAllMedicine.Items.AddRange(currentMedicines.Select(x => x.Name).ToArray());
 
-            this.Column18.Items.AddRange(currentMedicines.ToArray());
         }
 
         public void Init()
@@ -295,69 +361,54 @@ namespace PhongKham
 
                 return;
             }
+            this.Invoke(new MethodInvoker(delegate
+{
 
-            MainTab.TabPages.Remove(tabPageTools);
-            MainTab.TabPages.Remove(tabPagePrint);
-            MainTab.TabPages.Remove(tabPagenhapthuoc);
-            this.pictureBox1.Visible = false;
+    MainTab.TabPages.Remove(tabPageTools);
+    MainTab.TabPages.Remove(tabPagePrint);
+    this.pictureBox1.Visible = false;
 
-            switch (authority)
-            {
-                case 1:
-                    //all control
-                    break;
-                case 2:
-                    MainTab.TabPages.Add(tabPagePrint);
-                    this.Show1Record.Checked = false;
-                    this.pictureBox1.Visible = true;
-                    break;
-                case 3://khong co quyen ke thuoc
-                    this.Show1Record.Checked = false;
-                    this.dataGridViewMedicine.Visible = false;
-                    this.label9.Visible = false;
-                    this.labelTongTien.Visible = false;
-                    this.label44.Visible = false; // SDT:
-                    this.textBoxClinicPhone.Visible = false;
-                    this.txtBoxClinicRoomSymptom.Visible = false;
-                    this.txtBoxClinicRoomDiagnose.Visible = false;
-                    this.buttonPutIn.Visible = false;
-                    MainTab.TabPages.Add(tabPagenhapthuoc);
-                    break;
-                case 4:
-                    this.pictureBox1.Visible = true;
-                    MainTab.TabPages.Add(tabPagePrint);
-                    MainTab.TabPages.Add(tabPagenhapthuoc);
-                    break;
-                case 0:
-                    this.ShowMedicines.Checked = false;
-                    this.dataGridViewMedicine.Visible = false;
-                    this.label9.Visible = false;
-                    this.labelTongTien.Visible = false;
-                    this.label44.Visible = false; // SDT:
-                    this.textBoxClinicPhone.Visible = false;
-                    this.txtBoxClinicRoomSymptom.Visible = false;
-                    this.txtBoxClinicRoomDiagnose.Visible = false;
-                    this.buttonPutIn.Visible = false;
-                    break;
-            }
+    switch (authority)
+    {
+        case 1:
+            //all control
+            break;
+        case 2:
+            MainTab.TabPages.Add(tabPagePrint);
+            this.checkBoxShow1Record.Checked = false;
+            this.pictureBox1.Visible = true;
+            break;
+        case 3://khong co quyen ke thuoc
+            this.checkBoxShow1Record.Checked = false;
+            this.dataGridViewMedicine.Visible = false;
+            this.label9.Visible = false;
+            this.labelTongTien.Visible = false;
+            this.label44.Visible = false; // SDT:
+            this.textBoxClinicPhone.Visible = false;
+            this.txtBoxClinicRoomSymptom.Visible = false;
+            this.txtBoxClinicRoomDiagnose.Visible = false;
+            this.buttonPutIn.Visible = false;
+            break;
+        case 4:
+            this.pictureBox1.Visible = true;
+            MainTab.TabPages.Add(tabPagePrint);
+            break;
+        case 0:
+            this.checkBoxShowMedicines.Checked = false;
+            this.dataGridViewMedicine.Visible = false;
+            this.label9.Visible = false;
+            this.labelTongTien.Visible = false;
+            this.label44.Visible = false; // SDT:
+            this.textBoxClinicPhone.Visible = false;
+            this.txtBoxClinicRoomSymptom.Visible = false;
+            this.txtBoxClinicRoomDiagnose.Visible = false;
+            this.buttonPutIn.Visible = false;
+            break;
+    }
+}));
         }
 
-        private void InitInputMedicineMySql()
-        {
 
-            RefreshIdOfNewMedicine();
-            comboBoxInputMedicineName.Items.Clear();
-            comboBoxInputMedicineName.Items.AddRange(currentMedicines.ToArray());
-        }
-
-        private void InitTableServices()
-        {
-            RefreshIdOfNewMedicine();
-            textBoxServices.Text = "@";
-            textBoxServicesCost.Text = "0";
-            textBoxServices.AutoCompleteCustomSource.Clear();
-            textBoxServices.AutoCompleteCustomSource.AddRange(currentServices.ToArray());
-        }
 
         private void InitWaitRoomMySql()
         {
@@ -427,30 +478,17 @@ namespace PhongKham
         #endregion
 
         #region ClearForm
-        private void ClearInputNewMedicine()
-        {
-            txtBoxInputMedicineNewName.Clear();
-            txtBoxInputMedicineNewCount.Clear();
-            txtBoxInputMedicineNewCostOut.Clear();
-            txtBoxInputMedicineNewCostIn.Clear();
-        }
-        private void ClearInputMedicine()
-        {
-            //comboBoxInputMedicineId.Text = "";
-            label34.Text = "";
-            comboBoxInputMedicineName.Text = "";
-            lblInputMedicineCount.Text = "0";
-            txtBoxInputMedicineAdd.Text = "0";
-        }
+
+
         private void ClearClinicRoomForm()
         {
             txtBoxClinicRoomAddress.Clear();
             comboBoxClinicRoomName.Text = "";
             txtBoxClinicRoomDiagnose.Clear();
-            txtBoxClinicRoomHeight.Text = "0";
+            txtBoxClinicRoomHeight.Text = "";
             dateTimePickerBirthDay.ResetText();
             txtBoxClinicRoomSymptom.Clear();
-            txtBoxClinicRoomWeight.Text = "0";
+            txtBoxClinicRoomWeight.Text = "";
             lblClinicRoomId.Text = "";
             // comboBoxClinicRoomMedicines.Text = "";
             dataGridViewMedicine.Rows.Clear();
@@ -463,52 +501,14 @@ namespace PhongKham
         #endregion
 
         #region Helper
-        private void FillDataToInputMedicineForm(DbDataReader reader)
-        {
-            this.lblInputMedicineCount.Text = reader["Count"].ToString();
-            this.label34.Text = reader["Id"].ToString();
-            this.textBox3.Text = reader["CostOut"].ToString();
-        }
-        private void RefreshIdOfNewMedicine()
-        {
 
-
-            string strCommand = " SELECT ID FROM Medicine ORDER BY ID DESC LIMIT 1";
-            DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
-            reader.Read();
-            int intTemp = 0;
-            if (reader.HasRows)
-            {
-                string temp = reader.GetString(0);
-
-                try
-                {
-                    intTemp = int.Parse(temp);
-
-                }
-                catch (Exception)
-                {
-                }
-            }
-            else
-            {
-                intTemp = 0;
-            }
-            int newId = intTemp + 1;
-            string strNewID = String.Format("{0:000000}", newId);
-
-            lblInputMedicineNewId.Text = strNewID;
-            labelServicesID.Text = strNewID; // Services
-            reader.Close();
-
-
-        }
+        
         private void FillInfoToClinicForm(DbDataReader reader, bool onlyInfo)
         {
             lblClinicRoomId.Text = reader["Idpatient"].ToString();
             txtBoxClinicRoomAddress.Text = reader["Address"].ToString();
-            txtBoxClinicRoomWeight.Text = reader["Weight"].ToString();
-            txtBoxClinicRoomHeight.Text = reader["Height"].ToString();
+            if (String.IsNullOrEmpty(txtBoxClinicRoomWeight.Text)) txtBoxClinicRoomWeight.Text = reader["Weight"].ToString();
+            if (String.IsNullOrEmpty(txtBoxClinicRoomHeight.Text)) txtBoxClinicRoomHeight.Text = reader["Height"].ToString();
             dateTimePickerBirthDay.Text = reader["Birthday"].ToString();
             comboBoxClinicRoomName.Text = reader["name"].ToString();
             // dateTimePickerNgayKham.Text = reader["Day"].ToString(); //we update new Date 
@@ -516,8 +516,8 @@ namespace PhongKham
             {
                 txtBoxClinicRoomSymptom.Text = reader["Symptom"].ToString();
                 txtBoxClinicRoomDiagnose.Text = reader["Diagnose"].ToString();
-                textBoxClinicNhietDo.Text = reader[DatabaseContants.history.temperature].ToString();
-                textBoxHuyetAp.Text = reader[DatabaseContants.history.huyetap].ToString();
+                if (String.IsNullOrEmpty(textBoxClinicNhietDo.Text)) textBoxClinicNhietDo.Text = reader[DatabaseContants.history.temperature].ToString();
+                if (String.IsNullOrEmpty(textBoxHuyetAp.Text)) textBoxHuyetAp.Text = reader[DatabaseContants.history.huyetap].ToString();
             }
             textBoxClinicPhone.Text = reader["phone"].ToString();
 
@@ -526,7 +526,6 @@ namespace PhongKham
         private void AddVisitData()
         {
             //Save to history
-            List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines", "temperature", "huyetap" };
             string medicines = "";
             for (int i = 0; i < dataGridViewMedicine.Rows.Count - 1; i++)
             {
@@ -540,8 +539,8 @@ namespace PhongKham
                 }
             }
 
-            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, DateTime.Now.ToString("yyyy-MM-dd"), medicines, textBoxClinicNhietDo.Text, textBoxHuyetAp.Text };
-            db.InsertRowToTable("history", columnsHistory, valuesHistory);
+            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, DateTime.Now.ToString("yyyy-MM-dd"), medicines, textBoxClinicNhietDo.Text, textBoxHuyetAp.Text, this.textBoxReason.Text };
+            db.InsertRowToTable("history", Helper.ColumnsHistory, valuesHistory);
 
         }
         private void ChangeVisitData()
@@ -553,7 +552,7 @@ namespace PhongKham
 
 
             //Save to history
-            List<string> columnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines", "temperature", "huyetap" };
+
             string medicines = "";
             for (int i = 0; i < dataGridViewMedicine.Rows.Count - 1; i++)
             {
@@ -567,8 +566,8 @@ namespace PhongKham
                 }
             }
 
-            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"), medicines, textBoxClinicNhietDo.Text, textBoxHuyetAp.Text };
-            Helper.UpdateRowToTable(db, "history", columnsHistory, valuesHistory, lblClinicRoomId.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"));
+            List<string> valuesHistory = new List<string>() { lblClinicRoomId.Text, txtBoxClinicRoomSymptom.Text, txtBoxClinicRoomDiagnose.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"), medicines, textBoxClinicNhietDo.Text, textBoxHuyetAp.Text, this.textBoxReason.Text };
+            Helper.UpdateRowToTable(db, "history", Helper.ColumnsHistory, valuesHistory, lblClinicRoomId.Text, dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd"));
 
 
         }
@@ -597,91 +596,8 @@ namespace PhongKham
         #endregion
 
         #region Event Main Medicine
-        private void btnInputMedicineNewOk_ClickMySql(object sender, EventArgs e)
-        {
-            if (txtBoxInputMedicineNewName.Text.Contains(','))
-            {
-                MessageBox.Show("Tên thuốc không được chứa dấu phẩy .Gợi ý: dấu chấm ");
-                return;
-            }
-            string strCommand = "Select Name From medicine  Where Name = " + Helper.ConvertToSqlString(this.txtBoxInputMedicineNewName.Text);
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                reader.Read();
-                if (reader.HasRows == true) //level 2
-                {
-                    MessageBox.Show("Ten Thuoc Bi Trung, Xin Nhap Lai Ten Khac");
-                    return;
-                }
-            }
 
-            Medicine medicine = new Medicine();
-            medicine.Name = txtBoxInputMedicineNewName.Text.Trim();
-            medicine.InputDay = dateTimePicker3.Value;
-            try
-            {
-                medicine.CostOut = int.Parse(txtBoxInputMedicineNewCostOut.Text);
-                medicine.CostIn = int.Parse(txtBoxInputMedicineNewCostIn.Text);
-                medicine.Count = int.Parse(txtBoxInputMedicineNewCount.Text);
-                medicine.Id = lblInputMedicineNewId.Text;
-                medicine.HDSD = textBoxMedicineHdsd.Text;
-            }
-            catch (Exception)
-            {
-            }
-
-
-            if (medicine.CostOut < medicine.CostIn)
-            {
-                MessageBox.Show("Giá Out không thể nhỏ hơn giá In!", "Lỗi");
-                return;
-            }
-
-            List<string> columns = new List<string>() { "Name", "Count", "CostIn", "CostOut", "InputDay", "ID", "Hdsd" };
-            List<string> values = new List<string>() { medicine.Name, medicine.Count.ToString(), medicine.CostIn.ToString(), medicine.CostOut.ToString(), medicine.InputDay.ToString("yyyy-MM-dd"), medicine.Id, medicine.HDSD };
-            db.InsertRowToTable("Medicine", columns, values);
-            MessageBox.Show("Thêm mới thuốc thành công");
-            InitInputMedicineMySql();
-            InitComboboxMedicinesMySql();
-            RefreshIdOfNewMedicine();
-            ClearInputNewMedicine();
-
-        }
-        private void btnInputMedicineOk_ClickMySql(object sender, EventArgs e)
-        {
-            int count = 0;
-            try
-            {
-                count = int.Parse(lblInputMedicineCount.Text) + int.Parse(txtBoxInputMedicineAdd.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Số lượng thêm vào phải là một số!");
-                return;
-            }
-
-            string Id = label34.Text;
-
-            int newOutPreise = 0;
-
-            try
-            {
-                newOutPreise = int.Parse(textBox3.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Giá mới phải là một số!");
-                return;
-            }
-
-            string strCommand = "Update Medicine Set Count =" + count.ToString() + ", CostOut =" + newOutPreise.ToString() + " Where Id =" + Id;
-            db.ExecuteNonQuery(strCommand, null);
-
-            MessageBox.Show("Thêm thuốc thành công : " + txtBoxInputMedicineAdd.Text + " " + comboBoxInputMedicineName.Text);
-            ClearInputMedicine();
-
-
-        }
+        
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (MainTab.SelectedTab.Name == "tabnhapthuoc")
@@ -693,27 +609,7 @@ namespace PhongKham
         }
 
 
-        private void comboBoxInputMedicineName_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (comboBoxInputMedicineName.Text.Length > 0)
-            {
 
-                string Name = comboBoxInputMedicineName.Text;
-                string strCommand = "Select * From Medicine Where Name =" + Helper.ConvertToSqlString(Name);
-                // MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-                DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader;
-                if (reader.HasRows)
-                {
-                    reader.Read();
-                    FillDataToInputMedicineForm(reader);
-                }
-                else
-                {
-                    ClearInputMedicine();
-                }
-                reader.Close();
-            }
-        }
 
         #endregion
 
@@ -913,7 +809,7 @@ namespace PhongKham
                 }
             }
 
-            if (Show1Record.Checked) // Get 1 Record
+            if (checkBoxShow1Record.Checked) // Get 1 Record
             {
                 strCommandMain += " GROUP BY h.Id";
             }
@@ -944,7 +840,7 @@ namespace PhongKham
                     row.Cells["ColumnSymtom"].Value = reader2[DatabaseContants.history.Symptom].ToString();//symptom
                     row.Cells["ColumnDiagno"].Value = reader2[DatabaseContants.history.Diagnose].ToString(); // chan doan
                     row.Cells["ColumnNhietDo"].Value = reader2[DatabaseContants.history.temperature].ToString();
-                    if (ShowMedicines.Checked)
+                    if (checkBoxShowMedicines.Checked)
                     {
                         medicines = reader2[DatabaseContants.history.Medicines].ToString();
                         try
@@ -965,7 +861,7 @@ namespace PhongKham
         {
             SearchOnTextBox_PressEnter();
 
-            if (ShowBigForm.Checked)
+            if (checkBoxShowBigForm.Checked)
             {
                 SearchForm searchForm = new Clinic.SearchForm();
                 SearchForm.dataGridView1.Rows.Clear();
@@ -1022,16 +918,17 @@ namespace PhongKham
 
 
 
-        private void bw_DoWork(object sender, DoWorkEventArgs e)
+        private void bw_DoWork(string idbenhnhan)
         {
-            string idbenhnhan = e.Argument.ToString();
+            //string idbenhnhan = e.Argument.ToString();
             string strHenTaiKham = "";
+            string maxValueIdHistoryFromHistory = "";
             if (checkBoxHen.Checked == true)
             {
                 strHenTaiKham = BuildStringHenTaiKham(idbenhnhan, strHenTaiKham);
             }
 
-            checkBoxHen.Checked = false;
+
 
             Patient patient = new Patient(this.lblClinicRoomId.Text, comboBoxClinicRoomName.Text, txtBoxClinicRoomWeight.Text, txtBoxClinicRoomHeight.Text, txtBoxClinicRoomAddress.Text, dateTimePickerBirthDay.Value);
 
@@ -1039,6 +936,7 @@ namespace PhongKham
             if (this.comboBoxClinicRoomName.Text == null || this.comboBoxClinicRoomName.Text == string.Empty)
             {
                 MessageBox.Show("Ten Benh Nhan");
+                this.Enabled = true;
                 return;
             }
 
@@ -1048,6 +946,7 @@ namespace PhongKham
             {
                 MessageBox.Show("Bạn không thể sửa tên bệnh nhân đã nhập!");
                 this.comboBoxClinicRoomName.Text = originalName;
+                this.Enabled = true;
                 return;
             }
 
@@ -1079,10 +978,11 @@ namespace PhongKham
             if (!Helper.checkVisitExists(db, idbenhnhan, this.dateTimePickerNgayKham.Value.ToString("yyyy-MM-dd")))
             {
                 AddVisitData();
+
+                maxValueIdHistoryFromHistory = Helper.SearchMaxValueOfTableWithoutPlusPlus(ClinicConstant.HistoryTable, ClinicConstant.HistoryTable_IdHistory, "DESC").ToString();
                 //save to doanhthu
-                List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient" };
-                List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), lblClinicRoomId.Text, comboBoxClinicRoomName.Text };
-                db.InsertRowToTable("doanhthu", columnsDoanhThu, valuesDoanhThu);
+                List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), lblClinicRoomId.Text, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines), comboBoxLoaiKham.Text, maxValueIdHistoryFromHistory };
+                db.InsertRowToTable("doanhthu", Helper.ColumnsDoanhThu, valuesDoanhThu);
 
                 //tru tu thuoc
                 Helper.TruTuThuoc(db, listMedicines);
@@ -1109,35 +1009,48 @@ namespace PhongKham
 
                 ChangeVisitData();
 
+                maxValueIdHistoryFromHistory = Helper.SearchMaxValueOfTableWithoutPlusPlus(ClinicConstant.HistoryTable, ClinicConstant.HistoryTable_IdHistory, "DESC").ToString();
 
                 if (isNew)
                 {
 
                     //save to doanhthu
-                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient" };
-                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), idbenhnhan, comboBoxClinicRoomName.Text };
-                    db.InsertRowToTable("doanhthu", columnsDoanhThu, valuesDoanhThu);
+                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), idbenhnhan, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines), this.comboBoxLoaiKham.Text, maxValueIdHistoryFromHistory };
+                    db.InsertRowToTable("doanhthu", Helper.ColumnsDoanhThu, valuesDoanhThu);
                 }
                 else
                 {
 
                     //update to doanhthu
-                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time" };
-                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd") };
+                    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham, ClinicConstant.HistoryTable_IdHistory };
+                    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), Helper.BuildStringServices4SavingToDoanhThu(listMedicines), comboBoxLoaiKham.Text, maxValueIdHistoryFromHistory };
                     Helper.UpdateRowToTableDoanhThu(db, "doanhthu", columnsDoanhThu, valuesDoanhThu, idbenhnhan);
                 }
             }
+
+            AddToLichHenTable(idbenhnhan, maxValueIdHistoryFromHistory);
+
             int STT = Helper.LaySTTTheoNgay(db, DateTime.UtcNow, this.lblClinicRoomId.Text);
-            Helper.CreateAPdf(infoClinic, idbenhnhan, patient, listMedicines, strHenTaiKham, this.txtBoxClinicRoomDiagnose.Text, this.labelTuoi.Text, STT);
-            axAcroPDF1.LoadFile("firstpage.pdf");
-            Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, idbenhnhan);
+            Helper.CreateAPdf(infoClinic, idbenhnhan, patient, listMedicines, strHenTaiKham, this.txtBoxClinicRoomDiagnose.Text, this.labelTuoi.Text, STT, this.textBoxReason.Text);
+            this.textBoxReason.Text = string.Empty;
+
+        }
+
+        private void AddToLichHenTable(string idbenhnhan,string idHistory)
+        {
+            if (checkBoxHen.Checked == true)
+            {
+                List<string> columnslichhen = new List<string>() { "Idpatient", "Namedoctor", "Namepatient", "time", "phone", "benh", ClinicConstant.HistoryTable_IdHistory };
+                List<string> valueslichhen = new List<string>() { idbenhnhan, Form1.nameOfDoctor, comboBoxClinicRoomName.Text, dateTimePickerHen.Value.ToString("yyyy-MM-dd"), textBoxClinicPhone.Text, txtBoxClinicRoomDiagnose.Text, idHistory };
+                db.InsertRowToTable("lichhen", columnslichhen, valueslichhen);
+                checkBoxHen.Checked = false;
+
+            }
         }
 
         private string BuildStringHenTaiKham(string idbenhnhan, string strHenTaiKham)
         {
-            List<string> columnslichhen = new List<string>() { "Idpatient", "Namedoctor", "Namepatient", "time", "phone", "benh" };
-            List<string> valueslichhen = new List<string>() { idbenhnhan, Form1.nameOfDoctor, comboBoxClinicRoomName.Text, dateTimePickerHen.Value.ToString("yyyy-MM-dd"), textBoxClinicPhone.Text, txtBoxClinicRoomDiagnose.Text };
-            db.InsertRowToTable("lichhen", columnslichhen, valueslichhen);
+
             strHenTaiKham = "Mời tái khám vào ngày: " + dateTimePickerHen.Value.ToString("dd-MM-yyyy");
             return strHenTaiKham;
         }
@@ -1178,22 +1091,29 @@ namespace PhongKham
             else if (result == DialogResult.OK)
             {
                 this.Enabled = false;
-                BackgroundWorker backgroundWorker = new BackgroundWorker();
-                backgroundWorker.WorkerSupportsCancellation = true;
-                backgroundWorker.DoWork += new DoWorkEventHandler(bw_DoWork);
-                backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                //BackgroundWorker backgroundWorker = new BackgroundWorker();
+                //backgroundWorker.WorkerSupportsCancellation = true;
+                //backgroundWorker.DoWork += new DoWorkEventHandler(bw_DoWork);
+                //backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+                //backgroundWorker.RunWorkerAsync(idbenhnhan);
+                bw_DoWork(idbenhnhan);
+                try
+                {
+                    axAcroPDF1.LoadFile("firstpage.pdf");
+                    Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, idbenhnhan);
+                }
+                catch
+                {
 
-                backgroundWorker.RunWorkerAsync(idbenhnhan);
 
-                
-
-
+                }
+                this.Enabled = true;
             }
 
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            this.Enabled = true;
+
         }
 
 
@@ -1433,7 +1353,29 @@ namespace PhongKham
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            axAcroPDF1.printWithDialog();
+            //Trang Đầu
+            //Trang Cuối
+            //Tất Cả
+            //Tùy Chỉnh
+            //if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Đầu")
+            //{
+
+            //    axAcroPDF1.printPages(1, 1);
+            //}
+            //else if (this.comboBoxPrintPageOptions.SelectedItem == "Trang Cuối")
+            //{
+
+            //    axAcroPDF1.printPages(2, 2);
+            //}
+            //else if (this.comboBoxPrintPageOptions.SelectedItem == "Tất Cả")
+            //{
+
+            //    axAcroPDF1.printPages(1, 2);
+            //}
+            //else if (this.comboBoxPrintPageOptions.SelectedItem == "Tùy Chỉnh")
+            //{
+                axAcroPDF1.printWithDialog();
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1514,71 +1456,14 @@ namespace PhongKham
             }
         }
 
-        private void buttonServicesOK_Click(object sender, EventArgs e)
-        {
-            int giaOut;
-            if (textBoxServices.Text[0] != '@' || textBoxServices.Text == "")
-            {
-                MessageBox.Show("Tên dịch vụ phải bắt đầu với ký tự '@'", "Chú ý"); // phân biệt với thuốc
-                return;
-            }
-            try
-            {
-                giaOut = int.Parse(textBoxServicesCost.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Xin nhập lại giá. Giá không phù hợp!", "Chú ý");
-                return;
-            }
-            string Id = labelServicesID.Text;
-            if (!Helper.CheckMedicineExists(db, Id))
-            {
-                List<string> columns = new List<string>() { "Name", "CostOut", "ID" };
-                List<string> values = new List<string>() { textBoxServices.Text.Trim(), giaOut.ToString(), Id };
-
-                db.InsertRowToTable("Medicine", columns, values);
-                MessageBox.Show("Thêm mới dịch vụ thành công");
-            }
-            else
-            {
-
-                string strCommand = "Update Medicine Set CostOut =" + giaOut.ToString() + " Where Id =" + Id;
-                db.ExecuteNonQuery(strCommand, null);
-                MessageBox.Show("Sửa giá tiền dịch vụ thành công");
-            }
-
-
-
-            InitTableServices();
-        }
+       
 
         private void dataGridViewMedicine_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
 
-        private void textBoxServices_TextChanged(object sender, EventArgs e)
-        {
-            string nameOfService = textBoxServices.Text;
-            string strCommand = "Select * From Medicine Where Name =" + Helper.ConvertToSqlString(nameOfService);
-            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                if (reader.Read())
-                {
-                    string temp = reader[DatabaseContants.medicine.CostOut].ToString();
-                    string HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
-                    string id = reader["Id"].ToString();
-                    reader.Close();
-                    textBoxServicesCost.Text = temp;
-                    labelServicesID.Text = id;
-                    return;
-                }
-            }
-            RefreshIdOfNewMedicine();
-            textBoxServicesCost.Text = "0";
-        }
+
 
         private void buttonClinicClear_Click(object sender, EventArgs e)
         {
@@ -1699,7 +1584,14 @@ namespace PhongKham
 
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (this.checkBoxHen.Checked == true)
+            {
+                textBoxReason.Visible = true;
+            }
+            else
+            {
+                textBoxReason.Visible = false;
+            }
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1729,7 +1621,7 @@ namespace PhongKham
             {
                 DoanhThuForm dtForm = new Clinic.DoanhThuForm();
                 dtForm.Show();
-                DoanhThuForm.db = this.db;
+
             }
             else
             {
@@ -1789,20 +1681,20 @@ namespace PhongKham
 
         private void dataGridViewCalendar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != dataGridViewCalendar.Columns["ColumnKhamVaXoa"].Index) return;
-            string id = dataGridViewCalendar.Rows[e.RowIndex].Cells["Id"].Value.ToString();
-            string name = dataGridViewCalendar.Rows[e.RowIndex].Cells["Patient"].Value.ToString();
+            //if (e.RowIndex < 0 || e.ColumnIndex != dataGridViewCalendar.Columns["ColumnState"].Index) return;
+            //string id = dataGridViewCalendar.Rows[e.RowIndex].Cells["Id"].Value.ToString();
+            //string name = dataGridViewCalendar.Rows[e.RowIndex].Cells["Patient"].Value.ToString();
 
-            string strCommand = "Select * From patient  Where Name = " + Helper.ConvertToSqlString(name) + " and Idpatient =" + Helper.ConvertToSqlString(id);
+            //string strCommand = "Select * From patient  Where Name = " + Helper.ConvertToSqlString(name) + " and Idpatient =" + Helper.ConvertToSqlString(id);
 
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                reader.Read();
-                FillInfoToClinicForm(reader, true);
-            }
-            buttonSearch.PerformClick();
-            Helper.DeleteRowFromTableCalendar(db, id, name);
-            dataGridViewCalendar.Rows.RemoveAt(e.RowIndex);
+            //using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            //{
+            //    reader.Read();
+            //    FillInfoToClinicForm(reader, true);
+            //}
+            //buttonSearch.PerformClick();
+            //Helper.DeleteRowFromTableCalendar(db, id, name);
+            //dataGridViewCalendar.Rows.RemoveAt(e.RowIndex);
         }
 
         private void dataGridViewMedicine_Leave(object sender, EventArgs e)
@@ -1844,6 +1736,49 @@ namespace PhongKham
         {
 
         }
+
+        private void loaiKhamToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.loaiKhamToolStripMenuItem.Checked = !this.loaiKhamToolStripMenuItem.Checked;
+
+        }
+
+        private void themLoaiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //db.InsertRowToTable(ClinicConstant.LoaiKhamTable,new List<string>(){ClinicConstant.LoaiKhamTable_Nameloaikham},new List<string>(){te}
+            themLoaiForm form = new themLoaiForm();
+            form.Show();
+        }
+
+
+
+        private void textBoxReason_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.checkBoxHen.Checked == true)
+            {
+                TextBox TB = (TextBox)sender;
+                int VisibleTime = 1000;  //in milliseconds
+
+                ToolTip tt = new ToolTip();
+                tt.Show("Lý do tái khám", TB, 0, 0, VisibleTime);
+            }
+        }
+
+        private void cácChẩnĐoánToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Authority == 1)
+            {
+                DiagnosesHistory form = new DiagnosesHistory(listDiagnosesFromHistory);
+                form.Show();
+            }
+            else
+            {
+                MessageBox.Show("Chỉ khả dụng cho admin! ");
+            }
+        }
+
+
+
 
 
 

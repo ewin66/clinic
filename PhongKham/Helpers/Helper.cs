@@ -23,6 +23,7 @@ namespace Clinic.Helpers
     using MigraDoc.DocumentObjectModel;
     using MigraDoc.Rendering;
     using MigraDoc.DocumentObjectModel.Tables;
+    using Clinic.Models.ItemMedicine;
 
     /// <summary>
     /// Comment for the class
@@ -32,6 +33,8 @@ namespace Clinic.Helpers
         #region Fields
         private static readonly byte[] _key = { 0xA1, 0xF1, 0xA6, 0xBB, 0xA2, 0x5A, 0x37, 0x6F, 0x81, 0x2E, 0x17, 0x41, 0x72, 0x2C, 0x43, 0x27 };
         private static readonly byte[] _initVector = { 0xE1, 0xF1, 0xA6, 0xBB, 0xA9, 0x5B, 0x31, 0x2F, 0x81, 0x2E, 0x17, 0x4C, 0xA2, 0x81, 0x53, 0x61 };
+        public static List<string> ColumnsHistory = new List<string>() { "Id", "Symptom", "Diagnose", "Day", "Medicines", "temperature", "huyetap", ClinicConstant.HistoryTable_Reason };
+        public static List<string> ColumnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", "Idpatient", "Namepatient", ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham, ClinicConstant.HistoryTable_IdHistory };
         #endregion
 
         #region ctors
@@ -45,18 +48,22 @@ namespace Clinic.Helpers
         #region Methods
         public static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
         {
-            DirectoryInfo[] directories = source.GetDirectories();
-            for (int i = 0; i < directories.Length; i++)
+            try
             {
-                DirectoryInfo directoryInfo = directories[i];
-                CopyFilesRecursively(directoryInfo, target.CreateSubdirectory(directoryInfo.Name));
+                DirectoryInfo[] directories = source.GetDirectories();
+                for (int i = 0; i < directories.Length; i++)
+                {
+                    DirectoryInfo directoryInfo = directories[i];
+                    CopyFilesRecursively(directoryInfo, target.CreateSubdirectory(directoryInfo.Name));
+                }
+                FileInfo[] files = source.GetFiles();
+                for (int i = 0; i < files.Length; i++)
+                {
+                    FileInfo fileInfo = files[i];
+                    fileInfo.CopyTo(Path.Combine(target.FullName, fileInfo.Name), true);
+                }
             }
-            FileInfo[] files = source.GetFiles();
-            for (int i = 0; i < files.Length; i++)
-            {
-                FileInfo fileInfo = files[i];
-                fileInfo.CopyTo(Path.Combine(target.FullName, fileInfo.Name), true);
-            }
+            catch { }
         }
 
         public static string ChangePositionOfDayAndYear(string datetime)
@@ -549,6 +556,40 @@ namespace Clinic.Helpers
             }
         }
 
+        internal static int SearchMaxValueOfTableWithoutPlusPlus(string table, string nameOfColumn, string order)
+        {
+            string strCommand = " SELECT  " + nameOfColumn + " FROM " + table + " ORDER BY " + nameOfColumn + " " + order + " LIMIT 1";
+            //MySqlCommand comm = new MySqlCommand(strCommand, Program.conn);
+            IDatabase db = DatabaseFactory.Instance;
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+
+                reader.Read();
+                int intTemp = 0;
+                if (reader.HasRows)
+                {
+                    string temp = reader.GetValue(0).ToString();
+                    try
+                    {
+                        intTemp = int.Parse(temp);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                    finally
+                    {
+                        reader.Close();
+                    }
+                }
+                else
+                {
+                    intTemp = 0;
+                }
+                int newId = intTemp;
+                return newId;
+            }
+        }
+
 
         // public Patient AddNewPatient(SqlConnection conn, string id, bool Old)
         //{
@@ -822,7 +863,7 @@ namespace Clinic.Helpers
             pdfRenderer.RenderDocument();
             pdfRenderer.PdfDocument.Save(namePDF+".pdf");
         }
-        public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi,int Stt)
+        public static void CreateAPdf(InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, string taikham, string Diagno, string tuoi,int Stt,string reasonComeBack)
         {
 
 
@@ -835,9 +876,9 @@ namespace Clinic.Helpers
             document.DefaultPageSetup.PageHeight = height;
            
             int tongTienThuoc = 0;
-            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi,Stt);
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, false, taikham, ref  tongTienThuoc, Diagno, tuoi, Stt, reasonComeBack);
 
-            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno, tuoi,Stt);
+            AddSection(document, InformationOfClinic, MaBn, patient, Medicines, true, taikham, ref  tongTienThuoc, Diagno, tuoi, Stt, reasonComeBack);
 
             //document.LastSection.AddPageBreak();
 
@@ -854,7 +895,7 @@ namespace Clinic.Helpers
 
         }
 
-        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc, string Diagno, string tuoi,int Stt)
+        private static void AddSection(Document document, InfoClinic InformationOfClinic, string MaBn, Patient patient, List<Medicine> Medicines, bool onlyServices, string taikham, ref int tongTienThuoc, string Diagno, string tuoi, int Stt, string reasonComeBack)
         {
             Section section = document.AddSection();
             section.PageSetup.LeftMargin = 10;
@@ -1055,7 +1096,7 @@ namespace Clinic.Helpers
             paramNgayThang.Format.Alignment = ParagraphAlignment.Center;
             Row rowsignatureAndMore2 = signatureAndMore.AddRow();
             rowsignatureAndMore2.VerticalAlignment = VerticalAlignment.Center;
-            rowsignatureAndMore2.Cells[0].AddParagraph(taikham);
+            rowsignatureAndMore2.Cells[0].AddParagraph(taikham + ": " + reasonComeBack);
             Paragraph para = rowsignatureAndMore2.Cells[2].AddParagraph(" \n \n \n \n" + Form1.nameOfDoctor);
             para.Format.Alignment = ParagraphAlignment.Center;
 
@@ -1129,14 +1170,18 @@ namespace Clinic.Helpers
             return result;
         }
 
-        internal static List<string> FilterServicesFromAllMedicines(List<string> currentMedicines)
+        internal static Dictionary<string,Service> FilterServicesFromAllMedicines(List<Medicine> currentMedicinesAndServices)
         {
-            List<string> services = new List<string>();
-            foreach (string medi in currentMedicines)
+            Dictionary<string, Service> services = new Dictionary<string,Service>();
+            foreach (Medicine medi in currentMedicinesAndServices)
             {
-                if (medi[0] == '@')
+                if (medi.Name[0] == '@')
                 {
-                    services.Add(medi);
+                    Service service = new Service();
+                    service.Id = medi.Id;
+                    service.Name = medi.Name;
+                    service.Admin = medi.Admin;
+                    services.Add(medi.Name,service);
                 }
             }
             return services;
@@ -1235,11 +1280,19 @@ namespace Clinic.Helpers
                 {
                     
                     ItemDoanhThu item = new ItemDoanhThu();
-                    item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
-                    item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
-                    item.Money = (int)reader[DatabaseContants.doanhthu.Money];
-                    item.IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
-                    item.NamePatient = reader[DatabaseContants.doanhthu.NamePatient].ToString();
+                    item.Date = reader.GetDateTime(reader.GetOrdinal(ClinicConstant.DoanhThuTable_Time)).ToString("dd-MM-yyyy");
+                    item.NameOfDoctor = reader[ClinicConstant.DoanhThuTable_Namedoctor].ToString();
+                    item.Money = (int)reader[ClinicConstant.DoanhThuTable_Money];
+                    item.IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
+                    item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
+                    item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
+                    item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
+                    try
+                    {
+                        int idHistory = (int)reader[ClinicConstant.HistoryTable_IdHistory];
+                        item.Diagnose = GetDiagnoseFromHistoryByIdHistory(idHistory, DatabaseFactory.Instance2);
+                    }
+                    catch { item.Diagnose = ""; }
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1247,7 +1300,23 @@ namespace Clinic.Helpers
                    
                 }
             }
+            return result;
 
+        }
+
+        static string  GetDiagnoseFromHistoryByIdHistory(int idHistory , IDatabase db2)
+        {
+            string result = "";
+
+            string strCommand = " SELECT "+ClinicConstant.HistoryTable_Diagnose+" FROM "+ClinicConstant.HistoryTable  +" WHERE "+ClinicConstant.HistoryTable_IdHistory+" = " + Helper.ConvertToSqlString(idHistory.ToString());
+            using (DbDataReader reader = db2.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    result = reader[ClinicConstant.HistoryTable_Diagnose].ToString();
+                }
+            }
             return result;
         }
 
@@ -1256,25 +1325,34 @@ namespace Clinic.Helpers
         {
 
             List<string> result = new List<string>();
-
+            int i = 0;
             string strCommand = " SELECT * FROM doanhthu   WHERE time = " + Helper.ConvertToSqlString(dateTime.ToString("yyyy-MM-dd"));
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
             {
                 while (reader.Read())
                 {
 
-
-                    string IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
-                    if (result.Contains(IdPatient)==false)
+                    i++;
+                  
+                    string IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
+                    if (Id == IdPatient)
                     {
-                        result.Add(IdPatient);
+                        return i;
                     }
+                    //if (result.Contains(IdPatient) == false)
+                    //{
+                    //    result.Add(IdPatient);
+                    //}
+                    //else
+                    //{
+                    //    return i;
+                    //}
 
                 }
             }
 
-            int k = result.Count;
-            return k++;
+
+            return i;
         }
 
         internal static List<ItemDoanhThu> DoanhThuTheoThang(IDatabase db, DateTime dateTime)
@@ -1287,11 +1365,20 @@ namespace Clinic.Helpers
                 while (reader.Read())
                 {
                     ItemDoanhThu item = new ItemDoanhThu();
-                    item.Date = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.doanhthu.time)).ToString("dd-MM-yyyy");
-                    item.NameOfDoctor = reader[DatabaseContants.doanhthu.Namedoctor].ToString();
-                    item.Money = (int)reader[DatabaseContants.doanhthu.Money];
-                    item.IdPatient = reader[DatabaseContants.doanhthu.IdPatient].ToString();
-                    item.NamePatient = reader[DatabaseContants.doanhthu.NamePatient].ToString();
+                    item.Date = reader.GetDateTime(reader.GetOrdinal(ClinicConstant.DoanhThuTable_Time)).ToString("dd-MM-yyyy");
+                    item.NameOfDoctor = reader[ClinicConstant.DoanhThuTable_Namedoctor].ToString();
+                    item.Money = (int)reader[ClinicConstant.DoanhThuTable_Money];
+                    item.IdPatient = reader[ClinicConstant.DoanhThuTable_IdPatient].ToString();
+                    item.NamePatient = reader[ClinicConstant.DoanhThuTable_NamePatient].ToString();
+                    item.Services = reader[ClinicConstant.DoanhThuTable_Services].ToString();
+                    item.LoaiKham = reader[ClinicConstant.DoanhThuTable_LoaiKham].ToString();
+
+                    try
+                    {
+                        int idHistory = (int)reader[ClinicConstant.HistoryTable_IdHistory];
+                        item.Diagnose = GetDiagnoseFromHistoryByIdHistory(idHistory, DatabaseFactory.Instance2);
+                    }
+                    catch { item.Diagnose = ""; }
                     if (result.Where(x => x.IdPatient == item.IdPatient && x.Date == item.Date).FirstOrDefault() == null)
                     {
                         result.Add(item);
@@ -1303,9 +1390,9 @@ namespace Clinic.Helpers
             return result;
         }
 
-        internal static List<Medicine> GetAllMedicinesFromDB()
+        internal static List<IMedicine> GetAllMedicinesAndServicesFromDB()
         {
-            List<Medicine> result = new List<Medicine>();
+            List<IMedicine> result = new List<IMedicine>();
             IDatabase db = DatabaseFactory.Instance;
             string strCommand = " SELECT * FROM medicine";
             using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
@@ -1314,14 +1401,32 @@ namespace Clinic.Helpers
                 {
                     try
                     {
-                        Medicine medicine = new Medicine();
-                        medicine.Id = reader[DatabaseContants.medicine.Id].ToString();
-                        medicine.Name = reader[DatabaseContants.medicine.Name].ToString();
-                        medicine.Count = (int)reader[DatabaseContants.medicine.Count];
-                        medicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
-                        medicine.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
-                        medicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
-                        result.Add(medicine);
+
+                        ObjectMedicine objectMedicine = new ObjectMedicine();
+                        objectMedicine.Id = reader[DatabaseContants.medicine.Id].ToString();
+                        objectMedicine.Name = reader[DatabaseContants.medicine.Name].ToString();
+                        if (objectMedicine.Name[0] != '@')
+                        {
+                            objectMedicine.Count = (int)reader[DatabaseContants.medicine.Count];
+                            objectMedicine.CostIn = (int)reader[DatabaseContants.medicine.CostIn];
+                            objectMedicine.Admin = "";
+                            objectMedicine.InputDay = reader.GetDateTime(reader.GetOrdinal(DatabaseContants.medicine.InputDay));
+                            objectMedicine.HDSD = reader[DatabaseContants.medicine.Hdsd].ToString();
+                        }
+                        else // service
+                        {
+                            objectMedicine.Count = 0;
+                            objectMedicine.CostIn = 1;
+                            objectMedicine.Admin = reader[ClinicConstant.MedicineTable_Admin].ToString();
+                            objectMedicine.InputDay = DateTime.Now;
+                        }
+
+                        objectMedicine.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
+       
+
+
+                        result.Add(objectMedicine);
+                        
                     }
                     catch (Exception e)
                     {
@@ -1329,44 +1434,28 @@ namespace Clinic.Helpers
                     }
                 }
             }
+
             return result;
         }
 
-
-        internal static List<Service> GetAllServicesFromDB()
+        public static List<IMedicine> GetAllMedicineFromDb()
         {
-            List<Service> result = new List<Service>();
-            IDatabase db = DatabaseFactory.Instance;
-            string strCommand = " SELECT * FROM medicine";
-            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
-            {
-                while (reader.Read())
-                {
-                    try
-                    {
-                        if (reader[DatabaseContants.medicine.Name].ToString()[0]=='@')
-                        {
-                            Service service = new Service();
-                            service.Id = reader[DatabaseContants.medicine.Id].ToString();
-                            service.Name = reader[DatabaseContants.medicine.Name].ToString();
-                            service.CostOut = (int)reader[DatabaseContants.medicine.CostOut];
-                            result.Add(service);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-                }
-            }
-            return result;
+            return GetAllMedicinesAndServicesFromDB().Where(x => x.Name[0] != '@').ToList();
+        
         }
+
+        public static List<IMedicine> GetAllServiceFromDb()
+        {
+            return GetAllMedicinesAndServicesFromDB().Where(x => x.Name[0] == '@').ToList();
+
+        }
+
 
         internal static void UpdateRowToTableDoanhThu(IDatabase db, string nameOfTable, List<string> columnsDoanhThu, List<string> valuesDoanhThu, string p_2)
         {
             string strCommand = BuildFirstPartUpdateQuery(nameOfTable, columnsDoanhThu, valuesDoanhThu);
 
-            strCommand += " Where Idpatient='" + p_2 + "';";
+            strCommand += " Where Idpatient='" + p_2 + "'And time=" + ConvertToSqlString(DateTime.Now.ToString("yyyy-MM-dd")) + ";";
 
             //MySqlCommand comm = new MySqlCommand(strCommand, conn);
             db.ExecuteNonQuery(strCommand, null);
@@ -1587,6 +1676,142 @@ namespace Clinic.Helpers
                 reader.Close();
 
             }
+        }
+
+
+
+        /// <summary>
+        /// Should be called 1 time when loading the program
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
+        internal static List<string> GetAllDiagnosesFromHistory(IDatabase db)
+        {
+            List<string> result = new List<string>();
+            string strCommand = BuildStringCommandGettingFieldsFromTableWithoutCondition(ClinicConstant.HistoryTable,new List<string>(){ ClinicConstant.HistoryTable_Diagnose});
+            using (DbDataReader reader = db.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+                    try
+                    {
+                        if (!result.Contains(reader[ClinicConstant.HistoryTable_Diagnose].ToString()))
+                        {
+                            result.Add(reader[ClinicConstant.HistoryTable_Diagnose].ToString());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        private static string BuildStringCommandGettingFieldsFromTableWithoutCondition(string tableName, List<string> fields)
+        {
+            return "SELECT " + BuildStringFieldsInCommand(fields) + " FROM " + tableName;
+        }
+
+        private static string BuildStringFieldsInCommand(List<string> fields)
+        {
+            if(fields==null|| fields.Count==0)
+            {
+                return "*";
+            }
+            string result ="";
+            for(int i=0;i<fields.Count-1;i++)
+            {
+                result+=(fields[i]+',');
+            }
+            result+=fields[fields.Count-1];
+            return result;
+        }
+
+        internal static List<string> GetAllLoaiKham(IDatabase iDatabase)
+        {
+            List<string> result = new List<string>();
+            string strCommand = BuildStringCommandGettingFieldsFromTableWithoutCondition(ClinicConstant.LoaiKhamTable, new List<string>() { ClinicConstant.LoaiKhamTable_Nameloaikham });
+            using (DbDataReader reader = iDatabase.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                while (reader.Read())
+                {
+                    try
+                    {
+                        if (!result.Contains(reader[ClinicConstant.LoaiKhamTable_Nameloaikham].ToString()))
+                        {
+                            result.Add(reader[ClinicConstant.LoaiKhamTable_Nameloaikham].ToString());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+            return result;
+        }
+
+        internal static string BuildStringServices4SavingToDoanhThu(List<Medicine> Medicines)
+        {
+            string result = "";
+            for (int i = 0; i < Medicines.Count-1; i++)
+            {
+                if (Medicines[i].Name[0] == '@')
+                {
+                    string name = Medicines[i].Name;
+                    result += (name + ClinicConstant.StringBetweenServicesInDoanhThu);
+                }
+
+            }
+            result += Medicines[Medicines.Count - 1].Name;
+            return result;
+        }
+
+        internal static string GetIdHistoryFromHistory()
+        {
+            int result =0;
+            string strCommand = "SELECT LAST_INSERT_ID() FROM " + ClinicConstant.HistoryTable_IdHistory;
+            using (DbDataReader reader = DatabaseFactory.Instance.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                if (reader.HasRows)
+                {
+                    result = reader.GetInt32(0);
+                }
+
+            }
+            return result.ToString();
+        }
+
+        internal static string GetReasonComeBackFromHistoryByIdHistory(int idHistory, IDatabase iDatabase2)
+        {
+            string result = "";
+
+            string strCommand = " SELECT " + ClinicConstant.HistoryTable_Reason + " FROM " + ClinicConstant.HistoryTable + " WHERE " + ClinicConstant.HistoryTable_IdHistory + " = " + Helper.ConvertToSqlString(idHistory.ToString());
+            using (DbDataReader reader = iDatabase2.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    result = reader[ClinicConstant.HistoryTable_Reason].ToString();
+                }
+            }
+            return result;
+        }
+
+        internal static string GetStateComeBackFromHistoryByIdPatient(string IdPatient, IDatabase iDatabase2, DateTime time)
+        {
+            string strCommand = "Select Id from history Where Day = " + Helper.ConvertToSqlString(time.ToString("yyyy-MM-dd")) + " And Id = " + Helper.ConvertToSqlString(IdPatient);
+            using (DbDataReader reader = iDatabase2.ExecuteReader(strCommand, null) as DbDataReader)
+            {
+                reader.Read();
+                if (reader.HasRows)
+                {
+                    return "Đã tái khám";
+                }
+            }
+            return "Chưa";
         }
     }
 }

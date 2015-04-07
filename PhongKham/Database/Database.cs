@@ -36,6 +36,7 @@ namespace Clinic.Database
             {
 
                 cmd = new TCommand();
+                
                 //cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = StoreProcName;
                 if (tTransaction != default(TTransaction))
@@ -150,6 +151,8 @@ namespace Clinic.Database
 
                 ExecuteNonQuery("CREATE Table IF NOT EXISTS lichhen(Idlichhen INT NOT NULL AUTO_INCREMENT,Idpatient varchar(10),Namedoctor TEXT NULL,Namepatient TEXT NULL,time datetime,benh TEXT NULL,phone VARCHAR(45), PRIMARY KEY (Idlichhen)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
 
+                ExecuteNonQuery("CREATE Table IF NOT EXISTS loaikham(Idloaikham INT NOT NULL AUTO_INCREMENT,Nameloaikham TEXT NOT NULL, PRIMARY KEY (Idloaikham)) CHARACTER SET utf8 COLLATE utf8_unicode_ci;", null);
+
                 UpdateDatabase(password);
             }
             catch (Exception e)
@@ -205,6 +208,29 @@ namespace Clinic.Database
             fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN Idpatient TEXT NULL , ADD COLUMN Namepatient TEXT NULL;", null);
             Guard(fun);
 
+            fun = () => ExecuteNonQuery("ALTER TABLE medicine ADD COLUMN "+ ClinicConstant.MedicineTable_Admin +" TEXT NULL", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.DoanhThuTable_Services + " TEXT NULL;", null);
+            Guard(fun);
+
+
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.DoanhThuTable_LoaiKham + " TEXT NULL;", null);
+            Guard(fun);
+
+
+            fun = () => ExecuteNonQuery("ALTER TABLE history  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NOT NULL AUTO_INCREMENT ,ADD PRIMARY KEY (`IdHistory`) ;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE doanhthu  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NULL ;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE history  ADD COLUMN " + ClinicConstant.HistoryTable_Reason + " TEXT NULL ;", null);
+            Guard(fun);
+
+            fun = () => ExecuteNonQuery("ALTER TABLE lichhen  ADD COLUMN " + ClinicConstant.HistoryTable_IdHistory + " INT NULL ;", null);
+            Guard(fun);
+
         }
 
         //protected void CreateDatabase(string password)
@@ -244,6 +270,10 @@ namespace Clinic.Database
 
         public void InsertRowToTable(string nameOfTable, List<string> nameOfColumns, List<string> values)
         {
+            if (nameOfColumns.Count != values.Count)
+            {
+                throw new Exception("số cột và số giá trị khác nhau");
+            }
             for (int i = 0; i < values.Count; i++)
             {
                 values[i] =Helper.ConvertToSqlString(values[i]);

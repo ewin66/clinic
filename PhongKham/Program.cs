@@ -49,6 +49,7 @@ namespace PhongKham
                 string[] lines = System.IO.File.ReadAllLines("WriteLines.txt");
                // GetConnectionString(lines[0], lines[1]);
                 DatabaseFactory.CreateNewDatabase("",GetConnectionString(lines[0], lines[1]));
+
             }
             catch(Exception e)
             {
