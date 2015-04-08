@@ -1119,21 +1119,6 @@ namespace PhongKham
 
                 maxValueIdHistoryFromHistory = Helper.SearchMaxValueOfTableWithoutPlusPlus(ClinicConstant.HistoryTable, ClinicConstant.HistoryTable_IdHistory, "DESC").ToString();
 
-                //if (isNew)
-                //{
-
-                //    //save to doanhthu
-                //    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), idbenhnhan, comboBoxClinicRoomName.Text, Helper.BuildStringServices4SavingToDoanhThu(listMedicines), this.comboBoxLoaiKham.Text, maxValueIdHistoryFromHistory };
-                //    db.InsertRowToTable("doanhthu", Helper.ColumnsDoanhThu, valuesDoanhThu);
-                //}
-                //else
-                //{
-
-                //    //update to doanhthu
-                //    List<string> columnsDoanhThu = new List<string>() { "Namedoctor", "Money", "time", ClinicConstant.DoanhThuTable_Services, ClinicConstant.DoanhThuTable_LoaiKham, ClinicConstant.HistoryTable_IdHistory };
-                //    List<string> valuesDoanhThu = new List<string>() { Form1.nameOfDoctor, TongTien.ToString(), DateTime.Now.ToString("yyyy-MM-dd"), Helper.BuildStringServices4SavingToDoanhThu(listMedicines), comboBoxLoaiKham.Text, maxValueIdHistoryFromHistory };
-                //    Helper.UpdateRowToTableDoanhThu(db, "doanhthu", columnsDoanhThu, valuesDoanhThu, idbenhnhan);
-                //}
             }
 
             AddToLichHenTable(idbenhnhan, maxValueIdHistoryFromHistory);
@@ -1199,18 +1184,13 @@ namespace PhongKham
             else if (result == DialogResult.OK)
             {
                 this.Enabled = false;
-                //BackgroundWorker backgroundWorker = new BackgroundWorker();
-                //backgroundWorker.WorkerSupportsCancellation = true;
-                //backgroundWorker.DoWork += new DoWorkEventHandler(bw_DoWork);
-                //backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-                //backgroundWorker.RunWorkerAsync(idbenhnhan);
                 bw_DoWork(idbenhnhan);
                 try
                 {
                     axAcroPDF1.LoadFile("firstpage.pdf");
                     Helper.UpdateRowToTable(db, "patient", new List<string>() { "phone" }, new List<string>() { this.textBoxClinicPhone.Text }, idbenhnhan);
                 }
-                catch
+                catch(Exception ex)
                 {
 
 
@@ -1947,6 +1927,8 @@ namespace PhongKham
             formViewSieuAm.BackgroundImage = (sender as PictureBox).Image;
             formViewSieuAm.BackgroundImageLayout = ImageLayout.Stretch;
         }
+
+
 
 
 
