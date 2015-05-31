@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ClinicSetup_en", "ClinicSet
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{DDC76F94-ECFA-4E48-A93D-102DFB33C533}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrialMaker", "..\..\..\..\Downloads\TrialMaker\TrialMaker\TrialMaker.csproj", "{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -33,6 +35,12 @@ Global
 		{34C466F9-9AD4-4A14-A09A-CA9432E99693}.Debug|x86.ActiveCfg = Debug
 		{34C466F9-9AD4-4A14-A09A-CA9432E99693}.Release|Any CPU.ActiveCfg = Release
 		{34C466F9-9AD4-4A14-A09A-CA9432E99693}.Release|x86.ActiveCfg = Release
+		{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A803CAE-16F1-44C4-BF6D-2CAE88CDE659}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
